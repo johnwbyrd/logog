@@ -1,0 +1,287 @@
+namespace logog {
+
+/*!
+\mainpage logog - logger optimized for games
+
+\section introduction Introduction
+
+logog is a set of high-performance C++ macros and templates to facilitate logging of
+real-time events in performance-oriented applications, such as games.  It is especially
+appropriate for projects that have constrained memory and constrained CPU requirements.
+
+
+logog supports the following features:
+
+- High performance.  It is possible to disable all logging functionality
+entirely within logog.  In this case logog incurs zero performance penalty
+on executing code.  All logging functions compile to no-ops in the case
+where the logging level is set to disabled.  When logging is enabled, the do-not-log control
+path requires exactly one boolean comparison.  All performance-critical
+operations have been constructed to have constant time or near constant time
+performance.  logog was designed to assume that no memory or CPU time is available for logging on a final release build
+of software.  When compiling in final release mode, logog is designed to compile completely away -- zero memory allocations,
+zero CPU cycles spent.  
+
+- Logging to arbitrary destinations.  Log messages can be sent to stdout,
+stderr, syslog or into memory, or any combination of these.  Logging classes
+are highly extensible, so logging to new destinations is easy to add.
+
+- Multiple simultaneous logging criteria.  Messages can be simultaneously logged to
+different log targets with different requirements: by file, by category, by log level,
+or by group.  Substring matching permits regexp-like behavior on logging criteria.
+
+- No external dependencies.  logog only requires a reasonably modern standards-
+compliant C++ compiler (tr1 or later).  logog has limited dependencies on STL; however, these dependencies
+have been carefully designed so that STL can easily be replaced with a comparable 
+template library.
+
+- Highly granular control over which message types are logged.  Control over these messages
+may be determined at compile-time for maximal performance, or at run-time
+for interactively enabling or disabling log message types during execution.  Messages
+may be logged by source file, group, category, or message contents.
+
+- Support for advanced logging requirements.  logog's pub-sub architecture means
+that logging can occur simultaneously to multiple log targets, each with its own logging criteria.
+Stable base classes permit new logging targets to be easily added.
+
+- Extremely configurable memory usage and policy.  All memory
+allocations happen after initialization time via a user-supplied memory manager
+(or the default std::allocator).  In other words, you can configure ALL memory allocations to occur
+from custom malloc() and free() style functions of your own authorship.  
+
+- All allocated memory is freed after the shutdown -- logog
+does not leak memory.  
+
+- Support for POSIX-type and Windows-type operating systems.  Support
+for other OSes is straightforward; all OS dependencies are encapsulated in macros.
+
+- Support for multithreading.  Multiple thread sources are permitted to send logging messages
+at the same time.
+
+- Support for re-entrancy.  If triggering a log message indirectly causes another log message
+to be triggered, either through the memory allocator or some other user-based policy,
+logog is not permitted to hang in a multithreaded environment.
+
+- Unicode (wide-character) support for all strings; define LOGOG_UNICODE and all strings
+go from char-based to wchar-based.
+
+- No memory leaks.  A special compilation flag (LOGOG_LEAK_DETECTION) audits every allocation and
+free within logog to discover and fix memory leaks therein.
+
+- Extremely permissive license.  logog is released under the MIT License, so it may
+be used freely in commercial as well as open-source projects, with proper attribution to logog's 
+authors (Gigantic Software).
+
+- \ref quickstart
+- \ref requirements
+- \ref unittesting
+
+\page quickstart Quick start
+
+To use the logging library in your own project, put the following line at the top of your source file(s):
+
+\code
+#include "logog.hpp"
+\endcode
+
+At the top of your program, initialize logog this way:
+
+\code
+logog::Initialize();
+\endcode
+
+Logging will terminate and release all allocated resources when the MyLog object is destroyed.
+
+To log a message in your code, use one of the following macros, in order of severity.  Arguments
+are assumed to be sprintf-style varargs:
+
+\code
+DEBUG( const char *msg, ... );
+INFO( const char *msg, ... );
+WARN( const char *msg, ... );
+ERROR( const char *msg, ... );
+CRITICAL( const char *msg, ... );
+\endcode
+
+Some usage examples follow:
+
+\code 
+int foo = 9001;
+int maxfoo = 9000;
+
+if ( foo > maxfoo )
+{
+	WARN("Foo is over %d!  Current value is %d.", maxfoo, foo );
+	WARN("Since this is a warning, by default all builds will log this message!");
+	DEBUG("But this one will not be logged unless you set the compilation flag LOGOG_LEVEL to LOGOG_LEVEL_DEBUG or higher.");
+}
+	
+...
+...
+
+const char *pMessage = "message"
+INFO( "This is an informational %s. By default it will appear only in debug builds.", pMessage );
+\endcode
+
+Lastly, terminate your program and logging with the following message:
+
+\code
+logog::Shutdown();
+\endcode
+
+\page architecture Internal architecture
+
+The logog system uses a publisher-subscriber model in order to handle message flow from source to 
+destination.  While the higher-level class architecture takes care of typical message routing,
+the standard message flow can be changed to support advanced logging models.
+
+A key base class is the Topic class.  Topics contain strings and numeric information representing
+a file name, line number, a free-form group name, a free-form category name, and a free-form message string.
+Topics know how to transmit and receive themselves to and from other topics, but they don't know how
+to discover those other topics.  They do know how to negotiate with another topic in order to
+discover whether they should subscribe to that other topic -- see Topic::CanSubscribeCheckTopic() for details.
+Topics implement the core functionality of subscribing and publishing.  Topics can subscribe to 
+multiple other topics, and they can publish to multiple other topics.
+
+Some Topic behavior, especially the subscriber-publisher behavior and cross-thread locking, is subsumed
+into the Node class.  Nodes should generally not be instanced by themselves, as they are not sufficiently
+functional to be useful.
+
+Topics are subclassed into TopicSource and TopicSink classes.  TopicSources can only publish, and 
+TopicSinks can only subscribe.
+
+A Target is a TopicSink that is capable of rendering its subscriptions to a logical output device.
+Targets include the Cout, Cerr, and the OutputDebug classes.  To make logog send output to some arbitrary
+new destination, create a new Target subclass and override the Target::Output() method, and instance a
+new element of your class at the top of your program.
+
+A Filter is a Topic that functions basically as a subscriber and a publisher.  It's used to limit
+the scope of incoming messages to a particular type, group, or category.  For example, a Filter
+may be used to permit only messages with a level of LOGOG_LEVEL_WARN or higher to be logged.
+Other messages are dropped.  By default a filter will attempt to subscribe itself to all existing Targets;
+however, this behavior may be changed by overriding the Initialize() method within your Target subclass,
+or by manually calling Target::Unpublish() on each Target that you want the Filter to not publish to.
+
+This design permits more advanced logging models.  For example, it's possible to have two Filters, one which
+filters for error messages and logs those to the console, versus informational and warning messages, which
+are logged to a file.  Note that the routing of any of the higher-level classes such as Filter or Output
+by simply instantiating a Topic and manually calling PublishTo() and SubscribeTo() to the desired inputs
+and outputs.
+
+A Message is a sub-sub-class of TopicSource that knows how to publish itself automatically to any outstanding
+Filter objects.  A program will typically instance a set of static Message objects and use them to indicate execution
+of a certain point in the program.
+
+String types receive their own custom class.  Since logog spends a lot of time shuffling strings from class to class,
+this permits string copies to be fast constant-time operations (a copy of pointers).
+
+All statically allocated elements are stored inside the Statics class.  This permits all items to be tracked and
+freed, thus assuring no memory leaks.
+
+In order to support cross-platform, multithread-safe support, logog implements a Thread class, a Timer class,
+and a Mutex class.  These of course can be customized to support future platforms.
+
+\page porting Porting logog
+
+Porting logog should be a straightforward affair, if you follow these guidelines.
+
+First of all, you'll need to choose a flavor of operating system for your platform.
+Nearly all OSes will fall into one of two flavors: Posix-like and Windows-like.
+platform.hpp tries to detect the local OS and compile for it; you may need to change
+the detection logic for your new platform.
+
+The files containing platform dependent code are as follows.
+
+- platform.hpp.  In addition to detecting the build flavor, platform.hpp also sets 
+some macros for STL usage.  All STL calls are routed through the macros in platform.hpp.
+As of this writing, the STL templates are available in tr1; you'll need to change this
+once more compilers support C++0x.  
+
+- mutex.hpp.  You'll need to write macros for your own LOGOG_MUTEX_* calls.  Here's the 
+example from Windows:
+
+\code
+#define LOGOG_MUTEX(x)           CRITICAL_SECTION (x);
+#define LOGOG_MUTEX_INIT(x)      InitializeCriticalSection (x)
+#define LOGOG_MUTEX_DELETE(x)    DeleteCriticalSection (x)
+#define LOGOG_MUTEX_LOCK(x)      EnterCriticalSection (x)
+#define LOGOG_MUTEX_UNLOCK(x)    LeaveCriticalSection (x)
+#define LOGOG_MUTEX_CTOR(x)		
+\endcode
+
+- thread.hpp.  Write macros for LOGOG_THREAD, LOGOG_THREAD_CREATE and LOGOG_THREAD_JOIN.
+
+- timer.hpp.  Add code for the Timer initializer and the Get() function.
+
+Lastly, verify that unittest.cpp compiles and executes with a zero return code.
+
+\page requirements Requirements
+
+logog assumes the existence of a C99 compliant C++ compiler.  It uses variadic macros in the C99
+style.
+
+logog has been tested with Microsoft Visual Studio 2008 and gcc 3.4.x.
+
+\page license License agreement
+
+logog is Copyright (c) 2011, Gigantic Software.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions
+of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+
+\page othersystems Other logging frameworks and systems
+
+Here are other logging and testing frameworks that have served as inspiration (negative and/or positive) for
+logog.
+
+\section pantheios Panetheios
+\sa http://www.pantheios.org
+
+Pantheios has a fairly impressive looking web site, and also claims to compile to nothing in the final release
+case.  However, the Pantheios library depends on STLSoft, xTests, b64, and shwild to do its magic.
+(logog's only external dependency is a reasonably modern STL implementation -- it's just a set of header files.)
+
+\section marginean Petru Margenian's library in Dr. Dobb's Journal
+\sa http://drdobbs.com/cpp/201804215
+
+Another interesting attempt at a portable logging implementation.  Inexplicably this library depends on
+an atomic_ops library from HP, and it won't mention this fact until you try to compile it.  Logging can
+be enabled or disabled based on a single dimension ("level") and all logging output ends up at stderr
+(there is no support for alternative outputs).
+
+\section glog glog, the Google logging library
+\sa http://code.google.com/p/google-glog/
+
+Provides logging to stderr, a file or syslog.  Their ostream-style logging methodology creates two sets of 
+macros: one for macros that compile away in debug mode, one for macros that don't.  This has the unfortunate
+side effect of slowing down builds where you really don't want any logging.  Interesting (if non portable)
+support for stack walking.
+
+\section rlog rlog
+\sa http://code.google.com/p/rlog/
+
+Uses a publisher-subscriber model for all objects, and demonstrated that this basic architecture was 
+highly appropriate for logging.  Tends to allocate a lot of small objects at static 
+initialization time, thus doing an end run around any memory allocation policy.  I had some bad luck trying
+to get this to work in a true multithreaded environment -- it doesn't deal with reentrant calls very well.
+
+\section loki Loki
+\sa http://loki-lib.sourceforge.net/
+
+The loki library does a good job of abstracting platform-specific OS features in extremely few lines of
+code.  Some of those ideas ended up in logog.
+
+*/
+
+}
