@@ -277,7 +277,7 @@ function SearchBox(name, resultsPath, inFrame, label)
         var node = child.firstChild;
         if (j==id)
         {
-          node.innerHTML='&bull;';
+          node.innerHTML='&#8226;';
         }
         else
         {
@@ -374,7 +374,7 @@ function SearchBox(name, resultsPath, inFrame, label)
        hasResultsPage = false;
     }
 
-    window.frames.MSearchResults.location.href = resultsPageWithSearch;  
+    window.frames.MSearchResults.location = resultsPageWithSearch;  
     var domPopupSearchResultsWindow = this.DOMPopupSearchResultsWindow();
 
     if (domPopupSearchResultsWindow.style.display!='block')

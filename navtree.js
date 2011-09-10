@@ -4,14 +4,31 @@ var NAVTREE =
     [ "logog - logger optimized for games", "index.html", null ],
     [ "Related Pages", "pages.html", [
       [ "Unit test framework", "unittesting.html", null ],
+      [ "Features", "features.html", null ],
       [ "Quick start", "quickstart.html", null ],
+      [ "Logging events in your code", "loggingevents.html", null ],
+      [ "Verbosity levels of logging", "levels.html", null ],
+      [ "Filters and their uses", "filters.html", null ],
+      [ "Organizing and filtering log messages by types", "categoriesgroups.html", null ],
+      [ "Logging to permutations of multiple targets", "multipletargets.html", null ],
+      [ "Deferring logging output", "deferredoutput.html", null ],
+      [ "Adding new logging output targets", "addingnewtargets.html", null ],
+      [ "Implementing a custom memory manager", "memorymanager.html", null ],
+      [ "Memory leak detection", "leakdetection.html", null ],
+      [ "Publisher-subscriber functionality", "pubsub.html", null ],
       [ "Internal architecture", "architecture.html", null ],
+      [ "Performance topics", "performance.html", null ],
+      [ "Multithread locking and mutexes", "locking.html", null ],
       [ "Porting logog", "porting.html", null ],
       [ "Requirements", "requirements.html", null ],
       [ "Supported platforms", "supportedplatforms.html", null ],
       [ "License agreement", "license.html", null ],
       [ "Other logging frameworks and systems", "othersystems.html", null ],
       [ "Todo List", "todo.html", null ]
+    ] ],
+    [ "Modules", "modules.html", [
+      [ "Level Settings", "group__levelsettings.html", null ],
+      [ "Topic Bits Type", "group__topicbitstype.html", null ]
     ] ],
     [ "Class List", "annotated.html", [
       [ "Allocator< T >", "classlogog_1_1_allocator.html", null ],
