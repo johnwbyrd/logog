@@ -365,295 +365,299 @@ function toggleVisibility(linkObj) {
 <a name="l00246"></a>00246                         <span class="keywordflow">return</span> ( <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> != NULL );
 <a name="l00247"></a>00247                 }
 <a name="l00248"></a>00248 
-<a name="l00249"></a><a class="code" href="classlogog_1_1_string.html#a54057c6b31bac15900185f75a9de252d">00249</a>                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#a79919c4e0c286ff25af27f733fa36193">assign</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *other )
+<a name="l00249"></a><a class="code" href="classlogog_1_1_string.html#a57536dee326af51e6655e3febac1c77c">00249</a>                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#a79919c4e0c286ff25af27f733fa36193">assign</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *other, <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pEnd = NULL )
 <a name="l00250"></a>00250                 {
-<a name="l00251"></a>00251                         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> len = <a class="code" href="classlogog_1_1_string.html#a4bbf5ceceaa8d3d5deeac60ea7059aeb">Length</a>( other );
+<a name="l00251"></a>00251                         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> len;
 <a name="l00252"></a>00252 
-<a name="l00256"></a>00256 <span class="preprocessor">#ifdef LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT</span>
-<a name="l00257"></a>00257 <span class="preprocessor"></span>                        <a class="code" href="classlogog_1_1_string.html#a9fbffb8912e84eb7147e15f426bb579f">reserve</a>( len + 1 );
-<a name="l00258"></a>00258 
-<a name="l00259"></a>00259                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> t = 0; t &lt;= len; t++ )
-<a name="l00260"></a>00260                                 *<a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a>++ = *other++;
-<a name="l00261"></a>00261 <span class="preprocessor">#else  // LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT</span>
-<a name="l00262"></a>00262 <span class="preprocessor"></span>                        
-<a name="l00263"></a>00263 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00264"></a>00264 <span class="preprocessor"></span>                        <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> )
-<a name="l00265"></a>00265                                 cout &lt;&lt; <span class="stringliteral">&quot;Can&#39;t reassign const string!&quot;</span> &lt;&lt; endl;
-<a name="l00266"></a>00266 <span class="preprocessor">#endif</span>
-<a name="l00267"></a>00267 <span class="preprocessor"></span>                        <span class="comment">/* In this case we don&#39;t copy the buffer, just reuse it */</span>
-<a name="l00268"></a>00268                         <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> = <span class="keyword">const_cast&lt;</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<span class="keyword">&gt;</span>( other );
-<a name="l00269"></a>00269                         <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a> = <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> + len + 1;
-<a name="l00270"></a>00270                         <a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">m_pEndOfBuffer</a> = <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a>;
-<a name="l00271"></a>00271                         <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> = <span class="keyword">true</span>;
-<a name="l00272"></a>00272 
-<a name="l00273"></a>00273 <span class="preprocessor">#endif // LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT</span>
-<a name="l00274"></a>00274 <span class="preprocessor"></span>
-<a name="l00275"></a>00275                         <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) len;
-<a name="l00276"></a>00276                 }
-<a name="l00277"></a>00277 
-<a name="l00278"></a><a class="code" href="classlogog_1_1_string.html#acc5428f3eb46344f9288544f876262de">00278</a>                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#acc5428f3eb46344f9288544f876262de">find</a>( <a class="code" href="classlogog_1_1_string.html">String</a> &amp;other )<span class="keyword"> const</span>
-<a name="l00279"></a>00279 <span class="keyword">                </span>{
-<a name="l00280"></a>00280                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#a62dc65d0a268f34797ec259460f3d23d">is_valid</a>() &amp;&amp; other.<a class="code" href="classlogog_1_1_string.html#a62dc65d0a268f34797ec259460f3d23d">is_valid</a>())
-<a name="l00281"></a>00281                         {
-<a name="l00282"></a>00282                                 <span class="comment">// BM solution</span>
-<a name="l00283"></a>00283                                 <span class="comment">// return other.BM( m_pBuffer, m_pOffset - m_pBuffer );</span>
-<a name="l00284"></a>00284                                 <span class="comment">// KMP solution</span>
-<a name="l00285"></a>00285                                 <span class="keywordflow">return</span> other.<a class="code" href="classlogog_1_1_string.html#aafa11b556c0a47857fe67dba1a45d177">KMP</a>( <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>, <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a> - <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> );
-<a name="l00286"></a>00286                         }
-<a name="l00287"></a>00287 
-<a name="l00288"></a>00288                         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a>;
-<a name="l00289"></a>00289                 }
-<a name="l00290"></a>00290 
-<a name="l00291"></a><a class="code" href="classlogog_1_1_string.html#a8724ec7a2345f1b57ed7da8da4463b32">00291</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a8724ec7a2345f1b57ed7da8da4463b32">format</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatString, ... )
-<a name="l00292"></a>00292                 {
-<a name="l00293"></a>00293                         va_list args;
+<a name="l00253"></a>00253                         <span class="keywordflow">if</span> ( pEnd == NULL )
+<a name="l00254"></a>00254                                 len = <a class="code" href="classlogog_1_1_string.html#a4bbf5ceceaa8d3d5deeac60ea7059aeb">Length</a>( other );
+<a name="l00255"></a>00255                         <span class="keywordflow">else</span> 
+<a name="l00256"></a>00256                                 len = ( pEnd - other );
+<a name="l00260"></a>00260 <span class="preprocessor">#ifdef LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT</span>
+<a name="l00261"></a>00261 <span class="preprocessor"></span>                        <a class="code" href="classlogog_1_1_string.html#a9fbffb8912e84eb7147e15f426bb579f">reserve</a>( len + 1 );
+<a name="l00262"></a>00262 
+<a name="l00263"></a>00263                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> t = 0; t &lt;= len; t++ )
+<a name="l00264"></a>00264                                 *<a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a>++ = *other++;
+<a name="l00265"></a>00265 <span class="preprocessor">#else  // LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT</span>
+<a name="l00266"></a>00266 <span class="preprocessor"></span>                        
+<a name="l00267"></a>00267 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
+<a name="l00268"></a>00268 <span class="preprocessor"></span>                        <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> )
+<a name="l00269"></a>00269                                 cout &lt;&lt; <span class="stringliteral">&quot;Can&#39;t reassign const string!&quot;</span> &lt;&lt; endl;
+<a name="l00270"></a>00270 <span class="preprocessor">#endif</span>
+<a name="l00271"></a>00271 <span class="preprocessor"></span>                        <span class="comment">/* In this case we don&#39;t copy the buffer, just reuse it */</span>
+<a name="l00272"></a>00272                         <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> = <span class="keyword">const_cast&lt;</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<span class="keyword">&gt;</span>( other );
+<a name="l00273"></a>00273                         <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a> = <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> + len + 1;
+<a name="l00274"></a>00274                         <a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">m_pEndOfBuffer</a> = <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a>;
+<a name="l00275"></a>00275                         <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> = <span class="keyword">true</span>;
+<a name="l00276"></a>00276 
+<a name="l00277"></a>00277 <span class="preprocessor">#endif // LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT</span>
+<a name="l00278"></a>00278 <span class="preprocessor"></span>
+<a name="l00279"></a>00279                         <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) len;
+<a name="l00280"></a>00280                 }
+<a name="l00281"></a>00281 
+<a name="l00282"></a><a class="code" href="classlogog_1_1_string.html#acc5428f3eb46344f9288544f876262de">00282</a>                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#acc5428f3eb46344f9288544f876262de">find</a>( <a class="code" href="classlogog_1_1_string.html">String</a> &amp;other )<span class="keyword"> const</span>
+<a name="l00283"></a>00283 <span class="keyword">                </span>{
+<a name="l00284"></a>00284                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#a62dc65d0a268f34797ec259460f3d23d">is_valid</a>() &amp;&amp; other.<a class="code" href="classlogog_1_1_string.html#a62dc65d0a268f34797ec259460f3d23d">is_valid</a>())
+<a name="l00285"></a>00285                         {
+<a name="l00286"></a>00286                                 <span class="comment">// BM solution</span>
+<a name="l00287"></a>00287                                 <span class="comment">// return other.BM( m_pBuffer, m_pOffset - m_pBuffer );</span>
+<a name="l00288"></a>00288                                 <span class="comment">// KMP solution</span>
+<a name="l00289"></a>00289                                 <span class="keywordflow">return</span> other.<a class="code" href="classlogog_1_1_string.html#aafa11b556c0a47857fe67dba1a45d177">KMP</a>( <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>, <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a> - <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> );
+<a name="l00290"></a>00290                         }
+<a name="l00291"></a>00291 
+<a name="l00292"></a>00292                         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a>;
+<a name="l00293"></a>00293                 }
 <a name="l00294"></a>00294 
-<a name="l00295"></a>00295                         va_start(args, cFormatString);
-<a name="l00296"></a>00296                         <a class="code" href="classlogog_1_1_string.html#a0b374f3342ea509a23edbec23b048c79">format_va</a>( cFormatString, args );
-<a name="l00297"></a>00297                         va_end( args );
-<a name="l00298"></a>00298                 }
-<a name="l00299"></a>00299                 
-<a name="l00300"></a><a class="code" href="classlogog_1_1_string.html#a0b374f3342ea509a23edbec23b048c79">00300</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a0b374f3342ea509a23edbec23b048c79">format_va</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatString, va_list args )
-<a name="l00301"></a>00301                 {
-<a name="l00302"></a>00302                         <span class="keywordtype">int</span> nActualSize = -1, nAttemptedSize;
-<a name="l00303"></a>00303                         <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pszFormatted = NULL;
-<a name="l00304"></a>00304 
-<a name="l00305"></a>00305                         <a class="code" href="classlogog_1_1_string.html#a186754c433a9887d0d1f955707cb9a8c">Free</a>();
-<a name="l00306"></a>00306 
-<a name="l00307"></a>00307                         <span class="comment">/* Estimate length of output; don&#39;t pull in strlen() if we can help it */</span>
-<a name="l00308"></a>00308                         <span class="keywordtype">int</span> nEstLength = 0;
-<a name="l00309"></a>00309                         <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pCurChar = cFormatString;
-<a name="l00310"></a>00310                         <span class="keywordflow">while</span> ( *pCurChar++ )
-<a name="l00311"></a>00311                                 nEstLength++;
-<a name="l00312"></a>00312 
-<a name="l00313"></a>00313                         nAttemptedSize = nEstLength * 2 * <span class="keyword">sizeof</span>( <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> );
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315                         <span class="comment">/* Some *printf implementations, such as msvc&#39;s, return -1 on failure.  Others, such as gcc, return the number </span>
-<a name="l00316"></a>00316 <span class="comment">                         * of characters actually formatted on failure.  Deal with either case here.</span>
-<a name="l00317"></a>00317 <span class="comment">                         */</span>
-<a name="l00318"></a>00318                         <span class="keywordflow">while</span> ( nActualSize &lt; nAttemptedSize )
-<a name="l00319"></a>00319                         {
-<a name="l00320"></a>00320                                 pszFormatted = (<a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( nAttemptedSize );
-<a name="l00321"></a>00321                                 <span class="keywordflow">if</span> ( !pszFormatted )
-<a name="l00322"></a>00322                                 {
-<a name="l00323"></a>00323                                         <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
-<a name="l00324"></a>00324                                 }
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326                                 *pszFormatted = NULL;
-<a name="l00327"></a>00327 
-<a name="l00328"></a>00328                                 va_list argsCopy;
+<a name="l00295"></a><a class="code" href="classlogog_1_1_string.html#a8724ec7a2345f1b57ed7da8da4463b32">00295</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a8724ec7a2345f1b57ed7da8da4463b32">format</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatString, ... )
+<a name="l00296"></a>00296                 {
+<a name="l00297"></a>00297                         va_list args;
+<a name="l00298"></a>00298 
+<a name="l00299"></a>00299                         va_start(args, cFormatString);
+<a name="l00300"></a>00300                         <a class="code" href="classlogog_1_1_string.html#a0b374f3342ea509a23edbec23b048c79">format_va</a>( cFormatString, args );
+<a name="l00301"></a>00301                         va_end( args );
+<a name="l00302"></a>00302                 }
+<a name="l00303"></a>00303                 
+<a name="l00304"></a><a class="code" href="classlogog_1_1_string.html#a0b374f3342ea509a23edbec23b048c79">00304</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a0b374f3342ea509a23edbec23b048c79">format_va</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatString, va_list args )
+<a name="l00305"></a>00305                 {
+<a name="l00306"></a>00306                         <span class="keywordtype">int</span> nActualSize = -1, nAttemptedSize;
+<a name="l00307"></a>00307                         <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pszFormatted = NULL;
+<a name="l00308"></a>00308 
+<a name="l00309"></a>00309                         <a class="code" href="classlogog_1_1_string.html#a186754c433a9887d0d1f955707cb9a8c">Free</a>();
+<a name="l00310"></a>00310 
+<a name="l00311"></a>00311                         <span class="comment">/* Estimate length of output; don&#39;t pull in strlen() if we can help it */</span>
+<a name="l00312"></a>00312                         <span class="keywordtype">int</span> nEstLength = 0;
+<a name="l00313"></a>00313                         <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pCurChar = cFormatString;
+<a name="l00314"></a>00314                         <span class="keywordflow">while</span> ( *pCurChar++ )
+<a name="l00315"></a>00315                                 nEstLength++;
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317                         nAttemptedSize = nEstLength * 2 * <span class="keyword">sizeof</span>( <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> );
+<a name="l00318"></a>00318 
+<a name="l00319"></a>00319                         <span class="comment">/* Some *printf implementations, such as msvc&#39;s, return -1 on failure.  Others, such as gcc, return the number </span>
+<a name="l00320"></a>00320 <span class="comment">                         * of characters actually formatted on failure.  Deal with either case here.</span>
+<a name="l00321"></a>00321 <span class="comment">                         */</span>
+<a name="l00322"></a>00322                         <span class="keywordflow">while</span> ( nActualSize &lt; nAttemptedSize )
+<a name="l00323"></a>00323                         {
+<a name="l00324"></a>00324                                 pszFormatted = (<a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( nAttemptedSize );
+<a name="l00325"></a>00325                                 <span class="keywordflow">if</span> ( !pszFormatted )
+<a name="l00326"></a>00326                                 {
+<a name="l00327"></a>00327                                         <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
+<a name="l00328"></a>00328                                 }
 <a name="l00329"></a>00329 
-<a name="l00330"></a>00330 <span class="preprocessor">#if defined( va_copy )</span>
-<a name="l00331"></a>00331 <span class="preprocessor"></span>                                va_copy( argsCopy, args );
-<a name="l00332"></a>00332 <span class="preprocessor">#elif defined( __va_copy )</span>
-<a name="l00333"></a>00333 <span class="preprocessor"></span>                                __va_copy( argsCopy, args );
-<a name="l00334"></a>00334 <span class="preprocessor">#else</span>
-<a name="l00335"></a>00335 <span class="preprocessor"></span>                                memcpy( &amp;argsCopy, &amp;args, <span class="keyword">sizeof</span>(va_list) );
-<a name="l00336"></a>00336 <span class="preprocessor">#endif</span>
-<a name="l00337"></a>00337 <span class="preprocessor"></span>
-<a name="l00338"></a>00338 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00339"></a>00339 <span class="preprocessor"></span>                                nActualSize = vsnprintf_s( pszFormatted, nAttemptedSize - 1, _TRUNCATE, cFormatString, argsCopy );
-<a name="l00340"></a>00340 <span class="preprocessor">#else</span>
-<a name="l00341"></a>00341 <span class="preprocessor"></span>                                nActualSize = vsnprintf( pszFormatted, nAttemptedSize - 1, cFormatString, argsCopy );
-<a name="l00342"></a>00342 <span class="preprocessor">#endif</span>
-<a name="l00343"></a>00343 <span class="preprocessor"></span>
-<a name="l00344"></a>00344                                 va_end( argsCopy );
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346                                 <span class="keywordflow">if</span> (( nAttemptedSize &gt; nActualSize ) &amp;&amp; ( nActualSize != -1))
-<a name="l00347"></a>00347                                         <span class="keywordflow">break</span>;
-<a name="l00348"></a>00348 
-<a name="l00349"></a>00349                                 <span class="comment">// try again</span>
-<a name="l00350"></a>00350                                 <a class="code" href="classlogog_1_1_object.html#ac8a805a36022037ffc4421960632d36a">Deallocate</a>( pszFormatted );
-<a name="l00351"></a>00351                                 nAttemptedSize *= 2;
-<a name="l00352"></a>00352                         }
-<a name="l00353"></a>00353 
-<a name="l00354"></a>00354                         <a class="code" href="classlogog_1_1_string.html#a79919c4e0c286ff25af27f733fa36193">assign</a>( pszFormatted );
-<a name="l00355"></a>00355 
-<a name="l00356"></a>00356                         <span class="comment">/* We just allocated this string, which means it needs to be deallocated at shutdown time. */</span>
-<a name="l00357"></a>00357                         <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> = <span class="keyword">false</span>;  
-<a name="l00358"></a>00358                 }
+<a name="l00330"></a>00330                                 *pszFormatted = NULL;
+<a name="l00331"></a>00331 
+<a name="l00332"></a>00332                                 va_list argsCopy;
+<a name="l00333"></a>00333 
+<a name="l00334"></a>00334 <span class="preprocessor">#if defined( va_copy )</span>
+<a name="l00335"></a>00335 <span class="preprocessor"></span>                                va_copy( argsCopy, args );
+<a name="l00336"></a>00336 <span class="preprocessor">#elif defined( __va_copy )</span>
+<a name="l00337"></a>00337 <span class="preprocessor"></span>                                __va_copy( argsCopy, args );
+<a name="l00338"></a>00338 <span class="preprocessor">#else</span>
+<a name="l00339"></a>00339 <span class="preprocessor"></span>                                memcpy( &amp;argsCopy, &amp;args, <span class="keyword">sizeof</span>(va_list) );
+<a name="l00340"></a>00340 <span class="preprocessor">#endif</span>
+<a name="l00341"></a>00341 <span class="preprocessor"></span>
+<a name="l00342"></a>00342 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00343"></a>00343 <span class="preprocessor"></span>                                nActualSize = vsnprintf_s( pszFormatted, nAttemptedSize - 1, _TRUNCATE, cFormatString, argsCopy );
+<a name="l00344"></a>00344 <span class="preprocessor">#else</span>
+<a name="l00345"></a>00345 <span class="preprocessor"></span>                                nActualSize = vsnprintf( pszFormatted, nAttemptedSize - 1, cFormatString, argsCopy );
+<a name="l00346"></a>00346 <span class="preprocessor">#endif</span>
+<a name="l00347"></a>00347 <span class="preprocessor"></span>
+<a name="l00348"></a>00348                                 va_end( argsCopy );
+<a name="l00349"></a>00349 
+<a name="l00350"></a>00350                                 <span class="keywordflow">if</span> (( nAttemptedSize &gt; nActualSize ) &amp;&amp; ( nActualSize != -1))
+<a name="l00351"></a>00351                                         <span class="keywordflow">break</span>;
+<a name="l00352"></a>00352 
+<a name="l00353"></a>00353                                 <span class="comment">// try again</span>
+<a name="l00354"></a>00354                                 <a class="code" href="classlogog_1_1_object.html#ac8a805a36022037ffc4421960632d36a">Deallocate</a>( pszFormatted );
+<a name="l00355"></a>00355                                 nAttemptedSize *= 2;
+<a name="l00356"></a>00356                         }
+<a name="l00357"></a>00357 
+<a name="l00358"></a>00358                         <a class="code" href="classlogog_1_1_string.html#a79919c4e0c286ff25af27f733fa36193">assign</a>( pszFormatted );
 <a name="l00359"></a>00359 
-<a name="l00360"></a>00360         <span class="keyword">protected</span>:
-<a name="l00361"></a><a class="code" href="classlogog_1_1_string.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">00361</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">Initialize</a>()
-<a name="l00362"></a>00362                 {
-<a name="l00363"></a>00363                         <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> = NULL;
-<a name="l00364"></a>00364                         <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a> = NULL;
-<a name="l00365"></a>00365                         <a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">m_pEndOfBuffer</a> = NULL;
-<a name="l00366"></a>00366                         <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> = NULL;
-<a name="l00367"></a>00367                         <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> = <span class="keyword">false</span>;
-<a name="l00368"></a>00368                 }
-<a name="l00369"></a>00369 
-<a name="l00370"></a>00370 
-<a name="l00371"></a>00371                 <span class="comment">/* Code modified from http://www-igm.univ-mlv.fr/~lecroq/string/node8.html#SECTION0080 */</span>
-<a name="l00372"></a><a class="code" href="classlogog_1_1_string.html#a32abeb695104709e4b45aa4eeb97bde4">00372</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a32abeb695104709e4b45aa4eeb97bde4">preKmp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> m) {
-<a name="l00373"></a>00373         
-<a name="l00374"></a>00374                         <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="namespacelogog.html#a536b68dd35fb2b2ca05e4ea022b4f22c">GetStringSearchMutex</a>() );
-<a name="l00375"></a>00375 
-<a name="l00376"></a>00376                         <span class="keywordtype">int</span> i, j;
-<a name="l00377"></a>00377 
-<a name="l00378"></a>00378                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> == NULL )
-<a name="l00379"></a>00379                                 <span class="keywordflow">return</span>;
-<a name="l00380"></a>00380 
-<a name="l00381"></a>00381                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> == NULL )
-<a name="l00382"></a>00382                         {
-<a name="l00383"></a>00383                                 <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * ( m + 1) );
-<a name="l00384"></a>00384                                 cout &lt;&lt; <span class="stringliteral">&quot;Assigning KMP to address &quot;</span> &lt;&lt; <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> &lt;&lt; endl;
-<a name="l00385"></a>00385                         }
-<a name="l00386"></a>00386 
-<a name="l00387"></a>00387                         i = 0;
-<a name="l00388"></a>00388                         j = *<a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> = -1;
-<a name="l00389"></a>00389 
-<a name="l00390"></a>00390                         <span class="keywordflow">while</span> (i &lt; m) {
-<a name="l00391"></a>00391                                 <span class="keywordflow">while</span> (j &gt; -1 &amp;&amp; <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[i] != <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[j])
-<a name="l00392"></a>00392                                         j = <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[j];
-<a name="l00393"></a>00393                                 i++;
-<a name="l00394"></a>00394                                 j++;
-<a name="l00395"></a>00395                                 <span class="keywordflow">if</span> (<a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[i] == <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[j])
-<a name="l00396"></a>00396                                         <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[i] = <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[j];
-<a name="l00397"></a>00397                                 <span class="keywordflow">else</span>
-<a name="l00398"></a>00398                                         <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[i] = j;
-<a name="l00399"></a>00399                         }
-<a name="l00400"></a>00400                 }
-<a name="l00401"></a>00401 
-<a name="l00402"></a>00402 
-<a name="l00403"></a><a class="code" href="classlogog_1_1_string.html#aafa11b556c0a47857fe67dba1a45d177">00403</a>                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#aafa11b556c0a47857fe67dba1a45d177">KMP</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *y, <span class="keywordtype">int</span> n ) {
-<a name="l00404"></a>00404                         <span class="keywordtype">int</span> i, j;
+<a name="l00360"></a>00360                         <span class="comment">/* We just allocated this string, which means it needs to be deallocated at shutdown time. */</span>
+<a name="l00361"></a>00361                         <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> = <span class="keyword">false</span>;  
+<a name="l00362"></a>00362                 }
+<a name="l00363"></a>00363 
+<a name="l00364"></a>00364         <span class="keyword">protected</span>:
+<a name="l00365"></a><a class="code" href="classlogog_1_1_string.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">00365</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">Initialize</a>()
+<a name="l00366"></a>00366                 {
+<a name="l00367"></a>00367                         <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> = NULL;
+<a name="l00368"></a>00368                         <a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a> = NULL;
+<a name="l00369"></a>00369                         <a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">m_pEndOfBuffer</a> = NULL;
+<a name="l00370"></a>00370                         <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> = NULL;
+<a name="l00371"></a>00371                         <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a> = <span class="keyword">false</span>;
+<a name="l00372"></a>00372                 }
+<a name="l00373"></a>00373 
+<a name="l00374"></a>00374 
+<a name="l00375"></a>00375                 <span class="comment">/* Code modified from http://www-igm.univ-mlv.fr/~lecroq/string/node8.html#SECTION0080 */</span>
+<a name="l00376"></a><a class="code" href="classlogog_1_1_string.html#a32abeb695104709e4b45aa4eeb97bde4">00376</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a32abeb695104709e4b45aa4eeb97bde4">preKmp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> m) {
+<a name="l00377"></a>00377         
+<a name="l00378"></a>00378                         <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="namespacelogog.html#a536b68dd35fb2b2ca05e4ea022b4f22c">GetStringSearchMutex</a>() );
+<a name="l00379"></a>00379 
+<a name="l00380"></a>00380                         <span class="keywordtype">int</span> i, j;
+<a name="l00381"></a>00381 
+<a name="l00382"></a>00382                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a> == NULL )
+<a name="l00383"></a>00383                                 <span class="keywordflow">return</span>;
+<a name="l00384"></a>00384 
+<a name="l00385"></a>00385                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> == NULL )
+<a name="l00386"></a>00386                         {
+<a name="l00387"></a>00387                                 <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * ( m + 1) );
+<a name="l00388"></a>00388                                 cout &lt;&lt; <span class="stringliteral">&quot;Assigning KMP to address &quot;</span> &lt;&lt; <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> &lt;&lt; endl;
+<a name="l00389"></a>00389                         }
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391                         i = 0;
+<a name="l00392"></a>00392                         j = *<a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> = -1;
+<a name="l00393"></a>00393 
+<a name="l00394"></a>00394                         <span class="keywordflow">while</span> (i &lt; m) {
+<a name="l00395"></a>00395                                 <span class="keywordflow">while</span> (j &gt; -1 &amp;&amp; <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[i] != <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[j])
+<a name="l00396"></a>00396                                         j = <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[j];
+<a name="l00397"></a>00397                                 i++;
+<a name="l00398"></a>00398                                 j++;
+<a name="l00399"></a>00399                                 <span class="keywordflow">if</span> (<a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[i] == <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[j])
+<a name="l00400"></a>00400                                         <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[i] = <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[j];
+<a name="l00401"></a>00401                                 <span class="keywordflow">else</span>
+<a name="l00402"></a>00402                                         <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[i] = j;
+<a name="l00403"></a>00403                         }
+<a name="l00404"></a>00404                 }
 <a name="l00405"></a>00405 
-<a name="l00406"></a>00406                         <span class="keywordtype">int</span> m = <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>() - 1; <span class="comment">// ignore NULL char</span>
-<a name="l00407"></a>00407 
-<a name="l00408"></a>00408                         <span class="comment">/* Preprocessing */</span>
-<a name="l00409"></a>00409                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> == NULL )
-<a name="l00410"></a>00410                                 <a class="code" href="classlogog_1_1_string.html#a32abeb695104709e4b45aa4eeb97bde4">preKmp</a>( m );
+<a name="l00406"></a>00406 
+<a name="l00407"></a><a class="code" href="classlogog_1_1_string.html#aafa11b556c0a47857fe67dba1a45d177">00407</a>                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#aafa11b556c0a47857fe67dba1a45d177">KMP</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *y, <span class="keywordtype">int</span> n ) {
+<a name="l00408"></a>00408                         <span class="keywordtype">int</span> i, j;
+<a name="l00409"></a>00409 
+<a name="l00410"></a>00410                         <span class="keywordtype">int</span> m = <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>() - 1; <span class="comment">// ignore NULL char</span>
 <a name="l00411"></a>00411 
-<a name="l00412"></a>00412                         <span class="comment">/* Searching */</span>
-<a name="l00413"></a>00413                         i = j = 0;
-<a name="l00414"></a>00414                         <span class="keywordflow">while</span> (j &lt; n) {
-<a name="l00415"></a>00415                                 <span class="keywordflow">while</span> (i &gt; -1 &amp;&amp; <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[i] != y[j])
-<a name="l00416"></a>00416                                         i = <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[i];
-<a name="l00417"></a>00417                                 i++;
-<a name="l00418"></a>00418                                 j++;
-<a name="l00419"></a>00419                                 <span class="keywordflow">if</span> (i &gt;= m) {
-<a name="l00420"></a>00420                                         <span class="keywordflow">return</span> (j - i);
-<a name="l00421"></a>00421                                         <span class="comment">// We would do this if we cared about multiple substrings</span>
-<a name="l00422"></a>00422                                         <span class="comment">// i = m_pKMP[i];</span>
-<a name="l00423"></a>00423                                 }
-<a name="l00424"></a>00424                         }
-<a name="l00425"></a>00425 
-<a name="l00426"></a>00426                         <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<a class="code" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a>;
-<a name="l00427"></a>00427                 }
-<a name="l00428"></a>00428 
-<a name="l00429"></a><a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">00429</a>                 <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a> = 1 &lt;&lt; ( <span class="keyword">sizeof</span>( <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> ) * 8 );
-<a name="l00430"></a>00430 
-<a name="l00431"></a>00431                 <span class="comment">// from http://www-igm.univ-mlv.fr/~lecroq/string/node14.html#SECTION00140</span>
-<a name="l00432"></a><a class="code" href="classlogog_1_1_string.html#a5ed0104af20287549598d03123f75797">00432</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a5ed0104af20287549598d03123f75797">preBmBc</a>(<span class="keywordtype">char</span> *x, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>[]) {
-<a name="l00433"></a>00433                         <span class="keywordtype">int</span> i;
+<a name="l00412"></a>00412                         <span class="comment">/* Preprocessing */</span>
+<a name="l00413"></a>00413                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a> == NULL )
+<a name="l00414"></a>00414                                 <a class="code" href="classlogog_1_1_string.html#a32abeb695104709e4b45aa4eeb97bde4">preKmp</a>( m );
+<a name="l00415"></a>00415 
+<a name="l00416"></a>00416                         <span class="comment">/* Searching */</span>
+<a name="l00417"></a>00417                         i = j = 0;
+<a name="l00418"></a>00418                         <span class="keywordflow">while</span> (j &lt; n) {
+<a name="l00419"></a>00419                                 <span class="keywordflow">while</span> (i &gt; -1 &amp;&amp; <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>[i] != y[j])
+<a name="l00420"></a>00420                                         i = <a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>[i];
+<a name="l00421"></a>00421                                 i++;
+<a name="l00422"></a>00422                                 j++;
+<a name="l00423"></a>00423                                 <span class="keywordflow">if</span> (i &gt;= m) {
+<a name="l00424"></a>00424                                         <span class="keywordflow">return</span> (j - i);
+<a name="l00425"></a>00425                                         <span class="comment">// We would do this if we cared about multiple substrings</span>
+<a name="l00426"></a>00426                                         <span class="comment">// i = m_pKMP[i];</span>
+<a name="l00427"></a>00427                                 }
+<a name="l00428"></a>00428                         }
+<a name="l00429"></a>00429 
+<a name="l00430"></a>00430                         <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<a class="code" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a>;
+<a name="l00431"></a>00431                 }
+<a name="l00432"></a>00432 
+<a name="l00433"></a><a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">00433</a>                 <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a> = 1 &lt;&lt; ( <span class="keyword">sizeof</span>( <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> ) * 8 );
 <a name="l00434"></a>00434 
-<a name="l00435"></a>00435                         <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a>; ++i)
-<a name="l00436"></a>00436                                 bmBc[i] = m;
-<a name="l00437"></a>00437                         <span class="keywordflow">for</span> (i = 0; i &lt; m - 1; ++i)
-<a name="l00438"></a>00438                                 bmBc[x[i]] = m - i - 1;
-<a name="l00439"></a>00439                 }
-<a name="l00440"></a>00440 
-<a name="l00441"></a>00441 
-<a name="l00442"></a><a class="code" href="classlogog_1_1_string.html#a9336c881b5a2d2a019d20c79cd6ef57c">00442</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a9336c881b5a2d2a019d20c79cd6ef57c">suffixes</a>(<span class="keywordtype">char</span> *x, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> *suff) {
-<a name="l00443"></a>00443                         <span class="keywordtype">int</span> f, g, i;
+<a name="l00435"></a>00435                 <span class="comment">// from http://www-igm.univ-mlv.fr/~lecroq/string/node14.html#SECTION00140</span>
+<a name="l00436"></a><a class="code" href="classlogog_1_1_string.html#a5ed0104af20287549598d03123f75797">00436</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a5ed0104af20287549598d03123f75797">preBmBc</a>(<span class="keywordtype">char</span> *x, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>[]) {
+<a name="l00437"></a>00437                         <span class="keywordtype">int</span> i;
+<a name="l00438"></a>00438 
+<a name="l00439"></a>00439                         <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a>; ++i)
+<a name="l00440"></a>00440                                 bmBc[i] = m;
+<a name="l00441"></a>00441                         <span class="keywordflow">for</span> (i = 0; i &lt; m - 1; ++i)
+<a name="l00442"></a>00442                                 bmBc[x[i]] = m - i - 1;
+<a name="l00443"></a>00443                 }
 <a name="l00444"></a>00444 
-<a name="l00445"></a>00445                         suff[m - 1] = m;
-<a name="l00446"></a>00446                         g = m - 1;
-<a name="l00447"></a>00447                         <span class="keywordflow">for</span> (i = m - 2; i &gt;= 0; --i) {
-<a name="l00448"></a>00448                                 <span class="keywordflow">if</span> (i &gt; g &amp;&amp; suff[i + m - 1 - f] &lt; i - g)
-<a name="l00449"></a>00449                                         suff[i] = suff[i + m - 1 - f];
-<a name="l00450"></a>00450                                 <span class="keywordflow">else</span> {
-<a name="l00451"></a>00451                                         <span class="keywordflow">if</span> (i &lt; g)
-<a name="l00452"></a>00452                                                 g = i;
-<a name="l00453"></a>00453                                         f = i;
-<a name="l00454"></a>00454                                         <span class="keywordflow">while</span> (g &gt;= 0 &amp;&amp; x[g] == x[g + m - 1 - f])
-<a name="l00455"></a>00455                                                 --g;
-<a name="l00456"></a>00456                                         suff[i] = f - g;
-<a name="l00457"></a>00457                                 }
-<a name="l00458"></a>00458                         }
-<a name="l00459"></a>00459                 }
-<a name="l00460"></a>00460 
-<a name="l00461"></a><a class="code" href="classlogog_1_1_string.html#a7f08875cbaf65380cf1049167713a538">00461</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a7f08875cbaf65380cf1049167713a538">preBmGs</a>(<span class="keywordtype">char</span> *x, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>[]) {
-<a name="l00462"></a>00462                         <span class="keywordtype">int</span> i, j;
-<a name="l00463"></a>00463                         <span class="keywordtype">int</span> *suff;
-<a name="l00464"></a>00464                         
-<a name="l00465"></a>00465                         suff = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>());
-<a name="l00466"></a>00466 
-<a name="l00467"></a>00467                         <a class="code" href="classlogog_1_1_string.html#a9336c881b5a2d2a019d20c79cd6ef57c">suffixes</a>(x, m, suff);
-<a name="l00468"></a>00468 
-<a name="l00469"></a>00469                         <span class="keywordflow">for</span> (i = 0; i &lt; m; ++i)
-<a name="l00470"></a>00470                                 bmGs[i] = m;
-<a name="l00471"></a>00471                         j = 0;
-<a name="l00472"></a>00472                         <span class="keywordflow">for</span> (i = m - 1; i &gt;= 0; --i)
-<a name="l00473"></a>00473                                 <span class="keywordflow">if</span> (suff[i] == i + 1)
-<a name="l00474"></a>00474                                         <span class="keywordflow">for</span> (; j &lt; m - 1 - i; ++j)
-<a name="l00475"></a>00475                                                 <span class="keywordflow">if</span> (bmGs[j] == m)
-<a name="l00476"></a>00476                                                         bmGs[j] = m - 1 - i;
-<a name="l00477"></a>00477                         <span class="keywordflow">for</span> (i = 0; i &lt;= m - 2; ++i)
-<a name="l00478"></a>00478                                 bmGs[m - 1 - suff[i]] = m - 1 - i;
-<a name="l00479"></a>00479 
-<a name="l00480"></a>00480                         <a class="code" href="classlogog_1_1_object.html#ac8a805a36022037ffc4421960632d36a">Deallocate</a>( suff );
-<a name="l00481"></a>00481                 }
-<a name="l00482"></a>00482                 
-<a name="l00483"></a><a class="code" href="string_8hpp.html#ad6c8faa1438e4614344a04da4d336708">00483</a> <span class="preprocessor">#define LOGOG_MAX( a, b ) ( ( a &gt; b ) ? a : b )</span>
-<a name="l00484"></a>00484 <span class="preprocessor"></span>
-<a name="l00485"></a><a class="code" href="classlogog_1_1_string.html#ae4dd2ea538a717405e6ed00f5846b2a0">00485</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#ae4dd2ea538a717405e6ed00f5846b2a0">BM</a>(<span class="keywordtype">char</span> *y, <span class="keywordtype">int</span> n) {
-<a name="l00486"></a>00486                         <span class="keywordtype">int</span> i, j;
-<a name="l00487"></a>00487 
-<a name="l00488"></a>00488                         <span class="keywordtype">char</span> *x = <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>;
-<a name="l00489"></a>00489                         <span class="keywordtype">int</span> m = <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>();
-<a name="l00490"></a>00490 
-<a name="l00491"></a>00491                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a> == NULL )
-<a name="l00492"></a>00492                         {
-<a name="l00493"></a>00493                                 <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a> = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>() );
-<a name="l00494"></a>00494                                 <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a> = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * <a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a> );
-<a name="l00495"></a>00495                         }
-<a name="l00496"></a>00496 
-<a name="l00497"></a>00497                         <span class="comment">/* Preprocessing */</span>
-<a name="l00498"></a>00498                         <a class="code" href="classlogog_1_1_string.html#a7f08875cbaf65380cf1049167713a538">preBmGs</a>(x, m, <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>);
-<a name="l00499"></a>00499                         <a class="code" href="classlogog_1_1_string.html#a5ed0104af20287549598d03123f75797">preBmBc</a>(x, m, <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>);
+<a name="l00445"></a>00445 
+<a name="l00446"></a><a class="code" href="classlogog_1_1_string.html#a9336c881b5a2d2a019d20c79cd6ef57c">00446</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a9336c881b5a2d2a019d20c79cd6ef57c">suffixes</a>(<span class="keywordtype">char</span> *x, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> *suff) {
+<a name="l00447"></a>00447                         <span class="keywordtype">int</span> f, g, i;
+<a name="l00448"></a>00448 
+<a name="l00449"></a>00449                         suff[m - 1] = m;
+<a name="l00450"></a>00450                         g = m - 1;
+<a name="l00451"></a>00451                         <span class="keywordflow">for</span> (i = m - 2; i &gt;= 0; --i) {
+<a name="l00452"></a>00452                                 <span class="keywordflow">if</span> (i &gt; g &amp;&amp; suff[i + m - 1 - f] &lt; i - g)
+<a name="l00453"></a>00453                                         suff[i] = suff[i + m - 1 - f];
+<a name="l00454"></a>00454                                 <span class="keywordflow">else</span> {
+<a name="l00455"></a>00455                                         <span class="keywordflow">if</span> (i &lt; g)
+<a name="l00456"></a>00456                                                 g = i;
+<a name="l00457"></a>00457                                         f = i;
+<a name="l00458"></a>00458                                         <span class="keywordflow">while</span> (g &gt;= 0 &amp;&amp; x[g] == x[g + m - 1 - f])
+<a name="l00459"></a>00459                                                 --g;
+<a name="l00460"></a>00460                                         suff[i] = f - g;
+<a name="l00461"></a>00461                                 }
+<a name="l00462"></a>00462                         }
+<a name="l00463"></a>00463                 }
+<a name="l00464"></a>00464 
+<a name="l00465"></a><a class="code" href="classlogog_1_1_string.html#a7f08875cbaf65380cf1049167713a538">00465</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_string.html#a7f08875cbaf65380cf1049167713a538">preBmGs</a>(<span class="keywordtype">char</span> *x, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>[]) {
+<a name="l00466"></a>00466                         <span class="keywordtype">int</span> i, j;
+<a name="l00467"></a>00467                         <span class="keywordtype">int</span> *suff;
+<a name="l00468"></a>00468                         
+<a name="l00469"></a>00469                         suff = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>());
+<a name="l00470"></a>00470 
+<a name="l00471"></a>00471                         <a class="code" href="classlogog_1_1_string.html#a9336c881b5a2d2a019d20c79cd6ef57c">suffixes</a>(x, m, suff);
+<a name="l00472"></a>00472 
+<a name="l00473"></a>00473                         <span class="keywordflow">for</span> (i = 0; i &lt; m; ++i)
+<a name="l00474"></a>00474                                 bmGs[i] = m;
+<a name="l00475"></a>00475                         j = 0;
+<a name="l00476"></a>00476                         <span class="keywordflow">for</span> (i = m - 1; i &gt;= 0; --i)
+<a name="l00477"></a>00477                                 <span class="keywordflow">if</span> (suff[i] == i + 1)
+<a name="l00478"></a>00478                                         <span class="keywordflow">for</span> (; j &lt; m - 1 - i; ++j)
+<a name="l00479"></a>00479                                                 <span class="keywordflow">if</span> (bmGs[j] == m)
+<a name="l00480"></a>00480                                                         bmGs[j] = m - 1 - i;
+<a name="l00481"></a>00481                         <span class="keywordflow">for</span> (i = 0; i &lt;= m - 2; ++i)
+<a name="l00482"></a>00482                                 bmGs[m - 1 - suff[i]] = m - 1 - i;
+<a name="l00483"></a>00483 
+<a name="l00484"></a>00484                         <a class="code" href="classlogog_1_1_object.html#ac8a805a36022037ffc4421960632d36a">Deallocate</a>( suff );
+<a name="l00485"></a>00485                 }
+<a name="l00486"></a>00486                 
+<a name="l00487"></a><a class="code" href="string_8hpp.html#ad6c8faa1438e4614344a04da4d336708">00487</a> <span class="preprocessor">#define LOGOG_MAX( a, b ) ( ( a &gt; b ) ? a : b )</span>
+<a name="l00488"></a>00488 <span class="preprocessor"></span>
+<a name="l00489"></a><a class="code" href="classlogog_1_1_string.html#ae4dd2ea538a717405e6ed00f5846b2a0">00489</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_string.html#ae4dd2ea538a717405e6ed00f5846b2a0">BM</a>(<span class="keywordtype">char</span> *y, <span class="keywordtype">int</span> n) {
+<a name="l00490"></a>00490                         <span class="keywordtype">int</span> i, j;
+<a name="l00491"></a>00491 
+<a name="l00492"></a>00492                         <span class="keywordtype">char</span> *x = <a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>;
+<a name="l00493"></a>00493                         <span class="keywordtype">int</span> m = <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>();
+<a name="l00494"></a>00494 
+<a name="l00495"></a>00495                         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a> == NULL )
+<a name="l00496"></a>00496                         {
+<a name="l00497"></a>00497                                 <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a> = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * <a class="code" href="classlogog_1_1_string.html#aee4e19388207564ef83ffc65da16e8d2">size</a>() );
+<a name="l00498"></a>00498                                 <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a> = (<span class="keywordtype">int</span> *)<a class="code" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>( <span class="keyword">sizeof</span>( <span class="keywordtype">int</span> ) * <a class="code" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a> );
+<a name="l00499"></a>00499                         }
 <a name="l00500"></a>00500 
-<a name="l00501"></a>00501                         <span class="comment">/* Searching */</span>
-<a name="l00502"></a>00502                         j = 0;
-<a name="l00503"></a>00503                         <span class="keywordflow">while</span> (j &lt;= n - m) {
-<a name="l00504"></a>00504                                 <span class="keywordflow">for</span> (i = m - 1; i &gt;= 0 &amp;&amp; x[i] == y[i + j]; --i);
-<a name="l00505"></a>00505                                 <span class="keywordflow">if</span> (i &lt; 0) {
-<a name="l00506"></a>00506                                         <span class="keywordflow">return</span> j;
-<a name="l00507"></a>00507                                         <span class="comment">// we would do this if we cared about multiple matches</span>
-<a name="l00508"></a>00508                                         <span class="comment">// j += bmGs[0];</span>
-<a name="l00509"></a>00509                                 }
-<a name="l00510"></a>00510                                 <span class="keywordflow">else</span>
-<a name="l00511"></a>00511                                 {
-<a name="l00512"></a>00512                                         <span class="keywordtype">int</span> q = <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>[i];
-<a name="l00513"></a>00513                                         <span class="keywordtype">int</span> r = <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>[y[i + j]] - m + 1 + i;
-<a name="l00514"></a>00514                                         j += <a class="code" href="string_8hpp.html#ad6c8faa1438e4614344a04da4d336708">LOGOG_MAX</a>( q, r );
-<a name="l00515"></a>00515                                 }
-<a name="l00516"></a>00516                         }
-<a name="l00517"></a>00517 
-<a name="l00518"></a>00518                         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a>;
-<a name="l00519"></a>00519                 }
-<a name="l00520"></a>00520                 
-<a name="l00521"></a><a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">00521</a>                 <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>;
-<a name="l00522"></a><a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">00522</a>                 <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a>;
-<a name="l00523"></a><a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">00523</a>                 <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">m_pEndOfBuffer</a>;
-<a name="l00524"></a><a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">00524</a>                 <span class="keywordtype">int</span> *<a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>;
-<a name="l00525"></a><a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">00525</a>                 <span class="keywordtype">int</span> *<a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>;
-<a name="l00526"></a><a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">00526</a>                 <span class="keywordtype">int</span> *<a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>;
-<a name="l00527"></a><a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">00527</a>                 <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a>;
-<a name="l00528"></a>00528         };
-<a name="l00529"></a>00529 
-<a name="l00530"></a>00530 }
-<a name="l00531"></a>00531 
-<a name="l00532"></a><a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">00532</a> <span class="preprocessor">#define LOGOG_STRING ::logog::String</span>
-<a name="l00533"></a>00533 <span class="preprocessor"></span>
-<a name="l00534"></a>00534 <span class="preprocessor">#endif // __LOGOG_STRING_HPP_</span>
+<a name="l00501"></a>00501                         <span class="comment">/* Preprocessing */</span>
+<a name="l00502"></a>00502                         <a class="code" href="classlogog_1_1_string.html#a7f08875cbaf65380cf1049167713a538">preBmGs</a>(x, m, <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>);
+<a name="l00503"></a>00503                         <a class="code" href="classlogog_1_1_string.html#a5ed0104af20287549598d03123f75797">preBmBc</a>(x, m, <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>);
+<a name="l00504"></a>00504 
+<a name="l00505"></a>00505                         <span class="comment">/* Searching */</span>
+<a name="l00506"></a>00506                         j = 0;
+<a name="l00507"></a>00507                         <span class="keywordflow">while</span> (j &lt;= n - m) {
+<a name="l00508"></a>00508                                 <span class="keywordflow">for</span> (i = m - 1; i &gt;= 0 &amp;&amp; x[i] == y[i + j]; --i);
+<a name="l00509"></a>00509                                 <span class="keywordflow">if</span> (i &lt; 0) {
+<a name="l00510"></a>00510                                         <span class="keywordflow">return</span> j;
+<a name="l00511"></a>00511                                         <span class="comment">// we would do this if we cared about multiple matches</span>
+<a name="l00512"></a>00512                                         <span class="comment">// j += bmGs[0];</span>
+<a name="l00513"></a>00513                                 }
+<a name="l00514"></a>00514                                 <span class="keywordflow">else</span>
+<a name="l00515"></a>00515                                 {
+<a name="l00516"></a>00516                                         <span class="keywordtype">int</span> q = <a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>[i];
+<a name="l00517"></a>00517                                         <span class="keywordtype">int</span> r = <a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>[y[i + j]] - m + 1 + i;
+<a name="l00518"></a>00518                                         j += <a class="code" href="string_8hpp.html#ad6c8faa1438e4614344a04da4d336708">LOGOG_MAX</a>( q, r );
+<a name="l00519"></a>00519                                 }
+<a name="l00520"></a>00520                         }
+<a name="l00521"></a>00521 
+<a name="l00522"></a>00522                         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a>;
+<a name="l00523"></a>00523                 }
+<a name="l00524"></a>00524                 
+<a name="l00525"></a><a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">00525</a>                 <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_string.html#a654a57caa30c96faa31a029a3aa01b54">m_pBuffer</a>;
+<a name="l00526"></a><a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">00526</a>                 <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_string.html#ae4aa897e306aac01166e6a5e14f02a36">m_pOffset</a>;
+<a name="l00527"></a><a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">00527</a>                 <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_string.html#a5fc29a71e73b10f1e845f77dfaa9d8c4">m_pEndOfBuffer</a>;
+<a name="l00528"></a><a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">00528</a>                 <span class="keywordtype">int</span> *<a class="code" href="classlogog_1_1_string.html#af0dc2712b93ad296d5fb7c540e2fb306">m_pKMP</a>;
+<a name="l00529"></a><a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">00529</a>                 <span class="keywordtype">int</span> *<a class="code" href="classlogog_1_1_string.html#aa3fe420809b305d28cba65df81b00e57">bmBc</a>;
+<a name="l00530"></a><a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">00530</a>                 <span class="keywordtype">int</span> *<a class="code" href="classlogog_1_1_string.html#a699f63131c6b6fa04820387263049051">bmGs</a>;
+<a name="l00531"></a><a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">00531</a>                 <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a>;
+<a name="l00532"></a>00532         };
+<a name="l00533"></a>00533 
+<a name="l00534"></a>00534 }
+<a name="l00535"></a>00535 
+<a name="l00536"></a><a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">00536</a> <span class="preprocessor">#define LOGOG_STRING ::logog::String</span>
+<a name="l00537"></a>00537 <span class="preprocessor"></span>
+<a name="l00538"></a>00538 <span class="preprocessor">#endif // __LOGOG_STRING_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="string_8hpp.html">string.hpp</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:03 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:09 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

@@ -148,7 +148,8 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_cerr.html">Cerr</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_cout.html">Cout</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_output_debug.html">OutputDebug</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_output.html">LogOutput</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_thread.html">Thread</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_timer.html">Timer</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html">Topic</a></td></tr>
@@ -226,8 +227,11 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacelogog.html#a9a39ce57b52ed9efe31b79a39e75b92d">TestRegistryType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ae99c00ad21a45ff317a12ca43b147159">LogogTestRegistry</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a2601e89ee5b58d3a47f3baa5a08be39e">RunAllTests</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a88259d52590bb4e70c31946bb6246120">ShutdownTests</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a6068bada97b4fe69764a805477d69e6d">CompareAndDeleteFile</a> (const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pValidOutput, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pFileName)</td></tr>
 </table>
-<hr/><h2>Typedef Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><a class="el" href="classlogog_1_1_socket.html">Socket</a> support is unfinished and is not working yet. Please review <a class="el" href="socket_8hpp.html">socket.hpp</a> if you'd like to implement a cross-platform socket abstraction. </dd></dl>
+</div><hr/><h2>Typedef Documentation</h2>
 <a class="anchor" id="aa0c8b30eccf614fc37dd6c44a521e313"></a><!-- doxytag: member="logog::LOGOG_TIME" ref="aa0c8b30eccf614fc37dd6c44a521e313" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -280,7 +284,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>A registry for all tests. All tests are instanced using the <a class="el" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">UNITTEST()</a> macro and stored in the LogogTestRegistry. <a class="el" href="test_8cpp.html#aad92f3dcad3c7d49fe1cf436af8f3a13">UNITTEST</a> </p>
+<p>A registry for all tests. All tests are instanced using the <a class="el" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">UNITTEST()</a> macro and stored in the LogogTestRegistry. <a class="el" href="test_8cpp.html#ae9576aae9d5086e7f3bb6fc7f59d54a5">UNITTEST</a> </p>
 
 </div>
 </div>
@@ -435,6 +439,33 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Returns a reference to the group of nodes that represent terminals in the graph, i.e. nodes that can't publish. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6068bada97b4fe69764a805477d69e6d"></a><!-- doxytag: member="logog::CompareAndDeleteFile" ref="a6068bada97b4fe69764a805477d69e6d" args="(const LOGOG_CHAR *pValidOutput, const LOGOG_CHAR *pFileName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int logog::CompareAndDeleteFile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td>
+          <td class="paramname"><em>pValidOutput</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td>
+          <td class="paramname"><em>pFileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
 </div>
 </div>
@@ -873,7 +904,7 @@ Functions</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="namespacelogog.html">logog</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:03 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:09 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

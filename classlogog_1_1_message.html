@@ -148,6 +148,7 @@ function toggleVisibility(linkObj) {
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a7c73e92d649df6d66fc19c0f706ae66a">Message</a> (const LOGOG_LEVEL_TYPE level=LOGOG_LEVEL_ALL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName=NULL, const int nLineNumber=0, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup=NULL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory=NULL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage=NULL, const double dTimestamp=0.0f)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a5c39b281e7c9af999789af4014f68752">Republish</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">m_Transmitting</a></td></tr>
@@ -210,6 +211,24 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a5c39b281e7c9af999789af4014f68752"></a><!-- doxytag: member="logog::Message::Republish" ref="a5c39b281e7c9af999789af4014f68752" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Republish </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Causes this checkpoint to republish itself to all existing filters after unpublishing itself. This can be necessary if the message within this message has changed in such a way that the downstream <a class="el" href="classlogog_1_1_filter.html">Filter</a> objects might react differently to it. </p>
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="a412b2f3aa94ab803fdbad947a5ee9381"></a><!-- doxytag: member="logog::Message::m_Transmitting" ref="a412b2f3aa94ab803fdbad947a5ee9381" args="" -->
 <div class="memitem">
@@ -233,7 +252,7 @@ Public Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="namespacelogog.html">logog</a>      </li>
       <li class="navelem"><a class="el" href="classlogog_1_1_message.html">Message</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:04 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:09 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

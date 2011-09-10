@@ -117,6 +117,15 @@ function toggleVisibility(linkObj) {
 <div class="textblock"><h2><a class="anchor" id="introduction"></a>
 Introduction</h2>
 <p>logog is a set of high-performance C++ macros and templates to facilitate logging of real-time events in performance-oriented applications, such as games. It is especially appropriate for projects that have constrained memory and constrained CPU requirements.</p>
+<p>For the impatient, you can add logging functionality into your program within five minutes by reading the <a class="el" href="quickstart.html">Quick start</a> section.</p>
+<ul>
+<li><a class="el" href="quickstart.html">Quick start</a></li>
+<li><a class="el" href="requirements.html">Requirements</a></li>
+<li><a class="el" href="supportedplatforms.html">Supported platforms</a></li>
+<li><a class="el" href="unittesting.html">Unit test framework</a></li>
+</ul>
+<h3><a class="anchor" id="features"></a>
+Features</h3>
 <p>logog supports the following features:</p>
 <ul>
 <li>High performance. It is possible to disable all logging functionality entirely within logog. In this case logog incurs zero performance penalty on executing code. All logging functions compile to no-ops in the case where the logging level is set to disabled. When logging is enabled, the do-not-log control path requires exactly one boolean comparison. All performance-critical operations have been constructed to have constant time or near constant time performance. logog was designed to assume that no memory or CPU time is available for logging on a final release build of software. When compiling in final release mode, logog is designed to compile completely away -- zero memory allocations, zero CPU cycles spent.</li>
@@ -158,18 +167,13 @@ Introduction</h2>
 <li>No memory leaks. A special compilation flag (LOGOG_LEAK_DETECTION) audits every allocation and free within logog to discover and fix memory leaks therein.</li>
 </ul>
 <ul>
-<li>Extremely permissive license. logog is released under the MIT License, so it may be used freely in commercial as well as open-source projects, with proper attribution to logog's authors (Gigantic Software).</li>
-</ul>
-<ul>
-<li><a class="el" href="quickstart.html">Quick start</a></li>
-<li><a class="el" href="requirements.html">Requirements</a></li>
-<li><a class="el" href="unittesting.html">Unit test framework</a> </li>
+<li>Extremely permissive license. logog is released under the MIT License, so it may be used freely in commercial as well as open-source projects, with proper attribution to logog's authors (Gigantic Software). </li>
 </ul>
 </div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="footer">Generated on Fri Sep 9 2011 15:41:06 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:08 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

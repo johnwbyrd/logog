@@ -121,153 +121,153 @@ function toggleVisibility(linkObj) {
 </div>
 <div class="contents">
 <a href="socket_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00005"></a>00005 <span class="preprocessor">#ifndef __LOGOG_SOCKET_HPP_</span>
-<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define __LOGOG_SOCKET_HPP_</span>
-<a name="l00007"></a>00007 <span class="preprocessor"></span>
-<a name="l00008"></a>00008 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#pragma comment(lib, &quot;wsock32.lib&quot;)</span>
-<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#ifndef __LOGOG_SOCKET_HPP_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#define __LOGOG_SOCKET_HPP_</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;memory.h&gt;</span>
-<a name="l00013"></a>00013 
-<a name="l00014"></a>00014 <span class="keyword">namespace </span>logog
-<a name="l00015"></a>00015 {
-<a name="l00017"></a><a class="code" href="classlogog_1_1_socket.html">00017</a>         <span class="keyword">class </span><a class="code" href="classlogog_1_1_socket.html">Socket</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
-<a name="l00018"></a>00018         {
-<a name="l00019"></a>00019         <span class="keyword">public</span>:
-<a name="l00020"></a><a class="code" href="classlogog_1_1_socket.html#a41a4ce4cc0e9e236152b72f1aca0ffdd">00020</a>                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a41a4ce4cc0e9e236152b72f1aca0ffdd">Initialize</a>()
-<a name="l00021"></a>00021                 {
-<a name="l00022"></a>00022                         <span class="keyword">static</span> <span class="keywordtype">bool</span> bInitialized = <span class="keyword">false</span>;
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024                         <span class="keywordflow">if</span> ( !bInitialized )
-<a name="l00025"></a>00025                         {
-<a name="l00026"></a>00026 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00027"></a>00027 <span class="preprocessor"></span>                                WORD wVersionRequested;
-<a name="l00028"></a>00028                                 WSADATA wsaData;
-<a name="l00029"></a>00029                                 <span class="keywordtype">int</span> err;
-<a name="l00030"></a>00030                                 wVersionRequested = MAKEWORD( 2, 2 );
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032                                 err = WSAStartup( wVersionRequested, &amp;wsaData );
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034                                 <span class="keywordflow">if</span> ( err != 0 )
-<a name="l00035"></a>00035                                 {
-<a name="l00036"></a>00036 <span class="preprocessor">        #ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00037"></a>00037 <span class="preprocessor"></span>                                        cout &lt;&lt; <span class="stringliteral">&quot;WSAStartup failed with error: &quot;</span> &lt;&lt;  err &lt;&lt; endl;
-<a name="l00038"></a>00038 <span class="preprocessor">        #endif</span>
-<a name="l00039"></a>00039 <span class="preprocessor"></span>                                        <span class="keywordflow">return</span> 1;
-<a name="l00040"></a>00040                                 }
-<a name="l00041"></a>00041 
+<a name="l00012"></a>00012 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#pragma comment(lib, &quot;wsock32.lib&quot;)</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;memory.h&gt;</span>
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="keyword">namespace </span>logog
+<a name="l00019"></a>00019 {
+<a name="l00021"></a><a class="code" href="classlogog_1_1_socket.html">00021</a>         <span class="keyword">class </span><a class="code" href="classlogog_1_1_socket.html">Socket</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
+<a name="l00022"></a>00022         {
+<a name="l00023"></a>00023         <span class="keyword">public</span>:
+<a name="l00024"></a><a class="code" href="classlogog_1_1_socket.html#a41a4ce4cc0e9e236152b72f1aca0ffdd">00024</a>                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a41a4ce4cc0e9e236152b72f1aca0ffdd">Initialize</a>()
+<a name="l00025"></a>00025                 {
+<a name="l00026"></a>00026                         <span class="keyword">static</span> <span class="keywordtype">bool</span> bInitialized = <span class="keyword">false</span>;
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028                         <span class="keywordflow">if</span> ( !bInitialized )
+<a name="l00029"></a>00029                         {
+<a name="l00030"></a>00030 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00031"></a>00031 <span class="preprocessor"></span>                                WORD wVersionRequested;
+<a name="l00032"></a>00032                                 WSADATA wsaData;
+<a name="l00033"></a>00033                                 <span class="keywordtype">int</span> err;
+<a name="l00034"></a>00034                                 wVersionRequested = MAKEWORD( 2, 2 );
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036                                 err = WSAStartup( wVersionRequested, &amp;wsaData );
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038                                 <span class="keywordflow">if</span> ( err != 0 )
+<a name="l00039"></a>00039                                 {
+<a name="l00040"></a>00040 <span class="preprocessor">        #ifdef LOGOG_INTERNAL_DEBUGGING</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span>                                        cout &lt;&lt; <span class="stringliteral">&quot;WSAStartup failed with error: &quot;</span> &lt;&lt;  err &lt;&lt; endl;
 <a name="l00042"></a>00042 <span class="preprocessor">        #endif</span>
-<a name="l00043"></a>00043 <span class="preprocessor"></span>                        }
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045                         bInitialized = <span class="keyword">true</span>;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047                         <span class="keywordflow">return</span> 0;
-<a name="l00048"></a>00048                 }
-<a name="l00049"></a>00049 
-<a name="l00050"></a><a class="code" href="classlogog_1_1_socket.html#a704350e4ecd8b0deecaeba8ecac93d4f">00050</a>                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_socket.html#a704350e4ecd8b0deecaeba8ecac93d4f">Shutdown</a>()
-<a name="l00051"></a>00051                 {
-<a name="l00052"></a>00052 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00053"></a>00053 <span class="preprocessor"></span>                        WSACleanup();
-<a name="l00054"></a>00054 <span class="preprocessor">        #endif</span>
-<a name="l00055"></a>00055 <span class="preprocessor"></span>                }
-<a name="l00056"></a>00056 
-<a name="l00057"></a><a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">00057</a>                 <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">MAXHOSTNAME</a> = 255;
-<a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="classlogog_1_1_socket.html#ab8fc245cf8395ac886281ec76c8437f1">00059</a>                 <a class="code" href="classlogog_1_1_socket.html#ab8fc245cf8395ac886281ec76c8437f1">Socket</a>(
-<a name="l00060"></a>00060                         <span class="keywordtype">int</span> type = SOCK_STREAM,
-<a name="l00061"></a>00061                         <span class="keywordtype">int</span> port = <a class="code" href="platform_8hpp.html#a885fbea6107418a9231a029744215b1a">LOGOG_DEFAULT_PORT</a>
-<a name="l00062"></a>00062                 )
-<a name="l00063"></a>00063                 {
-<a name="l00064"></a>00064                         <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> = -1;
-<a name="l00065"></a>00065                         <a class="code" href="classlogog_1_1_socket.html#a3a5c708fc6df7887602be87d2765f461">m_nType</a> = type;
-<a name="l00066"></a>00066                         <a class="code" href="classlogog_1_1_socket.html#afd9350bba06e0e29f2980d4de629d87b">m_nPort</a> = port;
-<a name="l00067"></a>00067                 }
-<a name="l00068"></a>00068 
-<a name="l00069"></a><a class="code" href="classlogog_1_1_socket.html#ace36743954f0a3a2e5d8cba379d5313f">00069</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_socket.html#ace36743954f0a3a2e5d8cba379d5313f">Close</a>()
-<a name="l00070"></a>00070                 {
-<a name="l00071"></a>00071 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00072"></a>00072 <span class="preprocessor"></span>                        closesocket( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> );
-<a name="l00073"></a>00073 <span class="preprocessor">#endif</span>
-<a name="l00074"></a>00074 <span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_FLAVOR_POSIX</span>
-<a name="l00075"></a>00075 <span class="preprocessor"></span>                        close( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> );
-<a name="l00076"></a>00076 <span class="preprocessor">#endif</span>
-<a name="l00077"></a>00077 <span class="preprocessor"></span>                }
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="preprocessor">#ifdef NYI</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span>                <span class="keyword">virtual</span> <span class="keywordtype">int</span> Create( <span class="keywordtype">int</span> type,
-<a name="l00081"></a>00081                                                         <span class="keywordtype">int</span> port )
-<a name="l00082"></a>00082                 {
-<a name="l00083"></a>00083                         <span class="keywordtype">char</span> myname[<a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">MAXHOSTNAME</a>+1];
-<a name="l00084"></a>00084                         <span class="keywordtype">int</span> err;
-<a name="l00085"></a>00085                         <span class="keyword">struct </span>sockaddr_in sa;
-<a name="l00086"></a>00086                         <span class="keyword">struct </span>hostent *hp;
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088                         memset( &amp;sa, 0, <span class="keyword">sizeof</span>( <span class="keyword">struct</span> sockaddr_in ) ); <span class="comment">/* clear our address */</span>
-<a name="l00089"></a>00089                         gethostname( myname, <a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">MAXHOSTNAME</a> );         <span class="comment">/* who are we? */</span>
-<a name="l00090"></a>00090                         hp= gethostbyname( myname );                <span class="comment">/* get our address info */</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span>                                        <span class="keywordflow">return</span> 1;
+<a name="l00044"></a>00044                                 }
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="preprocessor">        #endif</span>
+<a name="l00047"></a>00047 <span class="preprocessor"></span>                        }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049                         bInitialized = <span class="keyword">true</span>;
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051                         <span class="keywordflow">return</span> 0;
+<a name="l00052"></a>00052                 }
+<a name="l00053"></a>00053 
+<a name="l00054"></a><a class="code" href="classlogog_1_1_socket.html#a704350e4ecd8b0deecaeba8ecac93d4f">00054</a>                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_socket.html#a704350e4ecd8b0deecaeba8ecac93d4f">Shutdown</a>()
+<a name="l00055"></a>00055                 {
+<a name="l00056"></a>00056 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>                        WSACleanup();
+<a name="l00058"></a>00058 <span class="preprocessor">        #endif</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span>                }
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">00061</a>                 <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">MAXHOSTNAME</a> = 255;
+<a name="l00062"></a>00062 
+<a name="l00063"></a><a class="code" href="classlogog_1_1_socket.html#ab8fc245cf8395ac886281ec76c8437f1">00063</a>                 <a class="code" href="classlogog_1_1_socket.html#ab8fc245cf8395ac886281ec76c8437f1">Socket</a>(
+<a name="l00064"></a>00064                         <span class="keywordtype">int</span> type = SOCK_STREAM,
+<a name="l00065"></a>00065                         <span class="keywordtype">int</span> port = <a class="code" href="platform_8hpp.html#a885fbea6107418a9231a029744215b1a">LOGOG_DEFAULT_PORT</a>
+<a name="l00066"></a>00066                 )
+<a name="l00067"></a>00067                 {
+<a name="l00068"></a>00068                         <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> = -1;
+<a name="l00069"></a>00069                         <a class="code" href="classlogog_1_1_socket.html#a3a5c708fc6df7887602be87d2765f461">m_nType</a> = type;
+<a name="l00070"></a>00070                         <a class="code" href="classlogog_1_1_socket.html#afd9350bba06e0e29f2980d4de629d87b">m_nPort</a> = port;
+<a name="l00071"></a>00071                 }
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="classlogog_1_1_socket.html#ace36743954f0a3a2e5d8cba379d5313f">00073</a>                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_socket.html#ace36743954f0a3a2e5d8cba379d5313f">Close</a>()
+<a name="l00074"></a>00074                 {
+<a name="l00075"></a>00075 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span>                        closesocket( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> );
+<a name="l00077"></a>00077 <span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_FLAVOR_POSIX</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>                        close( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> );
+<a name="l00080"></a>00080 <span class="preprocessor">#endif</span>
+<a name="l00081"></a>00081 <span class="preprocessor"></span>                }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="preprocessor">#ifdef NYI</span>
+<a name="l00084"></a>00084 <span class="preprocessor"></span>                <span class="keyword">virtual</span> <span class="keywordtype">int</span> Create( <span class="keywordtype">int</span> type,
+<a name="l00085"></a>00085                                                         <span class="keywordtype">int</span> port )
+<a name="l00086"></a>00086                 {
+<a name="l00087"></a>00087                         <span class="keywordtype">char</span> myname[<a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">MAXHOSTNAME</a>+1];
+<a name="l00088"></a>00088                         <span class="keywordtype">int</span> err;
+<a name="l00089"></a>00089                         <span class="keyword">struct </span>sockaddr_in sa;
+<a name="l00090"></a>00090                         <span class="keyword">struct </span>hostent *hp;
 <a name="l00091"></a>00091 
-<a name="l00092"></a>00092                         <span class="keywordflow">if</span> ( hp == NULL )                           <span class="comment">/* we don&#39;t exist !? */</span>
-<a name="l00093"></a>00093                                 <span class="keywordflow">return</span> -1;
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095                         sa.sin_family= hp-&gt;h_addrtype;              <span class="comment">/* this is our host address */</span>
-<a name="l00096"></a>00096                         sa.sin_port= (u_short)htons( (u_short)port );                <span class="comment">/* this is our port number */</span>
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098                         <span class="keywordflow">if</span> (( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> = socket( AF_INET, type, 0 ) ) &lt; 0 ) <span class="comment">/* create socket */</span>
-<a name="l00099"></a>00099                                 <span class="keywordflow">return</span> -1;
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101                         <span class="keywordflow">if</span> ( bind( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>,  (<span class="keyword">struct</span> sockaddr*) &amp;sa, <span class="keyword">sizeof</span>( <span class="keyword">struct</span> sockaddr_in ) ) &lt; 0 )
-<a name="l00102"></a>00102                         {
-<a name="l00103"></a>00103                                 <a class="code" href="classlogog_1_1_socket.html#ace36743954f0a3a2e5d8cba379d5313f">Close</a>();
-<a name="l00104"></a>00104                                 <span class="keywordflow">return</span> -1;
-<a name="l00105"></a>00105                         }
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107                         <span class="keywordflow">if</span> (( err = <a class="code" href="classlogog_1_1_socket.html#a740667ae5dba360bb48d224fb09d709a">SetNonBlocking</a>() ) != 0 )
-<a name="l00108"></a>00108                                 <span class="keywordflow">return</span> err;
-<a name="l00109"></a>00109                 }
+<a name="l00092"></a>00092                         memset( &amp;sa, 0, <span class="keyword">sizeof</span>( <span class="keyword">struct</span> sockaddr_in ) ); <span class="comment">/* clear our address */</span>
+<a name="l00093"></a>00093                         gethostname( myname, <a class="code" href="classlogog_1_1_socket.html#a581bc472ab7048ed9ae963911e7f3f80">MAXHOSTNAME</a> );         <span class="comment">/* who are we? */</span>
+<a name="l00094"></a>00094                         hp= gethostbyname( myname );                <span class="comment">/* get our address info */</span>
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096                         <span class="keywordflow">if</span> ( hp == NULL )                           <span class="comment">/* we don&#39;t exist !? */</span>
+<a name="l00097"></a>00097                                 <span class="keywordflow">return</span> -1;
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099                         sa.sin_family= hp-&gt;h_addrtype;              <span class="comment">/* this is our host address */</span>
+<a name="l00100"></a>00100                         sa.sin_port= (u_short)htons( (u_short)port );                <span class="comment">/* this is our port number */</span>
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102                         <span class="keywordflow">if</span> (( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a> = socket( AF_INET, type, 0 ) ) &lt; 0 ) <span class="comment">/* create socket */</span>
+<a name="l00103"></a>00103                                 <span class="keywordflow">return</span> -1;
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105                         <span class="keywordflow">if</span> ( bind( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>,  (<span class="keyword">struct</span> sockaddr*) &amp;sa, <span class="keyword">sizeof</span>( <span class="keyword">struct</span> sockaddr_in ) ) &lt; 0 )
+<a name="l00106"></a>00106                         {
+<a name="l00107"></a>00107                                 <a class="code" href="classlogog_1_1_socket.html#ace36743954f0a3a2e5d8cba379d5313f">Close</a>();
+<a name="l00108"></a>00108                                 <span class="keywordflow">return</span> -1;
+<a name="l00109"></a>00109                         }
 <a name="l00110"></a>00110 
-<a name="l00111"></a>00111 <span class="preprocessor">#endif // NYI</span>
-<a name="l00112"></a>00112 <span class="preprocessor"></span>
-<a name="l00113"></a><a class="code" href="classlogog_1_1_socket.html#a740667ae5dba360bb48d224fb09d709a">00113</a>                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a740667ae5dba360bb48d224fb09d709a">SetNonBlocking</a>()
-<a name="l00114"></a>00114                 {
-<a name="l00115"></a>00115                         <span class="keywordtype">int</span> err;
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_POSIX</span>
-<a name="l00118"></a>00118 <span class="preprocessor"></span>                        <span class="keywordtype">int</span> flags;
-<a name="l00119"></a>00119                         flags = socket_fcntl( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>, F_GETFL, 0 );
-<a name="l00120"></a>00120                         flags |= O_NONBLOCK;
-<a name="l00121"></a>00121                         err = socket_fcntl( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>, F_SETFL, flags );
-<a name="l00122"></a>00122 <span class="preprocessor">        #endif</span>
-<a name="l00123"></a>00123 <span class="preprocessor"></span>
-<a name="l00124"></a>00124 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00125"></a>00125 <span class="preprocessor"></span>                        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> parg;
-<a name="l00126"></a>00126                         parg = 1;
-<a name="l00127"></a>00127                         err = ioctlsocket( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>, FIONBIO, &amp;parg );
-<a name="l00128"></a>00128 <span class="preprocessor">        #endif</span>
-<a name="l00129"></a>00129 <span class="preprocessor"></span>                        <span class="keywordflow">return</span> err;
-<a name="l00130"></a>00130                 }
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a57d538a7630411d2433ee7bfccf7e32a">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;output ) = 0;
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 <span class="keyword">protected</span>:
-<a name="l00135"></a><a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">00135</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>;
-<a name="l00136"></a><a class="code" href="classlogog_1_1_socket.html#a3a5c708fc6df7887602be87d2765f461">00136</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a3a5c708fc6df7887602be87d2765f461">m_nType</a>;
-<a name="l00137"></a><a class="code" href="classlogog_1_1_socket.html#afd9350bba06e0e29f2980d4de629d87b">00137</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#afd9350bba06e0e29f2980d4de629d87b">m_nPort</a>;
-<a name="l00138"></a>00138         };
-<a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="classlogog_1_1_socket_server.html">00140</a>         <span class="keyword">class </span><a class="code" href="classlogog_1_1_socket_server.html">SocketServer</a> : <a class="code" href="classlogog_1_1_socket.html">Socket</a> 
-<a name="l00141"></a>00141         {
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143         };
-<a name="l00144"></a>00144 }
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146 <span class="preprocessor">#endif // __LOGOG_CHECKPOINT_HPP_</span>
+<a name="l00111"></a>00111                         <span class="keywordflow">if</span> (( err = <a class="code" href="classlogog_1_1_socket.html#a740667ae5dba360bb48d224fb09d709a">SetNonBlocking</a>() ) != 0 )
+<a name="l00112"></a>00112                                 <span class="keywordflow">return</span> err;
+<a name="l00113"></a>00113                 }
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <span class="preprocessor">#endif // NYI</span>
+<a name="l00116"></a>00116 <span class="preprocessor"></span>
+<a name="l00117"></a><a class="code" href="classlogog_1_1_socket.html#a740667ae5dba360bb48d224fb09d709a">00117</a>                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a740667ae5dba360bb48d224fb09d709a">SetNonBlocking</a>()
+<a name="l00118"></a>00118                 {
+<a name="l00119"></a>00119                         <span class="keywordtype">int</span> err;
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_POSIX</span>
+<a name="l00122"></a>00122 <span class="preprocessor"></span>                        <span class="keywordtype">int</span> flags;
+<a name="l00123"></a>00123                         flags = socket_fcntl( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>, F_GETFL, 0 );
+<a name="l00124"></a>00124                         flags |= O_NONBLOCK;
+<a name="l00125"></a>00125                         err = socket_fcntl( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>, F_SETFL, flags );
+<a name="l00126"></a>00126 <span class="preprocessor">        #endif</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span>
+<a name="l00128"></a>00128 <span class="preprocessor">        #ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00129"></a>00129 <span class="preprocessor"></span>                        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> parg;
+<a name="l00130"></a>00130                         parg = 1;
+<a name="l00131"></a>00131                         err = ioctlsocket( <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>, FIONBIO, &amp;parg );
+<a name="l00132"></a>00132 <span class="preprocessor">        #endif</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span>                        <span class="keywordflow">return</span> err;
+<a name="l00134"></a>00134                 }
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136                 <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a57d538a7630411d2433ee7bfccf7e32a">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;output ) = 0;
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 <span class="keyword">protected</span>:
+<a name="l00139"></a><a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">00139</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a920707a270fd365d3f518ab804fd6d43">m_Socket</a>;
+<a name="l00140"></a><a class="code" href="classlogog_1_1_socket.html#a3a5c708fc6df7887602be87d2765f461">00140</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#a3a5c708fc6df7887602be87d2765f461">m_nType</a>;
+<a name="l00141"></a><a class="code" href="classlogog_1_1_socket.html#afd9350bba06e0e29f2980d4de629d87b">00141</a>                 <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_socket.html#afd9350bba06e0e29f2980d4de629d87b">m_nPort</a>;
+<a name="l00142"></a>00142         };
+<a name="l00143"></a>00143 
+<a name="l00144"></a><a class="code" href="classlogog_1_1_socket_server.html">00144</a>         <span class="keyword">class </span><a class="code" href="classlogog_1_1_socket_server.html">SocketServer</a> : <a class="code" href="classlogog_1_1_socket.html">Socket</a> 
+<a name="l00145"></a>00145         {
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147         };
+<a name="l00148"></a>00148 }
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 <span class="preprocessor">#endif // __LOGOG_CHECKPOINT_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="socket_8hpp.html">socket.hpp</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:03 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:09 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

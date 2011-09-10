@@ -240,26 +240,55 @@ function toggleVisibility(linkObj) {
 <a name="l00196"></a>00196                 <span class="keyword">delete</span> &amp;<a class="code" href="namespacelogog.html#ae99c00ad21a45ff317a12ca43b147159">LogogTestRegistry</a>();
 <a name="l00197"></a>00197         }
 <a name="l00198"></a>00198 
-<a name="l00202"></a><a class="code" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">00202</a> <span class="preprocessor">#define UNITTEST( x ) class x : public UnitTest { \</span>
-<a name="l00203"></a>00203 <span class="preprocessor">public: \</span>
-<a name="l00204"></a>00204 <span class="preprocessor">        x( TestNameType name ) : \</span>
-<a name="l00205"></a>00205 <span class="preprocessor">          UnitTest( name ) \</span>
-<a name="l00206"></a>00206 <span class="preprocessor">          {} \</span>
-<a name="l00207"></a>00207 <span class="preprocessor">          virtual ~x() {}; \</span>
-<a name="l00208"></a>00208 <span class="preprocessor">          virtual int RunTest(); \</span>
-<a name="l00209"></a>00209 <span class="preprocessor">        }; \</span>
-<a name="l00210"></a>00210 <span class="preprocessor">        x __LogogTestInstance_ ## x ( #x ); \</span>
-<a name="l00211"></a>00211 <span class="preprocessor">        int x::RunTest()</span>
+<a name="l00199"></a><a class="code" href="namespacelogog.html#a6068bada97b4fe69764a805477d69e6d">00199</a>         <span class="keywordtype">int</span> <a class="code" href="namespacelogog.html#a6068bada97b4fe69764a805477d69e6d">CompareAndDeleteFile</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pValidOutput, 
+<a name="l00200"></a>00200                 <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pFileName )
+<a name="l00201"></a>00201         {
+<a name="l00202"></a>00202                 FILE *fp;
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00205"></a>00205 <span class="preprocessor"></span>                <span class="comment">// Microsoft prefers its variant</span>
+<a name="l00206"></a>00206                 <span class="keywordtype">int</span> nError = fopen_s( &amp;fp, pFileName, <span class="stringliteral">&quot;r&quot;</span> );
+<a name="l00207"></a>00207                 <span class="keywordflow">if</span> ( nError != 0 )
+<a name="l00208"></a>00208                         <span class="keywordflow">return</span> nError;
+<a name="l00209"></a>00209 <span class="preprocessor">#else // LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00210"></a>00210 <span class="preprocessor"></span>                fp = fopen( pFileName, <span class="stringliteral">&quot;r&quot;</span> );
+<a name="l00211"></a>00211 <span class="preprocessor">#endif // LOGOG_FLAVOR_WINDOWS</span>
 <a name="l00212"></a>00212 <span class="preprocessor"></span>
-<a name="l00213"></a>00213 }
-<a name="l00214"></a>00214 
-<a name="l00215"></a>00215 <span class="preprocessor">#endif // __LOGOG_UNITTEST_HPP</span>
+<a name="l00213"></a>00213                 <span class="keywordflow">while</span> ( !feof( fp ) &amp;&amp; *pValidOutput )
+<a name="l00214"></a>00214                 {
+<a name="l00215"></a>00215                         <span class="keywordflow">if</span> ( fgetc( fp ) != *pValidOutput++ )
+<a name="l00216"></a>00216                         { 
+<a name="l00217"></a>00217                                 fclose( fp );
+<a name="l00218"></a>00218                                 <span class="keyword">remove</span>( pFileName );
+<a name="l00219"></a>00219                                 <span class="keywordflow">return</span> -1; <span class="comment">// found a mismatch</span>
+<a name="l00220"></a>00220                         }
+<a name="l00221"></a>00221                 }
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223                 <span class="comment">// it matched!</span>
+<a name="l00224"></a>00224                 fclose( fp );
+<a name="l00225"></a>00225                 <span class="keywordflow">return</span> <span class="keyword">remove</span>( pFileName );
+<a name="l00226"></a>00226         }
+<a name="l00227"></a>00227 
+<a name="l00231"></a><a class="code" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">00231</a> <span class="preprocessor">#define UNITTEST( x ) class x : public UnitTest { \</span>
+<a name="l00232"></a>00232 <span class="preprocessor">public: \</span>
+<a name="l00233"></a>00233 <span class="preprocessor">        x( TestNameType name ) : \</span>
+<a name="l00234"></a>00234 <span class="preprocessor">          UnitTest( name ) \</span>
+<a name="l00235"></a>00235 <span class="preprocessor">          {} \</span>
+<a name="l00236"></a>00236 <span class="preprocessor">          virtual ~x() {}; \</span>
+<a name="l00237"></a>00237 <span class="preprocessor">          virtual int RunTest(); \</span>
+<a name="l00238"></a>00238 <span class="preprocessor">        }; \</span>
+<a name="l00239"></a>00239 <span class="preprocessor">        x __LogogTestInstance_ ## x ( #x ); \</span>
+<a name="l00240"></a>00240 <span class="preprocessor">        int x::RunTest()</span>
+<a name="l00241"></a>00241 <span class="preprocessor"></span>
+<a name="l00242"></a>00242 }
+<a name="l00243"></a>00243 
+<a name="l00244"></a>00244 <span class="preprocessor">#endif // __LOGOG_UNITTEST_HPP</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="unittest_8hpp.html">unittest.hpp</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:03 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:09 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

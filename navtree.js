@@ -8,8 +8,10 @@ var NAVTREE =
       [ "Internal architecture", "architecture.html", null ],
       [ "Porting logog", "porting.html", null ],
       [ "Requirements", "requirements.html", null ],
+      [ "Supported platforms", "supportedplatforms.html", null ],
       [ "License agreement", "license.html", null ],
-      [ "Other logging frameworks and systems", "othersystems.html", null ]
+      [ "Other logging frameworks and systems", "othersystems.html", null ],
+      [ "Todo List", "todo.html", null ]
     ] ],
     [ "Class List", "annotated.html", [
       [ "Allocator< T >", "classlogog_1_1_allocator.html", null ],
@@ -22,7 +24,8 @@ var NAVTREE =
       [ "FormatterMSVC", "classlogog_1_1_formatter_m_s_v_c.html", null ],
       [ "INIT_PARAMS", "structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html", null ],
       [ "LockableNodesType", "classlogog_1_1_lockable_nodes_type.html", null ],
-      [ "LogOutput", "classlogog_1_1_log_output.html", null ],
+      [ "LogBuffer", "classlogog_1_1_log_buffer.html", null ],
+      [ "LogFile", "classlogog_1_1_log_file.html", null ],
       [ "Message", "classlogog_1_1_message.html", null ],
       [ "Mutex", "classlogog_1_1_mutex.html", null ],
       [ "Node", "classlogog_1_1_node.html", null ],
@@ -66,7 +69,8 @@ var NAVTREE =
               [ "Target", "classlogog_1_1_target.html", [
                 [ "Cerr", "classlogog_1_1_cerr.html", null ],
                 [ "Cout", "classlogog_1_1_cout.html", null ],
-                [ "LogOutput", "classlogog_1_1_log_output.html", null ],
+                [ "LogBuffer", "classlogog_1_1_log_buffer.html", null ],
+                [ "LogFile", "classlogog_1_1_log_file.html", null ],
                 [ "OutputDebug", "classlogog_1_1_output_debug.html", null ],
                 [ "Socket", "classlogog_1_1_socket.html", [
                   [ "SocketServer", "classlogog_1_1_socket_server.html", null ]
@@ -98,6 +102,7 @@ var NAVTREE =
     [ "File List", "files.html", [
       [ "include/api.hpp", "api_8hpp.html", null ],
       [ "include/checkpoint.hpp", "checkpoint_8hpp.html", null ],
+      [ "include/const.hpp", "const_8hpp.html", null ],
       [ "include/formatter.hpp", "formatter_8hpp.html", null ],
       [ "include/logog.hpp", "logog_8hpp.html", null ],
       [ "include/macro.hpp", "macro_8hpp.html", null ],

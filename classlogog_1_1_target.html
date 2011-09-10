@@ -120,7 +120,8 @@ function toggleVisibility(linkObj) {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <div class="title">Target Class Reference</div>  </div>
 </div>
@@ -135,16 +136,17 @@ function toggleVisibility(linkObj) {
  <div class="center">
   <img src="classlogog_1_1_target.png" usemap="#Target_map" alt=""/>
   <map id="Target_map" name="Target_map">
-<area href="classlogog_1_1_topic_sink.html" alt="TopicSink" shape="rect" coords="198,168,287,192"/>
-<area href="classlogog_1_1_topic.html" alt="Topic" shape="rect" coords="198,112,287,136"/>
-<area href="classlogog_1_1_node.html" alt="Node" shape="rect" coords="198,56,287,80"/>
-<area href="classlogog_1_1_object.html" alt="Object" shape="rect" coords="198,0,287,24"/>
+<area href="classlogog_1_1_topic_sink.html" alt="TopicSink" shape="rect" coords="247,168,336,192"/>
+<area href="classlogog_1_1_topic.html" alt="Topic" shape="rect" coords="247,112,336,136"/>
+<area href="classlogog_1_1_node.html" alt="Node" shape="rect" coords="247,56,336,80"/>
+<area href="classlogog_1_1_object.html" alt="Object" shape="rect" coords="247,0,336,24"/>
 <area href="classlogog_1_1_cerr.html" alt="Cerr" shape="rect" coords="0,280,89,304"/>
 <area href="classlogog_1_1_cout.html" alt="Cout" shape="rect" coords="99,280,188,304"/>
-<area href="classlogog_1_1_log_output.html" alt="LogOutput" shape="rect" coords="198,280,287,304"/>
-<area href="classlogog_1_1_output_debug.html" alt="OutputDebug" shape="rect" coords="297,280,386,304"/>
-<area href="classlogog_1_1_socket.html" alt="Socket" shape="rect" coords="396,280,485,304"/>
-<area href="classlogog_1_1_socket_server.html" alt="SocketServer" shape="rect" coords="396,336,485,360"/>
+<area href="classlogog_1_1_log_buffer.html" alt="LogBuffer" shape="rect" coords="198,280,287,304"/>
+<area href="classlogog_1_1_log_file.html" alt="LogFile" shape="rect" coords="297,280,386,304"/>
+<area href="classlogog_1_1_output_debug.html" alt="OutputDebug" shape="rect" coords="396,280,485,304"/>
+<area href="classlogog_1_1_socket.html" alt="Socket" shape="rect" coords="495,280,584,304"/>
+<area href="classlogog_1_1_socket_server.html" alt="SocketServer" shape="rect" coords="495,336,584,360"/>
 </map>
  </div></div>
 
@@ -161,6 +163,9 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_formatter.html">Formatter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">m_pFormatter</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">m_MutexReceive</a></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#af7512190c71ba2d30924f7764d1f033a">LogBuffer</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A target is abstraction representing an output stream from logog. cerr, cout, and syslog, and other logging formats are supported. Targets do not validate their received data. Their only job is to render it on a call to <a class="el" href="classlogog_1_1_target.html#aeba402408840719950984877e42ea8d1">Receive()</a> to their supported target type. Targets should generally make sure to handle calls on multiple threads -- they should make sure to avoid overlapping outputs from multiple threads correctly. </p>
@@ -195,6 +200,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Returns a reference to the current formatter for this target. </p>
 
 </div>
 </div>
@@ -212,8 +218,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>All targets must implement the Output function. This function outputs the provided string to the output that the target represents. </p>
 
-<p>Implemented in <a class="el" href="classlogog_1_1_socket.html#a57d538a7630411d2433ee7bfccf7e32a">Socket</a>, and <a class="el" href="classlogog_1_1_log_output.html#a0181a9f1ec579f603418557c1176d404">LogOutput</a>.</p>
+<p>Implemented in <a class="el" href="classlogog_1_1_socket.html#a57d538a7630411d2433ee7bfccf7e32a">Socket</a>, <a class="el" href="classlogog_1_1_log_file.html#a0181a9f1ec579f603418557c1176d404">LogFile</a>, and <a class="el" href="classlogog_1_1_log_buffer.html#a0181a9f1ec579f603418557c1176d404">LogBuffer</a>.</p>
 
 </div>
 </div>
@@ -225,20 +232,13 @@ Protected Attributes</h2></td></tr>
           <td class="memname">virtual int Receive </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
+          <td class="paramname"><em>topic</em></td><td>)</td>
           <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Permits this node to receive a publication from another node, and act upon it. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>The node constituting the publication </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>0 if successful, non-zero if this node failed to process the publication </dd></dl>
+<p>Receives a topic on behalf of this target. A mutex prevents race conditions from occuring when multiple threads attempt to write to this target at the same time. </p>
 
 <p>Reimplemented from <a class="el" href="classlogog_1_1_topic.html#a2c504542dd36153026b1739fa21a7b78">Topic</a>.</p>
 
@@ -258,6 +258,21 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Sets the current formatter for this target. </p>
+
+</div>
+</div>
+<hr/><h2>Friends And Related Function Documentation</h2>
+<a class="anchor" id="af7512190c71ba2d30924f7764d1f033a"></a><!-- doxytag: member="logog::Target::LogBuffer" ref="af7512190c71ba2d30924f7764d1f033a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a><code> [friend]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
 </div>
 </div>
@@ -272,6 +287,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>A mutex on the <a class="el" href="classlogog_1_1_target.html#aeba402408840719950984877e42ea8d1">Receive()</a> function. </p>
 
 </div>
 </div>
@@ -298,7 +314,7 @@ Protected Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="namespacelogog.html">logog</a>      </li>
       <li class="navelem"><a class="el" href="classlogog_1_1_target.html">Target</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:04 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:10 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

@@ -298,158 +298,208 @@ function toggleVisibility(linkObj) {
 <a name="l00221"></a>00221                         <span class="keywordflow">return</span> bWasRemoved;
 <a name="l00222"></a>00222                 }
 <a name="l00223"></a>00223 
-<a name="l00228"></a><a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">00228</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">SubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;publisher )
-<a name="l00229"></a>00229                 {
-<a name="l00230"></a>00230 <span class="preprocessor">        #ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00231"></a>00231 <span class="preprocessor"></span>                        <span class="keywordflow">if</span> ( &amp;publisher == <span class="keyword">this</span> )
-<a name="l00232"></a>00232                                 <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
-<a name="l00233"></a>00233 <span class="preprocessor">        #endif</span>
-<a name="l00234"></a>00234 <span class="preprocessor"></span>                        <span class="keywordtype">bool</span> bWasInserted;
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236                         {
-<a name="l00237"></a>00237                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a> );
-<a name="l00238"></a>00238                                 bWasInserted = ( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.insert( &amp;publisher ) ).second;
-<a name="l00239"></a>00239                         }
+<a name="l00225"></a><a class="code" href="classlogog_1_1_node.html#a3f667bb2e9f78ce8bf1b16c51696f287">00225</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#a3f667bb2e9f78ce8bf1b16c51696f287">UnpublishToMultiple</a>( <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> &amp;nodes )
+<a name="l00226"></a>00226                 {
+<a name="l00227"></a>00227                         LockableNodesType::iterator it;
+<a name="l00228"></a>00228 
+<a name="l00229"></a>00229                         <span class="keywordtype">bool</span> bWasUnpublished = <span class="keyword">false</span>;
+<a name="l00230"></a>00230 
+<a name="l00231"></a>00231                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
+<a name="l00232"></a>00232                         it = nodes.begin();
+<a name="l00233"></a>00233 
+<a name="l00234"></a>00234                         <span class="keywordflow">while</span> ( it != nodes.end() )
+<a name="l00235"></a>00235                         {
+<a name="l00236"></a>00236                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238                                 <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_node.html#a3ab9bc4900cb13a9f48baf14b4bf9ac9">UnpublishTo</a>( **it ) == <span class="keyword">true</span> )
+<a name="l00239"></a>00239                                         bWasUnpublished = <span class="keyword">true</span>;
 <a name="l00240"></a>00240 
-<a name="l00241"></a>00241                         <span class="keywordflow">if</span> ( bWasInserted )
-<a name="l00242"></a>00242                                 publisher.<a class="code" href="classlogog_1_1_node.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">PublishTo</a>( *<span class="keyword">this</span> );
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244                         <span class="keywordflow">return</span> bWasInserted;
-<a name="l00245"></a>00245                 }
+<a name="l00241"></a>00241                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
+<a name="l00242"></a>00242                                 it++;
+<a name="l00243"></a>00243                         }
+<a name="l00244"></a>00244 
+<a name="l00245"></a>00245                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
 <a name="l00246"></a>00246 
-<a name="l00248"></a><a class="code" href="classlogog_1_1_node.html#a302a93c6442eb07d4dc788d5c4816f9e">00248</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#a302a93c6442eb07d4dc788d5c4816f9e">SubscribeToMultiple</a>( <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> &amp;nodes )
-<a name="l00249"></a>00249                 {
-<a name="l00250"></a>00250                         LockableNodesType::iterator it;
-<a name="l00251"></a>00251 
-<a name="l00252"></a>00252                         <span class="keywordtype">bool</span> bWasSubscribed = <span class="keyword">false</span>;
-<a name="l00253"></a>00253 
-<a name="l00254"></a>00254                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
-<a name="l00255"></a>00255                         it = nodes.begin();
-<a name="l00256"></a>00256 
-<a name="l00257"></a>00257                         <span class="keywordflow">while</span> ( it != nodes.end() )
-<a name="l00258"></a>00258                         {
-<a name="l00259"></a>00259                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
-<a name="l00260"></a>00260                                 <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">SubscribeTo</a>( **it ) == <span class="keyword">true</span> )
-<a name="l00261"></a>00261                                         bWasSubscribed = <span class="keyword">true</span>;
-<a name="l00262"></a>00262 
-<a name="l00263"></a>00263                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
-<a name="l00264"></a>00264                                 it++;
+<a name="l00247"></a>00247                         <span class="keywordflow">return</span> bWasUnpublished;
+<a name="l00248"></a>00248                 }
+<a name="l00249"></a>00249 
+<a name="l00254"></a><a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">00254</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">SubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;publisher )
+<a name="l00255"></a>00255                 {
+<a name="l00256"></a>00256 <span class="preprocessor">        #ifdef LOGOG_INTERNAL_DEBUGGING</span>
+<a name="l00257"></a>00257 <span class="preprocessor"></span>                        <span class="keywordflow">if</span> ( &amp;publisher == <span class="keyword">this</span> )
+<a name="l00258"></a>00258                                 <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
+<a name="l00259"></a>00259 <span class="preprocessor">        #endif</span>
+<a name="l00260"></a>00260 <span class="preprocessor"></span>                        <span class="keywordtype">bool</span> bWasInserted;
+<a name="l00261"></a>00261 
+<a name="l00262"></a>00262                         {
+<a name="l00263"></a>00263                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a> );
+<a name="l00264"></a>00264                                 bWasInserted = ( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.insert( &amp;publisher ) ).second;
 <a name="l00265"></a>00265                         }
 <a name="l00266"></a>00266 
-<a name="l00267"></a>00267                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
-<a name="l00268"></a>00268 
-<a name="l00269"></a>00269                         <span class="keywordflow">return</span> bWasSubscribed;
-<a name="l00270"></a>00270                 }
-<a name="l00271"></a>00271 
-<a name="l00276"></a><a class="code" href="classlogog_1_1_node.html#a96f3da81c22d120d11c51364889ac5e2">00276</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#a96f3da81c22d120d11c51364889ac5e2">UnsubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;publisher )
-<a name="l00277"></a>00277                 {
-<a name="l00278"></a>00278 <span class="preprocessor">        #ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00279"></a>00279 <span class="preprocessor"></span>                        <span class="keywordflow">if</span> ( &amp;publisher == <span class="keyword">this</span> )
-<a name="l00280"></a>00280                                 <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
-<a name="l00281"></a>00281 <span class="preprocessor">        #endif</span>
-<a name="l00282"></a>00282 <span class="preprocessor"></span>                        <span class="keywordtype">bool</span> bWasRemoved = <span class="keyword">false</span>;
-<a name="l00283"></a>00283 
+<a name="l00267"></a>00267                         <span class="keywordflow">if</span> ( bWasInserted )
+<a name="l00268"></a>00268                                 publisher.<a class="code" href="classlogog_1_1_node.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">PublishTo</a>( *<span class="keyword">this</span> );
+<a name="l00269"></a>00269 
+<a name="l00270"></a>00270                         <span class="keywordflow">return</span> bWasInserted;
+<a name="l00271"></a>00271                 }
+<a name="l00272"></a>00272 
+<a name="l00274"></a><a class="code" href="classlogog_1_1_node.html#a302a93c6442eb07d4dc788d5c4816f9e">00274</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#a302a93c6442eb07d4dc788d5c4816f9e">SubscribeToMultiple</a>( <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> &amp;nodes )
+<a name="l00275"></a>00275                 {
+<a name="l00276"></a>00276                         LockableNodesType::iterator it;
+<a name="l00277"></a>00277 
+<a name="l00278"></a>00278                         <span class="keywordtype">bool</span> bWasSubscribed = <span class="keyword">false</span>;
+<a name="l00279"></a>00279 
+<a name="l00280"></a>00280                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
+<a name="l00281"></a>00281                         it = nodes.begin();
+<a name="l00282"></a>00282 
+<a name="l00283"></a>00283                         <span class="keywordflow">while</span> ( it != nodes.end() )
 <a name="l00284"></a>00284                         {
-<a name="l00285"></a>00285                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a> );
-<a name="l00286"></a>00286                                 NodesType::iterator it;
-<a name="l00287"></a>00287 
-<a name="l00288"></a>00288                                 <span class="keywordflow">if</span> ( ( it = <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.find( &amp;publisher ) ) != <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.end() )
-<a name="l00289"></a>00289                                 {
-<a name="l00290"></a>00290                                         bWasRemoved = <span class="keyword">true</span>;
-<a name="l00291"></a>00291                                         <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.erase( it );
-<a name="l00292"></a>00292                                 }
-<a name="l00293"></a>00293                         }
+<a name="l00285"></a>00285                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
+<a name="l00286"></a>00286                                 <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">SubscribeTo</a>( **it ) == <span class="keyword">true</span> )
+<a name="l00287"></a>00287                                         bWasSubscribed = <span class="keyword">true</span>;
+<a name="l00288"></a>00288 
+<a name="l00289"></a>00289                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
+<a name="l00290"></a>00290                                 it++;
+<a name="l00291"></a>00291                         }
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
 <a name="l00294"></a>00294 
-<a name="l00295"></a>00295                         <span class="keywordflow">if</span> ( bWasRemoved )
-<a name="l00296"></a>00296                                 publisher.<a class="code" href="classlogog_1_1_node.html#a3ab9bc4900cb13a9f48baf14b4bf9ac9">UnpublishTo</a>( *<span class="keyword">this</span> );
+<a name="l00295"></a>00295                         <span class="keywordflow">return</span> bWasSubscribed;
+<a name="l00296"></a>00296                 }
 <a name="l00297"></a>00297 
-<a name="l00298"></a>00298                         <span class="keywordflow">return</span> bWasRemoved;
-<a name="l00299"></a>00299                 }
-<a name="l00300"></a>00300 
-<a name="l00301"></a><a class="code" href="classlogog_1_1_node.html#aa71d36872f416feaa853788a7a7a7ef8">00301</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_node.html#aa71d36872f416feaa853788a7a7a7ef8">Clear</a>()
-<a name="l00302"></a>00302                 {
-<a name="l00303"></a>00303                         {
-<a name="l00304"></a>00304                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a> );
-<a name="l00305"></a>00305                                 <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.clear();
-<a name="l00306"></a>00306                         }
-<a name="l00307"></a>00307                         {
-<a name="l00308"></a>00308                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a> );
-<a name="l00309"></a>00309                                 <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.clear();
-<a name="l00310"></a>00310                         }
-<a name="l00311"></a>00311                 }
-<a name="l00312"></a>00312 
-<a name="l00313"></a>00313 
-<a name="l00315"></a><a class="code" href="classlogog_1_1_node.html#a1e20e91cd8ffad0061224f75a91f3e60">00315</a>                 <span class="keywordtype">void</span> *<a class="code" href="classlogog_1_1_node.html#a1e20e91cd8ffad0061224f75a91f3e60">m_pUserData1</a>;
-<a name="l00316"></a>00316 
-<a name="l00318"></a><a class="code" href="classlogog_1_1_node.html#aef8f7e47294f65a4e058fb8432a6eb4c">00318</a>                 <span class="keywordtype">void</span> *<a class="code" href="classlogog_1_1_node.html#aef8f7e47294f65a4e058fb8432a6eb4c">m_pUserData2</a>;
-<a name="l00319"></a>00319 
-<a name="l00320"></a>00320         <span class="keyword">protected</span>:
-<a name="l00322"></a><a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">00322</a>                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a>       <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>;
-<a name="l00323"></a>00323 
-<a name="l00325"></a><a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">00325</a>                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a>       <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>;
-<a name="l00326"></a>00326         };
+<a name="l00298"></a>00298 
+<a name="l00303"></a><a class="code" href="classlogog_1_1_node.html#a96f3da81c22d120d11c51364889ac5e2">00303</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#a96f3da81c22d120d11c51364889ac5e2">UnsubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;publisher )
+<a name="l00304"></a>00304                 {
+<a name="l00305"></a>00305 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
+<a name="l00306"></a>00306 <span class="preprocessor"></span>                        <span class="keywordflow">if</span> ( &amp;publisher == <span class="keyword">this</span> )
+<a name="l00307"></a>00307                                 <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
+<a name="l00308"></a>00308 <span class="preprocessor">#endif</span>
+<a name="l00309"></a>00309 <span class="preprocessor"></span>                        <span class="keywordtype">bool</span> bWasRemoved = <span class="keyword">false</span>;
+<a name="l00310"></a>00310 
+<a name="l00311"></a>00311                         {
+<a name="l00312"></a>00312                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a> );
+<a name="l00313"></a>00313                                 NodesType::iterator it;
+<a name="l00314"></a>00314 
+<a name="l00315"></a>00315                                 <span class="keywordflow">if</span> ( ( it = <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.find( &amp;publisher ) ) != <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.end() )
+<a name="l00316"></a>00316                                 {
+<a name="l00317"></a>00317                                         bWasRemoved = <span class="keyword">true</span>;
+<a name="l00318"></a>00318                                         <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.erase( it );
+<a name="l00319"></a>00319                                 }
+<a name="l00320"></a>00320                         }
+<a name="l00321"></a>00321 
+<a name="l00322"></a>00322                         <span class="keywordflow">if</span> ( bWasRemoved )
+<a name="l00323"></a>00323                                 publisher.<a class="code" href="classlogog_1_1_node.html#a3ab9bc4900cb13a9f48baf14b4bf9ac9">UnpublishTo</a>( *<span class="keyword">this</span> );
+<a name="l00324"></a>00324 
+<a name="l00325"></a>00325                         <span class="keywordflow">return</span> bWasRemoved;
+<a name="l00326"></a>00326                 }
 <a name="l00327"></a>00327 
-<a name="l00328"></a><a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">00328</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( <span class="keywordtype">void</span> **pvList )
-<a name="l00329"></a>00329         {
-<a name="l00330"></a>00330                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> **ppNodesList = (<a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> **)pvList;
-<a name="l00331"></a>00331 
-<a name="l00332"></a>00332                 <span class="keywordflow">if</span> ( *ppNodesList == NULL )
-<a name="l00333"></a>00333                         <span class="keywordflow">return</span>;
+<a name="l00329"></a><a class="code" href="classlogog_1_1_node.html#aec93af450c7fbb62e77adf66e27ba3a5">00329</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_node.html#aec93af450c7fbb62e77adf66e27ba3a5">UnsubscribeToMultiple</a>( <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> &amp;nodes )
+<a name="l00330"></a>00330                 {
+<a name="l00331"></a>00331                         LockableNodesType::iterator it;
+<a name="l00332"></a>00332 
+<a name="l00333"></a>00333                         <span class="keywordtype">bool</span> bWasUnsubscribed = <span class="keyword">false</span>;
 <a name="l00334"></a>00334 
-<a name="l00335"></a>00335                 (*ppNodesList)-&gt;clear();
-<a name="l00336"></a>00336                 <span class="keyword">delete</span> *ppNodesList;
-<a name="l00337"></a>00337                 *ppNodesList = NULL;
-<a name="l00338"></a>00338         }
-<a name="l00339"></a>00339 
-<a name="l00340"></a>00340 
-<a name="l00344"></a><a class="code" href="namespacelogog.html#a05815111b9c5c5f8680d0093f2b6f58f">00344</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a05815111b9c5c5f8680d0093f2b6f58f">DestroyAllNodes</a>()
-<a name="l00345"></a>00345         {
-<a name="l00346"></a>00346                 <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatics = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
+<a name="l00335"></a>00335                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
+<a name="l00336"></a>00336                         it = nodes.begin();
+<a name="l00337"></a>00337 
+<a name="l00338"></a>00338                         <span class="keywordflow">while</span> ( it != nodes.end() )
+<a name="l00339"></a>00339                         {
+<a name="l00340"></a>00340                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
+<a name="l00341"></a>00341                                 <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_node.html#a96f3da81c22d120d11c51364889ac5e2">UnsubscribeTo</a>( **it ) == <span class="keyword">true</span> )
+<a name="l00342"></a>00342                                         bWasUnsubscribed = <span class="keyword">true</span>;
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344                                 nodes.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
+<a name="l00345"></a>00345                                 it++;
+<a name="l00346"></a>00346                         }
 <a name="l00347"></a>00347 
-<a name="l00348"></a>00348                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> *pAllNodes = ( <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> *)pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#ad4b27f98ced2aae63cc0ec3c4766219b">s_pAllNodes</a>;
+<a name="l00348"></a>00348                         nodes.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
 <a name="l00349"></a>00349 
-<a name="l00350"></a>00350                 if ( pAllNodes == NULL )
-<a name="l00351"></a>00351                         <span class="keywordflow">return</span>;
+<a name="l00350"></a>00350                         <span class="keywordflow">return</span> bWasUnsubscribed;
+<a name="l00351"></a>00351                 }
 <a name="l00352"></a>00352 
-<a name="l00354"></a>00354                 <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( &amp;(pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#a8185cd6366ca17e840eda5edbb36a108">s_pAllSubscriberNodes</a> ));
-<a name="l00355"></a>00355                 <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( &amp;(pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#a0f906841837b96a9923e992bacd43bc2">s_pAllFilterNodes</a> ));
-<a name="l00356"></a>00356                 <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( &amp;(pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#a5613a62c079ec6366c8b81fa9ccdd0da">s_pAllTargets</a> ));
-<a name="l00357"></a>00357 
-<a name="l00358"></a>00358                 <span class="comment">/* We have to copy the AllNodes because destroying each node will remove it from AllNodes.  Fortunately</span>
-<a name="l00359"></a>00359 <span class="comment">                 * this only happens at shutdown, so we don&#39;t have to worry about efficiency.</span>
-<a name="l00360"></a>00360 <span class="comment">                 */</span>
-<a name="l00361"></a>00361                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> nodes = *pAllNodes;
-<a name="l00362"></a>00362 
-<a name="l00363"></a>00363                 LockableNodesType::iterator it;
+<a name="l00353"></a><a class="code" href="classlogog_1_1_node.html#aa71d36872f416feaa853788a7a7a7ef8">00353</a>                 <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_node.html#aa71d36872f416feaa853788a7a7a7ef8">Clear</a>()
+<a name="l00354"></a>00354                 {
+<a name="l00355"></a>00355                         {
+<a name="l00356"></a>00356                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a> );
+<a name="l00357"></a>00357                                 <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.clear();
+<a name="l00358"></a>00358                         }
+<a name="l00359"></a>00359                         {
+<a name="l00360"></a>00360                                 <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a> );
+<a name="l00361"></a>00361                                 <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>.clear();
+<a name="l00362"></a>00362                         }
+<a name="l00363"></a>00363                 }
 <a name="l00364"></a>00364 
-<a name="l00365"></a>00365                 it = nodes.begin();
-<a name="l00366"></a>00366 
-<a name="l00367"></a>00367                 <span class="keywordflow">while</span> ( it != nodes.end() )
-<a name="l00368"></a>00368                 {
-<a name="l00369"></a>00369                         <span class="keyword">delete</span> *it;
-<a name="l00370"></a>00370                         it++;
-<a name="l00371"></a>00371                 }
-<a name="l00372"></a>00372 
-<a name="l00373"></a>00373                 nodes.clear();
-<a name="l00374"></a>00374 
-<a name="l00375"></a>00375 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00376"></a>00376 <span class="preprocessor"></span>                <span class="keywordflow">if</span> ( pAllNodes-&gt;size() != 0 )
-<a name="l00377"></a>00377                         cout &lt;&lt; <span class="stringliteral">&quot;Not all nodes were deleted at shutdown -- memory leak may have occurred&quot;</span> &lt;&lt; endl;
-<a name="l00378"></a>00378 <span class="preprocessor">#endif</span>
-<a name="l00379"></a>00379 <span class="preprocessor"></span>
-<a name="l00380"></a>00380                 pAllNodes-&gt;clear(); <span class="comment">// just in case</span>
-<a name="l00381"></a>00381                 <span class="keyword">delete</span> pAllNodes;
-<a name="l00382"></a>00382                 pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#ad4b27f98ced2aae63cc0ec3c4766219b">s_pAllNodes</a> = NULL;
-<a name="l00383"></a>00383         }
-<a name="l00384"></a>00384 }
-<a name="l00385"></a>00385 
-<a name="l00386"></a>00386 <span class="preprocessor">#endif // __LOGOG_NODE_HPP_</span>
+<a name="l00365"></a>00365 
+<a name="l00367"></a><a class="code" href="classlogog_1_1_node.html#a1e20e91cd8ffad0061224f75a91f3e60">00367</a>                 <span class="keywordtype">void</span> *<a class="code" href="classlogog_1_1_node.html#a1e20e91cd8ffad0061224f75a91f3e60">m_pUserData1</a>;
+<a name="l00368"></a>00368 
+<a name="l00370"></a><a class="code" href="classlogog_1_1_node.html#aef8f7e47294f65a4e058fb8432a6eb4c">00370</a>                 <span class="keywordtype">void</span> *<a class="code" href="classlogog_1_1_node.html#aef8f7e47294f65a4e058fb8432a6eb4c">m_pUserData2</a>;
+<a name="l00371"></a>00371 
+<a name="l00372"></a>00372         <span class="keyword">protected</span>:
+<a name="l00374"></a><a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">00374</a>                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a>       <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>;
+<a name="l00375"></a>00375 
+<a name="l00377"></a><a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">00377</a>                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a>       <a class="code" href="classlogog_1_1_node.html#a020013824f2a57257fb44861c4ca2147">m_Publishers</a>;
+<a name="l00378"></a>00378         };
+<a name="l00379"></a>00379 
+<a name="l00380"></a><a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">00380</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( <span class="keywordtype">void</span> **pvList )
+<a name="l00381"></a>00381         {
+<a name="l00382"></a>00382                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> **ppNodesList = (<a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> **)pvList;
+<a name="l00383"></a>00383 
+<a name="l00384"></a>00384                 <span class="keywordflow">if</span> ( *ppNodesList == NULL )
+<a name="l00385"></a>00385                         <span class="keywordflow">return</span>;
+<a name="l00386"></a>00386 
+<a name="l00387"></a>00387                 (*ppNodesList)-&gt;clear();
+<a name="l00388"></a>00388                 <span class="keyword">delete</span> *ppNodesList;
+<a name="l00389"></a>00389                 *ppNodesList = NULL;
+<a name="l00390"></a>00390         }
+<a name="l00391"></a>00391 
+<a name="l00392"></a>00392 
+<a name="l00396"></a><a class="code" href="namespacelogog.html#a05815111b9c5c5f8680d0093f2b6f58f">00396</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a05815111b9c5c5f8680d0093f2b6f58f">DestroyAllNodes</a>()
+<a name="l00397"></a>00397         {
+<a name="l00398"></a>00398                 <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatics = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
+<a name="l00399"></a>00399 
+<a name="l00400"></a>00400                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> *pAllNodes = ( <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> *)pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#ad4b27f98ced2aae63cc0ec3c4766219b">s_pAllNodes</a>;
+<a name="l00401"></a>00401 
+<a name="l00402"></a>00402                 if ( pAllNodes == NULL )
+<a name="l00403"></a>00403                         <span class="keywordflow">return</span>;
+<a name="l00404"></a>00404 
+<a name="l00406"></a>00406                 <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( &amp;(pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#a8185cd6366ca17e840eda5edbb36a108">s_pAllSubscriberNodes</a> ));
+<a name="l00407"></a>00407                 <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( &amp;(pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#a0f906841837b96a9923e992bacd43bc2">s_pAllFilterNodes</a> ));
+<a name="l00408"></a>00408                 <a class="code" href="namespacelogog.html#a2baf04da791d76aa9f6121756c232097">DestroyNodesList</a>( &amp;(pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#a5613a62c079ec6366c8b81fa9ccdd0da">s_pAllTargets</a> ));
+<a name="l00409"></a>00409 
+<a name="l00410"></a>00410                 <span class="comment">/* We have to copy the AllNodes because destroying each node will remove it from AllNodes.  Fortunately</span>
+<a name="l00411"></a>00411 <span class="comment">                 * this only happens at shutdown, so we don&#39;t have to worry about efficiency.</span>
+<a name="l00412"></a>00412 <span class="comment">                 */</span>
+<a name="l00413"></a>00413                 <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> nodes = *pAllNodes;
+<a name="l00414"></a>00414 
+<a name="l00415"></a>00415                 LockableNodesType::iterator it;
+<a name="l00416"></a>00416 
+<a name="l00417"></a>00417                 it = nodes.begin();
+<a name="l00418"></a>00418 
+<a name="l00419"></a>00419                 <span class="keywordflow">while</span> ( it != nodes.end() )
+<a name="l00420"></a>00420                 {
+<a name="l00421"></a>00421                         <span class="keyword">delete</span> *it;
+<a name="l00422"></a>00422                         it++;
+<a name="l00423"></a>00423                 }
+<a name="l00424"></a>00424 
+<a name="l00425"></a>00425                 nodes.clear();
+<a name="l00426"></a>00426 
+<a name="l00427"></a>00427 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
+<a name="l00428"></a>00428 <span class="preprocessor"></span>                <span class="keywordflow">if</span> ( pAllNodes-&gt;size() != 0 )
+<a name="l00429"></a>00429                         cout &lt;&lt; <span class="stringliteral">&quot;Not all nodes were deleted at shutdown -- memory leak may have occurred&quot;</span> &lt;&lt; endl;
+<a name="l00430"></a>00430 <span class="preprocessor">#endif</span>
+<a name="l00431"></a>00431 <span class="preprocessor"></span>
+<a name="l00432"></a>00432                 pAllNodes-&gt;clear(); <span class="comment">// just in case</span>
+<a name="l00433"></a>00433                 <span class="keyword">delete</span> pAllNodes;
+<a name="l00434"></a>00434                 pStatics-&gt;<a class="code" href="classlogog_1_1_statics.html#ad4b27f98ced2aae63cc0ec3c4766219b">s_pAllNodes</a> = NULL;
+<a name="l00435"></a>00435         }
+<a name="l00436"></a>00436 }
+<a name="l00437"></a>00437 
+<a name="l00438"></a>00438 <span class="preprocessor">#endif // __LOGOG_NODE_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="node_8hpp.html">node.hpp</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:03 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:08 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

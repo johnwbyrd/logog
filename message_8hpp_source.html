@@ -139,42 +139,53 @@ function toggleVisibility(linkObj) {
 <a name="l00020"></a>00020                 {
 <a name="l00021"></a>00021                         <span class="comment">/* Messages are always sources, so there&#39;s no need to call Initialize() here */</span>
 <a name="l00022"></a>00022                         <span class="comment">// Initialize();</span>
-<a name="l00023"></a>00023                         
-<a name="l00024"></a>00024                         <a class="code" href="classlogog_1_1_node.html#a64be8f1d5da9f1794e2339d06d36829b">PublishToMultiple</a>( <a class="code" href="namespacelogog.html#a368c0c7a59eaf06fce6c739d61319767">AllFilters</a>() );
-<a name="l00025"></a>00025                 }
-<a name="l00026"></a><a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">00026</a>                 <a class="code" href="classlogog_1_1_mutex.html">Mutex</a> <a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">m_Transmitting</a>;
-<a name="l00027"></a>00027         };
-<a name="l00028"></a>00028 
-<a name="l00029"></a><a class="code" href="namespacelogog.html#a9570442709c4979c11629cbb8629d9a5">00029</a>         <span class="keyword">static</span> <a class="code" href="classlogog_1_1_mutex.html">Mutex</a> &amp;<a class="code" href="namespacelogog.html#a9570442709c4979c11629cbb8629d9a5">GetMessageCreationMutex</a>()
-<a name="l00030"></a>00030         {
-<a name="l00031"></a>00031                 <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatic = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033                 <span class="keywordflow">if</span> ( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> == NULL )
-<a name="l00034"></a>00034                         pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_mutex.html">Mutex</a>();
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036                 <span class="keywordflow">return</span> *( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> );
-<a name="l00037"></a>00037         }
-<a name="l00038"></a>00038 
-<a name="l00039"></a><a class="code" href="namespacelogog.html#a9703ebd08fbac76e423dc69ee00807c1">00039</a>         <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a9703ebd08fbac76e423dc69ee00807c1">DestroyMessageCreationMutex</a>()
-<a name="l00040"></a>00040         {
-<a name="l00041"></a>00041                 <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatic = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043                 <span class="keywordflow">if</span> ( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> != NULL )
-<a name="l00044"></a>00044                 {
-<a name="l00045"></a>00045                         <span class="keyword">delete</span> pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a>;
-<a name="l00046"></a>00046                         pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> = NULL;
-<a name="l00047"></a>00047                 }
-<a name="l00048"></a>00048         }
-<a name="l00049"></a>00049 };
-<a name="l00050"></a>00050 
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024                         <span class="comment">/* NOTE!  The message is typically assigned to a checkpoint AFTER it&#39;s been published.</span>
+<a name="l00025"></a>00025 <span class="comment">                         * Ergo a message needs to be unpublished from, and published to, all filters</span>
+<a name="l00026"></a>00026 <span class="comment">                         * iff one of those filters is searching for a substring of that message.</span>
+<a name="l00027"></a>00027 <span class="comment">                         */</span>
+<a name="l00028"></a>00028                         <a class="code" href="classlogog_1_1_node.html#a64be8f1d5da9f1794e2339d06d36829b">PublishToMultiple</a>( <a class="code" href="namespacelogog.html#a368c0c7a59eaf06fce6c739d61319767">AllFilters</a>() );
+<a name="l00029"></a>00029                 }
+<a name="l00030"></a>00030 
+<a name="l00036"></a><a class="code" href="classlogog_1_1_message.html#a5c39b281e7c9af999789af4014f68752">00036</a>                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_message.html#a5c39b281e7c9af999789af4014f68752">Republish</a>()
+<a name="l00037"></a>00037                 {
+<a name="l00038"></a>00038                         <a class="code" href="classlogog_1_1_node.html#a3f667bb2e9f78ce8bf1b16c51696f287">UnpublishToMultiple</a>( <a class="code" href="namespacelogog.html#a368c0c7a59eaf06fce6c739d61319767">AllFilters</a>() );
+<a name="l00039"></a>00039                         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_node.html#a64be8f1d5da9f1794e2339d06d36829b">PublishToMultiple</a>( <a class="code" href="namespacelogog.html#a368c0c7a59eaf06fce6c739d61319767">AllFilters</a>() );
+<a name="l00040"></a>00040                 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a><a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">00042</a>                 <a class="code" href="classlogog_1_1_mutex.html">Mutex</a> <a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">m_Transmitting</a>;
+<a name="l00043"></a>00043         };
+<a name="l00044"></a>00044 
+<a name="l00045"></a><a class="code" href="namespacelogog.html#a9570442709c4979c11629cbb8629d9a5">00045</a>         <span class="keyword">static</span> <a class="code" href="classlogog_1_1_mutex.html">Mutex</a> &amp;<a class="code" href="namespacelogog.html#a9570442709c4979c11629cbb8629d9a5">GetMessageCreationMutex</a>()
+<a name="l00046"></a>00046         {
+<a name="l00047"></a>00047                 <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatic = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049                 <span class="keywordflow">if</span> ( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> == NULL )
+<a name="l00050"></a>00050                         pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_mutex.html">Mutex</a>();
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#endif // __LOGOG_MESSAGE_HPP_</span>
+<a name="l00052"></a>00052                 <span class="keywordflow">return</span> *( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> );
+<a name="l00053"></a>00053         }
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="namespacelogog.html#a9703ebd08fbac76e423dc69ee00807c1">00055</a>         <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a9703ebd08fbac76e423dc69ee00807c1">DestroyMessageCreationMutex</a>()
+<a name="l00056"></a>00056         {
+<a name="l00057"></a>00057                 <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatic = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059                 <span class="keywordflow">if</span> ( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> != NULL )
+<a name="l00060"></a>00060                 {
+<a name="l00061"></a>00061                         <span class="keyword">delete</span> pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a>;
+<a name="l00062"></a>00062                         pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#a28ea5dae635d49a5a30be6e20df7f05a">s_pMessageCreationMutex</a> = NULL;
+<a name="l00063"></a>00063                 }
+<a name="l00064"></a>00064         }
+<a name="l00065"></a>00065 };
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="preprocessor">#endif // __LOGOG_MESSAGE_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="message_8hpp.html">message.hpp</a>      </li>
-      <li class="footer">Generated on Thu Sep 8 2011 17:12:03 for logog by&#160;
+      <li class="footer">Generated on Fri Sep 9 2011 20:58:08 for logog by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>
