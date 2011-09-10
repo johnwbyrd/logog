@@ -23,6 +23,7 @@ var NAVTREE =
       [ "Requirements", "requirements.html", null ],
       [ "Supported platforms", "supportedplatforms.html", null ],
       [ "License agreement", "license.html", null ],
+      [ "Community and support", "community.html", null ],
       [ "Other logging frameworks and systems", "othersystems.html", null ],
       [ "Todo List", "todo.html", null ]
     ] ],

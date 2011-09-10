@@ -10,7 +10,9 @@ facilitate logging of real-time events in performance-oriented
 applications, such as games. It is especially appropriate for projects 
 that have constrained memory and constrained CPU requirements. 
 
-
+The latest documentation for logog is online at <a href="http://www.logog.org">
+http://www.logog.org</a>.  You can download the latest tarball or zipfile 
+<a href="http://www.github.com/johnwbyrd/logog">here</a>.
 
 For the impatient, you can add logging functionality into your program
 within five minutes by reading the \ref quickstart section.
@@ -42,6 +44,7 @@ within five minutes by reading the \ref quickstart section.
 - \ref porting
 - \ref unittesting 
 - \ref othersystems
+- \ref community
 
 - \ref license
 
@@ -621,6 +624,17 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+
+\page community Community and support
+
+The best way to get help with a specific problem is to submit an issue
+on Github.  You can review a list of current issues, or submit your own,
+<a href="https://github.com/johnwbyrd/logog/issues">here</a>.
+
+I'd REALLY like to get other developers involved in maintaining and further
+developing the code.  All sane developers encouraged to fork the <a href="https://github.com/johnwbyrd/logog">git repository</a> and 
+do bug fixing or new feature implementation.  Contact me at jbyrd at giganticsoftware dot com if you need administrative privileges on the master logog branch; I'm 
+actively looking to incorporate positive changes.
 
 \page othersystems Other logging frameworks and systems 
 
