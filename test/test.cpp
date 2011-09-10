@@ -29,7 +29,8 @@ using namespace std;
 
 UNITTEST( SimpleLocking )
 {
-	logog::Initialize();
+//! [SimpleLocking]
+	LOGOG_INITIALIZE();
 
 	logog::Mutex m;
 
@@ -49,9 +50,10 @@ UNITTEST( SimpleLocking )
 
 	cout << "Lock unlocked" << endl;
 
-	logog::Shutdown();
+	LOGOG_SHUTDOWN();
 
 	return 0;
+//! [SimpleLocking]
 }
 
 int _s_ThreadLockingTest = 0;
@@ -82,9 +84,10 @@ void LockingThread( void *pvMutex )
 
 UNITTEST( Subscription )
 {
-	logog::Initialize();
-
 	int nResult = 0;
+
+//! [Subscription]
+	LOGOG_INITIALIZE();
 
 	{
 		Topic n1, n2;
@@ -106,14 +109,16 @@ UNITTEST( Subscription )
 			nResult++;
 	}
 
-	logog::Shutdown();
+	LOGOG_SHUTDOWN();
+
+//! [Subscription]
 
 	return nResult;
 }
 
 UNITTEST( GlobalNodelist )
 {
-	logog::Initialize();
+	LOGOG_INITIALIZE();
 
 	const int MAX_NODES = 10 * TEST_STRESS_LEVEL; 
 
@@ -139,7 +144,7 @@ UNITTEST( GlobalNodelist )
 	vTopics.at( MAX_NODES - 1)->Transmit();
 
 	// Let's try leaving all the nodes allocated and let logog clean them all up.
-	logog::Shutdown();
+	LOGOG_SHUTDOWN();
 
 	if ( Static().s_pAllNodes != NULL )
 	{
@@ -153,7 +158,7 @@ UNITTEST( GlobalNodelist )
 
 UNITTEST( ThreadLocking )
 {
-	logog::Initialize();
+	LOGOG_INITIALIZE();
 	{
 		Cout out; // only one of these please
 
@@ -172,7 +177,7 @@ UNITTEST( ThreadLocking )
 			Thread::WaitFor( *vpThreads[ t ]);
 	}
 
-	logog::Shutdown();
+	LOGOG_SHUTDOWN();
 
 	return _s_ThreadLockingTest;
 }
@@ -206,7 +211,7 @@ UNITTEST( TimerTest )
 
 UNITTEST( TopicTest1 )
 {
-	logog::Initialize();
+	LOGOG_INITIALIZE();
 
 	{
 		Topic t1( LOGOG_LEVEL_WARN, "file1.cpp", 50 );
@@ -252,14 +257,14 @@ UNITTEST( TopicTest1 )
 		}
 	}
 
-	logog::Shutdown();
+	LOGOG_SHUTDOWN();
 
 	return 0;
 }
 
 UNITTEST( Checkpoint1 )
 {
-	logog::Initialize();
+	LOGOG_INITIALIZE();
 
 	{
 		Checkpoint check( LOGOG_LEVEL_ALL, __FILE__, __LINE__, "Group", "Category", "Message", 1.0f );
@@ -280,7 +285,7 @@ UNITTEST( Checkpoint1 )
 		check.Transmit();
 	}
 
-	logog::Shutdown();
+	LOGOG_SHUTDOWN();
 
 	return 0;
 }
@@ -350,6 +355,176 @@ UNITTEST( FormatTopic1 )
 
 	return 0;
 }
+
+UNITTEST( GroupCategory1 )
+{
+//! [GroupCategory1]
+	/*
+	The following example produces something like:
+	.\test.cpp(364) : emergency: {Graphics} [Unrecoverable] The graphics card has been destroyed
+	.\test.cpp(368) : warning: {Graphics} [Recoverable] The graphics card has been replaced
+	.\test.cpp(372) : warning: {Audio} [Recoverable] The headphones are unplugged
+	.\test.cpp(377) : info: Everything's back to normal
+	*/
+
+	LOGOG_INITIALIZE();
+
+	{
+		Cerr err;
+
+#undef LOGOG_GROUP
+#undef LOGOG_CATEGORY
+#define LOGOG_GROUP  "Graphics"
+#define LOGOG_CATEGORY "Unrecoverable"
+
+		EMERGENCY("The graphics card has been destroyed");
+
+#undef LOGOG_CATEGORY
+#define LOGOG_CATEGORY	"Recoverable"
+
+		WARN("The graphics card has been replaced");
+
+#undef LOGOG_GROUP
+#define LOGOG_GROUP "Audio"
+
+		WARN("The headphones are unplugged");
+
+#undef LOGOG_CATEGORY
+#undef LOGOG_GROUP
+#define LOGOG_CATEGORY NULL
+#define LOGOG_GROUP NULL
+
+		INFO("Everything's back to normal");
+	}
+
+	LOGOG_SHUTDOWN();
+	//! [GroupCategory1]
+	return 0;
+}
+
+UNITTEST( GroupCategory2 )
+{
+//! [GroupCategory2]
+	LOGOG_INITIALIZE();
+
+	{
+		GetDefaultFilter().Category("Unrecoverable");
+		Cerr err;
+
+		WARN("Logging messages in the Unrecoverable category...");
+
+
+#undef LOGOG_GROUP
+#undef LOGOG_CATEGORY
+#define LOGOG_GROUP  "Graphics"
+#define LOGOG_CATEGORY "Unrecoverable"
+
+		EMERGENCY("The graphics card has been destroyed");
+
+#undef LOGOG_CATEGORY
+#define LOGOG_CATEGORY	"Recoverable"
+
+		WARN("The graphics card has been replaced");
+
+#undef LOGOG_GROUP
+#define LOGOG_GROUP "Audio"
+
+		WARN("The headphones are unplugged");
+
+#undef LOGOG_CATEGORY
+#undef LOGOG_GROUP
+#define LOGOG_CATEGORY NULL
+#define LOGOG_GROUP NULL
+
+	}
+
+	LOGOG_SHUTDOWN();
+//! [GroupCategory2]
+	return 0;
+}
+
+UNITTEST( GroupCategory3 )
+{
+	LOGOG_INITIALIZE();
+
+	{
+		GetDefaultFilter().Group("Graphics");
+		Cerr err;
+		WARN("This message won't happen because it's not in the Graphics group");
+
+#undef LOGOG_GROUP
+#undef LOGOG_CATEGORY
+#define LOGOG_GROUP  "Graphics"
+#define LOGOG_CATEGORY "Unrecoverable"
+
+		EMERGENCY("The graphics card has been destroyed");
+
+#undef LOGOG_CATEGORY
+#define LOGOG_CATEGORY	"Recoverable"
+
+		WARN("The graphics card has been replaced");
+
+#undef LOGOG_GROUP
+#define LOGOG_GROUP "Audio"
+
+		WARN("The headphones are unplugged");
+
+#undef LOGOG_CATEGORY
+#undef LOGOG_GROUP
+#define LOGOG_CATEGORY NULL
+#define LOGOG_GROUP NULL
+	}
+
+	LOGOG_SHUTDOWN();
+	return 0;
+}
+
+UNITTEST( GroupCategory4 )
+{
+//! [GroupCategory4]
+	LOGOG_INITIALIZE();
+
+	{
+		GetDefaultFilter().Group("Graphics");
+		Filter filter;
+		filter.Group("Audio");
+		Cerr err;
+
+		WARN("This message won't happen because it's not in the Graphics group");
+
+#undef LOGOG_GROUP
+#undef LOGOG_CATEGORY
+#define LOGOG_GROUP  "Graphics"
+#define LOGOG_CATEGORY "Unrecoverable"
+
+		EMERGENCY("The graphics card has been destroyed");
+
+#undef LOGOG_CATEGORY
+#define LOGOG_CATEGORY	"Recoverable"
+
+		WARN("The graphics card has been replaced");
+
+#undef LOGOG_GROUP
+#define LOGOG_GROUP "Audio"
+
+		WARN("The headphones are unplugged");
+
+#undef LOGOG_GROUP
+#define LOGOG_GROUP "Inputs"
+
+		WARN("The inputs have been yanked off but this fact won't be reported!");
+
+#undef LOGOG_CATEGORY
+#undef LOGOG_GROUP
+#define LOGOG_CATEGORY NULL
+#define LOGOG_GROUP NULL
+	}
+
+	LOGOG_SHUTDOWN();
+//! [GroupCategory4]
+	return 0;
+}
+
 
 UNITTEST( Info1 )
 {
@@ -431,7 +606,7 @@ UNITTEST( DeferredCoutLogging )
 		// Make sure that out does not receive messages via the general filter mechanism.
 		out.UnsubscribeToMultiple( AllFilters() );
 
-		for ( int i = 0; i < 10; i++ )
+		for ( int i = 1; i <= 10; i++ )
 		{
 			ERR("This is error %d of 10", i);
 
@@ -449,6 +624,7 @@ UNITTEST( DeferredCoutLogging )
 
 UNITTEST( DeferredFileLogging )
 {
+//! [DeferredFileLogging]
 	LOGOG_INITIALIZE();
 
 	{
@@ -458,7 +634,7 @@ UNITTEST( DeferredFileLogging )
 		// Make sure that the log file does not receive messages via the general filter mechanism.
 		logFile.UnsubscribeToMultiple( AllFilters() );
 
-		for ( int i = 0; i < 20; i++ )
+		for ( int i = 1; i <= 20; i++ )
 		{
 			WARN("This is warning %d of 20", i);
 
@@ -469,7 +645,7 @@ UNITTEST( DeferredFileLogging )
 	}
 
 	LOGOG_SHUTDOWN();
-
+//! [DeferredFileLogging]
 	return 0;
 }
 

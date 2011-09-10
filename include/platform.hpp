@@ -42,7 +42,7 @@
 
 #ifdef LOGOG_FLAVOR_WINDOWS
 /* Detect Xbox 360 */
-#if _XBOX_VER >= 200 
+#if _XBOX_VER >= 200
 #include "proprietary/xbox360.hpp"
 #else
 /* Windows */
@@ -58,6 +58,8 @@
 
 /* ----------------------------------------------------------- */
 /* Here's the stuff your compiler may have a problem with...   */
+
+//! [STLTypes]
 
 /** The definition for a hash type in logog.  You can replace it here with your own set compatible class if needed. */
 #define LOGOG_HASH			std::tr1::hash
@@ -94,6 +96,8 @@
 #define LOGOG_SET			std::set
 /** The definition for STL "equal to" in logog.  You can replace it here with your own set compatible class if needed. */
 #define LOGOG_EQUAL_TO		std::equal_to
+
+//! [STLTypes]
 
 /** The default port number that logog uses to communicate via TCP/UDP */
 #define LOGOG_DEFAULT_PORT	9987

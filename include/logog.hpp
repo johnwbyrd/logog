@@ -1,5 +1,5 @@
 /**
- * \file logog.hpp Main include file for logog logging functionality.  Include this file to enable logging for your application. 
+ * \file logog.hpp Main include file for logog logging functionality.  Include this file to enable logging for your application.
  */
 
 #ifndef __LOGOG_HPP__
