@@ -20,20 +20,10 @@ public:
                 const LOGOG_CHAR *sGroup = NULL,
                 const LOGOG_CHAR *sCategory = NULL,
                 const LOGOG_CHAR *sMessage = NULL,
-                const double dTimestamp = 0.0f ) :
-        TopicSource( level, sFileName, nLineNumber, sGroup, sCategory, sMessage, dTimestamp )
-    {
-    }
+                const double dTimestamp = 0.0f );
 
     /** Sends the node in question.  Optionally updates the timestamp in this checkpoint before sending the node. */
-    virtual int Send( const Topic &node )
-    {
-        /* Optionally update our own timestamp before we send on our information */
-        if (( m_TopicFlags & TOPIC_TIMESTAMP_FLAG ) != 0 )
-            m_tTime = GetGlobalTimer().Get();
-
-        return TopicSource::Send( node );
-    }
+    virtual int Send( const Topic &node );
 
 };
 }

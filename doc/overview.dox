@@ -358,7 +358,7 @@ To add a new type of logging output, such as a network socket or a printer,
 create a subclass of the Target class, and implement your own Output()
 function that renders the information to your output device.
 
-\snippet target.hpp Cout
+\snippet target.cpp Cout
 
 Then, instance your new class after your call to LOGOG_INITIALIZE() but 
 before messages are invoked.
@@ -569,7 +569,7 @@ for a target platform, the unit tests will fail.
 
 - timer.hpp. Add code for the Timer initializer and the Get() function. 
 
-\snippet timer.hpp TimerGet
+\snippet timer.cpp TimerGet
 
 Lastly, verify that unittest.cpp compiles and executes with a zero 
 return code. 

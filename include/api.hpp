@@ -35,49 +35,13 @@ struct INIT_PARAMS
  * use default values.
  * \sa INIT_PARAMS
  */
-int Initialize( INIT_PARAMS *params = NULL )
-{
-    if ( params == NULL )
-    {
-        Static().s_pfMalloc = malloc;
-        Static().s_pfFree = free;
-    }
-    else
-    {
-        if ( params->m_pfMalloc != NULL )
-        {
-            Static().s_pfMalloc = params->m_pfMalloc;
-            Static().s_pfFree = params->m_pfFree;
-        }
-        else
-        {
-            Static().s_pfMalloc = malloc;
-            Static().s_pfFree = free;
-        }
-    }
-
-    // Let's allocate a default filter here.
-    GetDefaultFilter();
-
-    // Socket::Initialize();
-
-    return 0;
-}
+extern int Initialize( INIT_PARAMS *params = NULL );
 
 /** Shuts down the logog system and frees all memory allocated by logog.  Memory still allocated by the logog system after Shutdown() indicates
  ** a bug.
  **/
-int Shutdown( )
-{
-    // Socket::Shutdown();
+extern int Shutdown( );
 
-#ifdef LOGOG_DESTROY_STATIC_AREA
-    delete &( Static() );
-#else
-    Static().Reset();
-#endif
-    return 0;
-}
 }
 
 #endif // __LOGOG_API_HPP

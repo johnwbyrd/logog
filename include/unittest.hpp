@@ -75,22 +75,15 @@ class UnitTest;
 typedef LOGOG_LIST< UnitTest * > TestRegistryType;
 
 /** All unit tests are registered in here at program initialization time. */
-TestRegistryType &LogogTestRegistry()
-{
-    static TestRegistryType *pRegistry = new TestRegistryType();
-    return *pRegistry;
-}
+extern TestRegistryType &LogogTestRegistry();
 
 /** A TestSignup is responsible for recording each instanced UnitTest in the test registry. */
 class TestSignup
 {
 public:
     /** Creates a new TestSignup.  Only called from constructor for UnitTest. */
-    TestSignup( UnitTest *pTest )
-    {
-        m_pTest = pTest;
-        LogogTestRegistry().push_back( pTest );
-    }
+    TestSignup( UnitTest *pTest );
+
 protected:
     /** A pointer back to the UnitTest that created this TestSignup */
     UnitTest *m_pTest;
@@ -105,20 +98,11 @@ public:
     /** Instances a test.  An instanced test is automatically executed when the RunAllTests() function is called.
      * \param sTestName A string representing the name of this test.
      */
-    UnitTest( const TestNameType &sTestName )
-    {
-        m_sTestName = sTestName;
-        m_pTestSignup = new TestSignup( this );
-    }
-    virtual ~UnitTest()
-    {
-        delete m_pTestSignup;
-    }
+    UnitTest( const TestNameType &sTestName );
+
+	virtual ~UnitTest();
     /** Returns the name of this UnitTest provided at construction time. */
-    virtual TestNameType &GetName()
-    {
-        return m_sTestName;
-    }
+    virtual TestNameType &GetName();
     /** Child classes of UnitTest() must provide a RunTest() function.  A RunTest() function must initialize logog, conduct its
      ** tests, and return 0 if the test was successful, a non-0 value otherwise.  If any RunTest() function returns any value other than
      ** zero, then the main RunAllTests() function will return non zero as well.
@@ -135,99 +119,13 @@ private:
 };
 
 /** Executes all currently registered tests and prints a report of success or failure. */
-int RunAllTests()
-{
-    using namespace std;
-
-    int nTests = 0, nTestsSucceeded = 0;
-    int nTestResult;
-    int nFailures = 0;
-
-    ostream *pOut;
-    pOut = &(std::cout);
-
-    nTests = LogogTestRegistry().size();
-
-    if ( nTests == 0 )
-    {
-        *pOut << "No tests currently defined." << endl;
-        return 1;
-    }
-
-    for ( TestRegistryType::iterator it = LogogTestRegistry().begin();
-            it != LogogTestRegistry().end();
-            it++ )
-    {
-        (*pOut) << "Test " << (*it)->GetName() << " running... " << endl;
-        nTestResult = (*it)->RunTest();
-
-        (*pOut) << "Test " << (*it)->GetName();
-
-        if ( nTestResult == 0 )
-        {
-            *pOut << " successful." << endl;
-            nTestsSucceeded++;
-        }
-        else
-        {
-            *pOut << " failed!" << endl;
-            nFailures++;
-        }
-
-        /* Validate that no allocations are currently outstanding.  Make sure to handle the case
-         * where leak detection is disabled */
-        int nMemoryTestResult = ReportMemoryAllocations();
-
-        if ( nMemoryTestResult != -1 )
-        {
-            (*pOut) << "Test " << (*it)->GetName() << " has " << nMemoryTestResult << " memory allocations outstanding at end of test." << endl;
-            nFailures += nMemoryTestResult;
-        }
-    }
-
-    *pOut << "Testing complete, "
-          << nTests << " total tests, "
-          << nTestsSucceeded << " tests succeeded, "
-          << ( nTests - nTestsSucceeded ) << " failed"
-          << endl;
-
-    return nFailures;
-}
+extern int RunAllTests();
 
 /** Should remove all memory allocated during unit testing. */
-void ShutdownTests()
-{
-    delete &LogogTestRegistry();
-}
+extern void ShutdownTests();
 
-int CompareAndDeleteFile( const LOGOG_CHAR *pValidOutput,
-                          const LOGOG_CHAR *pFileName )
-{
-    FILE *fp;
-
-#ifdef LOGOG_FLAVOR_WINDOWS
-    // Microsoft prefers its variant
-    int nError = fopen_s( &fp, pFileName, "r" );
-    if ( nError != 0 )
-        return nError;
-#else // LOGOG_FLAVOR_WINDOWS
-    fp = fopen( pFileName, "r" );
-#endif // LOGOG_FLAVOR_WINDOWS
-
-    while ( !feof( fp ) && *pValidOutput )
-    {
-        if ( fgetc( fp ) != *pValidOutput++ )
-        {
-            fclose( fp );
-            remove( pFileName );
-            return -1; // found a mismatch
-        }
-    }
-
-    // it matched!
-    fclose( fp );
-    return remove( pFileName );
-}
+extern int CompareAndDeleteFile( const LOGOG_CHAR *pValidOutput,
+                          const LOGOG_CHAR *pFileName );
 
 /** This should be the function prefix for a unit test.  It defines a new class for the test inherited from UnitTest.  It instances
  ** a member of the class at run-time (before main() starts).  Lastly it provides the function definition for the actual test class.

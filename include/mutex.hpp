@@ -48,37 +48,17 @@ namespace logog
 class Mutex : public Object
 {
 public:
-    Mutex() LOGOG_MUTEX_CTOR( m_Mutex )
-    {
-        LOGOG_MUTEX_INIT(&m_Mutex);
-    }
-    ~Mutex()
-    {
-        LOGOG_MUTEX_DELETE(&m_Mutex);
-    }
+    Mutex();
+    ~Mutex();
     /** Acquires a lock on the mutex.  Only one thread is permitted to lock the mutex at one time. */
-    void Lock()
-    {
-        LOGOG_MUTEX_LOCK(&m_Mutex);
-    }
+    void Lock();
     /** Releases the lock on the mutex. */
-    void Unlock()
-    {
-        LOGOG_MUTEX_UNLOCK(&m_Mutex);
-    }
+    void Unlock();
 
 protected:
-    Mutex(const Mutex &)
-    LOGOG_MUTEX_CTOR( m_Mutex )
-    {
-        LOGOG_MUTEX_INIT(&m_Mutex);
-    };
-    Mutex & operator = (const Mutex &)
-    LOGOG_MUTEX_CTOR( m_Mutex )
-    {
-        LOGOG_MUTEX_INIT(&m_Mutex);
-        return *this;
-    };
+    Mutex(const Mutex &);
+	Mutex & operator = (const Mutex &);
+
     LOGOG_MUTEX( m_Mutex );
 };
 
@@ -91,15 +71,8 @@ public :
     /** Instances and locks a ScopedLock.
      * \param mutex The mutex to attempt to lock.  Program execution halts at this point until the lock can be obtained.
      */
-    ScopedLock( Mutex &mutex )
-    {
-        m_pMutex = &mutex;
-        m_pMutex->Lock();
-    }
-    ~ScopedLock()
-    {
-        m_pMutex->Unlock();
-    }
+    ScopedLock( Mutex &mutex );
+    ~ScopedLock();
 protected:
     /** A pointer to the lockable mutex. */
     Mutex *m_pMutex;
@@ -112,43 +85,14 @@ private:
 };
 
 #ifdef LOGOG_LEAK_DETECTION
-Mutex s_AllocationsMutex;
-static void LockAllocationsMutex()
-{
-    s_AllocationsMutex.Lock();
-}
-static void UnlockAllocationsMutex()
-{
-    s_AllocationsMutex.Unlock();
-}
+extern Mutex s_AllocationsMutex;
+extern void LockAllocationsMutex();
+extern void UnlockAllocationsMutex();
 #endif // LOGOG_LEAK_DETECTION
 
-static Mutex &GetStringSearchMutex()
-{
-    Statics *pStatic = &Static();
-    Mutex **ppStringSearchMutex = (Mutex **)&( pStatic->s_pStringSearchMutex );
+extern Mutex &GetStringSearchMutex();
+extern void DestroyStringSearchMutex();
 
-#ifdef LOGOG_INTERNAL_DEBUGGING
-    if ( pStatic == NULL )
-        LOGOG_INTERNAL_FAILURE;
-#endif
-    if ( *ppStringSearchMutex == NULL )
-        *ppStringSearchMutex = new Mutex();
-
-    return *(( Mutex *)( *ppStringSearchMutex ));
-}
-
-static void DestroyStringSearchMutex()
-{
-    Statics *pStatic = &Static();
-    Mutex **ppStringSearchMutex = (Mutex **)&( pStatic->s_pStringSearchMutex );
-
-    if ( *ppStringSearchMutex != NULL )
-    {
-        delete *ppStringSearchMutex;
-        *ppStringSearchMutex = NULL;
-    }
-}
 }
 
 #endif // __LOGOG_MUTEX_HPP_

@@ -20,8 +20,6 @@ const int TEST_STRESS_LEVEL = 1;
 
 #include "logog.hpp"
 
-
-
 #include <cstdio>
 
 using namespace logog;

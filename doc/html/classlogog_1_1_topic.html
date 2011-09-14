@@ -126,10 +126,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <area href="classlogog_1_1_target.html" alt="Target" shape="rect" coords="297,224,386,248"/>
 <area href="classlogog_1_1_checkpoint.html" alt="Checkpoint" shape="rect" coords="643,224,732,248"/>
 <area href="classlogog_1_1_cerr.html" alt="Cerr" shape="rect" coords="49,280,138,304"/>
-<area href="classlogog_1_1_cout.html" title="[Cout]" alt="Cout" shape="rect" coords="148,280,237,304"/>
+<area href="classlogog_1_1_cout.html" alt="Cout" shape="rect" coords="148,280,237,304"/>
 <area href="classlogog_1_1_log_buffer.html" alt="LogBuffer" shape="rect" coords="247,280,336,304"/>
 <area href="classlogog_1_1_log_file.html" alt="LogFile" shape="rect" coords="346,280,435,304"/>
-<area href="classlogog_1_1_output_debug.html" title="[Cout]" alt="OutputDebug" shape="rect" coords="445,280,534,304"/>
+<area href="classlogog_1_1_output_debug.html" alt="OutputDebug" shape="rect" coords="445,280,534,304"/>
 <area href="classlogog_1_1_socket.html" alt="Socket" shape="rect" coords="544,280,633,304"/>
 <area href="classlogog_1_1_message.html" alt="Message" shape="rect" coords="643,280,732,304"/>
 <area href="classlogog_1_1_socket_server.html" alt="SocketServer" shape="rect" coords="544,336,633,360"/>
@@ -148,7 +148,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#a0ad14fd3f5aef315b71cd62c5da2d449">CanSubscribeTo</a> (const <a class="el" href="classlogog_1_1_node.html">Node</a> &amp;otherNode)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a> (const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;other)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">PublishTo</a> (<a class="el" href="classlogog_1_1_node.html">Node</a> &amp;subscriber)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#a3b923fa1c7bae6419c8430f05bb024ba">Format</a> (const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatMessage,...)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#a2ef475a5ea596830931ba0f0a16c3286">Format</a> (const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatMessage,...)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const LOGOG_STRING &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#ab813857ffb4f34dfd6b6a0f19f602bb4">FileName</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#a8e2e07329bea2d99477aeb2cf05c5ff3">FileName</a> (const LOGOG_STRING &amp;s)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const LOGOG_STRING &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a> () const </td></tr>
@@ -227,7 +227,7 @@ Friends</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [inline]</code></td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -246,7 +246,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
-          <td><code> [inline, virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -265,7 +265,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classlogog_1_1_node.html">Node</a> &amp;&#160;</td>
           <td class="paramname"><em>otherNode</em></td><td>)</td>
-          <td><code> [inline, virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -296,7 +296,7 @@ Friends</h2></td></tr>
           <td class="memname">const LOGOG_STRING&amp; Category </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -313,7 +313,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const LOGOG_STRING &amp;&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -329,7 +329,7 @@ Friends</h2></td></tr>
           <td class="memname">const LOGOG_STRING&amp; FileName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -346,7 +346,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const LOGOG_STRING &amp;&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -354,12 +354,12 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3b923fa1c7bae6419c8430f05bb024ba"></a><!-- doxytag: member="logog::Topic::Format" ref="a3b923fa1c7bae6419c8430f05bb024ba" args="(const LOGOG_CHAR *cFormatMessage,...)" -->
+<a class="anchor" id="a2ef475a5ea596830931ba0f0a16c3286"></a><!-- doxytag: member="logog::Topic::Format" ref="a2ef475a5ea596830931ba0f0a16c3286" args="(const LOGOG_CHAR *cFormatMessage,...)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Format </td>
+          <td class="memname">virtual void Format </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td>
           <td class="paramname"><em>cFormatMessage</em>, </td>
@@ -373,7 +373,7 @@ Friends</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [inline]</code></td>
+          <td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -390,7 +390,7 @@ Friends</h2></td></tr>
           <td class="memname"><a class="el" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18">TOPIC_FLAGS</a> GetTopicFlags </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -406,7 +406,7 @@ Friends</h2></td></tr>
           <td class="memname">const LOGOG_STRING&amp; Group </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -423,7 +423,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const LOGOG_STRING &amp;&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -439,7 +439,7 @@ Friends</h2></td></tr>
           <td class="memname">virtual bool IsTopic </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline, virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -460,7 +460,7 @@ Friends</h2></td></tr>
           <td class="memname">LOGOG_LEVEL_TYPE Level </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -477,7 +477,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">LOGOG_LEVEL_TYPE&#160;</td>
           <td class="paramname"><em>level</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -493,7 +493,7 @@ Friends</h2></td></tr>
           <td class="memname">int LineNumber </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -510,7 +510,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>num</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -526,7 +526,7 @@ Friends</h2></td></tr>
           <td class="memname">const LOGOG_STRING&amp; <a class="el" href="classlogog_1_1_message.html">Message</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -543,7 +543,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const LOGOG_STRING &amp;&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -560,7 +560,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classlogog_1_1_node.html">Node</a> &amp;&#160;</td>
           <td class="paramname"><em>subscriber</em></td><td>)</td>
-          <td><code> [inline, virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -573,7 +573,6 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if the request was successful, false if the subscriber was already subscribed </dd></dl>
-<p>Additional checking may be required first -- can the subscriber handle this publishing? </p>
 
 <p>Reimplemented from <a class="el" href="classlogog_1_1_node.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">Node</a>.</p>
 
@@ -590,7 +589,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
-          <td><code> [inline, virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -617,7 +616,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
-          <td><code> [inline, virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -637,7 +636,7 @@ Friends</h2></td></tr>
           <td class="memname"><a class="el" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> Timestamp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -654,7 +653,7 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a>&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -670,7 +669,7 @@ Friends</h2></td></tr>
           <td class="memname">virtual int Transmit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [inline, virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -788,7 +787,7 @@ Friends</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Sat Sep 10 2011 15:30:45 for logog by
+    <li class="footer">Generated on Tue Sep 13 2011 15:25:56 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

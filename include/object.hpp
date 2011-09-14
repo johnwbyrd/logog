@@ -44,83 +44,26 @@ static void UnlockAllocationsMutex();
 class Object
 {
 public:
-    Object() {}
+    Object();
     /* Some builds complain about ~Object() being virtual... sorry lint :( */
-    virtual ~Object() {}
+    virtual ~Object();
     /** Initializes an object of size new. */
-    void *operator new( size_t nSize )
-    {
-        return Allocate( nSize );
-    }
+    void *operator new( size_t nSize );
     /** Initializes an array of size new. */
-    void *operator new[]( size_t nSize )
-    {
-        return Allocate( nSize );
-    }
+    void *operator new[](size_t nSize);
     /** Deletes an object pointed to by ptr. */
-    void operator delete( void *ptr )
-    {
-        Deallocate( ptr );
-    }
+    void operator delete( void *ptr );
     /** Deletes an object array pointed to by ptr. */
-    void operator delete[]( void *ptr )
-    {
-        Deallocate( ptr );
-    }
+    void operator delete[]( void *ptr );
 
     /** Allocates nSize bytes of memory.  You must call logog::Initialize() before calling this function.
      * \sa Initialize()
      */
-    static void *Allocate( size_t nSize )
-    {
-        void *ptr = Static().s_pfMalloc( nSize );
-#ifdef LOGOG_REPORT_ALLOCATIONS
-        cout << "Allocated " << nSize << " bytes of memory at " << ptr << endl;
-#endif // LOGOG_REPORT_ALLOCATIONS
-#ifdef LOGOG_LEAK_DETECTION
-        AllocationsType::iterator it;
+    static void *Allocate( size_t nSize );
 
-        LockAllocationsMutex();
-        it = s_Allocations.find( ptr );
-
-        if ( it != s_Allocations.end() )
-        {
-            cout << "Reallocation detected in memory manager!  We seem to have allocated the same address twice "
-                 << "without freeing it!  Address = " << ptr << endl;
-            UnlockAllocationsMutex();
-            LOGOG_INTERNAL_FAILURE;
-        }
-
-        s_Allocations.insert( LOGOG_PAIR< const PointerType, size_t >( ptr, nSize ) );
-        UnlockAllocationsMutex();
-#endif // LOGOG_LEAK_DETECTION
-        return ptr;
-    }
     /** Deallocate a pointer previously acquired by Allocate(). */
-    static void Deallocate( void *ptr )
-    {
-#ifdef LOGOG_LEAK_DETECTION
-        LockAllocationsMutex();
-        AllocationsType::iterator it;
-
-        it = s_Allocations.find( ptr );
-
-        if ( it == s_Allocations.end() )
-        {
-            cout << "Freeing memory not previously allocated!  Address = " << ptr << endl;
-            UnlockAllocationsMutex();
-            LOGOG_INTERNAL_FAILURE;
-        }
-
-#ifdef LOGOG_REPORT_ALLOCATIONS
-        cout << "Freeing " << it->second << " bytes of memory at " << it->first << endl;
-#endif // LOGOG_REPORT_ALLOCATIONS
-        s_Allocations.erase( ptr );
-        UnlockAllocationsMutex();
-#endif // LOGOG_LEAK_DETECTION
-        Static().s_pfFree( ptr );
-    }
-};
+    static void Deallocate( void *ptr );
+ };
 
 /** An STL-compatible allocator which redirects all memory requests to the logog allocator.  Used for all STL-like classes within logog. */
 template <class T>
@@ -238,40 +181,12 @@ bool operator!= ( const Allocator <T1>&,
 /** Returns the current number of outstanding memory allocations in logog.  Returns -1 iff LOGOG_LEAK_DETECTION
  ** has not been defined at compile time.
  **/
-static int MemoryAllocations()
-{
-#ifdef LOGOG_LEAK_DETECTION
-    LockAllocationsMutex();
-    size_t nSize = s_Allocations.size();
-
-    if ( nSize != 0 )
-        cout << "Total active allocations: " << nSize << endl;
-
-    UnlockAllocationsMutex();
-    return nSize;
-#else // LOGOG_LEAK_DETECTION
-    return -1;
-#endif // LOGOG_LEAK_DETECTION
-}
+extern int MemoryAllocations();
 
 /** Sends a report to cout describing the current memory allocations that exist.  Returns the outstanding number of
  ** memory allocations, or -1 iff LOGOG_LEAK_DETECTION is defined.
  **/
-static int ReportMemoryAllocations()
-{
-#ifdef LOGOG_LEAK_DETECTION
-    LockAllocationsMutex();
+extern int ReportMemoryAllocations();
 
-    for ( AllocationsType::iterator it = s_Allocations.begin();
-            it != s_Allocations.end();
-            it++ )
-    {
-        cout << "Memory allocated at " << it->first << " with size " << it->second << " bytes " << endl;
-    }
-
-    UnlockAllocationsMutex();
-#endif
-    return MemoryAllocations();
-}
 }
 #endif // __LOGOG_OBJECT_HPP

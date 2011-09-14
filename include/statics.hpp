@@ -14,11 +14,11 @@ class Formatter;
 class Target;
 class Mutex;
 
-static void DestroyAllNodes();
-static void DestroyGlobalTimer();
-static void DestroyDefaultFormatter();
-static void DestroyStringSearchMutex();
-static void DestroyMessageCreationMutex();
+extern void DestroyAllNodes();
+extern void DestroyGlobalTimer();
+extern void DestroyDefaultFormatter();
+extern void DestroyStringSearchMutex();
+extern void DestroyMessageCreationMutex();
 
 /* Technically this information should be in node.hpp but statics is responsible for
  * this global list.
@@ -54,56 +54,21 @@ public:
     int s_nSockets;
     /** A pointer to this object; used for final destruction. */
     Statics *s_pSelf;
-    Statics()
-    {
-        s_pAllNodes = NULL;
-        s_pAllSubscriberNodes = NULL;
-        s_pAllFilterNodes = NULL;
-        s_pAllTargets = NULL;
-        s_pTimer = NULL;
-        s_pDefaultFormatter = NULL;
-        s_pDefaultFilter = NULL;
-        s_pStringSearchMutex = NULL;
-        s_pMessageCreationMutex = NULL;
-        s_pfMalloc = NULL;
-        s_pfFree = NULL;
-        s_pSelf = this;
-        s_nSockets = 0;
-    }
 
-    /** Resets all statics to startup values.  Releases memory allocated by statics. */
-    void Reset()
-    {
-        DestroyGlobalTimer();
-        DestroyDefaultFormatter();
-        s_pDefaultFilter = NULL; // This will be destroyed on the next step
-        DestroyAllNodes();
-        DestroyStringSearchMutex();
-        DestroyMessageCreationMutex();
-        s_pfMalloc = NULL;
-        s_pfFree = NULL;
-        s_nSockets = 0;
-    }
+    Statics();
+	~Statics();
 
-    ~Statics()
-    {
-        Reset();
-    }
+	/** Resets all statics to startup values.  Releases memory allocated by statics. */
+    void Reset();
+
 };
 
-Statics &Static()
-{
-    static Statics *pStatics = new Statics();
-    return *pStatics;
-}
+extern Statics &Static();
 
 /** Destroys the Static() structure.  Calls to Static() after calling DestroyStatic() will probably crash your
  ** program.
  */
-void DestroyStatic()
-{
-    Statics *pStatics = &Static();
-    delete pStatics;
-}
+extern void DestroyStatic();
+
 }
 #endif // __LOGOG_STATICS_HPP

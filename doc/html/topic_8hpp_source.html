@@ -113,476 +113,126 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00018"></a><a class="code" href="classlogog_1_1_topic.html#a3fdc0317d71b2a9b17e734d5b30e1d63">00018</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_group.html">TopicGroup</a>;
 <a name="l00019"></a>00019 
 <a name="l00020"></a>00020 <span class="keyword">public</span>:
-<a name="l00024"></a><a class="code" href="classlogog_1_1_topic.html#ac7b124a126762569f0fbdd08a5a0b529">00024</a>     <a class="code" href="classlogog_1_1_topic.html#ac7b124a126762569f0fbdd08a5a0b529">Topic</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
+<a name="l00024"></a>00024     <a class="code" href="classlogog_1_1_topic.html#ac7b124a126762569f0fbdd08a5a0b529">Topic</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
 <a name="l00025"></a>00025            <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
 <a name="l00026"></a>00026            <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
 <a name="l00027"></a>00027            <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
 <a name="l00028"></a>00028            <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
 <a name="l00029"></a>00029            <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
-<a name="l00030"></a>00030            <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f )
-<a name="l00031"></a>00031     {
-<a name="l00032"></a>00032         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> = 0;
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034         <span class="keywordflow">if</span> ( sFileName != NULL )
-<a name="l00035"></a>00035         {
-<a name="l00036"></a>00036             <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4ac93d1b260c941d64378905828b09a4cc">TOPIC_FILE_NAME</a> ] = sFileName;
-<a name="l00037"></a>00037             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a690d59b297cfa0b0386cca34499359bb">TOPIC_FILE_NAME_FLAG</a>;
-<a name="l00038"></a>00038         }
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040         <span class="keywordflow">if</span> ( sGroup != NULL )
-<a name="l00041"></a>00041         {
-<a name="l00042"></a>00042             <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2cf308cbe823a0266d60294107685652">TOPIC_GROUP</a> ] = sGroup;
-<a name="l00043"></a>00043             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452aab69fb29fc10a7a575fa4c9afcea6866">TOPIC_GROUP_FLAG</a>;
-<a name="l00044"></a>00044         }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046         <span class="keywordflow">if</span> ( sCategory != NULL )
-<a name="l00047"></a>00047         {
-<a name="l00048"></a>00048             <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a07ae0e7f653e783d062c1c7482874b5f">TOPIC_CATEGORY</a> ] = sCategory;
-<a name="l00049"></a>00049             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a4659a9ff5b133763069abb0a5156cf78">TOPIC_CATEGORY_FLAG</a>;
-<a name="l00050"></a>00050         }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052         <span class="keywordflow">if</span> ( sMessage != NULL )
-<a name="l00053"></a>00053         {
-<a name="l00054"></a>00054             <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a75cbef7bdcdc1d36ab3b9f62224363e2">TOPIC_MESSAGE</a> ] = sMessage;
-<a name="l00055"></a>00055             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452ad66fafb470de8f597165d0d293c78c29">TOPIC_MESSAGE_FLAG</a>;
-<a name="l00056"></a>00056         }
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058         <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] = level;
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060         <span class="keywordflow">if</span> ( level != <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a> )
-<a name="l00061"></a>00061         {
-<a name="l00062"></a>00062             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e">TOPIC_LEVEL_FLAG</a>;
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065         <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4adac379b384be9494d2050cb2e791dcc9">TOPIC_LINE_NUMBER</a> ] = nLineNumber;
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <span class="keywordflow">if</span> ( nLineNumber != 0 )
-<a name="l00068"></a>00068         {
-<a name="l00069"></a>00069             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a9f24ab5c004ed7d96bbf28101c3a0d92">TOPIC_LINE_NUMBER_FLAG</a>;
-<a name="l00070"></a>00070         }
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072         <a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a> = dTimestamp;
+<a name="l00030"></a>00030            <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f );
+<a name="l00031"></a>00031 
+<a name="l00033"></a>00033     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>() <span class="keyword">const</span>;
+<a name="l00034"></a>00034 
+<a name="l00037"></a>00037     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#ae1b72ffa9ab9077cfc188d7bdea857f9">Send</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;node );
+<a name="l00038"></a>00038 
+<a name="l00040"></a>00040     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#ab0137c02f1d5692fb0a9cb0899b9fd62">Transmit</a>();
+<a name="l00041"></a>00041 
+<a name="l00046"></a>00046     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#a2c504542dd36153026b1739fa21a7b78">Receive</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;node );
+<a name="l00047"></a>00047 
+<a name="l00064"></a>00064     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#a0ad14fd3f5aef315b71cd62c5da2d449">CanSubscribeTo</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;otherNode );
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;other );
+<a name="l00067"></a>00067 
+<a name="l00072"></a>00072     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">PublishTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;subscriber );
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074         <span class="keywordflow">if</span> ( dTimestamp != 0.0f )
-<a name="l00075"></a>00075             <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a2ca2f1ccd65a07ecd088ca3f37d0c10e">TOPIC_TIMESTAMP_FLAG</a>;
-<a name="l00076"></a>00076     }
-<a name="l00077"></a>00077 
-<a name="l00079"></a><a class="code" href="classlogog_1_1_topic.html#a76b4868c225ea8d427c5175a9a482b27">00079</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>()<span class="keyword"> const</span>
-<a name="l00080"></a>00080 <span class="keyword">    </span>{
-<a name="l00081"></a>00081         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00082"></a>00082     }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 
+<a name="l00079"></a>00079     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a2ef475a5ea596830931ba0f0a16c3286">Format</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatMessage, ... );
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#ab813857ffb4f34dfd6b6a0f19f602bb4">FileName</a>() <span class="keyword">const</span>;
+<a name="l00082"></a>00082     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#ab813857ffb4f34dfd6b6a0f19f602bb4">FileName</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s );
 <a name="l00083"></a>00083 
-<a name="l00086"></a><a class="code" href="classlogog_1_1_topic.html#ae1b72ffa9ab9077cfc188d7bdea857f9">00086</a>     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#ae1b72ffa9ab9077cfc188d7bdea857f9">Send</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;node )
-<a name="l00087"></a>00087     {
-<a name="l00088"></a>00088         LockableNodesType::iterator it;
+<a name="l00084"></a>00084     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a>() <span class="keyword">const</span>;
+<a name="l00085"></a>00085     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s );
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#a696eff26a2406a628259a11b6f499374">Category</a>() <span class="keyword">const</span>;
+<a name="l00088"></a>00088     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a696eff26a2406a628259a11b6f499374">Category</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s );
 <a name="l00089"></a>00089 
-<a name="l00090"></a>00090         {
-<a name="l00091"></a>00091             <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a> );
-<a name="l00092"></a>00092             it = <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.begin();
-<a name="l00093"></a>00093         }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095         <span class="comment">/* Iterate over the subscribers, but only addressing the subscribers group while locking it */</span>
-<a name="l00096"></a>00096         <a class="code" href="classlogog_1_1_topic.html">Topic</a> *pCurrentTopic;
-<a name="l00097"></a>00097         <a class="code" href="classlogog_1_1_node.html">Node</a> *pCurrentNode;
-<a name="l00098"></a>00098         <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
-<a name="l00099"></a>00099         <span class="keywordtype">int</span> nError = 0;
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101         <span class="keywordflow">while</span> ( it != <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.end() )
-<a name="l00102"></a>00102         {
-<a name="l00103"></a>00103             pCurrentNode = *it;
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105             <span class="keywordflow">if</span> ( pCurrentNode-&gt;<a class="code" href="classlogog_1_1_node.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>() == false )
-<a name="l00106"></a>00106                 <span class="keywordflow">continue</span>;
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108             pCurrentTopic = ( <a class="code" href="classlogog_1_1_topic.html">Topic</a> * )pCurrentNode;
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110             <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112             <span class="keywordflow">if</span> ( pCurrentTopic )
-<a name="l00113"></a>00113                 nError += pCurrentTopic-&gt;<a class="code" href="classlogog_1_1_topic.html#a2c504542dd36153026b1739fa21a7b78">Receive</a>( node );
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115             <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.<a class="code" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a>();
-<a name="l00116"></a>00116             it++;
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119         <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.<a class="code" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a>();
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121         <span class="keywordflow">return</span> nError;
-<a name="l00122"></a>00122     }
-<a name="l00123"></a>00123 
-<a name="l00125"></a><a class="code" href="classlogog_1_1_topic.html#ab0137c02f1d5692fb0a9cb0899b9fd62">00125</a>     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#ab0137c02f1d5692fb0a9cb0899b9fd62">Transmit</a>()
-<a name="l00126"></a>00126     {
-<a name="l00127"></a>00127         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#ae1b72ffa9ab9077cfc188d7bdea857f9">Send</a>( *<span class="keyword">this</span> );
-<a name="l00128"></a>00128     }
-<a name="l00129"></a>00129 
-<a name="l00134"></a><a class="code" href="classlogog_1_1_topic.html#a2c504542dd36153026b1739fa21a7b78">00134</a>     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#a2c504542dd36153026b1739fa21a7b78">Receive</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;node )
-<a name="l00135"></a>00135     {
-<a name="l00136"></a>00136         <span class="comment">/* Default implementation -- send it on to all children */</span>
-<a name="l00137"></a>00137         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#ae1b72ffa9ab9077cfc188d7bdea857f9">Send</a>( node );
-<a name="l00138"></a>00138     }
+<a name="l00090"></a>00090     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>() <span class="keyword">const</span>;
+<a name="l00091"></a>00091     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s );
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#aa28827719cd65e6ba4f4494314f31312">LineNumber</a>() <span class="keyword">const</span>;
+<a name="l00094"></a>00094     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#aa28827719cd65e6ba4f4494314f31312">LineNumber</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> num );
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096     <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> <a class="code" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">Level</a>() <span class="keyword">const</span>;
+<a name="l00097"></a>00097     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">Level</a>( <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level );
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099     <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> <a class="code" href="classlogog_1_1_topic.html#a0430fabc3a6a5833ff8c3e8113bcd254">Timestamp</a>() <span class="keyword">const</span>;
+<a name="l00100"></a>00100     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a0430fabc3a6a5833ff8c3e8113bcd254">Timestamp</a>( <span class="keyword">const</span> <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> t );
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102     <a class="code" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18" title="[Topic Bits]">TOPIC_FLAGS</a> <a class="code" href="classlogog_1_1_topic.html#a26a2f418538dad28a38e97bdacf746ee">GetTopicFlags</a>() <span class="keyword">const</span>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="keyword">protected</span>:
+<a name="l00106"></a><a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">00106</a>     <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2388d21924c330ad4e5d9e3c1c5eaed2">TOPIC_STRING_COUNT</a> ];
+<a name="l00108"></a><a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">00108</a>     <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a3801a60cc54fdad6c7966a6bf67f397a">TOPIC_INT_COUNT</a> ];
+<a name="l00112"></a><a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">00112</a>     <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> <a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a>;
+<a name="l00117"></a><a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">00117</a>     <a class="code" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18" title="[Topic Bits]">TOPIC_FLAGS</a> <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a>;
+<a name="l00118"></a>00118 };
+<a name="l00119"></a>00119 
+<a name="l00125"></a><a class="code" href="classlogog_1_1_filter.html">00125</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_filter.html">Filter</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
+<a name="l00126"></a>00126 {
+<a name="l00127"></a>00127 <span class="keyword">public</span>:
+<a name="l00128"></a>00128     <a class="code" href="classlogog_1_1_filter.html#a4fc9c8aa492942a65a8ab23975227e61">Filter</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
+<a name="l00129"></a>00129             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
+<a name="l00130"></a>00130             <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
+<a name="l00131"></a>00131             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
+<a name="l00132"></a>00132             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
+<a name="l00133"></a>00133             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
+<a name="l00134"></a>00134             <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f );
+<a name="l00135"></a>00135 };
+<a name="l00136"></a>00136 
+<a name="l00138"></a>00138 <span class="keyword">extern</span> <a class="code" href="classlogog_1_1_filter.html">Filter</a> &amp;<a class="code" href="namespacelogog.html#a79cc96e86c3e3c211ce5f27feac578b4">GetDefaultFilter</a>();
 <a name="l00139"></a>00139 
-<a name="l00156"></a><a class="code" href="classlogog_1_1_topic.html#a0ad14fd3f5aef315b71cd62c5da2d449">00156</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#a0ad14fd3f5aef315b71cd62c5da2d449">CanSubscribeTo</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;otherNode )
-<a name="l00157"></a>00157     {
-<a name="l00158"></a>00158         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_node.html#a066bcbe4f3e260a2826cae8c4f9f7f8f">CanSubscribe</a>() == <span class="keyword">false</span> )
-<a name="l00159"></a>00159             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161         <span class="keywordflow">if</span> ( otherNode.<a class="code" href="classlogog_1_1_node.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>() == false )
-<a name="l00162"></a>00162             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164         <a class="code" href="classlogog_1_1_topic.html">Topic</a> *pTopic = ( <a class="code" href="classlogog_1_1_topic.html">Topic</a> * )&amp;otherNode;
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166         <span class="comment">/* This function will change from topic class to topic class. */</span>
-<a name="l00167"></a>00167         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( *pTopic );
-<a name="l00168"></a>00168     }
-<a name="l00169"></a>00169 
-<a name="l00170"></a><a class="code" href="classlogog_1_1_topic.html#a6ce3c57c2d0c7c2001f0e82732801fc9">00170</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;other )
-<a name="l00171"></a>00171     {
-<a name="l00172"></a>00172         <span class="comment">/* This is the generic comparison case.  We&#39;ll want to optimize this function for other types</span>
-<a name="l00173"></a>00173 <span class="comment">         * of topics.</span>
-<a name="l00174"></a>00174 <span class="comment">         */</span>
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176         <span class="comment">/* Check topics in likely order of disinterest */</span>
-<a name="l00177"></a>00177         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e">TOPIC_LEVEL_FLAG</a> )
-<a name="l00178"></a>00178         {
-<a name="l00179"></a>00179             <span class="comment">/* Topic levels are less interesting the larger the numbers are. */</span>
-<a name="l00180"></a>00180             <span class="keywordflow">if</span> ( other.<a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] &gt; <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] )
-<a name="l00181"></a>00181                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00182"></a>00182         }
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452aab69fb29fc10a7a575fa4c9afcea6866">TOPIC_GROUP_FLAG</a> )
-<a name="l00185"></a>00185         {
-<a name="l00186"></a>00186             <span class="comment">/* If our topic is not a substring of the publisher&#39;s topic, ignore this */</span>
-<a name="l00187"></a>00187             <span class="keywordflow">if</span> (( other.<a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2cf308cbe823a0266d60294107685652">TOPIC_GROUP</a> ] ).find( <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2cf308cbe823a0266d60294107685652">TOPIC_GROUP</a> ] ) == LOGOG_STRING::npos )
-<a name="l00188"></a>00188                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00189"></a>00189         }
-<a name="l00190"></a>00190 
-<a name="l00191"></a>00191         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a4659a9ff5b133763069abb0a5156cf78">TOPIC_CATEGORY_FLAG</a> )
-<a name="l00192"></a>00192         {
-<a name="l00193"></a>00193             <span class="comment">/* If our topic is not a substring of the publisher&#39;s topic, ignore this */</span>
-<a name="l00194"></a>00194             <span class="keywordflow">if</span> (( other.<a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a07ae0e7f653e783d062c1c7482874b5f">TOPIC_CATEGORY</a> ] ).find( <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a07ae0e7f653e783d062c1c7482874b5f">TOPIC_CATEGORY</a> ] ) == LOGOG_STRING::npos )
-<a name="l00195"></a>00195                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00196"></a>00196         }
+<a name="l00144"></a>00144 <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a611b5806e3a22615f4d376e97fb2ac66">SetDefaultLevel</a>( <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level );
+<a name="l00145"></a>00145 
+<a name="l00147"></a><a class="code" href="classlogog_1_1_topic_group.html">00147</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_group.html">TopicGroup</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
+<a name="l00148"></a>00148 {
+<a name="l00149"></a>00149 <span class="keyword">public</span>:
+<a name="l00150"></a>00150     <a class="code" href="classlogog_1_1_topic_group.html#a9854feeaf0b4f8d922cf0dbaa787885d">TopicGroup</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL );
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_group.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;other );
+<a name="l00153"></a>00153 };
+<a name="l00154"></a>00154 
+<a name="l00156"></a><a class="code" href="classlogog_1_1_topic_level.html">00156</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_level.html">TopicLevel</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
+<a name="l00157"></a>00157 {
+<a name="l00158"></a>00158 <span class="keyword">public</span>:
+<a name="l00159"></a>00159     <a class="code" href="classlogog_1_1_topic_level.html#ab126b0afcec5b3fc5b4bf7f5e16d0bfc">TopicLevel</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level );
+<a name="l00160"></a>00160     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_level.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;other );
+<a name="l00161"></a>00161 };
+<a name="l00162"></a>00162 
+<a name="l00164"></a><a class="code" href="classlogog_1_1_topic_source.html">00164</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_source.html">TopicSource</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
+<a name="l00165"></a>00165 {
+<a name="l00166"></a>00166 <span class="keyword">public</span>:
+<a name="l00167"></a>00167     <a class="code" href="classlogog_1_1_topic_source.html#aaa808c5d7c6420f6f2f74e1970fe51ad">TopicSource</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
+<a name="l00168"></a>00168                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
+<a name="l00169"></a>00169                  <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
+<a name="l00170"></a>00170                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
+<a name="l00171"></a>00171                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
+<a name="l00172"></a>00172                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
+<a name="l00173"></a>00173                  <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f );
+<a name="l00174"></a>00174 
+<a name="l00176"></a>00176     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_source.html#a5298e38d5f895b9915f8982c943a146c">SubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; );
+<a name="l00177"></a>00177 
+<a name="l00179"></a>00179     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_source.html#a0ca5c3c5d91809f422d675591865533b">UnsubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; );
+<a name="l00180"></a>00180     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_source.html#a066bcbe4f3e260a2826cae8c4f9f7f8f">CanSubscribe</a>() <span class="keyword">const</span>;
+<a name="l00181"></a>00181 };
+<a name="l00182"></a>00182 
+<a name="l00184"></a><a class="code" href="classlogog_1_1_topic_sink.html">00184</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_sink.html">TopicSink</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
+<a name="l00185"></a>00185 {
+<a name="l00186"></a>00186 <span class="keyword">public</span>:
+<a name="l00187"></a>00187     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>() <span class="keyword">const</span>;
+<a name="l00188"></a>00188 
+<a name="l00190"></a>00190     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic_sink.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">Initialize</a>();
+<a name="l00191"></a>00191 
+<a name="l00193"></a>00193     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a296adc371724cf622d6e060f3a5fb670">PublishTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; );
+<a name="l00194"></a>00194 
+<a name="l00196"></a>00196     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a797381a71ea792559e902f537ccfeb91">UnpublishTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; );
 <a name="l00197"></a>00197 
-<a name="l00198"></a>00198         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a690d59b297cfa0b0386cca34499359bb">TOPIC_FILE_NAME_FLAG</a> )
-<a name="l00199"></a>00199         {
-<a name="l00200"></a>00200             <span class="comment">/* If our topic is not a substring of the publisher&#39;s file name, ignore this. */</span>
-<a name="l00201"></a>00201             <span class="keywordflow">if</span> (( other.<a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4ac93d1b260c941d64378905828b09a4cc">TOPIC_FILE_NAME</a> ] ).find( <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4ac93d1b260c941d64378905828b09a4cc">TOPIC_FILE_NAME</a> ] ) == LOGOG_STRING::npos )
-<a name="l00202"></a>00202                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00203"></a>00203         }
-<a name="l00204"></a>00204 
-<a name="l00205"></a>00205         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a9f24ab5c004ed7d96bbf28101c3a0d92">TOPIC_LINE_NUMBER_FLAG</a> )
-<a name="l00206"></a>00206         {
-<a name="l00207"></a>00207             <span class="comment">/* If our line number doesn&#39;t equal theirs, ignore this */</span>
-<a name="l00208"></a>00208             <span class="keywordflow">if</span> ( other.<a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4adac379b384be9494d2050cb2e791dcc9">TOPIC_LINE_NUMBER</a> ] != <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4adac379b384be9494d2050cb2e791dcc9">TOPIC_LINE_NUMBER</a> ] )
-<a name="l00209"></a>00209                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00210"></a>00210         }
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452ad66fafb470de8f597165d0d293c78c29">TOPIC_MESSAGE_FLAG</a> )
-<a name="l00213"></a>00213         {
-<a name="l00214"></a>00214             <span class="comment">/* If our topic is not a substring of the publisher&#39;s file name, ignore this. */</span>
-<a name="l00215"></a>00215             <span class="keywordflow">if</span> (( other.<a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a75cbef7bdcdc1d36ab3b9f62224363e2">TOPIC_MESSAGE</a> ] ).find( <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a75cbef7bdcdc1d36ab3b9f62224363e2">TOPIC_MESSAGE</a> ] ) == LOGOG_STRING::npos )
-<a name="l00216"></a>00216                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00217"></a>00217         }
-<a name="l00218"></a>00218 
-<a name="l00219"></a>00219         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a2ca2f1ccd65a07ecd088ca3f37d0c10e">TOPIC_TIMESTAMP_FLAG</a> )
-<a name="l00220"></a>00220         {
-<a name="l00221"></a>00221             <span class="comment">/* Timestamps are only interesting if they&#39;re greater than or equal to ours. */</span>
-<a name="l00222"></a>00222             <span class="keywordflow">if</span> ( other.<a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a> &lt; <a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a> )
-<a name="l00223"></a>00223                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00224"></a>00224         }
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226         <span class="comment">/* all tests passed */</span>
-<a name="l00227"></a>00227         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00228"></a>00228     }
-<a name="l00229"></a>00229 
-<a name="l00234"></a><a class="code" href="classlogog_1_1_topic.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">00234</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic.html#aa38201dbb74a2a760d26fa6a8e4fa7e6">PublishTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp;subscriber )
-<a name="l00235"></a>00235     {
-<a name="l00236"></a>00236 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00237"></a>00237 <span class="preprocessor"></span>        <span class="keywordflow">if</span> ( &amp;subscriber == <span class="keyword">this</span> )
-<a name="l00238"></a>00238             <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
-<a name="l00239"></a>00239 <span class="preprocessor">#endif</span>
-<a name="l00240"></a>00240 <span class="preprocessor"></span>        <span class="keywordtype">bool</span> bWasInserted;
-<a name="l00241"></a>00241 
-<a name="l00243"></a>00243         <span class="keywordflow">if</span> ( subscriber.<a class="code" href="classlogog_1_1_node.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>() )
-<a name="l00244"></a>00244         {
-<a name="l00245"></a>00245             <a class="code" href="classlogog_1_1_topic.html">Topic</a> *pSubscriber = (<a class="code" href="classlogog_1_1_topic.html">Topic</a> *)&amp;subscriber;
-<a name="l00246"></a>00246 
-<a name="l00247"></a>00247             <span class="keywordflow">if</span> ( pSubscriber-&gt;<a class="code" href="classlogog_1_1_topic.html#a0ad14fd3f5aef315b71cd62c5da2d449">CanSubscribeTo</a>( *<span class="keyword">this</span> ) == false )
-<a name="l00248"></a>00248                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00249"></a>00249         }
-<a name="l00250"></a>00250 
-<a name="l00251"></a>00251         {
-<a name="l00252"></a>00252             <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a> );
-<a name="l00253"></a>00253             bWasInserted = ( <a class="code" href="classlogog_1_1_node.html#a1a5076b2a9d0811832c71f508a2d8951">m_Subscribers</a>.insert( &amp;subscriber ) ).second;
-<a name="l00254"></a>00254         }
-<a name="l00255"></a>00255 
-<a name="l00256"></a>00256         <span class="keywordflow">if</span> ( bWasInserted )
-<a name="l00257"></a>00257             subscriber.<a class="code" href="classlogog_1_1_node.html#adc99af6e5c51a78c491b201e34744ee4">SubscribeTo</a>( *<span class="keyword">this</span> );
-<a name="l00258"></a>00258 
-<a name="l00259"></a>00259         <span class="keywordflow">return</span> bWasInserted;
-<a name="l00260"></a>00260     }
-<a name="l00261"></a>00261 
-<a name="l00262"></a>00262 
-<a name="l00263"></a>00263 
-<a name="l00267"></a><a class="code" href="classlogog_1_1_topic.html#a3b923fa1c7bae6419c8430f05bb024ba">00267</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a3b923fa1c7bae6419c8430f05bb024ba">Format</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *cFormatMessage, ... )
-<a name="l00268"></a>00268     {
-<a name="l00269"></a>00269         va_list args;
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271         va_start( args, cFormatMessage );
-<a name="l00272"></a>00272         <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a75cbef7bdcdc1d36ab3b9f62224363e2">TOPIC_MESSAGE</a> ].format_va( cFormatMessage, args );
-<a name="l00273"></a>00273         va_end( args );
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452ad66fafb470de8f597165d0d293c78c29">TOPIC_MESSAGE_FLAG</a>;
-<a name="l00276"></a>00276     }
-<a name="l00277"></a>00277 
-<a name="l00278"></a><a class="code" href="classlogog_1_1_topic.html#ab813857ffb4f34dfd6b6a0f19f602bb4">00278</a>     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#ab813857ffb4f34dfd6b6a0f19f602bb4">FileName</a>()<span class="keyword"> const</span>
-<a name="l00279"></a>00279 <span class="keyword">    </span>{
-<a name="l00280"></a>00280         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4ac93d1b260c941d64378905828b09a4cc">TOPIC_FILE_NAME</a> ];
-<a name="l00281"></a>00281     }
-<a name="l00282"></a>00282 
-<a name="l00283"></a><a class="code" href="classlogog_1_1_topic.html#a8e2e07329bea2d99477aeb2cf05c5ff3">00283</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#ab813857ffb4f34dfd6b6a0f19f602bb4">FileName</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s )
-<a name="l00284"></a>00284     {
-<a name="l00285"></a>00285         <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4ac93d1b260c941d64378905828b09a4cc">TOPIC_FILE_NAME</a> ] = s;
-<a name="l00286"></a>00286         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a690d59b297cfa0b0386cca34499359bb">TOPIC_FILE_NAME_FLAG</a>;
-<a name="l00287"></a>00287     }
-<a name="l00288"></a>00288 
-<a name="l00289"></a><a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">00289</a>     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a>()<span class="keyword"> const</span>
-<a name="l00290"></a>00290 <span class="keyword">    </span>{
-<a name="l00291"></a>00291         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a75cbef7bdcdc1d36ab3b9f62224363e2">TOPIC_MESSAGE</a> ];
-<a name="l00292"></a>00292     }
-<a name="l00293"></a>00293 
-<a name="l00294"></a><a class="code" href="classlogog_1_1_topic.html#a1434aacd1a3c2e100a1379bb0e72473b">00294</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s )
-<a name="l00295"></a>00295     {
-<a name="l00296"></a>00296         <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a75cbef7bdcdc1d36ab3b9f62224363e2">TOPIC_MESSAGE</a> ] = s;
-<a name="l00297"></a>00297         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452ad66fafb470de8f597165d0d293c78c29">TOPIC_MESSAGE_FLAG</a>;
-<a name="l00298"></a>00298     }
-<a name="l00299"></a>00299 
-<a name="l00300"></a><a class="code" href="classlogog_1_1_topic.html#a696eff26a2406a628259a11b6f499374">00300</a>     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#a696eff26a2406a628259a11b6f499374">Category</a>()<span class="keyword"> const</span>
-<a name="l00301"></a>00301 <span class="keyword">    </span>{
-<a name="l00302"></a>00302         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a07ae0e7f653e783d062c1c7482874b5f">TOPIC_CATEGORY</a> ];
-<a name="l00303"></a>00303     }
-<a name="l00304"></a>00304 
-<a name="l00305"></a><a class="code" href="classlogog_1_1_topic.html#ad779e2111d5b81a8a3aacd8110ff7f90">00305</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a696eff26a2406a628259a11b6f499374">Category</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s )
-<a name="l00306"></a>00306     {
-<a name="l00307"></a>00307         <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a07ae0e7f653e783d062c1c7482874b5f">TOPIC_CATEGORY</a> ] = s;
-<a name="l00308"></a>00308         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a4659a9ff5b133763069abb0a5156cf78">TOPIC_CATEGORY_FLAG</a>;
-<a name="l00309"></a>00309     }
-<a name="l00310"></a>00310 
-<a name="l00311"></a><a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">00311</a>     <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;<a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>()<span class="keyword"> const</span>
-<a name="l00312"></a>00312 <span class="keyword">    </span>{
-<a name="l00313"></a>00313         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2cf308cbe823a0266d60294107685652">TOPIC_GROUP</a> ];
-<a name="l00314"></a>00314     }
-<a name="l00315"></a>00315 
-<a name="l00316"></a><a class="code" href="classlogog_1_1_topic.html#a31c5b1b04b8e7ac03f2059ccc3882760">00316</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;s )
-<a name="l00317"></a>00317     {
-<a name="l00318"></a>00318         <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2cf308cbe823a0266d60294107685652">TOPIC_GROUP</a> ] = s;
-<a name="l00319"></a>00319         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452aab69fb29fc10a7a575fa4c9afcea6866">TOPIC_GROUP_FLAG</a>;
-<a name="l00320"></a>00320     }
-<a name="l00321"></a>00321 
-<a name="l00322"></a><a class="code" href="classlogog_1_1_topic.html#aa28827719cd65e6ba4f4494314f31312">00322</a>     <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#aa28827719cd65e6ba4f4494314f31312">LineNumber</a>()<span class="keyword"> const</span>
-<a name="l00323"></a>00323 <span class="keyword">    </span>{
-<a name="l00324"></a>00324         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4adac379b384be9494d2050cb2e791dcc9">TOPIC_LINE_NUMBER</a> ];
-<a name="l00325"></a>00325     }
-<a name="l00326"></a>00326 
-<a name="l00327"></a><a class="code" href="classlogog_1_1_topic.html#ac6520ffc2a333546f8904e7cecd8041b">00327</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#aa28827719cd65e6ba4f4494314f31312">LineNumber</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> num )
-<a name="l00328"></a>00328     {
-<a name="l00329"></a>00329         <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4adac379b384be9494d2050cb2e791dcc9">TOPIC_LINE_NUMBER</a> ] = num;
-<a name="l00330"></a>00330         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a9f24ab5c004ed7d96bbf28101c3a0d92">TOPIC_LINE_NUMBER_FLAG</a>;
-<a name="l00331"></a>00331     }
-<a name="l00332"></a>00332 
-<a name="l00333"></a><a class="code" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">00333</a>     <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> <a class="code" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">Level</a>()<span class="keyword"> const</span>
-<a name="l00334"></a>00334 <span class="keyword">    </span>{
-<a name="l00335"></a>00335         <span class="keywordflow">return</span> ( <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> )<a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ];
-<a name="l00336"></a>00336     }
-<a name="l00337"></a>00337 
-<a name="l00338"></a><a class="code" href="classlogog_1_1_topic.html#ab5387dbd4c1988cfb166271ad97014a1">00338</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">Level</a>( <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level )
-<a name="l00339"></a>00339     {
-<a name="l00340"></a>00340         <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] = level;
-<a name="l00341"></a>00341         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e">TOPIC_LEVEL_FLAG</a>;
-<a name="l00342"></a>00342     }
-<a name="l00343"></a>00343 
-<a name="l00344"></a><a class="code" href="classlogog_1_1_topic.html#a0430fabc3a6a5833ff8c3e8113bcd254">00344</a>     <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> <a class="code" href="classlogog_1_1_topic.html#a0430fabc3a6a5833ff8c3e8113bcd254">Timestamp</a>()<span class="keyword"> const</span>
-<a name="l00345"></a>00345 <span class="keyword">    </span>{
-<a name="l00346"></a>00346         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a>;
-<a name="l00347"></a>00347     }
-<a name="l00348"></a>00348 
-<a name="l00349"></a><a class="code" href="classlogog_1_1_topic.html#a6c560aa4d80707e2ac98d010b9b77a96">00349</a>     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic.html#a0430fabc3a6a5833ff8c3e8113bcd254">Timestamp</a>( <span class="keyword">const</span> <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> t )
-<a name="l00350"></a>00350     {
-<a name="l00351"></a>00351         <a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a> = t;
-<a name="l00352"></a>00352         <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> |= <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a2ca2f1ccd65a07ecd088ca3f37d0c10e">TOPIC_TIMESTAMP_FLAG</a>;
-<a name="l00353"></a>00353     }
-<a name="l00354"></a>00354 
-<a name="l00355"></a><a class="code" href="classlogog_1_1_topic.html#a26a2f418538dad28a38e97bdacf746ee">00355</a>     <a class="code" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18" title="[Topic Bits]">TOPIC_FLAGS</a> <a class="code" href="classlogog_1_1_topic.html#a26a2f418538dad28a38e97bdacf746ee">GetTopicFlags</a>()<span class="keyword"> const</span>
-<a name="l00356"></a>00356 <span class="keyword">    </span>{
-<a name="l00357"></a>00357         <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a>;
-<a name="l00358"></a>00358     }
-<a name="l00359"></a>00359 
-<a name="l00360"></a>00360 <span class="keyword">protected</span>:
-<a name="l00362"></a><a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">00362</a>     <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> <a class="code" href="classlogog_1_1_topic.html#aeff3b974d9bf634a7ee77cd242526c8b">m_vStringProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a2388d21924c330ad4e5d9e3c1c5eaed2">TOPIC_STRING_COUNT</a> ];
-<a name="l00364"></a><a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">00364</a>     <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a3801a60cc54fdad6c7966a6bf67f397a">TOPIC_INT_COUNT</a> ];
-<a name="l00368"></a><a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">00368</a>     <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> <a class="code" href="classlogog_1_1_topic.html#a9237a15e5ea7fdd80dd9441ca0f4965d">m_tTime</a>;
-<a name="l00373"></a><a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">00373</a>     <a class="code" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18" title="[Topic Bits]">TOPIC_FLAGS</a> <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a>;
-<a name="l00374"></a>00374 };
-<a name="l00375"></a>00375 
-<a name="l00381"></a><a class="code" href="classlogog_1_1_filter.html">00381</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_filter.html">Filter</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
-<a name="l00382"></a>00382 {
-<a name="l00383"></a>00383 <span class="keyword">public</span>:
-<a name="l00384"></a><a class="code" href="classlogog_1_1_filter.html#a4fc9c8aa492942a65a8ab23975227e61">00384</a>     <a class="code" href="classlogog_1_1_filter.html#a4fc9c8aa492942a65a8ab23975227e61">Filter</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
-<a name="l00385"></a>00385             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
-<a name="l00386"></a>00386             <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
-<a name="l00387"></a>00387             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
-<a name="l00388"></a>00388             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
-<a name="l00389"></a>00389             <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
-<a name="l00390"></a>00390             <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f ) :
-<a name="l00391"></a>00391         <a class="code" href="classlogog_1_1_topic.html">Topic</a>( level, sFileName, nLineNumber, sGroup, sCategory, sMessage, dTimestamp )
-<a name="l00392"></a>00392     {
-<a name="l00393"></a>00393         <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatic = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
-<a name="l00394"></a>00394 
-<a name="l00395"></a>00395 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00396"></a>00396 <span class="preprocessor"></span>        <span class="keywordflow">if</span> ( pStatic == NULL )
-<a name="l00397"></a>00397             <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
-<a name="l00398"></a>00398 <span class="preprocessor">#endif</span>
-<a name="l00399"></a>00399 <span class="preprocessor"></span>
-<a name="l00400"></a>00400         <span class="keywordflow">if</span> ( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#ae9571d1ec890e3b07af63d83b2f0e85b">s_pDefaultFilter</a> == NULL )
-<a name="l00401"></a>00401             pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#ae9571d1ec890e3b07af63d83b2f0e85b">s_pDefaultFilter</a> = <span class="keyword">this</span>;
-<a name="l00402"></a>00402 
-<a name="l00403"></a>00403         <a class="code" href="classlogog_1_1_node.html#a64be8f1d5da9f1794e2339d06d36829b">PublishToMultiple</a>( <a class="code" href="namespacelogog.html#a29748dfd8ea0999fa750fcbb44e64d9e">AllTargets</a>() );
-<a name="l00404"></a>00404 
-<a name="l00405"></a>00405         <a class="code" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> *pFilterNodes = &amp;<a class="code" href="namespacelogog.html#a368c0c7a59eaf06fce6c739d61319767">AllFilters</a>();
-<a name="l00406"></a>00406 
-<a name="l00407"></a>00407         {
-<a name="l00408"></a>00408             <a class="code" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> sl( *pFilterNodes );
-<a name="l00409"></a>00409             pFilterNodes-&gt;insert( <span class="keyword">this</span> );
-<a name="l00410"></a>00410         }
-<a name="l00411"></a>00411     }
-<a name="l00412"></a>00412 };
-<a name="l00413"></a>00413 
-<a name="l00415"></a><a class="code" href="namespacelogog.html#ac5cb46a8c027817fed123c678d40ad8a">00415</a> <span class="keyword">static</span> <a class="code" href="classlogog_1_1_filter.html">Filter</a> &amp;<a class="code" href="namespacelogog.html#ac5cb46a8c027817fed123c678d40ad8a">GetDefaultFilter</a>()
-<a name="l00416"></a>00416 {
-<a name="l00417"></a>00417     <a class="code" href="classlogog_1_1_statics.html">Statics</a> *pStatic = &amp;<a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>();
-<a name="l00418"></a>00418 
-<a name="l00419"></a>00419 <span class="preprocessor">#ifdef LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00420"></a>00420 <span class="preprocessor"></span>    <span class="keywordflow">if</span> ( pStatic == NULL )
-<a name="l00421"></a>00421         <a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">LOGOG_INTERNAL_FAILURE</a>;
-<a name="l00422"></a>00422 <span class="preprocessor">#endif</span>
-<a name="l00423"></a>00423 <span class="preprocessor"></span>
-<a name="l00424"></a>00424     <span class="keywordflow">if</span> ( pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#ae9571d1ec890e3b07af63d83b2f0e85b">s_pDefaultFilter</a> == NULL )
-<a name="l00425"></a>00425     {
-<a name="l00426"></a>00426         pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#ae9571d1ec890e3b07af63d83b2f0e85b">s_pDefaultFilter</a> = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_filter.html">Filter</a>( <a class="code" href="group__levelsettings.html#gadda42b8d0ddeafd2394181bdcb2cd4a4">LOGOG_LEVEL</a> );
-<a name="l00427"></a>00427     }
-<a name="l00428"></a>00428 
-<a name="l00429"></a>00429     <span class="keywordflow">return</span> *((<a class="code" href="classlogog_1_1_filter.html">Filter</a> *)(pStatic-&gt;<a class="code" href="classlogog_1_1_statics.html#ae9571d1ec890e3b07af63d83b2f0e85b">s_pDefaultFilter</a>));
-<a name="l00430"></a>00430 }
-<a name="l00431"></a>00431 
-<a name="l00436"></a><a class="code" href="namespacelogog.html#a611b5806e3a22615f4d376e97fb2ac66">00436</a> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a611b5806e3a22615f4d376e97fb2ac66">SetDefaultLevel</a>( <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level )
-<a name="l00437"></a>00437 {
-<a name="l00438"></a>00438     <a class="code" href="classlogog_1_1_filter.html">Filter</a> *pDefaultFilter = &amp;<a class="code" href="namespacelogog.html#ac5cb46a8c027817fed123c678d40ad8a">GetDefaultFilter</a>();
-<a name="l00439"></a>00439 
-<a name="l00440"></a>00440     pDefaultFilter-&gt;<a class="code" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">Level</a>( level );
-<a name="l00441"></a>00441 }
-<a name="l00442"></a>00442 
-<a name="l00444"></a><a class="code" href="classlogog_1_1_topic_group.html">00444</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_group.html">TopicGroup</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
-<a name="l00445"></a>00445 {
-<a name="l00446"></a>00446 <span class="keyword">public</span>:
-<a name="l00447"></a><a class="code" href="classlogog_1_1_topic_group.html#a9854feeaf0b4f8d922cf0dbaa787885d">00447</a>     <a class="code" href="classlogog_1_1_topic_group.html#a9854feeaf0b4f8d922cf0dbaa787885d">TopicGroup</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL ) :
-<a name="l00448"></a>00448         <a class="code" href="classlogog_1_1_topic.html">Topic</a>( <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>, NULL, 0, sGroup )
-<a name="l00449"></a>00449     {
-<a name="l00450"></a>00450     }
-<a name="l00451"></a>00451 
-<a name="l00452"></a><a class="code" href="classlogog_1_1_topic_group.html#a6ce3c57c2d0c7c2001f0e82732801fc9">00452</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_group.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;other )
-<a name="l00453"></a>00453     {
-<a name="l00454"></a>00454         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e">TOPIC_LEVEL_FLAG</a> )
-<a name="l00455"></a>00455         {
-<a name="l00456"></a>00456             <span class="comment">/* Topic levels are less interesting the larger the numbers are. */</span>
-<a name="l00457"></a>00457             <span class="keywordflow">if</span> ( other.<a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] &gt; <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] )
-<a name="l00458"></a>00458                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00459"></a>00459         }
-<a name="l00460"></a>00460 
-<a name="l00461"></a>00461         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00462"></a>00462     }
-<a name="l00463"></a>00463 };
-<a name="l00464"></a>00464 
-<a name="l00466"></a><a class="code" href="classlogog_1_1_topic_level.html">00466</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_level.html">TopicLevel</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
-<a name="l00467"></a>00467 {
-<a name="l00468"></a>00468 <span class="keyword">public</span>:
-<a name="l00469"></a><a class="code" href="classlogog_1_1_topic_level.html#ab126b0afcec5b3fc5b4bf7f5e16d0bfc">00469</a>     <a class="code" href="classlogog_1_1_topic_level.html#ab126b0afcec5b3fc5b4bf7f5e16d0bfc">TopicLevel</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level ) :
-<a name="l00470"></a>00470         <a class="code" href="classlogog_1_1_topic.html">Topic</a>( level )
-<a name="l00471"></a>00471     {
-<a name="l00472"></a>00472     }
-<a name="l00473"></a>00473 
-<a name="l00474"></a><a class="code" href="classlogog_1_1_topic_level.html#a6ce3c57c2d0c7c2001f0e82732801fc9">00474</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_level.html#a6ce3c57c2d0c7c2001f0e82732801fc9">CanSubscribeCheckTopic</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;other )
-<a name="l00475"></a>00475     {
-<a name="l00476"></a>00476         <span class="comment">/* Check topics in likely order of disinterest */</span>
-<a name="l00477"></a>00477         <span class="keywordflow">if</span> ( <a class="code" href="classlogog_1_1_topic.html#aec8700c28150242a4105edd059aa6a4b">m_TopicFlags</a> &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e">TOPIC_LEVEL_FLAG</a> )
-<a name="l00478"></a>00478         {
-<a name="l00479"></a>00479             <span class="comment">/* Topic levels are less interesting the larger the numbers are. */</span>
-<a name="l00480"></a>00480             <span class="keywordflow">if</span> ( other.<a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] &gt; <a class="code" href="classlogog_1_1_topic.html#a09b9690c7f4dfc82277518cc75fd4850">m_vIntProps</a>[ <a class="code" href="const_8hpp.html#ae8ecc4c3eb8b33112031ced9b9456ba4a4d8d5aff57e7f88f53372bd5444ed833">TOPIC_LEVEL</a> ] )
-<a name="l00481"></a>00481                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00482"></a>00482         }
-<a name="l00483"></a>00483 
-<a name="l00484"></a>00484         <span class="comment">/* all tests passed */</span>
-<a name="l00485"></a>00485         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00486"></a>00486     }
-<a name="l00487"></a>00487 };
-<a name="l00488"></a>00488 
-<a name="l00490"></a><a class="code" href="classlogog_1_1_topic_source.html">00490</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_source.html">TopicSource</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
-<a name="l00491"></a>00491 {
-<a name="l00492"></a>00492 <span class="keyword">public</span>:
-<a name="l00493"></a><a class="code" href="classlogog_1_1_topic_source.html#aaa808c5d7c6420f6f2f74e1970fe51ad">00493</a>     <a class="code" href="classlogog_1_1_topic_source.html#aaa808c5d7c6420f6f2f74e1970fe51ad">TopicSource</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
-<a name="l00494"></a>00494                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
-<a name="l00495"></a>00495                  <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
-<a name="l00496"></a>00496                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
-<a name="l00497"></a>00497                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
-<a name="l00498"></a>00498                  <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
-<a name="l00499"></a>00499                  <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f ) :
-<a name="l00500"></a>00500         <a class="code" href="classlogog_1_1_topic.html">Topic</a>( level, sFileName, nLineNumber, sGroup, sCategory, sMessage, dTimestamp )
-<a name="l00501"></a>00501     {
-<a name="l00502"></a>00502     }
-<a name="l00503"></a>00503 
-<a name="l00505"></a><a class="code" href="classlogog_1_1_topic_source.html#a5298e38d5f895b9915f8982c943a146c">00505</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_source.html#a5298e38d5f895b9915f8982c943a146c">SubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; )
-<a name="l00506"></a>00506     {
-<a name="l00507"></a>00507         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00508"></a>00508     }
-<a name="l00509"></a>00509 
-<a name="l00511"></a><a class="code" href="classlogog_1_1_topic_source.html#a0ca5c3c5d91809f422d675591865533b">00511</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_source.html#a0ca5c3c5d91809f422d675591865533b">UnsubscribeTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; )
-<a name="l00512"></a>00512     {
-<a name="l00513"></a>00513         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00514"></a>00514     }
-<a name="l00515"></a>00515 
-<a name="l00516"></a><a class="code" href="classlogog_1_1_topic_source.html#a066bcbe4f3e260a2826cae8c4f9f7f8f">00516</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_source.html#a066bcbe4f3e260a2826cae8c4f9f7f8f">CanSubscribe</a>()<span class="keyword"> const</span>
-<a name="l00517"></a>00517 <span class="keyword">    </span>{
-<a name="l00518"></a>00518         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00519"></a>00519     }
-<a name="l00520"></a>00520 };
-<a name="l00521"></a>00521 
-<a name="l00523"></a><a class="code" href="classlogog_1_1_topic_sink.html">00523</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_topic_sink.html">TopicSink</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a>
-<a name="l00524"></a>00524 {
-<a name="l00525"></a>00525 <span class="keyword">public</span>:
-<a name="l00526"></a><a class="code" href="classlogog_1_1_topic_sink.html#a76b4868c225ea8d427c5175a9a482b27">00526</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>()<span class="keyword"> const</span>
-<a name="l00527"></a>00527 <span class="keyword">    </span>{
-<a name="l00528"></a>00528         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00529"></a>00529     }
-<a name="l00530"></a>00530 
-<a name="l00532"></a><a class="code" href="classlogog_1_1_topic_sink.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">00532</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_topic_sink.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">Initialize</a>() {}
-<a name="l00533"></a>00533 
-<a name="l00535"></a><a class="code" href="classlogog_1_1_topic_sink.html#a296adc371724cf622d6e060f3a5fb670">00535</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a296adc371724cf622d6e060f3a5fb670">PublishTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; )
-<a name="l00536"></a>00536     {
-<a name="l00537"></a>00537         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00538"></a>00538     }
-<a name="l00539"></a>00539 
-<a name="l00541"></a><a class="code" href="classlogog_1_1_topic_sink.html#a797381a71ea792559e902f537ccfeb91">00541</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a797381a71ea792559e902f537ccfeb91">UnpublishTo</a>( <a class="code" href="classlogog_1_1_node.html">Node</a> &amp; )
-<a name="l00542"></a>00542     {
-<a name="l00543"></a>00543         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00544"></a>00544     }
-<a name="l00545"></a>00545 
-<a name="l00547"></a><a class="code" href="classlogog_1_1_topic_sink.html#a9cc29be576b56c80f4670ebc42cde7de">00547</a>     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a9cc29be576b56c80f4670ebc42cde7de">CanPublish</a>()<span class="keyword"> const</span>
-<a name="l00548"></a>00548 <span class="keyword">    </span>{
-<a name="l00549"></a>00549         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00550"></a>00550     }
-<a name="l00551"></a>00551 };
-<a name="l00552"></a>00552 }
-<a name="l00553"></a>00553 
-<a name="l00554"></a>00554 <span class="preprocessor">#endif // __LOGOG_TOPIC_HPP_</span>
+<a name="l00199"></a>00199     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_topic_sink.html#a9cc29be576b56c80f4670ebc42cde7de">CanPublish</a>() <span class="keyword">const</span>;
+<a name="l00200"></a>00200 };
+<a name="l00201"></a>00201 }
+<a name="l00202"></a>00202 
+<a name="l00203"></a>00203 <span class="preprocessor">#endif // __LOGOG_TOPIC_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -603,7 +253,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sat Sep 10 2011 15:30:43 for logog by
+    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

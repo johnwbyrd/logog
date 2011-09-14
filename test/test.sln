@@ -2,12 +2,17 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test.vcproj", "{FFD188AD-0FE5-4808-90E0-EC528324FFAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{85857E80-2122-4DD8-9BA9-B90CC10D65B0} = {85857E80-2122-4DD8-9BA9-B90CC10D65B0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logog", "..\src\logog.vcproj", "{85857E80-2122-4DD8-9BA9-B90CC10D65B0}"
 EndProject
 Global
 	GlobalSection(SourceCodeControl) = preSolution
 		SccNumberOfProjects = 2
-		SccProjectUniqueName0 = test.vcproj
 		SccLocalPath0 = .
+		SccProjectUniqueName1 = test.vcproj
 		SccLocalPath1 = .
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +24,10 @@ Global
 		{FFD188AD-0FE5-4808-90E0-EC528324FFAD}.Debug|Win32.Build.0 = Debug|Win32
 		{FFD188AD-0FE5-4808-90E0-EC528324FFAD}.Release|Win32.ActiveCfg = Release|Win32
 		{FFD188AD-0FE5-4808-90E0-EC528324FFAD}.Release|Win32.Build.0 = Release|Win32
+		{85857E80-2122-4DD8-9BA9-B90CC10D65B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85857E80-2122-4DD8-9BA9-B90CC10D65B0}.Debug|Win32.Build.0 = Debug|Win32
+		{85857E80-2122-4DD8-9BA9-B90CC10D65B0}.Release|Win32.ActiveCfg = Release|Win32
+		{85857E80-2122-4DD8-9BA9-B90CC10D65B0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
