@@ -114,49 +114,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00028"></a><a class="code" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html#aa2542d581e61a4efe5517be76d7f6550">00028</a>     void ( *<a class="code" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html#aa2542d581e61a4efe5517be76d7f6550">m_pfFree</a> )( <span class="keywordtype">void</span> * );
 <a name="l00029"></a>00029 };
 <a name="l00031"></a>00031 
-<a name="l00038"></a><a class="code" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69">00038</a> <span class="keywordtype">int</span> <a class="code" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69" title="[INIT_PARAMS]">Initialize</a>( <a class="code" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html" title="[INIT_PARAMS]">INIT_PARAMS</a> *params = NULL )
-<a name="l00039"></a>00039 {
-<a name="l00040"></a>00040     <span class="keywordflow">if</span> ( params == NULL )
-<a name="l00041"></a>00041     {
-<a name="l00042"></a>00042         <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#acf8533e5e620755c102b59ed2972f71a">s_pfMalloc</a> = malloc;
-<a name="l00043"></a>00043         <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#acb1054e8ad1f405e9092382563dc0bc3">s_pfFree</a> = free;
-<a name="l00044"></a>00044     }
-<a name="l00045"></a>00045     <span class="keywordflow">else</span>
-<a name="l00046"></a>00046     {
-<a name="l00047"></a>00047         <span class="keywordflow">if</span> ( params-&gt;m_pfMalloc != NULL )
-<a name="l00048"></a>00048         {
-<a name="l00049"></a>00049             <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#acf8533e5e620755c102b59ed2972f71a">s_pfMalloc</a> = params-&gt;m_pfMalloc;
-<a name="l00050"></a>00050             <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#acb1054e8ad1f405e9092382563dc0bc3">s_pfFree</a> = params-&gt;m_pfFree;
-<a name="l00051"></a>00051         }
-<a name="l00052"></a>00052         <span class="keywordflow">else</span>
-<a name="l00053"></a>00053         {
-<a name="l00054"></a>00054             <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#acf8533e5e620755c102b59ed2972f71a">s_pfMalloc</a> = malloc;
-<a name="l00055"></a>00055             <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#acb1054e8ad1f405e9092382563dc0bc3">s_pfFree</a> = free;
-<a name="l00056"></a>00056         }
-<a name="l00057"></a>00057     }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059     <span class="comment">// Let&#39;s allocate a default filter here.</span>
-<a name="l00060"></a>00060     <a class="code" href="namespacelogog.html#ac5cb46a8c027817fed123c678d40ad8a">GetDefaultFilter</a>();
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <span class="comment">// Socket::Initialize();</span>
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064     <span class="keywordflow">return</span> 0;
-<a name="l00065"></a>00065 }
-<a name="l00066"></a>00066 
-<a name="l00070"></a><a class="code" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">00070</a> <span class="keywordtype">int</span> <a class="code" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">Shutdown</a>( )
-<a name="l00071"></a>00071 {
-<a name="l00072"></a>00072     <span class="comment">// Socket::Shutdown();</span>
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="preprocessor">#ifdef LOGOG_DESTROY_STATIC_AREA</span>
-<a name="l00075"></a>00075 <span class="preprocessor"></span>    <span class="keyword">delete</span> &amp;( <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>() );
-<a name="l00076"></a>00076 <span class="preprocessor">#else</span>
-<a name="l00077"></a>00077 <span class="preprocessor"></span>    <a class="code" href="namespacelogog.html#a6395bd74ee8b317042dc9f7a15d0fdac">Static</a>().<a class="code" href="classlogog_1_1_statics.html#a372de693ad40b3f42839c8ec6ac845f4">Reset</a>();
-<a name="l00078"></a>00078 <span class="preprocessor">#endif</span>
-<a name="l00079"></a>00079 <span class="preprocessor"></span>    <span class="keywordflow">return</span> 0;
-<a name="l00080"></a>00080 }
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#endif // __LOGOG_API_HPP</span>
+<a name="l00038"></a>00038 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69" title="[INIT_PARAMS]">Initialize</a>( <a class="code" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html" title="[INIT_PARAMS]">INIT_PARAMS</a> *params = NULL );
+<a name="l00039"></a>00039 
+<a name="l00043"></a>00043 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">Shutdown</a>( );
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 }
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="preprocessor">#endif // __LOGOG_API_HPP</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -177,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sat Sep 10 2011 15:30:43 for logog by
+    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

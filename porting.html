@@ -211,31 +211,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </pre></div><ul>
 <li><a class="el" href="timer_8hpp.html">timer.hpp</a>. Add code for the <a class="el" href="classlogog_1_1_timer.html">Timer</a> initializer and the Get() function.</li>
 </ul>
-<div class="fragment"><pre class="fragment">
-    <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a> Get()
-    {
+<div class="fragment"><pre class="fragment">        <a class="code" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">logog::LOGOG_TIME</a> <a class="code" href="classlogog_1_1_timer.html#a0604a6df10f46da9a0690a44719920a4">Timer::Get</a>()
+        {
 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
-<span class="preprocessor"></span>        LARGE_INTEGER liTime;
-        QueryPerformanceCounter( &amp;liTime );
+<span class="preprocessor"></span>                LARGE_INTEGER liTime;
+                QueryPerformanceCounter( &amp;liTime );
 
-        <span class="keywordtype">double</span> dusec;
-        dusec =( liTime.QuadPart / m_fTicksPerMicrosecond );
+                <span class="keywordtype">double</span> dusec;
+                dusec =( liTime.QuadPart / m_fTicksPerMicrosecond );
 
-        <span class="keywordflow">return</span> ( dusec / 1000000.0f ) - m_fStartTime;
+                <span class="keywordflow">return</span> ( dusec / 1000000.0f ) - <a class="code" href="classlogog_1_1_timer.html#ac3d57ccf1ac6198d43b33fc2518f3c50">m_fStartTime</a>;
 <span class="preprocessor">#endif</span>
 <span class="preprocessor"></span>
 <span class="preprocessor">#ifdef LOGOG_FLAVOR_POSIX</span>
 <span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_TARGET_PS3</span>
-<span class="preprocessor"></span>        LOGOG_PS3_GET_TIME;
+<span class="preprocessor"></span>                LOGOG_PS3_GET_TIME;
 <span class="preprocessor">#else // LOGOG_TARGET_PS3</span>
-<span class="preprocessor"></span>        <span class="comment">// General Posix implementation</span>
-        timeval tv;
-        gettimeofday( &amp;tv, 0 );
-        <span class="keywordflow">return</span> ((<span class="keywordtype">double</span>) (tv.tv_sec) + ((<span class="keywordtype">double</span>)(tv.tv_usec ) / 1000000.0 ) - m_fStartTime);
+<span class="preprocessor"></span>                <span class="comment">// General Posix implementation</span>
+                timeval tv;
+                gettimeofday( &amp;tv, 0 );
+                <span class="keywordflow">return</span> ((<span class="keywordtype">double</span>) (tv.tv_sec) + ((<span class="keywordtype">double</span>)(tv.tv_usec ) / 1000000.0 ) - <a class="code" href="classlogog_1_1_timer.html#ac3d57ccf1ac6198d43b33fc2518f3c50">m_fStartTime</a>);
 <span class="preprocessor">#endif // LOGOG_TARGET_PS3</span>
 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<span class="preprocessor"></span>    }
-
+<span class="preprocessor"></span>        }
 </pre></div><p> Lastly, verify that unittest.cpp compiles and executes with a zero return code. </p>
 </div></div>
 </div>
@@ -256,7 +254,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sat Sep 10 2011 15:30:43 for logog by
+    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </pre></div><p>Additionally, make sure to add logog's /include path into the directories your build process searches.</p>
 <p>At the beginning of your program, initialize logog exactly once, with this macro:</p>
 <div class="fragment"><pre class="fragment"><a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
-</pre></div><p>To tell logog what type of output should be logged, you must first create a <a class="el" href="classlogog_1_1_cerr.html">logog::Cerr</a>, a <a class="el" href="classlogog_1_1_cout.html" title="[Cout]">logog::Cout</a>, or a <a class="el" href="classlogog_1_1_log_file.html">logog::LogFile</a> object. Once this object is instantiated, all messages will be routed to that target. For example:</p>
+</pre></div><p>To tell logog what type of output should be logged, you must first create a <a class="el" href="classlogog_1_1_cerr.html">logog::Cerr</a>, a <a class="el" href="classlogog_1_1_cout.html">logog::Cout</a>, or a <a class="el" href="classlogog_1_1_log_file.html">logog::LogFile</a> object. Once this object is instantiated, all messages will be routed to that target. For example:</p>
 <div class="fragment"><pre class="fragment"><a class="code" href="classlogog_1_1_cerr.html">logog::Cerr</a> errOutput;
 </pre></div><p>To log a message in your code, use one of the following macros, in order of severity. Arguments are assumed to be sprintf-style varargs:</p>
 <div class="fragment"><pre class="fragment">
@@ -171,7 +171,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sat Sep 10 2011 15:30:43 for logog by
+    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
