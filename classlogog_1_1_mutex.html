@@ -129,8 +129,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a4b5dfbd24f5bc4c03b24b2da362f66d5">Mutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a205e2c334b25cb96e4f1303a4fde6b0c">~Mutex</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a74d183962cfb39d8c50382b496c82703">Lock</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a91b88a5d5517cb042431c4ea24d8ecb7">Unlock</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a49de32bcaa2fd8e6f48cfa60e2fc8ae7">MutexLock</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a5a520565b995e1411f8e8091691050b7">MutexUnlock</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_mutex.html#a3113161ee1f67fadbe7fb109c6bb80d6">Mutex</a> (const <a class="el" href="classlogog_1_1_mutex.html">Mutex</a> &amp;)</td></tr>
@@ -192,23 +192,6 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a74d183962cfb39d8c50382b496c82703"></a><!-- doxytag: member="logog::Mutex::Lock" ref="a74d183962cfb39d8c50382b496c82703" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Lock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Acquires a lock on the mutex. Only one thread is permitted to lock the mutex at one time. </p>
-
-</div>
-</div>
 <a class="anchor" id="a4f59e6119713da10d741a0db5a79c710"></a><!-- doxytag: member="logog::Mutex::LOGOG_MUTEX" ref="a4f59e6119713da10d741a0db5a79c710" args="(m_Mutex)" -->
 <div class="memitem">
 <div class="memproto">
@@ -226,6 +209,40 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a49de32bcaa2fd8e6f48cfa60e2fc8ae7"></a><!-- doxytag: member="logog::Mutex::MutexLock" ref="a49de32bcaa2fd8e6f48cfa60e2fc8ae7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MutexLock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Acquires a lock on the mutex. Only one thread is permitted to lock the mutex at one time. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5a520565b995e1411f8e8091691050b7"></a><!-- doxytag: member="logog::Mutex::MutexUnlock" ref="a5a520565b995e1411f8e8091691050b7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MutexUnlock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Releases the lock on the mutex. </p>
+
+</div>
+</div>
 <a class="anchor" id="ac9483d472d75f2193cd715d8127068a5"></a><!-- doxytag: member="logog::Mutex::operator=" ref="ac9483d472d75f2193cd715d8127068a5" args="(const Mutex &amp;)" -->
 <div class="memitem">
 <div class="memproto">
@@ -240,23 +257,6 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a91b88a5d5517cb042431c4ea24d8ecb7"></a><!-- doxytag: member="logog::Mutex::Unlock" ref="a91b88a5d5517cb042431c4ea24d8ecb7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Unlock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Releases the lock on the mutex. </p>
 
 </div>
 </div>
@@ -284,7 +284,7 @@ Protected Member Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
+    <li class="footer">Generated on Fri Sep 23 2011 19:20:34 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -96,7 +96,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p>Multiple memory allocations and frees are the bane of performance-oriented code. STL is particularly naughty in this regard.</p>
 <p>To that end, logog attempts to do as few allocations as possible at run-time. <a class="el" href="classlogog_1_1_message.html">Message</a> objects are allocated exactly once, when a message macro is run for the first time. Publisher-subscriber negotiation occurs at this time as well, which is when the pub-sub lists in the <a class="el" href="classlogog_1_1_filter.html">Filter</a> objects get updated. This process happens only once per message, regardless of the number of times the message is invoked. Therefore, messages that are never executed never allocate any memory, and the memory-allocation penalty for a message is incurred exactly once, the first time the message is transmitted.</p>
-<p>A platform-specific vsprintf() type function is used to convert the varargs in a message into a final destination string. I looked at this problem for quite a while, and it seems that this method provides the best performance guarantees without relying on a large external library, such as Boost, or increasing the code size significantly.</p>
+<p>A platform-specific vsprintf() type function is used to convert the varargs in a message into a final destination string. I looked at this problem for quite a while, and it seems that this method provides the best performance guarantees without relying on a large external library, such as Boost, or increasing the code size significantly. A template-based approach for running vsprintf type functions would theoretically be faster than calling vsprintf(); however, this would require the inclusion of a significant amount of template-based code to handle all the possible situations that vsprintf() must deal with. This would likely double the existing code size; so I erred on the size of keeping logog smaller and more self-contained.</p>
+<p>If, after all that, you want to replace vsprintf() for your platform, it is called in only one place in the logog source code (in String.cpp).</p>
 <p>Because logog spends so much time passing strings around, logog provides a custom string class that internally represents strings as fixed buffers. This helps reduce the repeated allocations and frees that std::string is notorious for.</p>
 <p>Because most logging outputs can be slow, logog provides a <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a> class to help with <a class="el" href="deferredoutput.html">Deferring logging output</a> . </p>
 </div></div>
@@ -118,7 +119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
+    <li class="footer">Generated on Fri Sep 23 2011 19:20:34 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

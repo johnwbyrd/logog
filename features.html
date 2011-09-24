@@ -94,7 +94,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Features </div>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><p>logog supports the following features:</p>
+<div class="textblock"><p>Why yet another logging library? Because professional games have very specific logging requirements that aren't met by any previous logging system.</p>
+<p>logog supports the following features:</p>
 <ul>
 <li>High performance. It is possible to disable all logging functionality entirely within logog. In this case logog incurs zero performance penalty on executing code. All logging functions compile to no-ops in the case where the logging level is set to disabled. When logging is enabled, the do-not-log control path requires exactly one boolean comparison. All performance-critical operations have been constructed to have constant time or near constant time performance. logog was designed to assume that no memory or CPU time is available for logging on a final release build of software. When compiling in final release mode, logog is designed to compile completely away -- zero memory allocations, zero CPU cycles spent.</li>
 </ul>
@@ -117,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Extremely configurable memory usage and policy. All memory allocations happen after initialization time via a user-supplied memory manager (or the default std::allocator). In other words, you can configure ALL memory allocations to occur from custom malloc() and free() style functions of your own authorship.</li>
 </ul>
 <ul>
-<li>All allocated memory is freed after the shutdown -- logog does not leak memory.</li>
+<li>All allocated memory is freed after the shutdown -- logog does not leak memory. A special compilation flag (LOGOG_LEAK_DETECTION) audits every allocation and free within logog to discover and fix memory leaks therein.</li>
 </ul>
 <ul>
 <li>Support for POSIX-type and Windows-type operating systems. Support for other OSes is straightforward; all OS dependencies are encapsulated in macros. Support for proprietary game consoles is implicit or latent.</li>
@@ -130,9 +131,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <ul>
 <li>Unicode (wide-character) support for all strings; define LOGOG_UNICODE and all strings go from char-based to wchar-based.</li>
-</ul>
-<ul>
-<li>No memory leaks. A special compilation flag (LOGOG_LEAK_DETECTION) audits every allocation and free within logog to discover and fix memory leaks therein.</li>
 </ul>
 <ul>
 <li>Verbose documentation. By far the best documented logging system available. logog uses doxygen comments throughout.</li>
@@ -159,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
+    <li class="footer">Generated on Fri Sep 23 2011 19:20:34 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
