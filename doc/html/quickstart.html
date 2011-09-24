@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Quick start </div>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><p>The logog system is a set of C++ header files. There is no library that needs to be compiled or linked.</p>
+<div class="textblock"><p>The logog system is a set of C++ header files and C++ source files. To use them, compile all the C++ source files into a single library. The compiler will need to reference the files in the include directory when compiling the logog library.</p>
 <p>To use the logging library in your own project, put the following line at the top of your source file(s):</p>
 <div class="fragment"><pre class="fragment"><span class="preprocessor">#include &quot;<a class="code" href="logog_8hpp.html">logog.hpp</a>&quot;</span>
 </pre></div><p>Additionally, make sure to add logog's /include path into the directories your build process searches.</p>
@@ -150,9 +150,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <span class="keyword">const</span> <span class="keywordtype">char</span> *pMessage = <span class="stringliteral">&quot;message&quot;</span>
 <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>( <span class="stringliteral">&quot;This is an informational %s.&quot;</span>, pMessage );
 </pre></div><p>At this point, your <a class="el" href="classlogog_1_1_target.html">Target</a> object (in this case, the errOutput object) should be destroyed. Falling out of scope is the easiest way to achieve this.</p>
-<p>Lastly, terminate your program and logging with the following message:</p>
+<p>Then, terminate your program and logging with the following message:</p>
 <div class="fragment"><pre class="fragment"><a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
-</pre></div> </div></div>
+</pre></div><p>Lastly, compile and link with the logog library you created earlier. </p>
+</div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
@@ -171,7 +172,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Fri Sep 23 2011 19:20:34 for logog by
+    <li class="footer">Generated on Fri Sep 23 2011 19:43:33 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

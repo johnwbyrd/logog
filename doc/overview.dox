@@ -5,7 +5,7 @@ namespace logog {
 
 \htmlonly
 <a href="http://www.github.com/johnwbyrd/logog">
-<img src="../download.jpg" width=120 height=90 alt="Download logog" >
+<img src="download.jpg" width=120 height=90 alt="Download logog" >
 </a>
 \endhtmlonly
 
@@ -136,8 +136,10 @@ with proper attribution to logog's authors (Gigantic Software).
 
 \page quickstart Quick start 
 
-The logog system is a set of C++ header files.  There is no library 
-that needs to be compiled or linked.
+The logog system is a set of C++ header files and C++ source files.
+To use them, compile all the C++ source files into a single library.
+The compiler will need to reference the files in the include directory
+when compiling the logog library.
 
 To use the logging library in your own project, put the following line 
 at the top of your source file(s): 
@@ -213,11 +215,13 @@ INFO( "This is an informational %s.", pMessage );
 At this point, your Target object (in this case, the errOutput object) should
 be destroyed.  Falling out of scope is the easiest way to achieve this.
 
-Lastly, terminate your program and logging with the following message:
+Then, terminate your program and logging with the following message:
 
 \code
 LOGOG_SHUTDOWN();
 \endcode
+
+Lastly, compile and link with the logog library you created earlier.
 
 \page loggingevents Logging events in your code
 
