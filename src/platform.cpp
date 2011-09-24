@@ -1,5 +1,4 @@
- 
-/* 
+ /* 
  * \file platform.cpp
  */
 

@@ -5,6 +5,9 @@
 	Name="logog"
 	ProjectGUID="{85857E80-2122-4DD8-9BA9-B90CC10D65B0}"
 	RootNamespace="logog"
+	SccProjectName="Perforce Project"
+	SccLocalPath=".."
+	SccProvider="MSSCCI:Perforce SCM"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -164,6 +167,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\lobject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\lstring.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\message.cpp"
 				>
 			</File>
@@ -176,10 +187,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\object.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\platform.cpp"
 				>
 			</File>
@@ -189,10 +196,6 @@
 			</File>
 			<File
 				RelativePath=".\statics.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\string.cpp"
 				>
 			</File>
 			<File

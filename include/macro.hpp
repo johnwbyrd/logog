@@ -41,13 +41,13 @@ namespace logog
 #define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE_NO_VA( level, group, cat, msg ) \
 { \
 	Mutex *___pMCM = &GetMessageCreationMutex(); \
-	___pMCM->Lock(); \
+	___pMCM->MutexLock(); \
 	static logog::Message *TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \
 		__FILE__, __LINE__, group, cat, msg ); \
-	___pMCM->Unlock(); \
-	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.Lock(); \
+	___pMCM->MutexUnlock(); \
+	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexLock(); \
 	TOKENPASTE(_logog_,__LINE__)->Transmit(); \
-	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.Unlock(); \
+	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexUnlock(); \
 }
 
 /** This macro is used when a message is instantiated with varargs provided
@@ -57,15 +57,15 @@ namespace logog
   */
 #define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \
 { \
-	Mutex *___pMCM = &GetMessageCreationMutex(); \
-	___pMCM->Lock(); \
+	::logog::Mutex *___pMCM = &::logog::GetMessageCreationMutex(); \
+	___pMCM->MutexLock(); \
 	static logog::Message * TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \
 	__FILE__, __LINE__, group, cat ); \
-	___pMCM->Unlock(); \
-	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.Lock(); \
+	___pMCM->MutexUnlock(); \
+	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexLock(); \
 	TOKENPASTE(_logog_,__LINE__)->Format( formatstring, ##__VA_ARGS__ ); \
 	TOKENPASTE(_logog_,__LINE__)->Transmit(); \
-	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.Unlock(); \
+	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexUnlock(); \
 }
 
 /** Calls LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE with the current LOGOG_GROUP and

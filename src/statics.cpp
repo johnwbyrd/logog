@@ -1,5 +1,4 @@
- 
-/* 
+ /* 
  * \file statics.cpp
  */
 

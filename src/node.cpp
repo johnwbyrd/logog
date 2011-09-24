@@ -130,21 +130,21 @@ namespace logog {
 
 		bool bWasPublished = false;
 
-		nodes.Lock();
+		nodes.MutexLock();
 		it = nodes.begin();
 
 		while ( it != nodes.end() )
 		{
-			nodes.Unlock();
+			nodes.MutexUnlock();
 
 			if ( PublishTo( **it ) == true )
 				bWasPublished = true;
 
-			nodes.Lock();
+			nodes.MutexLock();
 			it++;
 		}
 
-		nodes.Unlock();
+		nodes.MutexUnlock();
 
 		return bWasPublished;
 	}
@@ -180,21 +180,21 @@ namespace logog {
 
 		bool bWasUnpublished = false;
 
-		nodes.Lock();
+		nodes.MutexLock();
 		it = nodes.begin();
 
 		while ( it != nodes.end() )
 		{
-			nodes.Unlock();
+			nodes.MutexUnlock();
 
 			if ( UnpublishTo( **it ) == true )
 				bWasUnpublished = true;
 
-			nodes.Lock();
+			nodes.MutexLock();
 			it++;
 		}
 
-		nodes.Unlock();
+		nodes.MutexUnlock();
 
 		return bWasUnpublished;
 	}
@@ -224,20 +224,20 @@ namespace logog {
 
 		bool bWasSubscribed = false;
 
-		nodes.Lock();
+		nodes.MutexLock();
 		it = nodes.begin();
 
 		while ( it != nodes.end() )
 		{
-			nodes.Unlock();
+			nodes.MutexUnlock();
 			if ( SubscribeTo( **it ) == true )
 				bWasSubscribed = true;
 
-			nodes.Lock();
+			nodes.MutexLock();
 			it++;
 		}
 
-		nodes.Unlock();
+		nodes.MutexUnlock();
 
 		return bWasSubscribed;
 	}
@@ -273,20 +273,20 @@ namespace logog {
 
 		bool bWasUnsubscribed = false;
 
-		nodes.Lock();
+		nodes.MutexLock();
 		it = nodes.begin();
 
 		while ( it != nodes.end() )
 		{
-			nodes.Unlock();
+			nodes.MutexUnlock();
 			if ( UnsubscribeTo( **it ) == true )
 				bWasUnsubscribed = true;
 
-			nodes.Lock();
+			nodes.MutexLock();
 			it++;
 		}
 
-		nodes.Unlock();
+		nodes.MutexUnlock();
 
 		return bWasUnsubscribed;
 	}

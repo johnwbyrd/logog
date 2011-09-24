@@ -51,9 +51,9 @@ public:
     Mutex();
     ~Mutex();
     /** Acquires a lock on the mutex.  Only one thread is permitted to lock the mutex at one time. */
-    void Lock();
+    void MutexLock();
     /** Releases the lock on the mutex. */
-    void Unlock();
+	void MutexUnlock();
 
 protected:
     Mutex(const Mutex &);

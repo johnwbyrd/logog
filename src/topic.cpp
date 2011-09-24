@@ -85,7 +85,7 @@ namespace logog {
 		/* Iterate over the subscribers, but only addressing the subscribers group while locking it */
 		Topic *pCurrentTopic;
 		Node *pCurrentNode;
-		m_Subscribers.Lock();
+		m_Subscribers.MutexLock();
 		int nError = 0;
 
 		while ( it != m_Subscribers.end() )
@@ -97,16 +97,16 @@ namespace logog {
 
 			pCurrentTopic = ( Topic * )pCurrentNode;
 
-			m_Subscribers.Unlock();
+			m_Subscribers.MutexUnlock();
 
 			if ( pCurrentTopic )
 				nError += pCurrentTopic->Receive( node );
 
-			m_Subscribers.Lock();
+			m_Subscribers.MutexLock();
 			it++;
 		}
 
-		m_Subscribers.Unlock();
+		m_Subscribers.MutexUnlock();
 
 		return nError;
 	}

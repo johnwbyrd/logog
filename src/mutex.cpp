@@ -28,12 +28,12 @@ namespace logog {
 		LOGOG_MUTEX_DELETE(&m_Mutex);
 	}
 
-	void Mutex::Lock()
+	void Mutex::MutexLock()
 	{
 		LOGOG_MUTEX_LOCK(&m_Mutex);
 	}
 
-	void Mutex::Unlock()
+	void Mutex::MutexUnlock()
 	{
 		LOGOG_MUTEX_UNLOCK(&m_Mutex);
 	}
@@ -41,23 +41,23 @@ namespace logog {
 	ScopedLock::ScopedLock( Mutex &mutex )
 	{
 		m_pMutex = &mutex;
-		m_pMutex->Lock();
+		m_pMutex->MutexLock();
 	}
 
 	ScopedLock::~ScopedLock()
 	{
-		m_pMutex->Unlock();
+		m_pMutex->MutexUnlock();
 	}
 
 #ifdef LOGOG_LEAK_DETECTION
 	Mutex s_AllocationsMutex;
 	void LockAllocationsMutex()
 	{
-		s_AllocationsMutex.Lock();
+		s_AllocationsMutex.MutexLock();
 	}
 	void UnlockAllocationsMutex()
 	{
-		s_AllocationsMutex.Unlock();
+		s_AllocationsMutex.MutexUnlock();
 	}
 #endif // LOGOG_LEAK_DETECTION
 

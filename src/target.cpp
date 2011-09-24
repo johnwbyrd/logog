@@ -1,11 +1,10 @@
- 
-/* 
+ /* 
  * \file target.cpp
  */
 
-#include <iostream>
-
 #include "logog.hpp"
+
+#include <iostream>
 
 namespace logog {
 

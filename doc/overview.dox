@@ -3,9 +3,15 @@ namespace logog {
 /*!
 \mainpage logog - logger optimized for games
 
+\htmlonly
+<a href="http://www.github.com/johnwbyrd/logog">
+<img src="../download.jpg" width=120 height=90 alt="Download logog" >
+</a>
+\endhtmlonly
+
 \section introduction Introduction 
 
-logog is a set of high-performance C++ macros and templates to 
+logog is a portable C++ library to 
 facilitate logging of real-time events in performance-oriented 
 applications, such as games. It is especially appropriate for projects 
 that have constrained memory and constrained CPU requirements. 
@@ -50,6 +56,10 @@ within five minutes by reading the \ref quickstart section.
 
 \page features Features 
 
+Why yet another logging library?  Because professional games have
+very specific logging requirements that aren't met by any previous
+logging system.
+
 logog supports the following features: 
 
 - High performance. It is possible to disable all logging functionality 
@@ -62,7 +72,7 @@ have constant time or near constant time performance. logog was designed
 to assume that no memory or CPU time is available for logging on a final 
 release build of software. When compiling in final release mode, logog 
 is designed to compile completely away -- zero memory allocations, zero 
-CPU cycles spent. 
+CPU cycles spent.
 
 - Logging to arbitrary destinations. Log messages can be sent to stdout, 
 stderr, a log file or into memory, or any combination of these. Logging 
@@ -99,7 +109,8 @@ memory allocations to occur from custom malloc() and free() style
 functions of your own authorship. 
 
 - All allocated memory is freed after the shutdown -- logog does not 
-leak memory. 
+leak memory.  A special compilation flag (LOGOG_LEAK_DETECTION) audits
+every allocation and free within logog to discover and fix memory leaks therein.
 
 - Support for POSIX-type and Windows-type operating systems. Support for 
 other OSes is straightforward; all OS dependencies are encapsulated in 
@@ -115,10 +126,6 @@ multithreaded environment.
 
 - Unicode (wide-character) support for all strings; define LOGOG_UNICODE 
 and all strings go from char-based to wchar-based. 
-
-- No memory leaks. A special compilation flag (LOGOG_LEAK_DETECTION) 
-audits every allocation and free within logog to discover and fix memory 
-leaks therein. 
 
 - Verbose documentation.  By far the best documented logging system
 available.  logog uses doxygen comments throughout.
@@ -508,7 +515,15 @@ A platform-specific vsprintf() type function is used to convert the varargs
 in a message into a final destination string.  I looked at this problem
 for quite a while, and it seems that this method provides the best performance
 guarantees without relying on a large external library, such as Boost, or
-increasing the code size significantly.
+increasing the code size significantly.  A template-based approach for 
+running vsprintf type functions would theoretically be faster than calling
+vsprintf(); however, this would require the inclusion of a significant
+amount of template-based code to handle all the possible situations that
+vsprintf() must deal with.  This would likely double the existing code size;
+so I erred on the size of keeping logog smaller and more self-contained.
+
+If, after all that, you want to replace vsprintf() for your platform, it is
+called in only one place in the logog source code (in String.cpp).
 
 Because logog spends so much time passing strings around, logog provides a
 custom string class that internally represents strings as fixed buffers.

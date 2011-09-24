@@ -45,16 +45,16 @@ class Object
 {
 public:
     Object();
-    /* Some builds complain about ~Object() being virtual... sorry lint :( */
+	/* Some builds complain about ~Object() being virtual... sorry lint :( */
     virtual ~Object();
     /** Initializes an object of size new. */
-    void *operator new( size_t nSize );
+    static void *operator new( size_t nSize );
     /** Initializes an array of size new. */
-    void *operator new[](size_t nSize);
+    static void *operator new[](size_t nSize);
     /** Deletes an object pointed to by ptr. */
-    void operator delete( void *ptr );
+    static void operator delete( void *ptr );
     /** Deletes an object array pointed to by ptr. */
-    void operator delete[]( void *ptr );
+    static void operator delete[]( void *ptr );
 
     /** Allocates nSize bytes of memory.  You must call logog::Initialize() before calling this function.
      * \sa Initialize()

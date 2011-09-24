@@ -519,15 +519,15 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">{ \
-        Mutex *___pMCM = &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">GetMessageCreationMutex</a>(); \
-        ___pMCM-&gt;Lock(); \
+        <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">::logog::Mutex</a> *___pMCM = &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">::logog::GetMessageCreationMutex</a>(); \
+        ___pMCM-&gt;MutexLock(); \
         static <a class="code" href="classlogog_1_1_message.html">logog::Message</a> * <a class="code" href="macro_8hpp.html#aaf9a1b8a5982f1fdaecbfedc30afc3a3">TOKENPASTE</a>(_logog_,__LINE__) = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_message.html">logog::Message</a>( level, \
         __FILE__, __LINE__, group, cat ); \
-        ___pMCM-&gt;Unlock(); \
-        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Lock(); \
+        ___pMCM-&gt;MutexUnlock(); \
+        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \
         TOKENPASTE(_logog_,__LINE__)-&gt;Format( formatstring, ##__VA_ARGS__ ); \
         TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \
-        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Unlock(); \
+        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \
 }
 </pre></div><p>This macro is used when a message is instantiated with varargs provided by the user. It locks a global mutex, creates the message, locks it, formats the message string inside the message, transmits it, and releases all locks. </p>
 
@@ -571,13 +571,13 @@ Defines</h2></td></tr>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment">{ \
         Mutex *___pMCM = &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">GetMessageCreationMutex</a>(); \
-        ___pMCM-&gt;Lock(); \
+        ___pMCM-&gt;MutexLock(); \
         static <a class="code" href="classlogog_1_1_message.html">logog::Message</a> *<a class="code" href="macro_8hpp.html#aaf9a1b8a5982f1fdaecbfedc30afc3a3">TOKENPASTE</a>(_logog_,__LINE__) = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_message.html">logog::Message</a>( level, \
                 __FILE__, __LINE__, group, cat, msg ); \
-        ___pMCM-&gt;Unlock(); \
-        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Lock(); \
+        ___pMCM-&gt;MutexUnlock(); \
+        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \
         TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \
-        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Unlock(); \
+        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \
 }
 </pre></div><p>This macro is used when a message is instantiated without any varargs provided by the user. It locks a global mutex, creates the message, locks it, transmits it, and releases all locks. </p>
 
@@ -940,7 +940,7 @@ Defines</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
+    <li class="footer">Generated on Fri Sep 23 2011 19:20:34 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

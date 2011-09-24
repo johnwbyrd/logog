@@ -127,26 +127,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a><a class="code" href="macro_8hpp.html#ae81348a532c05a2c2036e885a546306d">00041</a> <span class="preprocessor">#define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE_NO_VA( level, group, cat, msg ) \</span>
 <a name="l00042"></a>00042 <span class="preprocessor">{ \</span>
 <a name="l00043"></a>00043 <span class="preprocessor">        Mutex *___pMCM = &amp;GetMessageCreationMutex(); \</span>
-<a name="l00044"></a>00044 <span class="preprocessor">        ___pMCM-&gt;Lock(); \</span>
+<a name="l00044"></a>00044 <span class="preprocessor">        ___pMCM-&gt;MutexLock(); \</span>
 <a name="l00045"></a>00045 <span class="preprocessor">        static logog::Message *TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \</span>
 <a name="l00046"></a>00046 <span class="preprocessor">                __FILE__, __LINE__, group, cat, msg ); \</span>
-<a name="l00047"></a>00047 <span class="preprocessor">        ___pMCM-&gt;Unlock(); \</span>
-<a name="l00048"></a>00048 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Lock(); \</span>
+<a name="l00047"></a>00047 <span class="preprocessor">        ___pMCM-&gt;MutexUnlock(); \</span>
+<a name="l00048"></a>00048 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \</span>
 <a name="l00049"></a>00049 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \</span>
-<a name="l00050"></a>00050 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Unlock(); \</span>
+<a name="l00050"></a>00050 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \</span>
 <a name="l00051"></a>00051 <span class="preprocessor">}</span>
 <a name="l00052"></a>00052 <span class="preprocessor"></span>
 <a name="l00058"></a><a class="code" href="macro_8hpp.html#afd326cadf1539665aedeae407ddb13b3">00058</a> <span class="preprocessor">#define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \</span>
 <a name="l00059"></a>00059 <span class="preprocessor">{ \</span>
-<a name="l00060"></a>00060 <span class="preprocessor">        Mutex *___pMCM = &amp;GetMessageCreationMutex(); \</span>
-<a name="l00061"></a>00061 <span class="preprocessor">        ___pMCM-&gt;Lock(); \</span>
+<a name="l00060"></a>00060 <span class="preprocessor">        ::logog::Mutex *___pMCM = &amp;::logog::GetMessageCreationMutex(); \</span>
+<a name="l00061"></a>00061 <span class="preprocessor">        ___pMCM-&gt;MutexLock(); \</span>
 <a name="l00062"></a>00062 <span class="preprocessor">        static logog::Message * TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \</span>
 <a name="l00063"></a>00063 <span class="preprocessor">        __FILE__, __LINE__, group, cat ); \</span>
-<a name="l00064"></a>00064 <span class="preprocessor">        ___pMCM-&gt;Unlock(); \</span>
-<a name="l00065"></a>00065 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Lock(); \</span>
+<a name="l00064"></a>00064 <span class="preprocessor">        ___pMCM-&gt;MutexUnlock(); \</span>
+<a name="l00065"></a>00065 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \</span>
 <a name="l00066"></a>00066 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;Format( formatstring, ##__VA_ARGS__ ); \</span>
 <a name="l00067"></a>00067 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \</span>
-<a name="l00068"></a>00068 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.Unlock(); \</span>
+<a name="l00068"></a>00068 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \</span>
 <a name="l00069"></a>00069 <span class="preprocessor">}</span>
 <a name="l00070"></a>00070 <span class="preprocessor"></span>
 <a name="l00074"></a><a class="code" href="macro_8hpp.html#a39044cc9ac38034152fc66e878b8c943">00074</a> <span class="preprocessor">#define LOGOG_LEVEL_MESSAGE( level, formatstring, ... ) \</span>
@@ -294,7 +294,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Tue Sep 13 2011 15:25:55 for logog by
+    <li class="footer">Generated on Fri Sep 23 2011 19:20:34 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -1,3 +1,7 @@
+/* 
+ * \file message.cpp
+ */
+
 #include "logog.hpp"
 
 namespace logog
@@ -49,16 +53,5 @@ namespace logog
 		}
 	}
 };
- 
-/* 
- * \file message.cpp
- */
 
-#include "logog.hpp"
-
-namespace logog {
-
-
-
-}
 
