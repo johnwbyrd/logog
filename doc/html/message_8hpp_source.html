@@ -106,28 +106,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor"></span>
 <a name="l00008"></a>00008 <span class="keyword">namespace </span>logog
 <a name="l00009"></a>00009 {
-<a name="l00010"></a><a class="code" href="classlogog_1_1_message.html">00010</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_message.html">Message</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_checkpoint.html">Checkpoint</a>
-<a name="l00011"></a>00011 {
-<a name="l00012"></a>00012 <span class="keyword">public</span>:
-<a name="l00013"></a>00013     <a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
-<a name="l00014"></a>00014              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
-<a name="l00015"></a>00015              <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
-<a name="l00016"></a>00016              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
-<a name="l00017"></a>00017              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
-<a name="l00018"></a>00018              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
-<a name="l00019"></a>00019              <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f );
-<a name="l00020"></a>00020 
-<a name="l00026"></a>00026     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_message.html#a5c39b281e7c9af999789af4014f68752">Republish</a>();
+<a name="l00010"></a>00010 
+<a name="l00014"></a><a class="code" href="classlogog_1_1_message.html">00014</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_message.html">Message</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_checkpoint.html">Checkpoint</a>
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00017"></a>00017     <a class="code" href="classlogog_1_1_topic.html#ac1ca012ab1c4026cd6bcc4a8be475d8b">Message</a>( <span class="keyword">const</span> <a class="code" href="group__levelsettings.html#gaf80bdeb91141e87905a910d7050318f0" title="[Level Constants]">LOGOG_LEVEL_TYPE</a> level = <a class="code" href="group__levelsettings.html#ga6672f690f0ad7808f32817f6da3242d9">LOGOG_LEVEL_ALL</a>,
+<a name="l00018"></a>00018              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName = NULL,
+<a name="l00019"></a>00019              <span class="keyword">const</span> <span class="keywordtype">int</span> nLineNumber = 0,
+<a name="l00020"></a>00020              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup = NULL,
+<a name="l00021"></a>00021              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory = NULL,
+<a name="l00022"></a>00022              <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage = NULL,
+<a name="l00023"></a>00023              <span class="keyword">const</span> <span class="keywordtype">double</span> dTimestamp = 0.0f,
+<a name="l00024"></a>00024                          <span class="keywordtype">bool</span> *bIsCreated = NULL );
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026         <span class="keyword">virtual</span> <a class="code" href="classlogog_1_1_message.html#adf3bb2d667e5391d55d9e711cdbf7da2">~Message</a>();
 <a name="l00027"></a>00027 
-<a name="l00028"></a><a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">00028</a>         <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> <a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">m_Transmitting</a>;
-<a name="l00029"></a>00029 };
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="keyword">extern</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">GetMessageCreationMutex</a>();
-<a name="l00032"></a>00032 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#aba1d0c0caf46da13d3fc7aed441d94ef">DestroyMessageCreationMutex</a>();
-<a name="l00033"></a>00033 };
+<a name="l00033"></a>00033     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_message.html#a5c39b281e7c9af999789af4014f68752">Republish</a>();
 <a name="l00034"></a>00034 
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="preprocessor">#endif // __LOGOG_MESSAGE_HPP_</span>
+<a name="l00035"></a><a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">00035</a>         <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> <a class="code" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">m_Transmitting</a>;
+<a name="l00036"></a><a class="code" href="classlogog_1_1_message.html#aaaec204cbfa1f23eca6e7a80b73475ca">00036</a>         <span class="keywordtype">bool</span> *<a class="code" href="classlogog_1_1_message.html#aaaec204cbfa1f23eca6e7a80b73475ca">m_pbIsCreated</a>;
+<a name="l00037"></a>00037 };
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="keyword">extern</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">GetMessageCreationMutex</a>();
+<a name="l00040"></a>00040 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#aba1d0c0caf46da13d3fc7aed441d94ef">DestroyMessageCreationMutex</a>();
+<a name="l00041"></a>00041 };
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="preprocessor">#endif // __LOGOG_MESSAGE_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -148,7 +153,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Fri Sep 23 2011 19:43:32 for logog by
+    <li class="footer">Generated on Fri Sep 30 2011 08:53:52 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

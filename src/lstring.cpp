@@ -333,9 +333,10 @@ namespace logog {
 			nAttemptedSize *= 2;
 		}
 
+		m_bIsConst = false;
 		assign( pszFormatted );
-
-		/* We just allocated this string, which means it needs to be deallocated at shutdown time. */
+		/* We just allocated this string, which means it needs to be deallocated at shutdown time.  The previous function
+		 * may have changed it... */
 		m_bIsConst = false;
 	}
 

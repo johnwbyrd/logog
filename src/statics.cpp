@@ -41,16 +41,16 @@ namespace logog {
 		Reset();
 	}
 
+	Statics s_Statics;
+
 	Statics &Static()
 	{
-		static Statics *pStatics = new Statics();
-		return *pStatics;
+		return s_Statics;
 	}
 
 	void DestroyStatic()
 	{
-		Statics *pStatics = &Static();
-		delete pStatics;
+		s_Statics.~Statics();
 	}
 
 }

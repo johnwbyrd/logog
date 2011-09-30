@@ -127,14 +127,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a7c73e92d649df6d66fc19c0f706ae66a">Message</a> (const LOGOG_LEVEL_TYPE level=LOGOG_LEVEL_ALL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName=NULL, const int nLineNumber=0, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup=NULL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory=NULL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage=NULL, const double dTimestamp=0.0f)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a0329f3b5440d1520d415d37728bae354">Message</a> (const LOGOG_LEVEL_TYPE level=LOGOG_LEVEL_ALL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName=NULL, const int nLineNumber=0, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sGroup=NULL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sCategory=NULL, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sMessage=NULL, const double dTimestamp=0.0f, bool *bIsCreated=NULL)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#adf3bb2d667e5391d55d9e711cdbf7da2">~Message</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a5c39b281e7c9af999789af4014f68752">Republish</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#a412b2f3aa94ab803fdbad947a5ee9381">m_Transmitting</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_message.html#aaaec204cbfa1f23eca6e7a80b73475ca">m_pbIsCreated</a></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7c73e92d649df6d66fc19c0f706ae66a"></a><!-- doxytag: member="logog::Message::Message" ref="a7c73e92d649df6d66fc19c0f706ae66a" args="(const LOGOG_LEVEL_TYPE level=LOGOG_LEVEL_ALL, const LOGOG_CHAR *sFileName=NULL, const int nLineNumber=0, const LOGOG_CHAR *sGroup=NULL, const LOGOG_CHAR *sCategory=NULL, const LOGOG_CHAR *sMessage=NULL, const double dTimestamp=0.0f)" -->
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>A message is a piece of text that's actually transmitted to outputs. Messages can be asked to <a class="el" href="classlogog_1_1_topic.html#ab0137c02f1d5692fb0a9cb0899b9fd62">Transmit()</a> themselves once they are created. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a0329f3b5440d1520d415d37728bae354"></a><!-- doxytag: member="logog::Message::Message" ref="a0329f3b5440d1520d415d37728bae354" args="(const LOGOG_LEVEL_TYPE level=LOGOG_LEVEL_ALL, const LOGOG_CHAR *sFileName=NULL, const int nLineNumber=0, const LOGOG_CHAR *sGroup=NULL, const LOGOG_CHAR *sCategory=NULL, const LOGOG_CHAR *sMessage=NULL, const double dTimestamp=0.0f, bool *bIsCreated=NULL)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -178,12 +182,34 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>dTimestamp</em> = <code>0.0f</code>&#160;</td>
+          <td class="paramname"><em>dTimestamp</em> = <code>0.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>bIsCreated</em> = <code>NULL</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adf3bb2d667e5391d55d9e711cdbf7da2"></a><!-- doxytag: member="logog::Message::~Message" ref="adf3bb2d667e5391d55d9e711cdbf7da2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ~<a class="el" href="classlogog_1_1_message.html">Message</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -210,6 +236,19 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aaaec204cbfa1f23eca6e7a80b73475ca"></a><!-- doxytag: member="logog::Message::m_pbIsCreated" ref="aaaec204cbfa1f23eca6e7a80b73475ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool* <a class="el" href="classlogog_1_1_message.html#aaaec204cbfa1f23eca6e7a80b73475ca">m_pbIsCreated</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a412b2f3aa94ab803fdbad947a5ee9381"></a><!-- doxytag: member="logog::Message::m_Transmitting" ref="a412b2f3aa94ab803fdbad947a5ee9381" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -247,7 +286,7 @@ Public Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Fri Sep 23 2011 19:43:33 for logog by
+    <li class="footer">Generated on Fri Sep 30 2011 08:53:52 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

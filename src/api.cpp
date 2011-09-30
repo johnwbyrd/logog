@@ -44,6 +44,11 @@ int Shutdown( )
 #else
     Static().Reset();
 #endif
+
+#ifdef LOGOG_LEAK_DETECTION
+	ReportMemoryAllocations();
+#endif
+
     return 0;
 }
 

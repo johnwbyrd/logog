@@ -27,18 +27,27 @@ typedef void *PointerType;
 typedef LOGOG_UNORDERED_MAP< PointerType, size_t > AllocationsType;
 
 /** All currently outstanding memory allocations, including their size.  */
-static AllocationsType s_Allocations;
+extern AllocationsType s_Allocations;
 
 /** A global function to lock the global allocations mutex.  We must do this as a static
  ** void because Mutexes depend on Objects.  This should probably belong in a class, but then
  ** we get recursive class definitions.
  ** */
-static void LockAllocationsMutex();
+extern void LockAllocationsMutex();
 
 /** A global function to unlock the global allocations mutex.  We must do this as a static
  ** void because Mutexes depend on Objects. */
-static void UnlockAllocationsMutex();
+extern void UnlockAllocationsMutex();
 #endif // LOGOG_LEAK_DETECTION
+
+#ifdef new
+#define LOGOG_PREVIOUS_DEFINITION_OF_NEW new
+#undef new
+#endif
+#ifdef delete
+#define LOGOG_PREVIOUS_DEFINITION_OF_DELETE delete
+#undef delete
+#endif	//delete
 
 /** Base class for all objects allocated with logog. */
 class Object
@@ -48,13 +57,13 @@ public:
 	/* Some builds complain about ~Object() being virtual... sorry lint :( */
     virtual ~Object();
     /** Initializes an object of size new. */
-    static void *operator new( size_t nSize );
+    void *operator new( size_t nSize );
     /** Initializes an array of size new. */
-    static void *operator new[](size_t nSize);
+    void *operator new[](size_t nSize);
     /** Deletes an object pointed to by ptr. */
-    static void operator delete( void *ptr );
+    void operator delete( void *ptr );
     /** Deletes an object array pointed to by ptr. */
-    static void operator delete[]( void *ptr );
+    void operator delete[]( void *ptr );
 
     /** Allocates nSize bytes of memory.  You must call logog::Initialize() before calling this function.
      * \sa Initialize()
@@ -64,6 +73,14 @@ public:
     /** Deallocate a pointer previously acquired by Allocate(). */
     static void Deallocate( void *ptr );
  };
+
+#ifdef LOGOG_PREVIOUS_DEFINITION_OF_NEW
+#define new LOGOG_PREVIOUS_DEFINITION_OF_NEW
+#endif 
+
+#ifdef LOGOG_PREVIOUS_DEFINITION_OF_DELETE
+#define delete GA_PREVIOUS_DEFINITION_OF_DELETE
+#endif
 
 /** An STL-compatible allocator which redirects all memory requests to the logog allocator.  Used for all STL-like classes within logog. */
 template <class T>

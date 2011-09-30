@@ -12,9 +12,15 @@ namespace logog
              const LOGOG_CHAR *sGroup,
              const LOGOG_CHAR *sCategory,
              const LOGOG_CHAR *sMessage,
-             const double dTimestamp ) :
+             const double dTimestamp,
+			 bool *pbIsCreated ) :
         Checkpoint( level, sFileName, nLineNumber, sGroup, sCategory, sMessage, dTimestamp )
     {
+		m_pbIsCreated = pbIsCreated;
+
+		if ( pbIsCreated != NULL )
+			*pbIsCreated = true;
+
         /* Messages are always sources, so there's no need to call Initialize() here */
         // Initialize();
 
@@ -24,6 +30,12 @@ namespace logog
          */
         PublishToMultiple( AllFilters() );
     }
+
+	Message::~Message()
+	{
+		if ( m_pbIsCreated != NULL )
+			*m_pbIsCreated = false;
+	}
 
 
 	bool Message::Republish()

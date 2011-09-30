@@ -7,6 +7,10 @@
 
 namespace logog
 {
+
+/** A message is a piece of text that's actually transmitted to outputs.  Messages can be asked to 
+ ** Transmit() themselves once they are created.
+ **/
 class Message : public Checkpoint
 {
 public:
@@ -16,7 +20,10 @@ public:
              const LOGOG_CHAR *sGroup = NULL,
              const LOGOG_CHAR *sCategory = NULL,
              const LOGOG_CHAR *sMessage = NULL,
-             const double dTimestamp = 0.0f );
+             const double dTimestamp = 0.0f,
+			 bool *bIsCreated = NULL );
+
+	virtual ~Message();
 
     /** Causes this checkpoint to republish itself to all existing filters after
       * unpublishing itself.  This can be necessary if the message within this
@@ -26,6 +33,7 @@ public:
     virtual bool Republish();
 
 	Mutex m_Transmitting;
+	bool *m_pbIsCreated;
 };
 
 extern Mutex &GetMessageCreationMutex();

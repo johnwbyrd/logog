@@ -54,14 +54,35 @@ namespace logog
   * by the user.  It locks a global mutex, creates the message, locks it,
   * formats the message string inside the message, transmits it, 
   * and releases all locks.
+  * When logog is shut down, it may be started back up again later.  Therefore,
+  * logog needs a way to flag all static Message pointers that they need
+  * to be recreated.  We manually simulate a static Message pointer by 
+  * implementing it via a static bool.  The bool is turned on the first time
+  * this code is run.
+  * NOTE!  A subtle race condition exists in the following code, that will ONLY occur
+  * if logog is shut down at the same moment that a log message is processed from
+  * another thread than the one calling the shutdown.  The Message object could
+  * theoretically be destroyed from another thread just before it's locked
+  * in a thread that calls the Format() and Transmit() calls on it.  I'm not
+  * sure if this is really a bug -- technically, this race condition will
+  * occur only if you are calling log messages right on top of the SHUTDOWN
+  * call from the main thread.
   */
 #define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \
 { \
 	::logog::Mutex *___pMCM = &::logog::GetMessageCreationMutex(); \
 	___pMCM->MutexLock(); \
-	static logog::Message * TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \
-	__FILE__, __LINE__, group, cat ); \
+	static bool TOKENPASTE(_logog_static_bool_,__LINE__) = false; \
+	static logog::Message * TOKENPASTE(_logog_,__LINE__); \
+	if ( TOKENPASTE(_logog_static_bool_,__LINE__) == false ) \
+	{ \
+		TOKENPASTE(_logog_,__LINE__) = \
+			new logog::Message( level, \
+				__FILE__, __LINE__, group, cat, \
+				"", 0.0f, & (TOKENPASTE(_logog_static_bool_,__LINE__)) ); \
+	} \
 	___pMCM->MutexUnlock(); \
+	/* A race condition could theoretically occur here if you are shutting down at the same instant as sending log messages. */ \
 	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexLock(); \
 	TOKENPASTE(_logog_,__LINE__)->Format( formatstring, ##__VA_ARGS__ ); \
 	TOKENPASTE(_logog_,__LINE__)->Transmit(); \

@@ -113,11 +113,18 @@ AllocationsType s_Allocations;
 #ifdef LOGOG_LEAK_DETECTION
 		LockAllocationsMutex();
 
-		for ( AllocationsType::iterator it = s_Allocations.begin();
-			it != s_Allocations.end();
-			it++ )
+		if ( s_Allocations.size() == 0 )
 		{
-			cout << "Memory allocated at " << it->first << " with size " << it->second << " bytes " << endl;
+			cout << "No memory allocations outstanding." << endl;
+		}
+		else
+		{
+			for ( AllocationsType::iterator it = s_Allocations.begin();
+				it != s_Allocations.end();
+				it++ )
+			{
+				cout << "Memory allocated at " << it->first << " with size " << it->second << " bytes " << endl;
+			}
 		}
 
 		UnlockAllocationsMutex();
