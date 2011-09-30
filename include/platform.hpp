@@ -56,6 +56,11 @@
 #endif
 #endif
 
+// For the FILE type.
+#include <cstdio>
+// For POSIX file access.
+#include <cstdlib>
+
 /* ----------------------------------------------------------- */
 /* Here's the stuff your compiler may have a problem with...   */
 
