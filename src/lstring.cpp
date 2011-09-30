@@ -3,6 +3,7 @@
  */
 
 #include "logog.hpp"
+#include "string.hpp"
 
 namespace logog {
 
@@ -31,7 +32,7 @@ namespace logog {
 		}
 	}
 
-	unsigned int String::Length( const LOGOG_CHAR *chars )
+	size_t String::Length( const LOGOG_CHAR *chars )
 	{
 		unsigned int len = 0;
 
@@ -67,7 +68,7 @@ namespace logog {
 		assign( pstr );
 	}
 
-	int String::size() const
+	size_t String::size() const
 	{
 		return ( m_pOffset - m_pBuffer );
 	}
@@ -77,7 +78,7 @@ namespace logog {
 		m_pOffset = m_pBuffer;
 	}
 
-	int String::reserve( unsigned int nSize )
+	size_t String::reserve( size_t nSize )
 	{
 		if ( nSize == (unsigned int)( m_pOffset - m_pBuffer ))
 			return nSize;
@@ -113,9 +114,10 @@ namespace logog {
 		return ( m_pOffset - m_pBuffer );
 	}
 
-	int String::reserve_for_int()
+	size_t String::reserve_for_int()
 	{
-		return reserve( 32 );
+		reserve( 32 );
+		return 32;
 	}
 
 	String::operator const LOGOG_CHAR *() const
@@ -123,7 +125,7 @@ namespace logog {
 		return m_pBuffer;
 	}
 
-	int String::assign( const String &other )
+	size_t String::assign( const String &other )
 	{
 #ifdef LOGOG_INTERNAL_DEBUGGING
 		if ( m_bIsConst )
@@ -137,17 +139,17 @@ namespace logog {
 		if ( pOther == NULL )
 			return 0;
 
-		int othersize = other.size();
+		size_t othersize = other.size();
 
 		reserve( othersize + 1 );
 
-		for ( int t = 0; t <= othersize ; t++ )
+		for ( unsigned int t = 0; t <= othersize ; t++ )
 			*m_pOffset++ = *pOther++;
 
 		return this->size();
 	}
 
-	int String::assign( const int value )
+	size_t String::assign( const int value )
 	{
 #ifdef LOGOG_INTERNAL_DEBUGGING
 		if ( m_bIsConst )
@@ -159,7 +161,7 @@ namespace logog {
 
 		static LOGOG_CHAR s_cLookups[] = "0123456789";
 
-		int bSign;
+		int bSign = value;
 
 		if (( bSign = number) < 0)
 			number = -number;
@@ -180,9 +182,9 @@ namespace logog {
 		return ( m_pOffset - m_pBuffer );
 	}
 
-	int String::assign( const LOGOG_CHAR *other, const LOGOG_CHAR *pEnd /*= NULL */ )
+	size_t String::assign( const LOGOG_CHAR *other, const LOGOG_CHAR *pEnd /*= NULL */ )
 	{
-		unsigned int len;
+		size_t len;
 
 		if ( pEnd == NULL )
 			len = Length( other );
@@ -212,7 +214,7 @@ namespace logog {
 
 		return (int) len;
 	}
-	int String::append( const String &other )
+	size_t String::append( const String &other )
 	{
 #ifdef LOGOG_INTERNAL_DEBUGGING
 		if ( m_bIsConst )
@@ -222,7 +224,7 @@ namespace logog {
 		return append( other.m_pBuffer );
 	}
 
-	int String::append( const LOGOG_CHAR *other )
+	size_t String::append( const LOGOG_CHAR *other )
 	{
 #ifdef LOGOG_INTERNAL_DEBUGGING
 		if ( m_bIsConst )
@@ -235,7 +237,7 @@ namespace logog {
 		return ( m_pOffset - m_pBuffer );
 	}
 
-	int String::append( const LOGOG_CHAR c )
+	size_t String::append( const LOGOG_CHAR c )
 	{
 		if ( m_pOffset < m_pEndOfBuffer )
 			*m_pOffset++ = c;
@@ -257,7 +259,7 @@ namespace logog {
 		return ( m_pBuffer != NULL );
 	}
 
-	int String::find( String &other ) const
+	size_t String::find( String &other ) const
 	{
 		if ( is_valid() && other.is_valid())
 		{
@@ -349,18 +351,18 @@ namespace logog {
 		m_bIsConst = false;
 	}
 
-	void String::preKmp( const int m )
+	void String::preKmp( size_t m )
 	{
 		ScopedLock sl( GetStringSearchMutex() );
 
-		int i, j;
+		size_t i, j;
 
 		if ( m_pBuffer == NULL )
 			return;
 
 		if ( m_pKMP == NULL )
 		{
-			m_pKMP = (int *)Allocate( sizeof( int ) * ( m + 1) );
+			m_pKMP = (size_t *)Allocate( sizeof( size_t ) * ( m + 1) );
 		}
 
 		i = 0;
@@ -379,11 +381,11 @@ namespace logog {
 		}
 	}
 
-	unsigned int String::KMP( const LOGOG_CHAR *y, int n )
+	size_t String::KMP( const LOGOG_CHAR *y, size_t n )
 	{
-		int i, j;
+		size_t i, j;
 
-		int m = size() - 1; // ignore NULL char
+		size_t m = size() - 1; // ignore NULL char
 
 		/* Preprocessing */
 		if ( m_pKMP == NULL )
@@ -408,9 +410,9 @@ namespace logog {
 		return (unsigned int)npos;
 	}
 
-	void String::preBmBc( char *x, int m, int bmBc[] )
+	void String::preBmBc( char *x, size_t m, size_t bmBc[] )
 	{
-		int i;
+		size_t i;
 
 		for (i = 0; i < ASIZE; ++i)
 			bmBc[i] = m;
@@ -418,9 +420,9 @@ namespace logog {
 			bmBc[x[i]] = m - i - 1;
 	}
 
-	void String::suffixes( char *x, int m, int *suff )
+	void String::suffixes( char *x, size_t m, size_t *suff )
 	{
-		int f, g, i;
+		size_t f, g, i;
 
 		suff[m - 1] = m;
 		g = m - 1;
@@ -440,12 +442,12 @@ namespace logog {
 		}
 	}
 
-	void String::preBmGs( char *x, int m, int bmGs[] )
+	void String::preBmGs( char *x, size_t m, size_t bmGs[] )
 	{
-		int i, j;
-		int *suff;
+		size_t i, j;
+		size_t *suff;
 
-		suff = (int *)Allocate( sizeof( int ) * size());
+		suff = (size_t *)Allocate( sizeof( size_t ) * size());
 
 		suffixes(x, m, suff);
 
@@ -463,17 +465,17 @@ namespace logog {
 		Deallocate( suff );
 	}
 
-	int String::BM( char *y, int n )
+	size_t String::BM( char *y, size_t n )
 	{
-		int i, j;
+		size_t i, j;
 
 		char *x = m_pBuffer;
-		int m = size();
+		size_t m = size();
 
 		if ( bmGs == NULL )
 		{
-			bmGs = (int *)Allocate( sizeof( int ) * size() );
-			bmBc = (int *)Allocate( sizeof( int ) * ASIZE );
+			bmGs = (size_t *)Allocate( sizeof( size_t ) * size() );
+			bmBc = (size_t *)Allocate( sizeof( size_t ) * ASIZE );
 		}
 
 		/* Preprocessing */
@@ -493,8 +495,8 @@ namespace logog {
 			}
 			else
 			{
-				int q = bmGs[i];
-				int r = bmBc[y[i + j]] - m + 1 + i;
+				size_t q = bmGs[i];
+				size_t r = bmBc[y[i + j]] - m + 1 + i;
 				j += LOGOG_MAX( q, r );
 			}
 		}

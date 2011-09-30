@@ -30,27 +30,27 @@ public:
 	String();
     virtual ~String();
     virtual void Free();
-    static unsigned int Length( const LOGOG_CHAR *chars );
+	static size_t Length( const LOGOG_CHAR *chars );
 
     String( const String &other );
     String( const LOGOG_CHAR *pstr );
     String & operator =( const String & other);
     String & operator =( const LOGOG_CHAR *pstr );
-    virtual int size() const;
+    size_t size() const;
     virtual void clear();
-    virtual int reserve( unsigned int nSize );
-    virtual int reserve_for_int();
+    virtual size_t reserve( size_t nSize );
+    virtual size_t reserve_for_int();
     virtual operator const LOGOG_CHAR *() const;
-    virtual int assign( const String &other );
-    virtual int append( const String &other );
-    virtual int append( const LOGOG_CHAR *other );
+    virtual size_t assign( const String &other );
+    virtual size_t append( const String &other );
+    virtual size_t append( const LOGOG_CHAR *other );
     virtual void reverse( LOGOG_CHAR* pStart, LOGOG_CHAR* pEnd);
-    virtual int assign( const int value );
-    virtual int append( const LOGOG_CHAR c );
+    virtual size_t assign( const int value );
+    virtual size_t append( const LOGOG_CHAR c );
     virtual bool is_valid() const;
-    virtual int assign( const LOGOG_CHAR *other, const LOGOG_CHAR *pEnd = NULL );
+    virtual size_t assign( const LOGOG_CHAR *other, const LOGOG_CHAR *pEnd = NULL );
 
-    virtual int find( String &other ) const;
+    virtual size_t find( String &other ) const;
     virtual void format( const LOGOG_CHAR *cFormatString, ... );
     virtual void format_va( const LOGOG_CHAR *cFormatString, va_list args );
 
@@ -58,26 +58,26 @@ protected:
     virtual void Initialize();
 
     /* Code modified from http://www-igm.univ-mlv.fr/~lecroq/string/node8.html#SECTION0080 */
-    void preKmp(const int m);
+    void preKmp(size_t m);
 
-    unsigned int KMP( const LOGOG_CHAR *y, int n );
+    size_t KMP( const LOGOG_CHAR *y, size_t n );
     static const int ASIZE = 1 << ( sizeof( LOGOG_CHAR ) * 8 );
 
     // from http://www-igm.univ-mlv.fr/~lecroq/string/node14.html#SECTION00140
-    void preBmBc(char *x, int m, int bmBc[]);
-    void suffixes(char *x, int m, int *suff);
-    void preBmGs(char *x, int m, int bmGs[]);
+    void preBmBc(char *x, size_t m, size_t bmBc[]);
+    void suffixes(char *x, size_t m, size_t *suff);
+    void preBmGs(char *x, size_t m, size_t bmGs[]);
 
 #define LOGOG_MAX( a, b ) ( ( a > b ) ? a : b )
 
-    int BM(char *y, int n);
+	size_t BM(char *y, size_t n);
 
     LOGOG_CHAR *m_pBuffer;
     LOGOG_CHAR *m_pOffset;
     LOGOG_CHAR *m_pEndOfBuffer;
-    int *m_pKMP;
-    int *bmBc;
-    int *bmGs;
+    size_t *m_pKMP;
+    size_t *bmBc;
+    size_t *bmGs;
     bool m_bIsConst;
 };
 

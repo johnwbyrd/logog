@@ -1,0 +1,4 @@
+D:/p4/users/jbyrd/logog/build/vs2008-x64/CMakeFiles/ALL_BUILD.dir
+D:/p4/users/jbyrd/logog/build/vs2008-x64/CMakeFiles/ZERO_CHECK.dir
+D:/p4/users/jbyrd/logog/build/vs2008-x64/CMakeFiles/logog.dir
+D:/p4/users/jbyrd/logog/build/vs2008-x64/CMakeFiles/test.dir
