@@ -3,7 +3,6 @@
  */
 
 #include "logog.hpp"
-#include "string.hpp"
 
 namespace logog {
 
