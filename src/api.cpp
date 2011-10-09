@@ -4,10 +4,17 @@
 
 #include "logog.hpp"
 
+#include <cstdlib>
+
 namespace logog {
+
+static Mutex s_mInitialization;
+static int s_nInitializations = 0;
 
 int Initialize( INIT_PARAMS *params )
 {
+	s_mInitialization.MutexLock();
+
     if ( params == NULL )
     {
         Static().s_pfMalloc = malloc;
@@ -32,26 +39,35 @@ int Initialize( INIT_PARAMS *params )
 
     // Socket::Initialize();
 
+	s_nInitializations++;
+
+	s_mInitialization.MutexUnlock();
+
     return 0;
 }
 
 int Shutdown( )
 {
-    // Socket::Shutdown();
+	s_mInitialization.MutexLock();
+
+	if ( --s_nInitializations == 0 )
+	{
+		// Socket::Shutdown();
 
 #ifdef LOGOG_DESTROY_STATIC_AREA
-    delete &( Static() );
+		delete &( Static() );
 #else
-    Static().Reset();
+		Static().Reset();
 #endif
 
 #ifdef LOGOG_LEAK_DETECTION
-	ReportMemoryAllocations();
+		ReportMemoryAllocations();
 #endif
+	}
+
+	s_mInitialization.MutexUnlock();
 
     return 0;
 }
-
-
 }
 

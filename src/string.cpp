@@ -32,7 +32,7 @@ namespace logog {
 		}
 	}
 
-	unsigned int String::Length( const LOGOG_CHAR *chars )
+	size_t String::Length( const LOGOG_CHAR *chars )
 	{
 		unsigned int len = 0;
 
@@ -463,12 +463,12 @@ namespace logog {
 		Deallocate( suff );
 	}
 
-	int String::BM( char *y, int n )
+	size_t String::BM( char *y, size_t n )
 	{
-		int i, j;
+		size_t i, j;
 
 		char *x = m_pBuffer;
-		int m = size();
+		size_t m = size();
 
 		if ( bmGs == NULL )
 		{

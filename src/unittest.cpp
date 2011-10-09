@@ -50,7 +50,7 @@ int RunAllTests()
     ostream *pOut;
     pOut = &(std::cout);
 
-    nTests = LogogTestRegistry().size();
+    nTests = (int) LogogTestRegistry().size();
 
     if ( nTests == 0 )
     {

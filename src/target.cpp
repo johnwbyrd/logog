@@ -67,7 +67,10 @@ namespace logog {
 	m_bFirstTime( true ),
 		m_pFile( NULL )
 	{
-		m_FileName.assign( sFileName );
+		// We do this in two steps to make sure the file name is copied into the string
+		// structure and not just reused.
+		String sStringFileName( sFileName );
+		m_FileName.assign( sStringFileName );
 	}
 
 	LogFile::~LogFile()
