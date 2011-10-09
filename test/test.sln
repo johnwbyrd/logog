@@ -10,13 +10,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logog", "..\src\logog.vcpro
 EndProject
 Global
 	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 3
-		SccProjectUniqueName0 = test.vcproj
+		SccNumberOfProjects = 2
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = ..\\src\\logog.vcproj
-		SccLocalPath1 = ..
-		SccProjectFilePathRelativizedFromConnection1 = src\\
-		SccLocalPath2 = .
+		SccProjectUniqueName1 = test.vcproj
+		SccLocalPath1 = .
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
