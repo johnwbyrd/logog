@@ -27,10 +27,20 @@
 #define LOGOG_FLAVOR_POSIX 1
 #endif
 
+#ifdef __CYGWIN__
+/* Cygwin lacks vsnprintf support in headers but it's in the libraries.  First we
+ * need to define the constants size_t and va_list, then define vsnprintf */
+#include <cstdio>
+#include <cstdlib>
+#include <cstdarg>
+extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
+#define LOGOG_USE_TR1 1
+#endif // __CYGWIN__
+
 /* If we've recognized it already, it's a relatively modern compiler */
 #if defined( LOGOG_FLAVOR_WINDOWS ) || defined( LOGOG_FLAVOR_POSIX )
 #define LOGOG_HAS_UNORDERED_MAP 1
-#endif
+#endif // defined(...)
 
 /* PS3 */
 #ifdef SN_TARGET_PS3
@@ -71,7 +81,11 @@
 /** The definition for an unordered map type in logog.  You can replace it here with your own unordered_map compatible class if needed. */
 
 #ifdef LOGOG_HAS_UNORDERED_MAP
+#ifdef LOGOG_USE_TR1
+#include <tr1/unordered_map>
+#else
 #include <unordered_map>
+#endif // LOGOG_USE_TR1
 #ifdef _GLIBCXX_UNORDERED_MAP
 #define LOGOG_UNORDERED_MAP	std::unordered_map
 #else // _GLIBCXX_UNORDERED_MAP

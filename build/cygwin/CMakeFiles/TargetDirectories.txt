@@ -1,2 +1,2 @@
 /cygdrive/d/p4/users/jbyrd/logog/build/cygwin/CMakeFiles/logog.dir
-/cygdrive/d/p4/users/jbyrd/logog/build/cygwin/CMakeFiles/test.dir
+/cygdrive/d/p4/users/jbyrd/logog/build/cygwin/CMakeFiles/test-logog.dir

@@ -88,6 +88,41 @@ clean: CMakeFiles/logog.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/test-logog.dir
+
+# All Build rule for target.
+CMakeFiles/test-logog.dir/all: CMakeFiles/logog.dir/all
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/depend
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /cygdrive/d/p4/users/jbyrd/logog/build/cygwin/CMakeFiles  16
+	@echo "Built target test-logog"
+.PHONY : CMakeFiles/test-logog.dir/all
+
+# Include target in all.
+all: CMakeFiles/test-logog.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test-logog.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/p4/users/jbyrd/logog/build/cygwin/CMakeFiles 16
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test-logog.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/p4/users/jbyrd/logog/build/cygwin/CMakeFiles 0
+.PHONY : CMakeFiles/test-logog.dir/rule
+
+# Convenience name for target.
+test-logog: CMakeFiles/test-logog.dir/rule
+.PHONY : test-logog
+
+# clean rule for target.
+CMakeFiles/test-logog.dir/clean:
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/clean
+.PHONY : CMakeFiles/test-logog.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/test-logog.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

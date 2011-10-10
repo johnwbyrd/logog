@@ -174,7 +174,7 @@ namespace logog {
 		if (bSign < 0)
 			*m_pOffset++ = '-';
 
-		*m_pOffset = NULL;
+		*m_pOffset = '\0';
 
 		reverse( m_pBuffer, m_pOffset - 1 );
 
@@ -314,7 +314,7 @@ namespace logog {
 				LOGOG_INTERNAL_FAILURE;
 			}
 
-			*pszFormatted = NULL;
+			*pszFormatted = '\0';
 
 			va_list argsCopy;
 
@@ -330,7 +330,7 @@ namespace logog {
 			nActualSize = vsnprintf_s( pszFormatted, nAttemptedSize - 1, _TRUNCATE, cFormatString, argsCopy );
 #else
 			nActualSize = vsnprintf( pszFormatted, nAttemptedSize - 1, cFormatString, argsCopy );
-#endif
+#endif // LOGOG_FLAVOR_WINDOWS
 
 			va_end( argsCopy );
 

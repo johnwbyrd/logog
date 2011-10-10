@@ -121,6 +121,19 @@ logog/fast:
 	$(MAKE) -f CMakeFiles/logog.dir/build.make CMakeFiles/logog.dir/build
 .PHONY : logog/fast
 
+#=============================================================================
+# Target rules for targets named test-logog
+
+# Build rule for target.
+test-logog: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test-logog
+.PHONY : test-logog
+
+# fast build rule for target.
+test-logog/fast:
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/build
+.PHONY : test-logog/fast
+
 src/api.o: src/api.cpp.o
 .PHONY : src/api.o
 
@@ -481,6 +494,30 @@ src/unittest.cpp.s:
 	$(MAKE) -f CMakeFiles/logog.dir/build.make CMakeFiles/logog.dir/src/unittest.cpp.s
 .PHONY : src/unittest.cpp.s
 
+test/test.o: test/test.cpp.o
+.PHONY : test/test.o
+
+# target to build an object file
+test/test.cpp.o:
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/test/test.cpp.o
+.PHONY : test/test.cpp.o
+
+test/test.i: test/test.cpp.i
+.PHONY : test/test.i
+
+# target to preprocess a source file
+test/test.cpp.i:
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/test/test.cpp.i
+.PHONY : test/test.cpp.i
+
+test/test.s: test/test.cpp.s
+.PHONY : test/test.s
+
+# target to generate assembly for a file
+test/test.cpp.s:
+	$(MAKE) -f CMakeFiles/test-logog.dir/build.make CMakeFiles/test-logog.dir/test/test.cpp.s
+.PHONY : test/test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -491,6 +528,7 @@ help:
 	@echo "... logog"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... test-logog"
 	@echo "... src/api.o"
 	@echo "... src/api.i"
 	@echo "... src/api.s"
@@ -536,6 +574,9 @@ help:
 	@echo "... src/unittest.o"
 	@echo "... src/unittest.i"
 	@echo "... src/unittest.s"
+	@echo "... test/test.o"
+	@echo "... test/test.i"
+	@echo "... test/test.s"
 .PHONY : help
 
 

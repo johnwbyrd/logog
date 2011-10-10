@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="logog"
-	ProjectGUID="{5BF7C6AF-506A-40D8-8316-E40AD678CE3D}"
+	ProjectGUID="{7E4753DF-64F7-43CC-AFA2-D6BD8B9F3F76}"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform

@@ -1,0 +1,1 @@
+/usr/bin/c++.exe    -Wl,--enable-auto-import CMakeFiles/test-logog.dir/test/test.cpp.o  -o test-logog.exe -Wl,--out-implib,libtest-logog.dll.a -Wl,--major-image-version,0,--minor-image-version,0  liblogog.a 

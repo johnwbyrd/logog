@@ -215,8 +215,8 @@ UNITTEST( TopicTest1 )
 		Topic t1( LOGOG_LEVEL_WARN, "file1.cpp", 50 );
 		Topic t2( LOGOG_LEVEL_WARN );
 		Topic t3( LOGOG_LEVEL_ERROR, "file2.cpp", 100 );
-		Topic t4( LOGOG_LEVEL_WARN, NULL, NULL, "Group", "Category", "Message", 30.0f);
-		Topic t5( LOGOG_LEVEL_CRITICAL, NULL, NULL, "GroupGROUP", "Important Category", "Your Message Here", 150.0f);
+		Topic t4( LOGOG_LEVEL_WARN, NULL, 0, "Group", "Category", "Message", 30.0f);
+		Topic t5( LOGOG_LEVEL_CRITICAL, NULL, 0, "GroupGROUP", "Important Category", "Your Message Here", 150.0f);
 
 		if (t1.CanSubscribeTo( t2 ) == true)
 		{

@@ -100,8 +100,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <span class="preprocessor">#define LOGOG_HASH                      std::tr1::hash</span>
 <span class="preprocessor"></span>
 <span class="preprocessor">#ifdef LOGOG_HAS_UNORDERED_MAP</span>
+<span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_USE_TR1</span>
+<span class="preprocessor"></span><span class="preprocessor">#include &lt;tr1/unordered_map&gt;</span>
+<span class="preprocessor">#else</span>
 <span class="preprocessor"></span><span class="preprocessor">#include &lt;unordered_map&gt;</span>
-<span class="preprocessor">#ifdef _GLIBCXX_UNORDERED_MAP</span>
+<span class="preprocessor">#endif // __CYGWIN__</span>
+<span class="preprocessor"></span><span class="preprocessor">#ifdef _GLIBCXX_UNORDERED_MAP</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_UNORDERED_MAP     std::unordered_map</span>
 <span class="preprocessor"></span><span class="preprocessor">#else // _GLIBCXX_UNORDERED_MAP</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_UNORDERED_MAP     std::tr1::unordered_map</span>
@@ -145,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Fri Sep 30 2011 08:53:52 for logog by
+    <li class="footer">Generated on Mon Oct 10 2011 10:30:48 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
