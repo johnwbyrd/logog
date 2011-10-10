@@ -1,3 +1,0 @@
-Logog now destroys all messages created at run-time at the close of the program (LOGOG_SHUTDOWN).
-LOGOG_LEAK_DETECTION now provides a memory report at the end of run time.
-logog now deals if new has been turned into a macro.
