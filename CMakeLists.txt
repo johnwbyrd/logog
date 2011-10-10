@@ -1,6 +1,8 @@
-cmake_minimum_required (VERSION 2.8.4)
+cmake_minimum_required (VERSION 2.8.0)
 enable_testing()
 project (logog)
+# logog needs thread support on linux
+find_package( Threads )
 set( RUNTIME_OUTPUT_DIRECTORY bin/ )
 set( ARCHIVE_OUTPUT_DIRECTORY bin/ )
 set( LIBRARY_OUTPUT_DIRECTORY bin/ )
@@ -25,7 +27,7 @@ add_library( logog
 	src/unittest.cpp
 )
 add_executable( test-logog test/test.cpp )
-target_link_libraries( test-logog logog )
+target_link_libraries( test-logog logog ${CMAKE_THREAD_LIBS_INIT})
 add_test( NAME test-harness COMMAND test-logog )
 
 
