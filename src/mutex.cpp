@@ -21,7 +21,7 @@ namespace logog {
 	{
 		LOGOG_MUTEX_INIT(&m_Mutex);
 		return *this;
-	};
+	}
 
 	Mutex::~Mutex()
 	{

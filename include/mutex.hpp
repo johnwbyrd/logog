@@ -57,9 +57,9 @@ public:
 
 protected:
     Mutex(const Mutex &);
-	Mutex & operator = (const Mutex &);
+    Mutex & operator = (const Mutex &);
 
-    LOGOG_MUTEX( m_Mutex );
+    LOGOG_MUTEX( m_Mutex )
 };
 
 /** Asserts a lock while this object exists and is in scope.  A ScopedLock should be

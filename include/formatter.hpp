@@ -40,6 +40,6 @@ public:
 extern Formatter &GetDefaultFormatter();
 extern void DestroyDefaultFormatter();
 
-};
+}
 
 #endif // __LOGOG_FORMATTER_HPP_

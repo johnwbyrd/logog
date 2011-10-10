@@ -37,6 +37,10 @@ extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
 #define LOGOG_USE_TR1 1
 #endif // __CYGWIN__
 
+#ifdef __linux__
+#define LOGOG_USE_TR1 1
+#endif
+
 /* If we've recognized it already, it's a relatively modern compiler */
 #if defined( LOGOG_FLAVOR_WINDOWS ) || defined( LOGOG_FLAVOR_POSIX )
 #define LOGOG_HAS_UNORDERED_MAP 1

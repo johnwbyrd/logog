@@ -377,7 +377,7 @@ namespace logog {
 
 		while (i < m)
 		{
-			while (j > -1 && m_pBuffer[i] != m_pBuffer[j])
+			while (j > (size_t)-1 && m_pBuffer[i] != m_pBuffer[j])
 				j = m_pKMP[j];
 			i++;
 			j++;
@@ -402,7 +402,7 @@ namespace logog {
 		i = j = 0;
 		while (j < n)
 		{
-			while (i > -1 && m_pBuffer[i] != y[j])
+			while (i > (size_t)-1 && m_pBuffer[i] != y[j])
 				i = m_pKMP[i];
 			i++;
 			j++;
@@ -424,7 +424,7 @@ namespace logog {
 		for (i = 0; i < ASIZE; ++i)
 			bmBc[i] = m;
 		for (i = 0; i < m - 1; ++i)
-			bmBc[x[i]] = m - i - 1;
+			bmBc[(int)(x[i])] = m - i - 1;
 	}
 
 	void String::suffixes( char *x, size_t m, size_t *suff )
@@ -503,7 +503,7 @@ namespace logog {
 			else
 			{
 				size_t q = bmGs[i];
-				size_t r = bmBc[y[i + j]] - m + 1 + i;
+				size_t r = bmBc[(int)(y[i + j])] - m + 1 + i;
 				j += LOGOG_MAX( q, r );
 			}
 		}

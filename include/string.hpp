@@ -22,10 +22,8 @@ namespace logog
 class String : public Object
 {
 public:
-    enum
-    {
-        npos = -1
-    };
+   
+    static const size_t npos = -1;
 
 	String();
     virtual ~String();
@@ -61,7 +59,7 @@ protected:
     void preKmp(size_t m);
 
     size_t KMP( const LOGOG_CHAR *y, size_t n );
-    static const int ASIZE = 1 << ( sizeof( LOGOG_CHAR ) * 8 );
+    static const size_t ASIZE = 1 << ( sizeof( LOGOG_CHAR ) * 8 );
 
     // from http://www-igm.univ-mlv.fr/~lecroq/string/node14.html#SECTION00140
     void preBmBc(char *x, size_t m, size_t bmBc[]);

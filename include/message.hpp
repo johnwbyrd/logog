@@ -38,7 +38,8 @@ public:
 
 extern Mutex &GetMessageCreationMutex();
 extern void DestroyMessageCreationMutex();
-};
+
+}
 
 
 #endif // __LOGOG_MESSAGE_HPP_

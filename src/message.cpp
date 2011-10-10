@@ -64,6 +64,6 @@ namespace logog
 			pStatic->s_pMessageCreationMutex = NULL;
 		}
 	}
-};
+}
 
 

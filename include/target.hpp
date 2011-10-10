@@ -84,9 +84,9 @@ public:
     virtual int Output( const LOGOG_STRING &data );
 
 protected:
-    FILE *m_pFile;
     LOGOG_STRING m_FileName;
     bool m_bFirstTime;
+    FILE *m_pFile;
 
 private:
     LogFile();
