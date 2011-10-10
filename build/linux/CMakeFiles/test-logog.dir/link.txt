@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/test-logog.dir/test/test.cpp.o  -o test-logog -rdynamic liblogog.a -lpthread 

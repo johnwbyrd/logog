@@ -1,0 +1,2 @@
+/home/jbyrd/logog/build/linux/CMakeFiles/logog.dir
+/home/jbyrd/logog/build/linux/CMakeFiles/test-logog.dir
