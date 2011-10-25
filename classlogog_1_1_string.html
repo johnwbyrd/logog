@@ -99,9 +99,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a>  </div>
@@ -125,10 +125,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a href="classlogog_1_1_string-members.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classlogog_1_1_string.html#a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d">npos</a> =  -1
- }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#a8db865e64c3c3f65ec6a0b6fd8c09a94">String</a> ()</td></tr>
@@ -157,6 +153,9 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#abc91d6768c8aa3e0fa98eeac352b738c">Length</a> (const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *chars)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#a03aff983f503a71029aecb707175b2ed">npos</a> = (size_t) -1</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">Initialize</a> ()</td></tr>
@@ -177,28 +176,8 @@ Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#ac557ea1fe0964262419807b41cb37be4">m_bIsConst</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a> = 1 &lt;&lt; ( sizeof( <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> ) * 8 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_string.html#ac3b300e17abdf4643438a8d6abcf08bc">ASIZE</a> = 1 &lt;&lt; ( sizeof( <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> ) * 8 )</td></tr>
 </table>
-<hr/><h2>Member Enumeration Documentation</h2>
-<a class="anchor" id="a06fc87d81c62e9abb8790b6e5713c55b"></a><!-- doxytag: member="logog::String::@0" ref="a06fc87d81c62e9abb8790b6e5713c55b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">anonymous enum</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d"></a><!-- doxytag: member="npos" ref="a06fc87d81c62e9abb8790b6e5713c55ba7f8f583e976a859096a2419ffc283b2d" args="" -->npos</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-</div>
-</div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a8db865e64c3c3f65ec6a0b6fd8c09a94"></a><!-- doxytag: member="logog::String::String" ref="a8db865e64c3c3f65ec6a0b6fd8c09a94" args="()" -->
 <div class="memitem">
@@ -828,12 +807,12 @@ Static Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a6a44ae6c9a05edabefa20e86d33888f5"></a><!-- doxytag: member="logog::String::ASIZE" ref="a6a44ae6c9a05edabefa20e86d33888f5" args="" -->
+<a class="anchor" id="ac3b300e17abdf4643438a8d6abcf08bc"></a><!-- doxytag: member="logog::String::ASIZE" ref="ac3b300e17abdf4643438a8d6abcf08bc" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int <a class="el" href="classlogog_1_1_string.html#a6a44ae6c9a05edabefa20e86d33888f5">ASIZE</a> = 1 &lt;&lt; ( sizeof( <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> ) * 8 )<code> [static, protected]</code></td>
+          <td class="memname">const size_t <a class="el" href="classlogog_1_1_string.html#ac3b300e17abdf4643438a8d6abcf08bc">ASIZE</a> = 1 &lt;&lt; ( sizeof( <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> ) * 8 )<code> [static, protected]</code></td>
         </tr>
       </table>
 </div>
@@ -932,6 +911,19 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a03aff983f503a71029aecb707175b2ed"></a><!-- doxytag: member="logog::String::npos" ref="a03aff983f503a71029aecb707175b2ed" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const size_t <a class="el" href="classlogog_1_1_string.html#a03aff983f503a71029aecb707175b2ed">npos</a> = (size_t) -1<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="string_8hpp_source.html">string.hpp</a></li>
 </ul>
@@ -956,7 +948,7 @@ Static Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Oct 10 2011 10:30:49 for logog by
+    <li class="footer">Generated on Tue Oct 25 2011 15:23:01 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
