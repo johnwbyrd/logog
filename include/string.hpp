@@ -23,7 +23,7 @@ class String : public Object
 {
 public:
    
-    static const size_t npos = -1;
+    static const size_t npos = (size_t) -1;
 
 	String();
     virtual ~String();

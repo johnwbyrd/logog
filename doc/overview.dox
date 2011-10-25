@@ -112,9 +112,13 @@ functions of your own authorship.
 leak memory.  A special compilation flag (LOGOG_LEAK_DETECTION) audits
 every allocation and free within logog to discover and fix memory leaks therein.
 
-- Support for POSIX-type and Windows-type operating systems. Support for 
-other OSes is straightforward; all OS dependencies are encapsulated in 
-macros.  Support for proprietary game consoles is implicit or latent.
+- Support for POSIX-type and Windows-type operating systems.  The logog system 
+has been tested under: 32 and 64-bit Windows (compiled with VS2008); Cygwin 1.7.0;
+and 64-bit Ubuntu Linux 10.04 LTS.
+Support for proprietary game consoles is implicit or latent; the system
+has been demonstrated to work on Xbox 360 and PS3 (with certain proprietary header
+files).  Support for other OSes is straightforward; all OS dependencies are encapsulated in 
+macros.  
 
 - Support for multithreading. Multiple thread sources are permitted to 
 send logging messages at the same time. 
@@ -141,6 +145,35 @@ To use them, compile all the C++ source files into a single library.
 The compiler will need to reference the files in the include directory
 when compiling the logog library.
 
+\par Build the logog library
+
+To make this easier, logog has been set up to compile using CMake, available 
+at http://www.cmake.org/ .
+CMake is a free cross-platform build system, and executables are available for
+most major platforms and development environments.  Download and install CMake
+in order to generate a build for your platform.
+
+For example, to build the project and libraries on Visual Studio 2008, find and launch
+the Visual Studio 2008 Command Prompt at <b>Microsoft Visual Studio 2008 / Visual Studio Tools /
+Visual Studio 2008 Command Prompt.</b>
+
+Then, to create the appropriate project files, create an empty directory, make that 
+directory the current directory, and run the CMake command with the logog directory as 
+a parameter:
+
+\code
+mkdir logog-build
+cd logog-build
+cmake [path-to-logog-top-directory]
+\endcode
+
+At this point, your directory will contain appropriate project and solution files for your 
+platform.  Once the solution is building, the CMake program is no longer needed.
+Compile and link the library for your own platform using the makefile or project files generated
+for your platform.
+
+\par Integrate logog into your own project
+
 To use the logging library in your own project, put the following line 
 at the top of your source file(s): 
 
@@ -158,6 +191,8 @@ macro:
 LOGOG_INITIALIZE();
 \endcode
 
+\par Choose one or more output types
+
 To tell logog what type of output should be logged, you must first create a logog::Cerr,
 a logog::Cout, or a logog::LogFile object.  Once this object is instantiated,
 all messages will be routed to that target.  For example:
@@ -165,6 +200,8 @@ all messages will be routed to that target.  For example:
 \code
 logog::Cerr errOutput;
 \endcode
+
+\par Start logging events
 
 To log a message in your code, use one of the following macros, in order 
 of severity. Arguments are assumed to be sprintf-style varargs: 

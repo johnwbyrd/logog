@@ -373,7 +373,7 @@ namespace logog {
 		}
 
 		i = 0;
-		j = *m_pKMP = -1;
+		j = *m_pKMP = (size_t)-1;
 
 		while (i < m)
 		{
@@ -430,6 +430,8 @@ namespace logog {
 	void String::suffixes( char *x, size_t m, size_t *suff )
 	{
 		size_t f, g, i;
+
+		f = 0;
 
 		suff[m - 1] = m;
 		g = m - 1;

@@ -11,9 +11,15 @@ EndProject
 Global
 	GlobalSection(SourceCodeControl) = preSolution
 		SccNumberOfProjects = 2
+		SccProjectUniqueName0 = test.vcproj
+		SccProjectName0 = Perforce\u0020Project
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = test.vcproj
-		SccLocalPath1 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		SccProjectUniqueName1 = ..\\src\\logog.vcproj
+		SccProjectName1 = Perforce\u0020Project
+		SccLocalPath1 = ..
+		SccProvider1 = MSSCCI:Perforce\u0020SCM
+		SccProjectFilePathRelativizedFromConnection1 = src\\
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
