@@ -50,9 +50,34 @@ within five minutes by reading the \ref quickstart section.
 - \ref porting
 - \ref unittesting 
 - \ref othersystems
+- \ref license
+
+\subsection gettinghelp Getting help
+
 - \ref community
 
-- \ref license
+\htmlonly
+<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
+  <tr><td>
+  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
+         height=30 width=140 alt="Google Groups">
+  </td></tr>
+  <tr><td style="padding-left: 5px">
+  <b>Subscribe to Logog</b>
+  </td></tr>
+  <form action="http://groups.google.com/group/logog/boxsubscribe">
+  <input type=hidden name="hl" value="en">
+  <tr><td style="padding-left: 5px;">
+  Email: <input type=text name=email>
+  <input type=submit name="sub" value="Subscribe">
+  </td></tr>
+</form>
+<tr><td align=right>
+  <a href="http://groups.google.com/group/logog?hl=en">Visit this group</a>
+</td></tr>
+</table>
+\endhtmlonly
+
 
 \page features Features 
 
@@ -682,6 +707,59 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 
 \page community Community and support
+
+Two mailing lists exist for general support and development discussion related to
+logog.  The first is for general logog questions and answers.  This mailing list is
+visible at 
+<a href="http://groups.google.com/group/logog">http://groups.google.com/group/logog</a>.
+All users of logog are invited to join this mailing list for general discussion and help.
+
+\htmlonly
+<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
+  <tr><td>
+  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
+         height=30 width=140 alt="Google Groups">
+  </td></tr>
+  <tr><td style="padding-left: 5px">
+  <b>Subscribe to Logog</b>
+  </td></tr>
+  <form action="http://groups.google.com/group/logog/boxsubscribe">
+  <input type=hidden name="hl" value="en">
+  <tr><td style="padding-left: 5px;">
+  Email: <input type=text name=email>
+  <input type=submit name="sub" value="Subscribe">
+  </td></tr>
+</form>
+<tr><td align=right>
+  <a href="http://groups.google.com/group/logog?hl=en">Visit this group</a>
+</td></tr>
+</table>
+\endhtmlonly
+
+The second mailing list is for those who wish to actively participate in the
+development of logog.  The mailing list is visible at 
+<a href="http://groups.google.com/group/logog-devel">http://groups.google.com/group/logog-devel</a>.
+
+\htmlonly
+<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
+  <tr><td>
+  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
+         height=30 width=140 alt="Google Groups">
+  </td></tr>
+  <tr><td style="padding-left: 5px">
+  <b>Subscribe to Logog Development</b>
+  </td></tr>
+  <form action="http://groups.google.com/group/logog-devel/boxsubscribe">
+  <tr><td style="padding-left: 5px;">
+  Email: <input type=text name=email>
+  <input type=submit name="sub" value="Subscribe">
+  </td></tr>
+</form>
+<tr><td align=right>
+  <a href="http://groups.google.com/group/logog-devel">Visit this group</a>
+</td></tr>
+</table>
+\endhtmlonly
 
 The best way to get help with a specific problem is to submit an issue
 on Github.  You can review a list of current issues, or submit your own,
