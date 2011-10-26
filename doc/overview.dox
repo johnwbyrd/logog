@@ -226,6 +226,15 @@ all messages will be routed to that target.  For example:
 logog::Cerr errOutput;
 \endcode
 
+Or:
+
+\code
+logog::LogFile errFile("log.txt");
+\endcode
+
+It's only necessary to create one target per process, immediately after initializing
+logog; you don't need to instance a different Cout, Cerr or LogFile for each class or each file.
+
 \par Start logging events
 
 To log a message in your code, use one of the following macros, in order 

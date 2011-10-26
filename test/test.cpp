@@ -593,6 +593,23 @@ UNITTEST( ImmediateLogging )
 	return 0;
 }
 
+UNITTEST( ImmediateLoggingShouldFail )
+{
+	LOGOG_INITIALIZE();
+
+	{
+		/* We're creating two of the same log types.  The first one should succeed and the second should fail silently. */
+		LogFile logFile( "foo.txt" );
+		LogFile logFile1( "foo.txt" );
+
+		GeneratePseudoRandomErrorMessages();
+	}
+
+	LOGOG_SHUTDOWN();
+
+	return 0;
+}
+
 UNITTEST( DeferredCoutLogging )
 {
 	LOGOG_INITIALIZE();
