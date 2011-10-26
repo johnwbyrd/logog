@@ -27,6 +27,28 @@ AllocationsType s_Allocations;
 		return Allocate( nSize );
 	}
 
+#ifdef _DEBUG
+#ifdef LOGOG_FLAVOR_WINDOWS
+
+	void *Object::operator new(size_t nSize, LPCSTR lpszFileName, int nLine)
+	{
+		/* avoid unref'd parameter warnings */
+		lpszFileName;
+		nLine;
+		return Allocate( nSize );
+	}
+
+	void *Object::operator new[](size_t nSize, LPCSTR lpszFileName, int nLine)
+	{
+		/* avoid unref'd parameter warnings */
+		lpszFileName;
+		nLine;
+		return Allocate( nSize );
+	}
+
+#endif // LOGOG_FLAVOR_WINDOWS
+#endif // _DEBUG
+
 	    /** Deletes an object pointed to by ptr. */
 	void Object::operator delete( void *ptr )
     {

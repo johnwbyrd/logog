@@ -60,6 +60,22 @@ public:
     void *operator new( size_t nSize );
     /** Initializes an array of size new. */
     void *operator new[](size_t nSize);
+
+	/* There's a wonderful behavior in Windows MFC in debug builds that causes it 
+	 * to attempt to redefine NEW with a macro if we're compiling in debug mode
+	 * and we're using Gdiplus as well.  In that case, Windows attempts to redefine
+	 * new with a macro for everything that has a new.  This wonderful behavior 
+	 * is worked around here.  See http://support.microsoft.com/kb/317799/EN-US/
+	 * and http://social.msdn.microsoft.com/Forums/en/vcgeneral/thread/0df13145-670e-4070-b0a1-61794b20dff7
+	 * for more exciting information.
+	 */
+#ifdef _DEBUG
+#ifdef LOGOG_FLAVOR_WINDOWS
+	void* operator new(size_t nSize, LPCSTR lpszFileName, int nLine);
+	void* operator new[](size_t nSize, LPCSTR lpszFileName, int nLine);
+#endif // LOGOG_FLAVOR_WINDOWS
+#endif // _DEBUG
+
     /** Deletes an object pointed to by ptr. */
     void operator delete( void *ptr );
     /** Deletes an object array pointed to by ptr. */
