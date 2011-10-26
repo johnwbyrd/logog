@@ -109,7 +109,7 @@ namespace logog {
 
 		result = fwrite( &(*data), 1, data.size(), m_pFile );
 
-		if ( result != 1 )
+		if ( result != data.size() )
 			return -1;
 
 		return 0;
