@@ -107,7 +107,7 @@ namespace logog {
 			m_bFirstTime = false;
 		}
 
-		result = fwrite( &(*data), data.size(), 1, m_pFile );
+		result = fwrite( &(*data), 1, data.size(), m_pFile );
 
 		if ( result != 1 )
 			return -1;
