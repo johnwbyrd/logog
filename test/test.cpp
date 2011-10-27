@@ -593,23 +593,6 @@ UNITTEST( ImmediateLogging )
 	return 0;
 }
 
-UNITTEST( ImmediateLoggingShouldFail )
-{
-	LOGOG_INITIALIZE();
-
-	{
-		/* We're creating two of the same log types.  The first one should succeed and the second should fail silently. */
-		LogFile logFile( "foo.txt" );
-		LogFile logFile1( "foo.txt" );
-
-		GeneratePseudoRandomErrorMessages();
-	}
-
-	LOGOG_SHUTDOWN();
-
-	return 0;
-}
-
 UNITTEST( DeferredCoutLogging )
 {
 	LOGOG_INITIALIZE();
@@ -645,6 +628,12 @@ UNITTEST( DeferredFileLogging )
 	{
 		LogFile logFile("log.txt");
 		LogBuffer logBuffer( &logFile );
+
+		/* Because the LogBuffer is not writing to a line device a la stdout or stderr, it does not need to
+		 * send null terminated strings to its destination (the LogFile).  This is a particular peculiarity
+		 * of having a buffering target to a serial-type target, such as a socket or a file.
+		 */
+		logBuffer.SetNullTerminatesStrings( false );
 
 		// Make sure that the log file does not receive messages via the general filter mechanism.
 		logFile.UnsubscribeToMultiple( AllFilters() );

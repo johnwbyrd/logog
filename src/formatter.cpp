@@ -42,9 +42,8 @@ namespace logog {
 		return "unknown";
 	}
 
-	LOGOG_STRING &FormatterGCC::Format( const Topic &topic )
+	LOGOG_STRING &FormatterGCC::Format( const Topic &topic, const Target &target )
 	{
-
 		TOPIC_FLAGS flags;
 		flags = topic.GetTopicFlags();
 
@@ -90,12 +89,13 @@ namespace logog {
 			m_sMessageBuffer.append( '\n' );
 		}
 
-		m_sMessageBuffer.append( (char)NULL );
+		if ( target.GetNullTerminatesStrings() )
+			m_sMessageBuffer.append( (char)NULL );
 
 		return m_sMessageBuffer;
 	}
 
-	LOGOG_STRING &FormatterMSVC::Format( const Topic &topic )
+	LOGOG_STRING &FormatterMSVC::Format( const Topic &topic, const Target &target )
     {
         m_sMessageBuffer.clear();
 
@@ -142,7 +142,8 @@ namespace logog {
             m_sMessageBuffer.append( '\n' );
         }
 
-        m_sMessageBuffer.append( (char)NULL );
+		if ( target.GetNullTerminatesStrings() )
+			m_sMessageBuffer.append( (char)NULL );
 
         return m_sMessageBuffer;
     }

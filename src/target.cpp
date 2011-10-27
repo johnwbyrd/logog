@@ -8,7 +8,8 @@
 
 namespace logog {
 
-	Target::Target()
+	Target::Target() :
+		m_bNullTerminatesStrings( true )
 	{
 		SetFormatter( GetDefaultFormatter() );
 		LockableNodesType *pAllTargets = &AllTargets();
@@ -34,7 +35,7 @@ namespace logog {
 	int Target::Receive( const Topic &topic )
 	{
 		ScopedLock sl( m_MutexReceive );
-		return Output( m_pFormatter->Format( topic ) );
+		return Output( m_pFormatter->Format( topic, *this ) );
 	}
 
 
@@ -67,6 +68,7 @@ namespace logog {
 	m_bFirstTime( true ),
 		m_pFile( NULL )
 	{
+		m_bNullTerminatesStrings = false;
 		// We do this in two steps to make sure the file name is copied into the string
 		// structure and not just reused.
 		String sStringFileName( sFileName );

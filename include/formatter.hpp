@@ -16,7 +16,7 @@ public:
      ** return a reference to that string.  This function must be written to be efficient; it will be called
      ** for every logging operation.  It is strongly recommended not to allocate or free memory in this function.
      **/
-    virtual LOGOG_STRING &Format( const Topic &topic ) = 0;
+    virtual LOGOG_STRING &Format( const Topic &topic, const Target &target ) = 0;
 
 protected:
     const LOGOG_CHAR *ErrorDescription( const LOGOG_LEVEL_TYPE level );
@@ -28,13 +28,13 @@ protected:
 class FormatterGCC : public Formatter
 {
 public:
-    virtual LOGOG_STRING &Format( const Topic &topic );
+    virtual LOGOG_STRING &Format( const Topic &topic, const Target &target );
 };
 
 class FormatterMSVC : public Formatter
 {
 public:
-    virtual LOGOG_STRING &Format( const Topic &topic );
+    virtual LOGOG_STRING &Format( const Topic &topic, const Target &target );
 };
 
 extern Formatter &GetDefaultFormatter();
