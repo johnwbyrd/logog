@@ -143,6 +143,7 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_formatter.html">Formatter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">m_pFormatter</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">m_MutexReceive</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#af7512190c71ba2d30924f7764d1f033a">LogBuffer</a></td></tr>
@@ -257,6 +258,20 @@ Friends</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aa78396611863c7cc8236e0144a812568"></a><!-- doxytag: member="logog::Target::m_bNullTerminatesStrings" ref="aa78396611863c7cc8236e0144a812568" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Does this target cause its formatter to null-terminate its output strings? File and buffer outputs don't require null terminated strings, but line outputs do. </p>
+
+</div>
+</div>
 <a class="anchor" id="adb2297f2b8340529ba59598328da06d3"></a><!-- doxytag: member="logog::Target::m_MutexReceive" ref="adb2297f2b8340529ba59598328da06d3" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +324,7 @@ Friends</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Wed Oct 26 2011 15:42:18 for logog by
+    <li class="footer">Generated on Wed Oct 26 2011 20:30:03 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

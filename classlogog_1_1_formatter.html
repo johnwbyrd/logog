@@ -127,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a8fd5a03aa722ac623bb521491ea3bc26">Formatter</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual LOGOG_STRING &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a4ac6d1b2137ab7a1477578c6231f0f84">Format</a> (const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;topic)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual LOGOG_STRING &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a711a519a7c2a822721a6e6b61c6c3639">Format</a> (const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;topic, const <a class="el" href="classlogog_1_1_target.html">Target</a> &amp;target)=0</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#acf9cfd2ff440c1b21c3f1c1c781b64db">ErrorDescription</a> (const LOGOG_LEVEL_TYPE level)</td></tr>
@@ -171,7 +171,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4ac6d1b2137ab7a1477578c6231f0f84"></a><!-- doxytag: member="logog::Formatter::Format" ref="a4ac6d1b2137ab7a1477578c6231f0f84" args="(const Topic &amp;topic)=0" -->
+<a class="anchor" id="a711a519a7c2a822721a6e6b61c6c3639"></a><!-- doxytag: member="logog::Formatter::Format" ref="a711a519a7c2a822721a6e6b61c6c3639" args="(const Topic &amp;topic, const Target &amp;target)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -179,15 +179,25 @@ Protected Attributes</h2></td></tr>
           <td class="memname">virtual LOGOG_STRING&amp; Format </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;&#160;</td>
-          <td class="paramname"><em>topic</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classlogog_1_1_target.html">Target</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [pure virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>Causes this formatter to format a topic into its own m_sMessageBuffer field, and thence to return a reference to that string. This function must be written to be efficient; it will be called for every logging operation. It is strongly recommended not to allocate or free memory in this function. </p>
 
-<p>Implemented in <a class="el" href="classlogog_1_1_formatter_m_s_v_c.html#a7a1ed60be4c79b0c135966a6ed1317e2">FormatterMSVC</a>, and <a class="el" href="classlogog_1_1_formatter_g_c_c.html#a7a1ed60be4c79b0c135966a6ed1317e2">FormatterGCC</a>.</p>
+<p>Implemented in <a class="el" href="classlogog_1_1_formatter_g_c_c.html#ad4af416e7516f1d0b3a8a56400ba85ef">FormatterGCC</a>.</p>
 
 </div>
 </div>
@@ -242,7 +252,7 @@ Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Wed Oct 26 2011 15:42:17 for logog by
+    <li class="footer">Generated on Wed Oct 26 2011 20:30:02 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
