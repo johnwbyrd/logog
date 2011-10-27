@@ -1,0 +1,6 @@
+See doc/html/index.html or http://www.logog.org for more information.
+
+logog is a portable C++ library to facilitate logging of real-time events in performance-oriented applications, such as games. It is especially appropriate for projects that have constrained memory and constrained CPU requirements.
+
+General support and discussion is available at http://groups.google.com/group/logog .  Development support and discussion is available at http://groups.google.com/group/logog-devel .
+
