@@ -102,6 +102,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                 LogFile logFile(<span class="stringliteral">&quot;log.txt&quot;</span>);
                 LogBuffer logBuffer( &amp;logFile );
 
+                <span class="comment">/* Because the LogBuffer is not writing to a line device a la stdout or stderr, it does not need to</span>
+<span class="comment">                 * send null terminated strings to its destination (the LogFile).  This is a particular peculiarity</span>
+<span class="comment">                 * of having a buffering target to a serial-type target, such as a socket or a file.</span>
+<span class="comment">                 */</span>
+                logBuffer.SetNullTerminatesStrings( <span class="keyword">false</span> );
+
                 <span class="comment">// Make sure that the log file does not receive messages via the general filter mechanism.</span>
                 logFile.UnsubscribeToMultiple( <a class="code" href="namespacelogog.html#aecdadc3e9ee39a66438de642c58d003b">AllFilters</a>() );
 
@@ -135,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Wed Oct 26 2011 20:30:02 for logog by
+    <li class="footer">Generated on Wed Oct 26 2011 21:04:19 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -139,6 +139,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_formatter.html">Formatter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#acc6d49a3b9bfaf470acc87a2ccdb88b0">GetFormatter</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#a97c42fe5e1dfbd0b297e69afcf22d929">Output</a> (const LOGOG_STRING &amp;data)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#aeba402408840719950984877e42ea8d1">Receive</a> (const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;topic)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#a42dae6f9d6a3918b43eff9f85e1ab49f">GetNullTerminatesStrings</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#a1480d250abc60598b348d3ecfdf16dd9">SetNullTerminatesStrings</a> (bool val)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_formatter.html">Formatter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">m_pFormatter</a></td></tr>
@@ -182,6 +184,23 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Returns a reference to the current formatter for this target. </p>
+
+</div>
+</div>
+<a class="anchor" id="a42dae6f9d6a3918b43eff9f85e1ab49f"></a><!-- doxytag: member="logog::Target::GetNullTerminatesStrings" ref="a42dae6f9d6a3918b43eff9f85e1ab49f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GetNullTerminatesStrings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Does this target want its formatter to null terminate its strings? </p>
 
 </div>
 </div>
@@ -240,6 +259,24 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Sets the current formatter for this target. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1480d250abc60598b348d3ecfdf16dd9"></a><!-- doxytag: member="logog::Target::SetNullTerminatesStrings" ref="a1480d250abc60598b348d3ecfdf16dd9" args="(bool val)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetNullTerminatesStrings </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Tells this target whether to request its formatter to null terminate its strings. </p>
 
 </div>
 </div>
@@ -324,7 +361,7 @@ Friends</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Wed Oct 26 2011 20:30:03 for logog by
+    <li class="footer">Generated on Wed Oct 26 2011 21:04:20 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
