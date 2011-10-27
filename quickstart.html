@@ -95,14 +95,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock"><p>The logog system is a set of C++ header files and C++ source files. To use them, compile all the C++ source files into a single library. The compiler will need to reference the files in the include directory when compiling the logog library.</p>
+<dl class="user"><dt><b>Build the logog library</b></dt><dd></dd></dl>
+<p>To make this easier, logog has been set up to compile using CMake, available at <a href="http://www.cmake.org/">http://www.cmake.org/</a> . CMake is a free cross-platform build system, and executables are available for most major platforms and development environments. Download and install CMake in order to generate a build for your platform.</p>
+<p>For example, to build the project and libraries on Visual Studio 2008, find and launch the Visual Studio 2008 Command Prompt at <b>Microsoft Visual Studio 2008 / Visual Studio Tools / Visual Studio 2008 Command Prompt.</b></p>
+<p>Then, to create the appropriate project files, create an empty directory, make that directory the current directory, and run the CMake command with the logog directory as a parameter:</p>
+<div class="fragment"><pre class="fragment">mkdir logog-build
+cd logog-build
+cmake [path-to-logog-top-directory]
+</pre></div><p>At this point, your directory will contain appropriate project and solution files for your platform. Once the solution is building, the CMake program is no longer needed. Compile and link the library for your own platform using the makefile or project files generated for your platform.</p>
+<dl class="user"><dt><b>Integrate logog into your own project</b></dt><dd></dd></dl>
 <p>To use the logging library in your own project, put the following line at the top of your source file(s):</p>
 <div class="fragment"><pre class="fragment"><span class="preprocessor">#include &quot;<a class="code" href="logog_8hpp.html">logog.hpp</a>&quot;</span>
 </pre></div><p>Additionally, make sure to add logog's /include path into the directories your build process searches.</p>
 <p>At the beginning of your program, initialize logog exactly once, with this macro:</p>
 <div class="fragment"><pre class="fragment"><a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
-</pre></div><p>To tell logog what type of output should be logged, you must first create a <a class="el" href="classlogog_1_1_cerr.html">logog::Cerr</a>, a <a class="el" href="classlogog_1_1_cout.html">logog::Cout</a>, or a <a class="el" href="classlogog_1_1_log_file.html">logog::LogFile</a> object. Once this object is instantiated, all messages will be routed to that target. For example:</p>
+</pre></div><dl class="user"><dt><b>Choose one or more output types</b></dt><dd></dd></dl>
+<p>To tell logog what type of output should be logged, you must first create a <a class="el" href="classlogog_1_1_cerr.html">logog::Cerr</a>, a <a class="el" href="classlogog_1_1_cout.html">logog::Cout</a>, or a <a class="el" href="classlogog_1_1_log_file.html">logog::LogFile</a> object. Once this object is instantiated, all messages will be routed to that target. For example:</p>
 <div class="fragment"><pre class="fragment"><a class="code" href="classlogog_1_1_cerr.html">logog::Cerr</a> errOutput;
-</pre></div><p>To log a message in your code, use one of the following macros, in order of severity. Arguments are assumed to be sprintf-style varargs:</p>
+</pre></div><p>Or:</p>
+<div class="fragment"><pre class="fragment"><a class="code" href="classlogog_1_1_log_file.html">logog::LogFile</a> errFile(<span class="stringliteral">&quot;log.txt&quot;</span>);
+</pre></div><p>It's only necessary to create one target per process, immediately after initializing logog; you don't need to instance a different <a class="el" href="classlogog_1_1_cout.html">Cout</a>, <a class="el" href="classlogog_1_1_cerr.html">Cerr</a> or <a class="el" href="classlogog_1_1_log_file.html">LogFile</a> for each class or each file.</p>
+<dl class="user"><dt><b>Start logging events</b></dt><dd></dd></dl>
+<p>To log a message in your code, use one of the following macros, in order of severity. Arguments are assumed to be sprintf-style varargs:</p>
 <div class="fragment"><pre class="fragment">
 <span class="preprocessor">#define DBUG(...) LOGOG_DEBUG( __VA_ARGS__ )</span>
 <span class="preprocessor"></span>
@@ -172,7 +186,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Oct 10 2011 10:30:48 for logog by
+    <li class="footer">Generated on Thu Oct 27 2011 16:04:04 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

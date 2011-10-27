@@ -12,6 +12,7 @@ var NAVTREE =
       [ "Organizing and filtering log messages by types", "categoriesgroups.html", null ],
       [ "Logging to permutations of multiple targets", "multipletargets.html", null ],
       [ "Deferring logging output", "deferredoutput.html", null ],
+      [ "Custom formatting of log messages", "customformatting.html", null ],
       [ "Adding new logging output targets", "addingnewtargets.html", null ],
       [ "Implementing a custom memory manager", "memorymanager.html", null ],
       [ "Memory leak detection", "leakdetection.html", null ],
@@ -59,6 +60,7 @@ var NAVTREE =
       [ "TestSignup", "classlogog_1_1_test_signup.html", null ],
       [ "Thread", "classlogog_1_1_thread.html", null ],
       [ "Timer", "classlogog_1_1_timer.html", null ],
+      [ "TimeStamp", "classlogog_1_1_time_stamp.html", null ],
       [ "Topic", "classlogog_1_1_topic.html", null ],
       [ "TopicGroup", "classlogog_1_1_topic_group.html", null ],
       [ "TopicLevel", "classlogog_1_1_topic_level.html", null ],
@@ -104,7 +106,8 @@ var NAVTREE =
         ] ],
         [ "ScopedLock", "classlogog_1_1_scoped_lock.html", null ],
         [ "String", "classlogog_1_1_string.html", null ],
-        [ "Timer", "classlogog_1_1_timer.html", null ]
+        [ "Timer", "classlogog_1_1_timer.html", null ],
+        [ "TimeStamp", "classlogog_1_1_time_stamp.html", null ]
       ] ],
       [ "Allocator< T >::rebind< U >", "structlogog_1_1_allocator_1_1rebind.html", null ],
       [ "Statics", "classlogog_1_1_statics.html", null ],

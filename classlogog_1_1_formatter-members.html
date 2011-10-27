@@ -106,8 +106,10 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_form
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#a55ae8f1dcb9f5e4be5afc9c8c0af17b4">Allocate</a>(size_t nSize)</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#ac8a805a36022037ffc4421960632d36a">Deallocate</a>(void *ptr)</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#acf9cfd2ff440c1b21c3f1c1c781b64db">ErrorDescription</a>(const LOGOG_LEVEL_TYPE level)</td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#a4ac6d1b2137ab7a1477578c6231f0f84">Format</a>(const Topic &amp;topic)=0</td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [pure virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#a711a519a7c2a822721a6e6b61c6c3639">Format</a>(const Topic &amp;topic, const Target &amp;target)=0</td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#a8fd5a03aa722ac623bb521491ea3bc26">Formatter</a>()</td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#adbede02675d6898bff42fca2dd4279c4">GetShowTimeOfDay</a>() const </td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#a57fa2da1021b8ddd01858c81a538cf0d">m_bShowTimeOfDay</a></td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#a373b9981ecee111f5caefbcc4c38954d">m_sIntBuffer</a></td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#a6dfd877b4db9dba6da735ea322949197">m_sMessageBuffer</a></td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#ad97170a7be4b1b9ec11551cb0f457903">Object</a>()</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td></td></tr>
@@ -115,6 +117,8 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_form
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#a1d8b2d6f17242ae0d182b0f7a98ba54f">operator delete[]</a>(void *ptr)</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#a62de0247526bbc2f43948fcf8e0bf15b">operator new</a>(size_t nSize)</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#aed1d987fff237de95c938406be82e966">operator new[]</a>(size_t nSize)</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#ad41f3a4f73bd33c255a4ab5c0e37bc42">RenderTimeOfDay</a>()</td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_formatter.html#ae38352b0c900bade43bd835e797b3e70">SetShowTimeOfDay</a>(bool val)</td><td><a class="el" href="classlogog_1_1_formatter.html">Formatter</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#ab5cc4f9ba1ea5c2f25bc4b1f0dac5dc5">~Object</a>()</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td><code> [virtual]</code></td></tr>
 </table></div>
 </div>
@@ -135,7 +139,7 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_form
 </div>
 
 
-    <li class="footer">Generated on Mon Oct 10 2011 10:30:48 for logog by
+    <li class="footer">Generated on Thu Oct 27 2011 16:04:04 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
