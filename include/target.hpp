@@ -35,11 +35,22 @@ public :
      */
     virtual int Receive( const Topic &topic );
 
+	/** Does this target want its formatter to null terminate its strings? */
+	bool GetNullTerminatesStrings() const { return m_bNullTerminatesStrings; }
+
+	/** Tells this target whether to request its formatter to null terminate its strings. */
+	void SetNullTerminatesStrings(bool val) { m_bNullTerminatesStrings = val; }
+
+
 protected:
     /** A pointer to the formatter used for this output. */
     Formatter *m_pFormatter;
     /** A mutex on the Receive() function. */
     Mutex m_MutexReceive;
+	/** Does this target cause its formatter to null-terminate its output strings?  File and buffer outputs 
+	 ** don't require null terminated strings, but line outputs do.
+	 **/
+	bool m_bNullTerminatesStrings;
 };
 
 /** A target representing the cerr stream. */

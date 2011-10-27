@@ -95,28 +95,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock"><p>Writing debug output can take a lot of time on most platforms. Especially in programs that produce copious debug output, logging can slow a program's operation considerably.</p>
-<p>To get around this behavior, use the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a> class. To Create a <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a>, you provide a pointer to the ultimate <a class="el" href="classlogog_1_1_target.html">Target</a> you want to write to, such as a <a class="el" href="classlogog_1_1_cerr.html">Cerr</a> or a <a class="el" href="classlogog_1_1_log_file.html">LogFile</a>, as well as the size of the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a>. Logging then occurs solely to the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a>, and no output is written to the <a class="el" href="classlogog_1_1_target.html">Target</a> until the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a> is destroyed, or the <a class="el" href="classlogog_1_1_log_buffer.html#a80c51dd4e1650d5295232d38ebf36625">LogBuffer::Dump()</a> method is called.</p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
-
-        {
-                LogFile logFile(<span class="stringliteral">&quot;log.txt&quot;</span>);
-                LogBuffer logBuffer( &amp;logFile );
-
-                <span class="comment">// Make sure that the log file does not receive messages via the general filter mechanism.</span>
-                logFile.UnsubscribeToMultiple( <a class="code" href="namespacelogog.html#aecdadc3e9ee39a66438de642c58d003b">AllFilters</a>() );
-
-                <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> i = 1; i &lt;= 20; i++ )
-                {
-                        <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;This is warning %d of 20&quot;</span>, i);
-
-                        <span class="keywordtype">int</span> q = 27832;
-                        <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> j = 0; j &lt; <a class="code" href="test_8cpp.html#ac8ed61f291cc40d06b9c3b9b02371a2c">TEST_STRESS_LEVEL</a> * 10000000; j++ )
-                                q *= q;
-                }
-        }
-
-        <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
-</pre></div></div></div>
+<p>To get around this behavior, use the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a> class. To Create a <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a>, you provide a pointer to the ultimate <a class="el" href="classlogog_1_1_target.html">Target</a> you want to write to, such as a <a class="el" href="classlogog_1_1_cerr.html">Cerr</a> or a <a class="el" href="classlogog_1_1_log_file.html">LogFile</a>, as well as the size of the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a>. Logging then occurs solely to the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a>, and no output is written to the <a class="el" href="classlogog_1_1_target.html">Target</a> until the <a class="el" href="classlogog_1_1_log_buffer.html">LogBuffer</a> is destroyed, or the <a class="el" href="classlogog_1_1_log_buffer.html#a80c51dd4e1650d5295232d38ebf36625">LogBuffer::Dump()</a> method is called. </p>
+</div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
@@ -135,7 +115,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Tue Oct 25 2011 16:22:09 for logog by
+    <li class="footer">Generated on Thu Oct 27 2011 15:35:25 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

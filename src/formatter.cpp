@@ -7,10 +7,21 @@
 
 namespace logog {
 
-	Formatter::Formatter()
+	Formatter::Formatter() :
+		m_bShowTimeOfDay( false )
 	{
 		m_sMessageBuffer.reserve( LOGOG_FORMATTER_MAX_LENGTH );
 		m_sIntBuffer.reserve_for_int();
+	}
+
+	void Formatter::RenderTimeOfDay()
+	{
+		if ( m_bShowTimeOfDay )
+		{
+			TimeStamp stamp;
+			m_sMessageBuffer.append( stamp.Get() );
+			m_sMessageBuffer.append(": ");
+		}
 	}
 
 	const LOGOG_CHAR * Formatter::ErrorDescription( const LOGOG_LEVEL_TYPE level )
@@ -42,9 +53,18 @@ namespace logog {
 		return "unknown";
 	}
 
-	LOGOG_STRING &FormatterGCC::Format( const Topic &topic )
+	bool Formatter::GetShowTimeOfDay() const
 	{
+		return m_bShowTimeOfDay;
+	}
 
+	void Formatter::SetShowTimeOfDay( bool val )
+	{
+		m_bShowTimeOfDay = val;
+	}
+
+	LOGOG_STRING &FormatterGCC::Format( const Topic &topic, const Target &target )
+	{
 		TOPIC_FLAGS flags;
 		flags = topic.GetTopicFlags();
 
@@ -63,6 +83,8 @@ namespace logog {
 
 			m_sMessageBuffer.append( ": ");
 		}
+
+		RenderTimeOfDay();
 
 		if ( flags & TOPIC_LEVEL_FLAG )
 		{
@@ -90,12 +112,14 @@ namespace logog {
 			m_sMessageBuffer.append( '\n' );
 		}
 
-		m_sMessageBuffer.append( (char)NULL );
+		if ( target.GetNullTerminatesStrings() )
+			m_sMessageBuffer.append( (char)NULL );
 
 		return m_sMessageBuffer;
 	}
 
-	LOGOG_STRING &FormatterMSVC::Format( const Topic &topic )
+
+	LOGOG_STRING &FormatterMSVC::Format( const Topic &topic, const Target &target )
     {
         m_sMessageBuffer.clear();
 
@@ -115,6 +139,8 @@ namespace logog {
 
             m_sMessageBuffer.append( ") : " );
         }
+
+		RenderTimeOfDay();
 
         if ( flags & TOPIC_LEVEL_FLAG )
         {
@@ -142,7 +168,8 @@ namespace logog {
             m_sMessageBuffer.append( '\n' );
         }
 
-        m_sMessageBuffer.append( (char)NULL );
+		if ( target.GetNullTerminatesStrings() )
+			m_sMessageBuffer.append( (char)NULL );
 
         return m_sMessageBuffer;
     }
@@ -174,6 +201,18 @@ namespace logog {
 		pStatic->s_pDefaultFormatter = NULL;
 }
 
+const char * TimeStamp::Get()
+{
+	time_t tRawTime;
+	struct tm * tmInfo;
+
+	time ( &tRawTime );
+	tmInfo = localtime ( &tRawTime );
+
+	strftime (cTimeString, LOGOG_TIME_STRING_MAX, "%c", tmInfo);
+
+	return cTimeString;
+}
 
 }
 

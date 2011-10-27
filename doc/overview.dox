@@ -41,6 +41,7 @@ within five minutes by reading the \ref quickstart section.
 - \ref multipletargets
 - \ref deferredoutput
 - \ref addingnewtargets
+- \ref customformatting
 - \ref memorymanager
 - \ref performance
 - \ref leakdetection
@@ -225,6 +226,15 @@ all messages will be routed to that target.  For example:
 \code
 logog::Cerr errOutput;
 \endcode
+
+Or:
+
+\code
+logog::LogFile errFile("log.txt");
+\endcode
+
+It's only necessary to create one target per process, immediately after initializing
+logog; you don't need to instance a different Cout, Cerr or LogFile for each class or each file.
 
 \par Start logging events
 
@@ -423,7 +433,21 @@ a Cerr or a LogFile, as well as the size of the LogBuffer.  Logging then occurs
 solely to the LogBuffer, and no output is written to the Target until the 
 LogBuffer is destroyed, or the LogBuffer::Dump() method is called.
 
-\snippet test.cpp DeferredFileLogging
+\page customformatting Custom formatting of log messages
+
+The Formatter object is responsible for rendering a particular Topic into a human-readable
+format.  A default Formatter is created by default for you based on the flavor of the compile 
+target.  See FormatterGCC and FormatterMSVC objects for examples.
+
+If you want log messages in your own custom format, subclass the Formatter::Format 
+method into your own custom class, and write your own formatting function for a topic.
+See FormatterMSVC::Format and FormatterGCC::Format for examples.
+
+If you wish, you can force these two formatters to output the current date and time as 
+part of their format.  You can do this by calling the Formatter::SetShowTimeOfDay function
+with a value of true, as follows:
+
+\snippet test.cpp DateAndTimeLogging
 
 \page addingnewtargets Adding new logging output targets
 

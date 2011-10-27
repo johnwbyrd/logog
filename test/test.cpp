@@ -629,6 +629,12 @@ UNITTEST( DeferredFileLogging )
 		LogFile logFile("log.txt");
 		LogBuffer logBuffer( &logFile );
 
+		/* Because the LogBuffer is not writing to a line device a la stdout or stderr, it does not need to
+		 * send null terminated strings to its destination (the LogFile).  This is a particular peculiarity
+		 * of having a buffering target to a serial-type target, such as a socket or a file.
+		 */
+		logBuffer.SetNullTerminatesStrings( false );
+
 		// Make sure that the log file does not receive messages via the general filter mechanism.
 		logFile.UnsubscribeToMultiple( AllFilters() );
 
@@ -646,6 +652,35 @@ UNITTEST( DeferredFileLogging )
 //! [DeferredFileLogging]
 	return 0;
 }
+
+UNITTEST( DateAndTime )
+{
+//! [DateAndTimeLogging]
+	LOGOG_INITIALIZE();
+
+	{
+		Cerr err;
+
+		Formatter *pFormatter = &GetDefaultFormatter();
+
+		pFormatter->SetShowTimeOfDay( true );
+
+		for ( int i = 1; i <= 20; i++ )
+		{
+			WARN("This is warning %d of 20... but with time!", i);
+
+			int q = 27832;
+			for ( int j = 0; j < TEST_STRESS_LEVEL * 10000000; j++ )
+				q *= q;
+		}
+	}
+
+	LOGOG_SHUTDOWN();
+//! [DateAndTimeLogging]
+
+	return 0;
+}
+
 
 #ifndef LOGOG_TARGET_PS3
 int DoPlatformSpecificTestInitialization()
