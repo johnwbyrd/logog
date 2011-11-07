@@ -43,7 +43,11 @@ namespace logog
 	Mutex *___pMCM = &GetMessageCreationMutex(); \
 	___pMCM->MutexLock(); \
 	static logog::Message *TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \
-		__FILE__, __LINE__, group, cat, msg ); \
+		LOGOG_CONST_STRING( __FILE__ ), \
+		__LINE__ , \
+		LOGOG_CONST_STRING( group ), \
+		LOGOG_CONST_STRING( cat ), \
+		msg; \
 	___pMCM->MutexUnlock(); \
 	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexLock(); \
 	TOKENPASTE(_logog_,__LINE__)->Transmit(); \
@@ -78,8 +82,13 @@ namespace logog
 	{ \
 		TOKENPASTE(_logog_,__LINE__) = \
 			new logog::Message( level, \
-				__FILE__, __LINE__, group, cat, \
-				"", 0.0f, & (TOKENPASTE(_logog_static_bool_,__LINE__)) ); \
+				LOGOG_CONST_STRING( __FILE__ ), \
+				__LINE__ , \
+				LOGOG_CONST_STRING( group ), \
+				LOGOG_CONST_STRING( cat ), \
+				LOGOG_CONST_STRING( "" ), \
+				0.0f, \
+				& (TOKENPASTE(_logog_static_bool_,__LINE__)) ); \
 	} \
 	___pMCM->MutexUnlock(); \
 	/* A race condition could theoretically occur here if you are shutting down at the same instant as sending log messages. */ \

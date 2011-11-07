@@ -38,11 +38,11 @@ namespace logog
  *
  *     if ( 2 + 2 == 4 )
  *     {
- *        cout << "Sane." << endl;
+ *        LOGOG_COUT << _LG("Sane.") << endl;
  *     }
  *     else
  *     {
- *        cout << "Insane!" << endl;
+ *        LOGOG_COUT << _LG("Insane!") << endl;
  *        nResult = 1;
  *     }
  *
@@ -123,9 +123,6 @@ extern int RunAllTests();
 
 /** Should remove all memory allocated during unit testing. */
 extern void ShutdownTests();
-
-extern int CompareAndDeleteFile( const LOGOG_CHAR *pValidOutput,
-                          const LOGOG_CHAR *pFileName );
 
 /** This should be the function prefix for a unit test.  It defines a new class for the test inherited from UnitTest.  It instances
  ** a member of the class at run-time (before main() starts).  Lastly it provides the function definition for the actual test class.

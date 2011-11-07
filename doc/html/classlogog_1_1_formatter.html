@@ -133,7 +133,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#ae38352b0c900bade43bd835e797b3e70">SetShowTimeOfDay</a> (bool val)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#acf9cfd2ff440c1b21c3f1c1c781b64db">ErrorDescription</a> (const LOGOG_LEVEL_TYPE level)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#acf9cfd2ff440c1b21c3f1c1c781b64db">ErrorDescription</a> (const LOGOG_LEVEL_TYPE level)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">LOGOG_STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a6dfd877b4db9dba6da735ea322949197">m_sMessageBuffer</a></td></tr>
@@ -165,7 +165,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a>* ErrorDescription </td>
+          <td class="memname">const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a>* ErrorDescription </td>
           <td>(</td>
           <td class="paramtype">const LOGOG_LEVEL_TYPE&#160;</td>
           <td class="paramname"><em>level</em></td><td>)</td>
@@ -237,7 +237,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Causes the time of day to be rendered, if it needs to be rendered. </p>
+<p>Causes the time of day to be rendered, if it needs to be rendered. This function is only supported on ANSI builds, not Unicode, as the underlying functions are ANSI only. </p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:50 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:54 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

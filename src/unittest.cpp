@@ -47,14 +47,19 @@ int RunAllTests()
     int nTestResult;
     int nFailures = 0;
 
-    ostream *pOut;
-    pOut = &(std::cout);
+#ifdef LOGOG_UNICODE
+    wostream *pOut;
+#else // LOGOG_UNICODE
+	ostream *pOut;	
+#endif // LOGOG_UNICODE
+
+	pOut = &(LOGOG_COUT);
 
     nTests = (int) LogogTestRegistry().size();
 
     if ( nTests == 0 )
     {
-        *pOut << "No tests currently defined." << endl;
+		*pOut << _LG("No tests currently defined.") << endl;
         return 1;
     }
 
@@ -62,19 +67,19 @@ int RunAllTests()
             it != LogogTestRegistry().end();
             it++ )
     {
-        (*pOut) << "Test " << (*it)->GetName() << " running... " << endl;
+        (*pOut) << _LG("Test ") << (*it)->GetName() << _LG(" running... ") << endl;
         nTestResult = (*it)->RunTest();
 
-        (*pOut) << "Test " << (*it)->GetName();
+        (*pOut) << _LG("Test ") << (*it)->GetName();
 
         if ( nTestResult == 0 )
         {
-            *pOut << " successful." << endl;
+            *pOut << _LG(" successful.") << endl;
             nTestsSucceeded++;
         }
         else
         {
-            *pOut << " failed!" << endl;
+            *pOut << _LG(" failed!") << endl;
             nFailures++;
         }
 
@@ -84,15 +89,16 @@ int RunAllTests()
 
         if ( nMemoryTestResult != -1 )
         {
-            (*pOut) << "Test " << (*it)->GetName() << " has " << nMemoryTestResult << " memory allocations outstanding at end of test." << endl;
+            (*pOut) << _LG("Test ") << (*it)->GetName() << _LG(" has ") << nMemoryTestResult <<
+				_LG(" memory allocations outstanding at end of test.") << endl;
             nFailures += nMemoryTestResult;
         }
     }
 
-    *pOut << "Testing complete, "
-          << nTests << " total tests, "
-          << nTestsSucceeded << " tests succeeded, "
-          << ( nTests - nTestsSucceeded ) << " failed"
+    *pOut << _LG("Testing complete, ")
+          << nTests << _LG(" total tests, ")
+          << nTestsSucceeded << _LG(" tests succeeded, ")
+          << ( nTests - nTestsSucceeded ) << _LG(" failed")
           << endl;
 
     return nFailures;
@@ -102,35 +108,6 @@ int RunAllTests()
 void ShutdownTests()
 {
     delete &LogogTestRegistry();
-}
-
-int CompareAndDeleteFile( const LOGOG_CHAR *pValidOutput,
-                          const LOGOG_CHAR *pFileName )
-{
-    FILE *fp;
-
-#ifdef LOGOG_FLAVOR_WINDOWS
-    // Microsoft prefers its variant
-    int nError = fopen_s( &fp, pFileName, "r" );
-    if ( nError != 0 )
-        return nError;
-#else // LOGOG_FLAVOR_WINDOWS
-    fp = fopen( pFileName, "r" );
-#endif // LOGOG_FLAVOR_WINDOWS
-
-    while ( !feof( fp ) && *pValidOutput )
-    {
-        if ( fgetc( fp ) != *pValidOutput++ )
-        {
-            fclose( fp );
-            remove( pFileName );
-            return -1; // found a mismatch
-        }
-    }
-
-    // it matched!
-    fclose( fp );
-    return remove( pFileName );
 }
 
 }

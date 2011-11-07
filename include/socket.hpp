@@ -38,7 +38,7 @@ public:
             if ( err != 0 )
             {
 #ifdef LOGOG_INTERNAL_DEBUGGING
-                cout << "WSAStartup failed with error: " <<  err << endl;
+                LOGOG_COUT << _LG("WSAStartup failed with error: ") <<  err << endl;
 #endif
                 return 1;
             }

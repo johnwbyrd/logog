@@ -5,10 +5,6 @@
 #ifndef __LOGOG_TIMER_HPP__
 #define __LOGOG_TIMER_HPP__
 
-#ifdef LOGOG_FLAVOR_POSIX
-#include <sys/time.h>
-#endif
-
 namespace logog
 {
 /** A value for a high resolution timer on this platform.  Time representations are in seconds. */

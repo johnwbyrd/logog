@@ -127,27 +127,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a11ff405592b724f216a40d85b2d15209">LogFile</a> (const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *sFileName)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a7dfd734d2cfcf841f2084630142a382b">LogFile</a> (const char *sFileName)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a9789bd34990afddd14d01824e61da5bf">~LogFile</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a7eb10765e0095c6c9629849ff77aa567">Open</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a0181a9f1ec579f603418557c1176d404">Output</a> (const LOGOG_STRING &amp;data)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">LOGOG_STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#acf08619d7ea42ce5e84fe74c60e2d9a1">m_FileName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">m_pFileName</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#a5251dc4daa5624ad556b959716e8d956">m_bFirstTime</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">m_pFile</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classlogog_1_1_log_file.html">LogFile</a> renders received messages to a file. Provide the name of the file to be rendered to as a parameter to the construction of the LogFile() object. Destroying a <a class="el" href="classlogog_1_1_log_file.html">LogFile</a> object will cause the output file to be closed. <a class="el" href="classlogog_1_1_log_file.html">LogFile</a> objects always append to the output file; they do not delete the previous log file. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a11ff405592b724f216a40d85b2d15209"></a><!-- doxytag: member="logog::LogFile::LogFile" ref="a11ff405592b724f216a40d85b2d15209" args="(const LOGOG_CHAR *sFileName)" -->
+<a class="anchor" id="a7dfd734d2cfcf841f2084630142a382b"></a><!-- doxytag: member="logog::LogFile::LogFile" ref="a7dfd734d2cfcf841f2084630142a382b" args="(const char *sFileName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classlogog_1_1_log_file.html">LogFile</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>sFileName</em></td><td>)</td>
           <td></td>
         </tr>
@@ -157,7 +157,7 @@ Protected Attributes</h2></td></tr>
 <p>Creates a <a class="el" href="classlogog_1_1_log_file.html">LogFile</a> object. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">sFileName</td><td>The name of the file to be created. </td></tr>
+    <tr><td class="paramname">sFileName</td><td>The name of the file to be created. Since file names do not support Unicode on most systems, there is no option to create a filename with a LOGOG_CHAR. </td></tr>
   </table>
   </dd>
 </dl>
@@ -233,12 +233,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acf08619d7ea42ce5e84fe74c60e2d9a1"></a><!-- doxytag: member="logog::LogFile::m_FileName" ref="acf08619d7ea42ce5e84fe74c60e2d9a1" args="" -->
+<a class="anchor" id="abe033eebdde50ae8d95bcb1ef44e5f99"></a><!-- doxytag: member="logog::LogFile::m_pFile" ref="abe033eebdde50ae8d95bcb1ef44e5f99" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">LOGOG_STRING <a class="el" href="classlogog_1_1_log_file.html#acf08619d7ea42ce5e84fe74c60e2d9a1">m_FileName</a><code> [protected]</code></td>
+          <td class="memname">FILE* <a class="el" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">m_pFile</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -246,12 +246,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abe033eebdde50ae8d95bcb1ef44e5f99"></a><!-- doxytag: member="logog::LogFile::m_pFile" ref="abe033eebdde50ae8d95bcb1ef44e5f99" args="" -->
+<a class="anchor" id="a436992902eccc9b6eca9d8eb16534659"></a><!-- doxytag: member="logog::LogFile::m_pFileName" ref="a436992902eccc9b6eca9d8eb16534659" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">FILE* <a class="el" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">m_pFile</a><code> [protected]</code></td>
+          <td class="memname">char* <a class="el" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">m_pFileName</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -283,7 +283,7 @@ Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:50 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:54 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

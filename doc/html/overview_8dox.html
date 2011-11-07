@@ -97,7 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
 <div class="title">doc/overview.dox File Reference</div>  </div>
 </div>
@@ -106,7 +107,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html">logog</a></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overview_8dox.html#aff7cb05f8d978fbbe0e77866c3199f44">LOGOG_UNICODE</a>&#160;&#160;&#160;1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overview_8dox.html#a0f193e43eff6b9f4f6747cbb6996f3d5">LOGOG_INTERNAL_DEBUGGING</a>&#160;&#160;&#160;1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overview_8dox.html#aeb09049395a3263d8d4423bb277627a7">LOGOG_LEAK_DETECTION</a>&#160;&#160;&#160;1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overview_8dox.html#abd599277ca95accc3237543af3bab974">LOGOG_REPORT_ALLOCATIONS</a>&#160;&#160;&#160;1</td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a0f193e43eff6b9f4f6747cbb6996f3d5"></a><!-- doxytag: member="overview.dox::LOGOG_INTERNAL_DEBUGGING" ref="a0f193e43eff6b9f4f6747cbb6996f3d5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_INTERNAL_DEBUGGING&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Define this macro to debug logog itself. This setting enables sanity checks on many logog functions. This setting is not very useful for end users of logog. </p>
+
+</div>
+</div>
+<a class="anchor" id="aeb09049395a3263d8d4423bb277627a7"></a><!-- doxytag: member="overview.dox::LOGOG_LEAK_DETECTION" ref="aeb09049395a3263d8d4423bb277627a7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_LEAK_DETECTION&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Define this macro to check all memory allocations and frees. This setting will check against double allocations and double deletes as well. Do not enable this on production code -- it'll slow down the performance considerably. </p>
+
+</div>
+</div>
+<a class="anchor" id="abd599277ca95accc3237543af3bab974"></a><!-- doxytag: member="overview.dox::LOGOG_REPORT_ALLOCATIONS" ref="abd599277ca95accc3237543af3bab974" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_REPORT_ALLOCATIONS&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Define this macro to report on ALL allocations and frees that happen through logog. Enable this if you get paid by lines of program output. </p>
+
+</div>
+</div>
+<a class="anchor" id="aff7cb05f8d978fbbe0e77866c3199f44"></a><!-- doxytag: member="overview.dox::LOGOG_UNICODE" ref="aff7cb05f8d978fbbe0e77866c3199f44" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_UNICODE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Define this macro to enable Unicode support in logog. The logog library works either in Unicode mode or not -- attempting to mix the two log types will have unexpected results. </p>
+
+</div>
+</div>
 </div>
 </div>
   <div id="nav-path" class="navpath">
@@ -127,7 +191,7 @@ Namespaces</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:49 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

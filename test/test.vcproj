@@ -89,6 +89,11 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+				HeapVerification="2"
+				HandleVerification="2"
+				LocksVerification="2"
+				PageHeapConserveMemory="false"
+				PageHeapProtectionLocation="1"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"

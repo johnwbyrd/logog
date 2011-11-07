@@ -43,6 +43,7 @@ within five minutes by reading the \ref quickstart section.
 - \ref addingnewtargets
 - \ref customformatting
 - \ref memorymanager
+- \ref unicodesupport
 - \ref performance
 - \ref leakdetection
 
@@ -496,6 +497,48 @@ Memory leak detection will slow down logog; additionally, memory leak
 detection avoids logog's custom memory manager, in order
 to avoid an infinite recursion.
 
+\page unicodesupport Unicode support
+
+The logog library may be compiled either in ANSI mode or in Unicode mode.  By default,
+logog is compiled as an ANSI library.  In this case, multibyte characters are 
+not permitted in log messages.  To enable Unicode support, define the LOGOG_UNICODE
+flag in logog.hpp before compiling the logog library.
+
+Defining LOGOG_UNICODE has several effects on logog.  First, this forces all
+logging functions to expect to receive string parameters as arrays of the 
+local wchar_t type instead of char types.  In other words, the LOGOG_CHAR 
+base type is redefined to wchar_t instead of char.  Second, this forces logog to route all
+Cout messages to wcout, and all Cerr messages to wcerr.
+
+A convenience macro, _LG(), is available (if you haven't defined LOGOG_USE_PREFIX)
+for easily switching your constant strings from ANSI to Unicode, based on the compilation
+value of LOGOG_UNICODE.  To use this macro, and hence to have all your code compile
+in both ANSI and Unicode modes, log in the following fashion:
+
+\code
+INFO(_LG("This informational message is displayed in both ANSI and Unicode builds."));
+WARN(LOGOG_CONST_STRING("And this one works regardless of the LOGOG_USE_PREFIX setting."));
+\endcode
+
+Mixing and matching both Unicode and ANSI messages in one application is not currently
+supported, as most compilers do not implement this functionality.
+
+<b>Windows specific issues</b>
+
+Windows platforms have special considerations when logging to the console with 
+wide characters via wcout or wcerr.  Because logog shares the console with its
+host application, it does not initialize the console in any way.  On Windows
+flavored platforms, the console must be initialized in a Unicode-friendly way.
+See http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx for details
+about how this might work.  
+
+One way of initializing a Windows console for Unicode support, which seems to 
+work, is as follows:
+
+\snippet test.cpp WindowsUnicodeSetup
+
+See also Microsoft's documentation at http://msdn.microsoft.com/en-us/library/tw4k6df8.aspx .
+
 \page pubsub Publisher-subscriber functionality
 
 Topic objects are a base class that provides publisher-subscriber
@@ -845,3 +888,33 @@ like mutexes and threads in remarkably few lines of code.
 */
 
 }
+
+/** \def LOGOG_UNICODE
+ ** Define this macro to enable Unicode support in logog.  The logog library works either in Unicode mode or not --
+ ** attempting to mix the two log types will have unexpected results.
+ **/
+#define LOGOG_UNICODE 1
+
+/** \def LOGOG_INTERNAL_DEBUGGING
+ ** Define this macro to debug logog itself.  This setting enables sanity checks on many logog functions.  This setting
+ ** is not very useful for end users of logog. */
+#define LOGOG_INTERNAL_DEBUGGING 1
+
+/** \def LOGOG_LEAK_DETECTION
+ ** Define this macro to check all memory allocations and frees.  This setting will check against double allocations
+ ** and double deletes as well.  Do not enable this on production code -- it'll slow down the performance considerably.
+ **/
+ #define LOGOG_LEAK_DETECTION 1
+
+/** \def LOGOG_REPORT_ALLOCATIONS
+ ** Define this macro to report on ALL allocations and frees that happen through logog.
+ ** Enable this if you get paid by lines of program output. */
+#define LOGOG_REPORT_ALLOCATIONS 1
+
+/** \def LOGOG_COUT 
+ ** This is equivalent to std::wcout if LOGOG_UNICODE is defined, and std::cout otherwise.
+ **/
+
+/** \def LOGOG_CERR
+ ** This is equivalent to std::wcerr if LOGOG_UNICODE is defined, and std::cerr otherwise.
+ **/

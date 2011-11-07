@@ -158,8 +158,6 @@ namespace logog {
 		int number = value;
 		m_pOffset = m_pBuffer;
 
-		static LOGOG_CHAR s_cLookups[] = "0123456789";
-
 		int bSign = value;
 
 		if (( bSign = number) < 0)
@@ -167,14 +165,14 @@ namespace logog {
 
 		do
 		{
-			*m_pOffset++ = s_cLookups[ number % 10 ];
+			*m_pOffset++ = _LG("0123456789")[ number % 10 ];
 		}
 		while( number /= 10 );
 
 		if (bSign < 0)
 			*m_pOffset++ = '-';
 
-		*m_pOffset = '\0';
+		*m_pOffset = (LOGOG_CHAR)'\0';
 
 		reverse( m_pBuffer, m_pOffset - 1 );
 
@@ -247,7 +245,7 @@ namespace logog {
 	}
 	void String::reverse( LOGOG_CHAR* pStart, LOGOG_CHAR* pEnd )
 	{
-		char temp;
+		LOGOG_CHAR temp;
 
 		while( pEnd > pStart)
 		{
@@ -264,10 +262,23 @@ namespace logog {
 	{
 		if ( is_valid() && other.is_valid())
 		{
-			// BM solution
-			// return other.BM( m_pBuffer, m_pOffset - m_pBuffer );
 			// KMP solution
-			return other.KMP( m_pBuffer, m_pOffset - m_pBuffer );
+			// String *pThis = const_cast< String *>(this);
+			// return pThis->KMP( other.m_pBuffer, other.size());
+			LOGOG_CHAR *pFound;
+
+#ifdef LOGOG_UNICODE
+			pFound = wcsstr( m_pBuffer, other.m_pBuffer );
+#else // LOGOG_UNICODE
+			pFound = strstr( m_pBuffer, other.m_pBuffer );
+#endif
+
+			if ( pFound != NULL )
+			{
+				return ( pFound - m_pBuffer );
+			}
+
+			return npos;
 		}
 
 		return npos;
@@ -314,7 +325,7 @@ namespace logog {
 				LOGOG_INTERNAL_FAILURE;
 			}
 
-			*pszFormatted = '\0';
+			*pszFormatted = (LOGOG_CHAR)'\0';
 
 			va_list argsCopy;
 
@@ -326,13 +337,28 @@ namespace logog {
 			memcpy( &argsCopy, &args, sizeof(va_list) );
 #endif
 
+#ifdef LOGOG_UNICODE
+			int nSizeInWords = (nAttemptedSize / sizeof( LOGOG_CHAR )) - 1;
+#endif
+
 #ifdef LOGOG_FLAVOR_WINDOWS
+#ifdef LOGOG_UNICODE
+			nActualSize = _vsnwprintf_s( pszFormatted, nSizeInWords - 1, _TRUNCATE, cFormatString, argsCopy );
+#else // LOGOG_UNICODE
 			nActualSize = vsnprintf_s( pszFormatted, nAttemptedSize - 1, _TRUNCATE, cFormatString, argsCopy );
-#else
+#endif // LOGOG_UNICODE
+#else // LOGOG_FLAVOR_WINDOWS
+#ifdef LOGOG_UNICODE
+			nActualSize = vswprintf( pszFormatted, nSizeInWords - 1, cFormatString, argsCopy );
+#else // LOGOG_UNICODE
 			nActualSize = vsnprintf( pszFormatted, nAttemptedSize - 1, cFormatString, argsCopy );
+#endif // LOGOG_UNICODE
 #endif // LOGOG_FLAVOR_WINDOWS
 
 			va_end( argsCopy );
+
+			if ( nActualSize != -1 )
+				nActualSize *= sizeof( LOGOG_CHAR );
 
 			if (( nAttemptedSize > nActualSize ) && ( nActualSize != -1))
 				break;
@@ -411,102 +437,6 @@ namespace logog {
 				return (j - i);
 				// We would do this if we cared about multiple substrings
 				// i = m_pKMP[i];
-			}
-		}
-
-		return (unsigned int)npos;
-	}
-
-	void String::preBmBc( char *x, size_t m, size_t bmBc[] )
-	{
-		size_t i;
-
-		for (i = 0; i < ASIZE; ++i)
-			bmBc[i] = m;
-		for (i = 0; i < m - 1; ++i)
-			bmBc[(int)(x[i])] = m - i - 1;
-	}
-
-	void String::suffixes( char *x, size_t m, size_t *suff )
-	{
-		size_t f, g, i;
-
-		f = 0;
-
-		suff[m - 1] = m;
-		g = m - 1;
-		for (i = m - 2; i >= 0; --i)
-		{
-			if (i > g && suff[i + m - 1 - f] < i - g)
-				suff[i] = suff[i + m - 1 - f];
-			else
-			{
-				if (i < g)
-					g = i;
-				f = i;
-				while (g >= 0 && x[g] == x[g + m - 1 - f])
-					--g;
-				suff[i] = f - g;
-			}
-		}
-	}
-
-	void String::preBmGs( char *x, size_t m, size_t bmGs[] )
-	{
-		size_t i, j;
-		size_t *suff;
-
-		suff = (size_t *)Allocate( sizeof( size_t ) * size());
-
-		suffixes(x, m, suff);
-
-		for (i = 0; i < m; ++i)
-			bmGs[i] = m;
-		j = 0;
-		for (i = m - 1; i >= 0; --i)
-			if (suff[i] == i + 1)
-				for (; j < m - 1 - i; ++j)
-					if (bmGs[j] == m)
-						bmGs[j] = m - 1 - i;
-		for (i = 0; i <= m - 2; ++i)
-			bmGs[m - 1 - suff[i]] = m - 1 - i;
-
-		Deallocate( suff );
-	}
-
-	size_t String::BM( char *y, size_t n )
-	{
-		size_t i, j;
-
-		char *x = m_pBuffer;
-		size_t m = size();
-
-		if ( bmGs == NULL )
-		{
-			bmGs = (size_t *)Allocate( sizeof( size_t ) * size() );
-			bmBc = (size_t *)Allocate( sizeof( size_t ) * ASIZE );
-		}
-
-		/* Preprocessing */
-		preBmGs(x, m, bmGs);
-		preBmBc(x, m, bmBc);
-
-		/* Searching */
-		j = 0;
-		while (j <= n - m)
-		{
-			for (i = m - 1; i >= 0 && x[i] == y[i + j]; --i);
-			if (i < 0)
-			{
-				return j;
-				// we would do this if we cared about multiple matches
-				// j += bmGs[0];
-			}
-			else
-			{
-				size_t q = bmGs[i];
-				size_t r = bmBc[(int)(y[i + j])] - m + 1 + i;
-				j += LOGOG_MAX( q, r );
 			}
 		}
 

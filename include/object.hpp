@@ -5,12 +5,6 @@
 #ifndef __LOGOG_OBJECT_HPP__
 #define __LOGOG_OBJECT_HPP__
 
-#ifdef LOGOG_LEAK_DETECTION
-#include <cstdio>
-#include <iostream>
-using namespace std;
-#endif // LOGOG_LEAK_DETECTION
-
 namespace logog
 {
 

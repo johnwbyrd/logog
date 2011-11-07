@@ -18,39 +18,41 @@ namespace logog {
 	{
 		if ( m_bShowTimeOfDay )
 		{
+#ifndef LOGOG_UNICODE
 			TimeStamp stamp;
 			m_sMessageBuffer.append( stamp.Get() );
 			m_sMessageBuffer.append(": ");
+#endif
 		}
 	}
 
 	const LOGOG_CHAR * Formatter::ErrorDescription( const LOGOG_LEVEL_TYPE level )
 	{
 		if ( level <= LOGOG_LEVEL_NONE )
-			return "none";
+			return LOGOG_CONST_STRING("none");
 
 		if ( level <= LOGOG_LEVEL_EMERGENCY )
-			return "emergency";
+			return LOGOG_CONST_STRING("emergency");
 
 		if ( level <= LOGOG_LEVEL_ALERT )
-			return "alert";
+			return LOGOG_CONST_STRING("alert");
 
 		if ( level <= LOGOG_LEVEL_CRITICAL )
-			return "critical";
+			return LOGOG_CONST_STRING("critical");
 
 		if ( level <= LOGOG_LEVEL_ERROR )
-			return "error";
+			return LOGOG_CONST_STRING("error");
 
 		if ( level <= LOGOG_LEVEL_WARN )
-			return "warning";
+			return LOGOG_CONST_STRING("warning");
 
 		if ( level <= LOGOG_LEVEL_INFO )
-			return "info";
+			return LOGOG_CONST_STRING("info");
 
 		if ( level <= LOGOG_LEVEL_DEBUG )
-			return "debug";
+			return LOGOG_CONST_STRING("debug");
 
-		return "unknown";
+		return LOGOG_CONST_STRING("unknown");
 	}
 
 	bool Formatter::GetShowTimeOfDay() const
@@ -81,7 +83,7 @@ namespace logog {
 			m_sIntBuffer.assign( topic.LineNumber() );
 			m_sMessageBuffer.append( m_sIntBuffer );
 
-			m_sMessageBuffer.append( ": ");
+			m_sMessageBuffer.append( LOGOG_CONST_STRING(": "));
 		}
 
 		RenderTimeOfDay();
@@ -89,31 +91,31 @@ namespace logog {
 		if ( flags & TOPIC_LEVEL_FLAG )
 		{
 			m_sMessageBuffer.append( ErrorDescription( topic.Level()));
-			m_sMessageBuffer.append( ": ");
+			m_sMessageBuffer.append( LOGOG_CONST_STRING(": "));
 		}
 
 		if ( flags & TOPIC_GROUP_FLAG )
 		{
-			m_sMessageBuffer.append( "{");
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("{") );
 			m_sMessageBuffer.append( topic.Group() );
-			m_sMessageBuffer.append( "} ");
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("} ") );
 		}
 
 		if ( flags & TOPIC_CATEGORY_FLAG )
 		{
-			m_sMessageBuffer.append( "[");
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("["));
 			m_sMessageBuffer.append( topic.Category() );
-			m_sMessageBuffer.append( "] ");
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("] "));
 		}
 
 		if ( flags & TOPIC_MESSAGE_FLAG )
 		{
 			m_sMessageBuffer.append( topic.Message() );
-			m_sMessageBuffer.append( '\n' );
+			m_sMessageBuffer.append( (LOGOG_CHAR)'\n' );
 		}
 
 		if ( target.GetNullTerminatesStrings() )
-			m_sMessageBuffer.append( (char)NULL );
+			m_sMessageBuffer.append( (LOGOG_CHAR)NULL );
 
 		return m_sMessageBuffer;
 	}
@@ -137,7 +139,7 @@ namespace logog {
             m_sIntBuffer.assign( topic.LineNumber() );
             m_sMessageBuffer.append( m_sIntBuffer );
 
-            m_sMessageBuffer.append( ") : " );
+            m_sMessageBuffer.append( LOGOG_CONST_STRING(") : ") );
         }
 
 		RenderTimeOfDay();
@@ -145,31 +147,31 @@ namespace logog {
         if ( flags & TOPIC_LEVEL_FLAG )
         {
             m_sMessageBuffer.append( ErrorDescription( topic.Level() ) );
-            m_sMessageBuffer.append(": ");
+            m_sMessageBuffer.append( LOGOG_CONST_STRING(": "));
         }
 
         if ( flags & TOPIC_GROUP_FLAG )
         {
-            m_sMessageBuffer.append( "{");
+            m_sMessageBuffer.append( LOGOG_CONST_STRING("{"));
             m_sMessageBuffer.append( topic.Group() );
-            m_sMessageBuffer.append( "} ");
+            m_sMessageBuffer.append( LOGOG_CONST_STRING("} "));
         }
 
         if ( flags & TOPIC_CATEGORY_FLAG )
         {
-            m_sMessageBuffer.append( "[");
+            m_sMessageBuffer.append( LOGOG_CONST_STRING("["));
             m_sMessageBuffer.append( topic.Category() );
-            m_sMessageBuffer.append( "] ");
+            m_sMessageBuffer.append( LOGOG_CONST_STRING("] "));
         }
 
         if ( flags & TOPIC_MESSAGE_FLAG )
         {
             m_sMessageBuffer.append( topic.Message() );
-            m_sMessageBuffer.append( '\n' );
+            m_sMessageBuffer.append( (LOGOG_CHAR)'\n' );
         }
 
 		if ( target.GetNullTerminatesStrings() )
-			m_sMessageBuffer.append( (char)NULL );
+			m_sMessageBuffer.append( (LOGOG_CHAR)NULL );
 
         return m_sMessageBuffer;
     }
@@ -207,7 +209,16 @@ const char * TimeStamp::Get()
 	struct tm * tmInfo;
 
 	time ( &tRawTime );
+
+#ifdef LOGOG_FLAVOR_WINDOWS
+#pragma warning( push )
+#pragma warning( disable : 4996 )
+#endif // LOGOG_FLAVOR_WINDOWS
+	/* Microsoft is afraid of this function; I'm not sure this warning is sensible */
 	tmInfo = localtime ( &tRawTime );
+#ifdef LOGOG_FLAVOR_WINDOWS
+#pragma warning( pop )
+#endif // LOGOG_FLAVOR_WINDOWS
 
 	strftime (cTimeString, LOGOG_TIME_STRING_MAX, "%c", tmInfo);
 

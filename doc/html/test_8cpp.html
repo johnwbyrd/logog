@@ -106,12 +106,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="logog_8hpp_source.html">logog.hpp</a>&quot;</code><br/>
 <code>#include &lt;cstdio&gt;</code><br/>
+<code>#include &lt;fcntl.h&gt;</code><br/>
+<code>#include &lt;io.h&gt;</code><br/>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a8df7367e382b23c24b5d9b92629720ab">LOGOG_UNIT_TESTING</a>&#160;&#160;&#160;1</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a0f193e43eff6b9f4f6747cbb6996f3d5">LOGOG_INTERNAL_DEBUGGING</a>&#160;&#160;&#160;1</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#aeb09049395a3263d8d4423bb277627a7">LOGOG_LEAK_DETECTION</a>&#160;&#160;&#160;1</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#afd7ce5d809419b8299e05bf255de40d0">LOGOG_GROUP</a>&#160;&#160;&#160;&quot;Graphics&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#ae1e90cf6f71ddfef56a5cdac45b06954">LOGOG_CATEGORY</a>&#160;&#160;&#160;&quot;Unrecoverable&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#ae1e90cf6f71ddfef56a5cdac45b06954">LOGOG_CATEGORY</a>&#160;&#160;&#160;&quot;Recoverable&quot;</td></tr>
@@ -143,13 +143,12 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#aa5bd8d7b918767174c793cafe76addc4">LockingThread</a> (void *pvMutex)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a7ccc870fae9a864b73215771c069e2e2">UNITTEST</a> (Subscription)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#ae64d4080e5f557ec96c4f22dc9ac4eb5">UNITTEST</a> (GlobalNodelist)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#aecfc625dc3064fc4125ce56e2839b2f7">UNITTEST</a> (ThreadLocking)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a581965e7a2bfb9853f4acda64bdae8ca">UNITTEST</a> (TimerTest)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a102eb66008824a1985a2261a5fbf4524">UNITTEST</a> (TopicTest1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#ad36d103591bb8f4d11e273cfc30f3f31">UNITTEST</a> (Checkpoint1)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a5efb1299a6fd6ea64bad747c37b44196">UNITTEST</a> (LowLevelMessage1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#ad93542ce2dfe99036ece658cf6b083f5">UNITTEST</a> (FormatString1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a919ae2a489622095976b2aec98af8468">UNITTEST</a> (FormatTopic1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#aecfc625dc3064fc4125ce56e2839b2f7">UNITTEST</a> (ThreadLocking)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a8e6d4da08112ec84d37d2efc7d05e9ef">UNITTEST</a> (GroupCategory1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#a3b336f672320dece8f368cef4971c6ea">UNITTEST</a> (GroupCategory2)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_8cpp.html#acc31cc7546412f11da59446cd1c91b3b">UNITTEST</a> (GroupCategory3)</td></tr>
@@ -493,34 +492,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0f193e43eff6b9f4f6747cbb6996f3d5"></a><!-- doxytag: member="test.cpp::LOGOG_INTERNAL_DEBUGGING" ref="a0f193e43eff6b9f4f6747cbb6996f3d5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGOG_INTERNAL_DEBUGGING&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Define this macro to debug logog itself. This setting enables sanity checks on many logog functions. This setting is not very useful for end users of logog. </p>
-
-</div>
-</div>
-<a class="anchor" id="aeb09049395a3263d8d4423bb277627a7"></a><!-- doxytag: member="test.cpp::LOGOG_LEAK_DETECTION" ref="aeb09049395a3263d8d4423bb277627a7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGOG_LEAK_DETECTION&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Define this macro to check all memory allocations and frees. This setting will check against double allocations and double deletes as well. Do not enable this on production code -- it'll slow down the performance considerably. </p>
-
-</div>
-</div>
 <a class="anchor" id="a8df7367e382b23c24b5d9b92629720ab"></a><!-- doxytag: member="test.cpp::LOGOG_UNIT_TESTING" ref="a8df7367e382b23c24b5d9b92629720ab" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -609,6 +580,8 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>[WindowsUnicodeSetup]</p>
+<p>[WindowsUnicodeSetup] </p>
 
 </div>
 </div>
@@ -658,23 +631,6 @@ Variables</h2></td></tr>
           <td class="memname">UNITTEST </td>
           <td>(</td>
           <td class="paramtype">GlobalNodelist&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aecfc625dc3064fc4125ce56e2839b2f7"></a><!-- doxytag: member="test.cpp::UNITTEST" ref="aecfc625dc3064fc4125ce56e2839b2f7" args="(ThreadLocking)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">UNITTEST </td>
-          <td>(</td>
-          <td class="paramtype">ThreadLocking&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -735,23 +691,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5efb1299a6fd6ea64bad747c37b44196"></a><!-- doxytag: member="test.cpp::UNITTEST" ref="a5efb1299a6fd6ea64bad747c37b44196" args="(LowLevelMessage1)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">UNITTEST </td>
-          <td>(</td>
-          <td class="paramtype">LowLevelMessage1&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="ad93542ce2dfe99036ece658cf6b083f5"></a><!-- doxytag: member="test.cpp::UNITTEST" ref="ad93542ce2dfe99036ece658cf6b083f5" args="(FormatString1)" -->
 <div class="memitem">
 <div class="memproto">
@@ -777,6 +716,23 @@ Variables</h2></td></tr>
           <td class="memname">UNITTEST </td>
           <td>(</td>
           <td class="paramtype">FormatTopic1&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aecfc625dc3064fc4125ce56e2839b2f7"></a><!-- doxytag: member="test.cpp::UNITTEST" ref="aecfc625dc3064fc4125ce56e2839b2f7" args="(ThreadLocking)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UNITTEST </td>
+          <td>(</td>
+          <td class="paramtype">ThreadLocking&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -973,7 +929,7 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Define this macro to report on ALL allocations and frees that happen through logog. Enable this if you get paid by lines of program output. Change this to higher constants to exponentially increase test difficulty. </p>
+<p>Change this to higher constants to exponentially increase test difficulty. </p>
 
 </div>
 </div>
@@ -997,7 +953,7 @@ Variables</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:49 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

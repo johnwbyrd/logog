@@ -5,8 +5,6 @@
 #ifndef __LOGOG_FORMATTER_HPP__
 #define __LOGOG_FORMATTER_HPP__
 
-#include <ctime>
-
 namespace logog
 {
 
@@ -38,7 +36,9 @@ public:
      **/
     virtual LOGOG_STRING &Format( const Topic &topic, const Target &target ) = 0;
 
-	/** Causes the time of day to be rendered, if it needs to be rendered. */
+	/** Causes the time of day to be rendered, if it needs to be rendered.  This function is only supported on
+	 ** ANSI builds, not Unicode, as the underlying functions are ANSI only.
+	 */
 	virtual void RenderTimeOfDay();
 
 	/** Should this formatter render the current time of day? */

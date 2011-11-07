@@ -82,8 +82,11 @@ class LogFile : public Target
 {
 public:
     /** Creates a LogFile object.
-     * \param sFileName The name of the file to be created. */
-    LogFile(const LOGOG_CHAR *sFileName);
+     * \param sFileName The name of the file to be created.
+     * Since file names do not support Unicode on most systems, there is no option to create 
+     * a filename with a LOGOG_CHAR. 
+     */
+    LogFile(const char *sFileName);
 
     /** Closes the log file. */
     ~LogFile();
@@ -95,7 +98,7 @@ public:
     virtual int Output( const LOGOG_STRING &data );
 
 protected:
-    LOGOG_STRING m_FileName;
+    char *m_pFileName;
     bool m_bFirstTime;
     FILE *m_pFile;
 

@@ -527,8 +527,13 @@ Defines</h2></td></tr>
         { \
                 TOKENPASTE(_logog_,__LINE__) = \
                         new <a class="code" href="classlogog_1_1_message.html">logog::Message</a>( level, \
-                                __FILE__, __LINE__, group, cat, \
-                                <span class="stringliteral">&quot;&quot;</span>, 0.0f, &amp; (<a class="code" href="macro_8hpp.html#aaf9a1b8a5982f1fdaecbfedc30afc3a3">TOKENPASTE</a>(_logog_static_bool_,__LINE__)) ); \
+                                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( __FILE__ ), \
+                                __LINE__ , \
+                                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( group ), \
+                                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( cat ), \
+                                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( <span class="stringliteral">&quot;&quot;</span> ), \
+                                0.0f, \
+                                &amp; (<a class="code" href="macro_8hpp.html#aaf9a1b8a5982f1fdaecbfedc30afc3a3">TOKENPASTE</a>(_logog_static_bool_,__LINE__)) ); \
         } \
         ___pMCM-&gt;MutexUnlock(); \
         <span class="comment">/* A race condition could theoretically occur here if you are shutting down at the same instant as sending log messages. */</span> \
@@ -581,7 +586,11 @@ Defines</h2></td></tr>
         Mutex *___pMCM = &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">GetMessageCreationMutex</a>(); \
         ___pMCM-&gt;MutexLock(); \
         static <a class="code" href="classlogog_1_1_message.html">logog::Message</a> *<a class="code" href="macro_8hpp.html#aaf9a1b8a5982f1fdaecbfedc30afc3a3">TOKENPASTE</a>(_logog_,__LINE__) = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_message.html">logog::Message</a>( level, \
-                __FILE__, __LINE__, group, cat, msg ); \
+                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( __FILE__ ), \
+                __LINE__ , \
+                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( group ), \
+                <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>( cat ), \
+                msg; \
         ___pMCM-&gt;MutexUnlock(); \
         TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \
         TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \
@@ -948,7 +957,7 @@ Defines</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:49 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

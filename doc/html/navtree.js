@@ -16,6 +16,7 @@ var NAVTREE =
       [ "Adding new logging output targets", "addingnewtargets.html", null ],
       [ "Implementing a custom memory manager", "memorymanager.html", null ],
       [ "Memory leak detection", "leakdetection.html", null ],
+      [ "Unicode support", "unicodesupport.html", null ],
       [ "Publisher-subscriber functionality", "pubsub.html", null ],
       [ "Internal architecture", "architecture.html", null ],
       [ "Performance topics", "performance.html", null ],

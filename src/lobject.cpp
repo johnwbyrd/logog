@@ -67,7 +67,7 @@ AllocationsType s_Allocations;
     {
         void *ptr = Static().s_pfMalloc( nSize );
 #ifdef LOGOG_REPORT_ALLOCATIONS
-        cout << "Allocated " << nSize << " bytes of memory at " << ptr << endl;
+        LOGOG_COUT << _LG("Allocated ") << nSize << _LG(" bytes of memory at ") << ptr << endl;
 #endif // LOGOG_REPORT_ALLOCATIONS
 #ifdef LOGOG_LEAK_DETECTION
         AllocationsType::iterator it;
@@ -77,8 +77,8 @@ AllocationsType s_Allocations;
 
         if ( it != s_Allocations.end() )
         {
-            cout << "Reallocation detected in memory manager!  We seem to have allocated the same address twice "
-                 << "without freeing it!  Address = " << ptr << endl;
+            LOGOG_COUT << _LG("Reallocation detected in memory manager!  We seem to have allocated the same address twice ")
+                 << _LG("without freeing it!  Address = ") << ptr << endl;
             UnlockAllocationsMutex();
             LOGOG_INTERNAL_FAILURE;
         }
@@ -100,13 +100,13 @@ AllocationsType s_Allocations;
 
         if ( it == s_Allocations.end() )
         {
-            cout << "Freeing memory not previously allocated!  Address = " << ptr << endl;
+            LOGOG_COUT << _LG("Freeing memory not previously allocated!  Address = ") << ptr << endl;
             UnlockAllocationsMutex();
             LOGOG_INTERNAL_FAILURE;
         }
 
 #ifdef LOGOG_REPORT_ALLOCATIONS
-        cout << "Freeing " << it->second << " bytes of memory at " << it->first << endl;
+        LOGOG_COUT << _LG("Freeing ") << it->second << _LG(" bytes of memory at ") << it->first << endl;
 #endif // LOGOG_REPORT_ALLOCATIONS
         s_Allocations.erase( ptr );
         UnlockAllocationsMutex();
@@ -121,7 +121,7 @@ AllocationsType s_Allocations;
 		size_t nSize = s_Allocations.size();
 
 		if ( nSize != 0 )
-			cout << "Total active allocations: " << nSize << endl;
+			LOGOG_COUT << _LG("Total active allocations: ") << nSize << endl;
 
 		UnlockAllocationsMutex();
 		return nSize;
@@ -137,7 +137,7 @@ AllocationsType s_Allocations;
 
 		if ( s_Allocations.size() == 0 )
 		{
-			cout << "No memory allocations outstanding." << endl;
+			LOGOG_COUT << _LG("No memory allocations outstanding.") << endl;
 		}
 		else
 		{
@@ -145,7 +145,9 @@ AllocationsType s_Allocations;
 				it != s_Allocations.end();
 				it++ )
 			{
-				cout << "Memory allocated at " << it->first << " with size " << it->second << " bytes " << endl;
+				LOGOG_COUT << _LG("Memory allocated at ") << it->first << 
+					_LG(" with size ") << it->second << 
+					_LG(" bytes ") << endl;
 			}
 		}
 

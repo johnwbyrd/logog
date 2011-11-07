@@ -99,34 +99,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><pre class="fragment">        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
 
         {
-                <a class="code" href="namespacelogog.html#a79cc96e86c3e3c211ce5f27feac578b4">GetDefaultFilter</a>().<a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>(<span class="stringliteral">&quot;Graphics&quot;</span>);
+                <a class="code" href="namespacelogog.html#a79cc96e86c3e3c211ce5f27feac578b4">GetDefaultFilter</a>().<a class="code" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;Graphics&quot;</span>));
                 Filter filter;
-                filter.Group(<span class="stringliteral">&quot;Audio&quot;</span>);
+                filter.Group(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;Audio&quot;</span>));
                 Cerr err;
 
-                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;This message won&#39;t happen because it&#39;s not in the Graphics group&quot;</span>);
+                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;This message won&#39;t happen because it&#39;s not in the Graphics group&quot;</span>));
 
 <span class="preprocessor">#undef LOGOG_GROUP</span>
 <span class="preprocessor"></span><span class="preprocessor">#undef LOGOG_CATEGORY</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_GROUP  &quot;Graphics&quot;</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_CATEGORY &quot;Unrecoverable&quot;</span>
 <span class="preprocessor"></span>
-                <a class="code" href="macro_8hpp.html#a333c5311a91d9261243f33dead557110">EMERGENCY</a>(<span class="stringliteral">&quot;The graphics card has been destroyed&quot;</span>);
+                <a class="code" href="macro_8hpp.html#a333c5311a91d9261243f33dead557110">EMERGENCY</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;The graphics card has been destroyed&quot;</span>));
 
 <span class="preprocessor">#undef LOGOG_CATEGORY</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_CATEGORY  &quot;Recoverable&quot;</span>
 <span class="preprocessor"></span>
-                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;The graphics card has been replaced&quot;</span>);
+                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;The graphics card has been replaced&quot;</span>));
 
 <span class="preprocessor">#undef LOGOG_GROUP</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_GROUP &quot;Audio&quot;</span>
 <span class="preprocessor"></span>
-                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;The headphones are unplugged&quot;</span>);
+                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;The headphones are unplugged&quot;</span>));
 
 <span class="preprocessor">#undef LOGOG_GROUP</span>
 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_GROUP &quot;Inputs&quot;</span>
 <span class="preprocessor"></span>
-                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;The inputs have been yanked off but this fact won&#39;t be reported!&quot;</span>);
+                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;The inputs have been yanked off but this fact won&#39;t be reported!&quot;</span>));
 
 <span class="preprocessor">#undef LOGOG_CATEGORY</span>
 <span class="preprocessor"></span><span class="preprocessor">#undef LOGOG_GROUP</span>
@@ -154,7 +154,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:49 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

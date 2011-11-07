@@ -28,6 +28,9 @@
 #endif
 
 #ifdef __CYGWIN__
+#ifdef LOGOG_UNICODE
+#error LOGOG_UNICODE not supported on Cygwin platform because Cygwin does not support vsnwprintf
+#endif
 /* Cygwin lacks vsnprintf support in headers but it's in the libraries.  First we
  * need to define the constants size_t and va_list, then define vsnprintf */
 #include <cstdio>
@@ -74,6 +77,25 @@ extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
 #include <cstdio>
 // For POSIX file access.
 #include <cstdlib>
+
+#include <ctime>
+
+#if defined(LOGOG_LEAK_DETECTION) || defined(LOGOG_INTERNAL_DEBUGGING)
+#include <cstdio>
+#include <iostream>
+#endif // LOGOG_LEAK_DETECTION || LOGOG_INTERNAL_DEBUGGING
+
+#ifdef LOGOG_FLAVOR_POSIX
+#include <sys/time.h>
+// for uint64_t
+#include <inttypes.h>
+#include <wchar.h>
+// for strstr support
+#include <cstring>
+#endif
+
+// For Unicode support
+#include <typeinfo>
 
 /* ----------------------------------------------------------- */
 /* Here's the stuff your compiler may have a problem with...   */
@@ -127,5 +149,7 @@ extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
 
 /** We use va_list for formatting messages. */
 #include <cstdarg>
+
+
 
 #endif // __LOGOG_PLATFORM_HPP

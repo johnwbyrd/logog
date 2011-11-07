@@ -116,16 +116,143 @@ Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html">logog</a></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#ae131461f30c77cb24d4c34ab94a9d800">LOGOG_STRING_MAX_LENGTH</a>&#160;&#160;&#160;4096</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#ad5111479796248b13cf12b3a93721f35">L0</a>&#160;&#160;&#160;(const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)'\0'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a2c228d5ca54877848262edfd5d76dd06">LNULL</a>&#160;&#160;&#160;(const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)'\0'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#accc6ac582ac860000eee116ab1d2d38f">L__null</a>&#160;&#160;&#160;(const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)'\0'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#aef86d919f6e480e01701636b435997d5">LOGOG_CONST_STRING_INDIRECT</a>(x)&#160;&#160;&#160;L ## x</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(x)&#160;&#160;&#160;LOGOG_CONST_STRING_INDIRECT(x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a206273580b97c1919db7897c108754af">LOGOG_COUT</a>&#160;&#160;&#160;std::wcout</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a9e1fb322ff38987e1c9ba0ec3bfdbbf5">LOGOG_CERR</a>&#160;&#160;&#160;std::wcerr</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(x)&#160;&#160;&#160;LOGOG_CONST_STRING( x )</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#ad6c8faa1438e4614344a04da4d336708">LOGOG_MAX</a>(a, b)&#160;&#160;&#160;( ( a &gt; b ) ? a : b )</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a>&#160;&#160;&#160;::<a class="el" href="classlogog_1_1_string.html">logog::String</a></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef wchar_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Defines the logog string class. </p>
 </div><hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a3fb0a6b6623ebd4d9f20344af56c8471"></a><!-- doxytag: member="string.hpp::_LG" ref="a3fb0a6b6623ebd4d9f20344af56c8471" args="(x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _LG</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;LOGOG_CONST_STRING( x )</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>If this constant is defined, then you can use the shorthand macro _LG in your code to represent a constant string. The <a class="el" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG()</a> macro is defined only if LOGOG_USE_PREFIX is not defined. <a class="el" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG()</a> can be used to describe a const string that is compiled to either as Unicode or ANSI, based on the setting of the LOGOG_UNICODE flag. <a class="el" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG()</a> is not needed if you don't need Unicode support. If you want your messages to work with both Unicode as well as ANSI builds of logog, preface them like this: _LG("This const string works on Unicode as well as ANSI.") </p>
+
+</div>
+</div>
+<a class="anchor" id="ad5111479796248b13cf12b3a93721f35"></a><!-- doxytag: member="string.hpp::L0" ref="ad5111479796248b13cf12b3a93721f35" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define L0&#160;&#160;&#160;(const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)'\0'</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This is a naughty little hack. If we're using Unicode, then we append an L to your const string. However, we have several situations in which that string will actually be a NULL or 0 value in code, and the string will be rendered as L0 or LNULL. In that case, we catch it with yet another macro. Hacky, but seems to do the trick. Beware of conflicts with existing code though...! </p>
+
+</div>
+</div>
+<a class="anchor" id="accc6ac582ac860000eee116ab1d2d38f"></a><!-- doxytag: member="string.hpp::L__null" ref="accc6ac582ac860000eee116ab1d2d38f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define L__null&#160;&#160;&#160;(const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)'\0'</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2c228d5ca54877848262edfd5d76dd06"></a><!-- doxytag: member="string.hpp::LNULL" ref="a2c228d5ca54877848262edfd5d76dd06" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LNULL&#160;&#160;&#160;(const <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)'\0'</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9e1fb322ff38987e1c9ba0ec3bfdbbf5"></a><!-- doxytag: member="string.hpp::LOGOG_CERR" ref="a9e1fb322ff38987e1c9ba0ec3bfdbbf5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_CERR&#160;&#160;&#160;std::wcerr</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This is equivalent to std::wcerr if LOGOG_UNICODE is defined, and std::cerr otherwise. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad862335db47791493a387abb20198c2f"></a><!-- doxytag: member="string.hpp::LOGOG_CONST_STRING" ref="ad862335db47791493a387abb20198c2f" args="(x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_CONST_STRING</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;LOGOG_CONST_STRING_INDIRECT(x)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aef86d919f6e480e01701636b435997d5"></a><!-- doxytag: member="string.hpp::LOGOG_CONST_STRING_INDIRECT" ref="aef86d919f6e480e01701636b435997d5" args="(x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_CONST_STRING_INDIRECT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;L ## x</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a206273580b97c1919db7897c108754af"></a><!-- doxytag: member="string.hpp::LOGOG_COUT" ref="a206273580b97c1919db7897c108754af" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_COUT&#160;&#160;&#160;std::wcout</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This is equivalent to std::wcout if LOGOG_UNICODE is defined, and std::cout otherwise. </p>
+
+</div>
+</div>
 <a class="anchor" id="ad6c8faa1438e4614344a04da4d336708"></a><!-- doxytag: member="string.hpp::LOGOG_MAX" ref="ad6c8faa1438e4614344a04da4d336708" args="(a, b)" -->
 <div class="memitem">
 <div class="memproto">
@@ -166,31 +293,18 @@ Typedefs</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae131461f30c77cb24d4c34ab94a9d800"></a><!-- doxytag: member="string.hpp::LOGOG_STRING_MAX_LENGTH" ref="ae131461f30c77cb24d4c34ab94a9d800" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGOG_STRING_MAX_LENGTH&#160;&#160;&#160;4096</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/><h2>Typedef Documentation</h2>
-<a class="anchor" id="a7c71078d1306588f90b90b6b073fcd7b"></a><!-- doxytag: member="string.hpp::LOGOG_CHAR" ref="a7c71078d1306588f90b90b6b073fcd7b" args="" -->
+<a class="anchor" id="a29ad2dee9b60c484a1e44c478277dbcd"></a><!-- doxytag: member="string.hpp::LOGOG_CHAR" ref="a29ad2dee9b60c484a1e44c478277dbcd" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef char <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a></td>
+          <td class="memname">typedef wchar_t <a class="el" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>logog has not detected Unicode; therefore a LOGOG_CHAR is simply a char. </p>
+<p>logog has detected Unicode; therefore a LOGOG_CHAR is a wide character. </p>
 
 </div>
 </div>
@@ -214,7 +328,7 @@ Typedefs</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:49 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

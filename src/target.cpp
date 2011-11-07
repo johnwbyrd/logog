@@ -41,13 +41,15 @@ namespace logog {
 
 	int Cerr::Output( const LOGOG_STRING &data )
 	{
-		std::cerr << (const LOGOG_CHAR *)data;
+		LOGOG_CERR << (const LOGOG_CHAR *)data;
+
 		return 0;
 	}
 //! [Cout]
 	int Cout::Output( const LOGOG_STRING &data )
 	{
-		std::cout << (const LOGOG_CHAR *)data;
+		LOGOG_COUT << (const LOGOG_CHAR *)data;
+
 		return 0;
 	}
 //! [Cout]
@@ -64,34 +66,48 @@ namespace logog {
 		return 0;
 	}
 
-	LogFile::LogFile(const LOGOG_CHAR *sFileName) :
+	LogFile::LogFile(const char *sFileName) :
 	m_bFirstTime( true ),
 		m_pFile( NULL )
 	{
 		m_bNullTerminatesStrings = false;
-		// We do this in two steps to make sure the file name is copied into the string
-		// structure and not just reused.
-		String sStringFileName( sFileName );
-		m_FileName.assign( sStringFileName );
+
+		int nNameLength = 0;
+
+		const char *sNameCount = sFileName;
+		while ( *sNameCount++ != '\0' )
+			nNameLength++;
+
+		// add one for trailing null
+		nNameLength++;
+
+		m_pFileName = (char *)Object::Allocate( nNameLength );
+
+		char *m_pOut = m_pFileName;
+		while ( ( *m_pOut++ = *sFileName++) != '\0' )
+			;
+
+		m_pOut = '\0';
+
 	}
 
 	LogFile::~LogFile()
 	{
 		if ( m_pFile )
 			fclose( m_pFile );
+
+		Object::Deallocate( m_pFileName );
 	}
 
 	int LogFile::Open()
 	{
 #ifdef LOGOG_FLAVOR_WINDOWS
 		// Microsoft prefers its variant
-		int nError = fopen_s( &m_pFile, (const LOGOG_CHAR *)m_FileName, "a+" );
+		int nError = fopen_s( &m_pFile, m_pFileName, "a+" );
 		if ( nError != 0 )
 			return nError;
-
 #else // LOGOG_FLAVOR_WINDOWS
-		m_pFile = fopen( (const LOGOG_CHAR *)m_FileName, "a+" );
-
+		m_pFile = fopen( m_pFileName,"a+" );
 #endif // LOGOG_FLAVOR_WINDOWS
 
 		return ( m_pFile ? 0 : -1 );
@@ -109,7 +125,7 @@ namespace logog {
 			m_bFirstTime = false;
 		}
 
-		result = fwrite( &(*data), 1, data.size(), m_pFile );
+		result = (int)fwrite( &(*data), 1, data.size(), m_pFile );
 
 		if ( (size_t)result != data.size() )
 			return -1;

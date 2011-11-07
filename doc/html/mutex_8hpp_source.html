@@ -168,9 +168,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00085"></a>00085 };
 <a name="l00086"></a>00086 
 <a name="l00087"></a>00087 <span class="preprocessor">#ifdef LOGOG_LEAK_DETECTION</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="keyword">extern</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> s_AllocationsMutex;
-<a name="l00089"></a>00089 <span class="keyword">extern</span> <span class="keywordtype">void</span> LockAllocationsMutex();
-<a name="l00090"></a>00090 <span class="keyword">extern</span> <span class="keywordtype">void</span> UnlockAllocationsMutex();
+<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="keyword">extern</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> <a class="code" href="namespacelogog.html#a13dcfb75023a74bd75949f1f3ab9ec60">s_AllocationsMutex</a>;
+<a name="l00089"></a>00089 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a9130f0a099129a1e65f5227deac90c02">LockAllocationsMutex</a>();
+<a name="l00090"></a>00090 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="namespacelogog.html#a8d577fb63ce6b8165ae924cb5d3cb69a">UnlockAllocationsMutex</a>();
 <a name="l00091"></a>00091 <span class="preprocessor">#endif // LOGOG_LEAK_DETECTION</span>
 <a name="l00092"></a>00092 <span class="preprocessor"></span>
 <a name="l00093"></a>00093 <span class="keyword">extern</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> &amp;<a class="code" href="namespacelogog.html#a3a891b9254cc0e12f154763cd3395df9">GetStringSearchMutex</a>();
@@ -199,7 +199,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:49 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

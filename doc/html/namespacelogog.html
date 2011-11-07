@@ -99,7 +99,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">logog Namespace Reference</div>  </div>
 </div>
@@ -147,6 +148,9 @@ Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef LOGOG_SET&lt; <a class="el" href="classlogog_1_1_node.html">Node</a> <br class="typebreak"/>
 *, std::less&lt; <a class="el" href="classlogog_1_1_node.html">Node</a> * &gt;<br class="typebreak"/>
 , <a class="el" href="classlogog_1_1_allocator.html">Allocator</a>&lt; <a class="el" href="classlogog_1_1_node.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ab7fcff28e62b2154e4b463c9066d1f13">NodesType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#acb6b48711ee0db9ad832d64a7b19ccbd">PointerType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef LOGOG_UNORDERED_MAP<br class="typebreak"/>
+&lt; <a class="el" href="namespacelogog.html#acb6b48711ee0db9ad832d64a7b19ccbd">PointerType</a>, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ac5a61c58070a5e2e5b9f38a579637625">AllocationsType</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#aa0c8b30eccf614fc37dd6c44a521e313">LOGOG_TIME</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a69d26fd51db1c59dd07144ff6d3ba746">TestNameType</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef LOGOG_LIST&lt; <a class="el" href="classlogog_1_1_unit_test.html">UnitTest</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a9a39ce57b52ed9efe31b79a39e75b92d">TestRegistryType</a></td></tr>
@@ -159,6 +163,8 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a896f9896c2bbe6e13c6973ed05e68c42">DestroyDefaultFormatter</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">GetMessageCreationMutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#aba1d0c0caf46da13d3fc7aed441d94ef">DestroyMessageCreationMutex</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a9130f0a099129a1e65f5227deac90c02">LockAllocationsMutex</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a8d577fb63ce6b8165ae924cb5d3cb69a">UnlockAllocationsMutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a3a891b9254cc0e12f154763cd3395df9">GetStringSearchMutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ae2755ac057dc1f022be9e21d12662b81">DestroyStringSearchMutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_lockable_nodes_type.html">LockableNodesType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ad4da40de0f83130ae38d8c9b9e17fc50">GetStaticNodes</a> (void **pvLocation)</td></tr>
@@ -183,12 +189,29 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacelogog.html#a9a39ce57b52ed9efe31b79a39e75b92d">TestRegistryType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ae99c00ad21a45ff317a12ca43b147159">LogogTestRegistry</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a2601e89ee5b58d3a47f3baa5a08be39e">RunAllTests</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a88259d52590bb4e70c31946bb6246120">ShutdownTests</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a6068bada97b4fe69764a805477d69e6d">CompareAndDeleteFile</a> (const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pValidOutput, const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *pFileName)</td></tr>
+<tr><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a13dcfb75023a74bd75949f1f3ab9ec60">s_AllocationsMutex</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacelogog.html#ac5a61c58070a5e2e5b9f38a579637625">AllocationsType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a6c5452f1f6138281b062047f4799804b">s_Allocations</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><a class="el" href="classlogog_1_1_socket.html">Socket</a> support is unfinished and is not working yet. Please review <a class="el" href="socket_8hpp.html">socket.hpp</a> if you'd like to implement a cross-platform socket abstraction. </dd></dl>
 <p>[<a class="el" href="classlogog_1_1_thread.html">Thread</a>] </p>
 </div><hr/><h2>Typedef Documentation</h2>
+<a class="anchor" id="ac5a61c58070a5e2e5b9f38a579637625"></a><!-- doxytag: member="logog::AllocationsType" ref="ac5a61c58070a5e2e5b9f38a579637625" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef LOGOG_UNORDERED_MAP&lt; <a class="el" href="namespacelogog.html#acb6b48711ee0db9ad832d64a7b19ccbd">PointerType</a>, size_t &gt; <a class="el" href="namespacelogog.html#ac5a61c58070a5e2e5b9f38a579637625">AllocationsType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A type describing the currently outstanding memory allocations. Note that this type does not inherit from <a class="el" href="classlogog_1_1_object.html">Object</a>, because to do so would create an infinite recursion when memory is allocated. </p>
+
+</div>
+</div>
 <a class="anchor" id="aa0c8b30eccf614fc37dd6c44a521e313"></a><!-- doxytag: member="logog::LOGOG_TIME" ref="aa0c8b30eccf614fc37dd6c44a521e313" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -214,6 +237,20 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>An aggregation of nodes. Internally, we choose a set representation because we want to be able to traverse the aggregation quickly while still looking up entries quickly. </p>
+
+</div>
+</div>
+<a class="anchor" id="acb6b48711ee0db9ad832d64a7b19ccbd"></a><!-- doxytag: member="logog::PointerType" ref="acb6b48711ee0db9ad832d64a7b19ccbd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="namespacelogog.html#acb6b48711ee0db9ad832d64a7b19ccbd">PointerType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Iteration over an unordered map is slow, but we only do it at shutdown time. Access to a lookup or insert is very fast. Additionally, we do not allocate leak detection records from our own heap; it saves us from doing a recursive allocation. </p>
 
 </div>
 </div>
@@ -311,33 +348,6 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Returns a reference to the group of nodes that represent terminals in the graph, i.e. nodes that can't publish. </p>
-
-</div>
-</div>
-<a class="anchor" id="a6068bada97b4fe69764a805477d69e6d"></a><!-- doxytag: member="logog::CompareAndDeleteFile" ref="a6068bada97b4fe69764a805477d69e6d" args="(const LOGOG_CHAR *pValidOutput, const LOGOG_CHAR *pFileName)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int logog::CompareAndDeleteFile </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td>
-          <td class="paramname"><em>pValidOutput</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *&#160;</td>
-          <td class="paramname"><em>pFileName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
 </div>
 </div>
@@ -581,6 +591,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a9130f0a099129a1e65f5227deac90c02"></a><!-- doxytag: member="logog::LockAllocationsMutex" ref="a9130f0a099129a1e65f5227deac90c02" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LockAllocationsMutex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A global function to lock the global allocations mutex. We must do this as a static void because Mutexes depend on Objects. This should probably belong in a class, but then we get recursive class definitions. </p>
+
+</div>
+</div>
 <a class="anchor" id="ae99c00ad21a45ff317a12ca43b147159"></a><!-- doxytag: member="logog::LogogTestRegistry" ref="ae99c00ad21a45ff317a12ca43b147159" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -771,6 +798,51 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8d577fb63ce6b8165ae924cb5d3cb69a"></a><!-- doxytag: member="logog::UnlockAllocationsMutex" ref="a8d577fb63ce6b8165ae924cb5d3cb69a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnlockAllocationsMutex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A global function to unlock the global allocations mutex. We must do this as a static void because Mutexes depend on Objects. </p>
+
+</div>
+</div>
+<hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a6c5452f1f6138281b062047f4799804b"></a><!-- doxytag: member="logog::s_Allocations" ref="a6c5452f1f6138281b062047f4799804b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacelogog.html#ac5a61c58070a5e2e5b9f38a579637625">AllocationsType</a> <a class="el" href="namespacelogog.html#a6c5452f1f6138281b062047f4799804b">s_Allocations</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>All currently outstanding memory allocations, including their size. </p>
+
+</div>
+</div>
+<a class="anchor" id="a13dcfb75023a74bd75949f1f3ab9ec60"></a><!-- doxytag: member="logog::s_AllocationsMutex" ref="a13dcfb75023a74bd75949f1f3ab9ec60" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlogog_1_1_mutex.html">Mutex</a> <a class="el" href="namespacelogog.html#a13dcfb75023a74bd75949f1f3ab9ec60">s_AllocationsMutex</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div>
 </div>
   <div id="nav-path" class="navpath">
@@ -791,7 +863,7 @@ Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:00:50 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:54 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
