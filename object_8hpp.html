@@ -99,7 +99,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">include/object.hpp File Reference</div>  </div>
 </div>
@@ -115,14 +117,24 @@ Classes</h2></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html">logog</a></td></tr>
+<tr><td colspan="2"><h2><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#acb6b48711ee0db9ad832d64a7b19ccbd">PointerType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef LOGOG_UNORDERED_MAP<br class="typebreak"/>
+&lt; PointerType, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ac5a61c58070a5e2e5b9f38a579637625">AllocationsType</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a9130f0a099129a1e65f5227deac90c02">LockAllocationsMutex</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a8d577fb63ce6b8165ae924cb5d3cb69a">UnlockAllocationsMutex</a> ()</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T1 , class T2 &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a13dc0f610e39714fb2e03e65d6331b50">operator==</a> (const Allocator&lt; T1 &gt; &amp;, const Allocator&lt; T2 &gt; &amp;)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T1 , class T2 &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a73b344c34db5a8d28440c26d7b8fda70">operator!=</a> (const Allocator&lt; T1 &gt; &amp;, const Allocator&lt; T2 &gt; &amp;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a52ec159177fc854a969b6cfc62db6207">MemoryAllocations</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#adcf64241cffd520388595181c55aa599">ReportMemoryAllocations</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">AllocationsType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a6c5452f1f6138281b062047f4799804b">s_Allocations</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Base class for all allocated logog objects. </p>
@@ -146,7 +158,7 @@ Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:15:09 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

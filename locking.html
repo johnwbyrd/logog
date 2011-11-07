@@ -98,23 +98,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The <a class="el" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> object is a convenient way to represent a <a class="el" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> lock as part of an object's auto scope. To use a <a class="el" href="classlogog_1_1_scoped_lock.html">ScopedLock</a>, create a <a class="el" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> lock on a known thread, then create a <a class="el" href="classlogog_1_1_scoped_lock.html">ScopedLock</a> with the previously defined Lock as a parameter. Code is guaranteed to be single threaded within the scope of the <a class="el" href="classlogog_1_1_scoped_lock.html">ScopedLock</a>.</p>
 <div class="fragment"><pre class="fragment">        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
 
-        <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">logog::Mutex</a> m;
-
         {
-                <a class="code" href="classlogog_1_1_scoped_lock.html">logog::ScopedLock</a> s1( m );
-                cout &lt;&lt; <span class="stringliteral">&quot;Lock is on&quot;</span> &lt;&lt; endl;
+                <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">logog::Mutex</a> m;
+
+                {
+                        <a class="code" href="classlogog_1_1_scoped_lock.html">logog::ScopedLock</a> s1( m );
+                        <a class="code" href="string_8hpp.html#a206273580b97c1919db7897c108754af">LOGOG_COUT</a> &lt;&lt; <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;Lock is on&quot;</span>) &lt;&lt; endl;
+                }
+
+                <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">logog::Mutex</a> *pM = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">logog::Mutex</a>();
+
+                {
+                        <a class="code" href="classlogog_1_1_scoped_lock.html">logog::ScopedLock</a> s1( *pM );
+                        <a class="code" href="string_8hpp.html#a206273580b97c1919db7897c108754af">LOGOG_COUT</a> &lt;&lt; <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;Lock is on&quot;</span>) &lt;&lt; endl;
+                }
+
+                <span class="keyword">delete</span> pM;
+
+                <a class="code" href="string_8hpp.html#a206273580b97c1919db7897c108754af">LOGOG_COUT</a> &lt;&lt; <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;Lock unlocked&quot;</span>) &lt;&lt; endl;
+
+                <a class="code" href="classlogog_1_1_message.html">logog::Message</a> m1;
+
         }
-
-        <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">logog::Mutex</a> *pM = <span class="keyword">new</span> <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">logog::Mutex</a>();
-
-        {
-                <a class="code" href="classlogog_1_1_scoped_lock.html">logog::ScopedLock</a> s1( *pM );
-                cout &lt;&lt; <span class="stringliteral">&quot;Lock is on&quot;</span> &lt;&lt; endl;
-        }
-
-        <span class="keyword">delete</span> pM;
-
-        cout &lt;&lt; <span class="stringliteral">&quot;Lock unlocked&quot;</span> &lt;&lt; endl;
 
         <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
 
@@ -138,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:15:09 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -129,159 +129,168 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00043"></a>00043 <span class="preprocessor">        Mutex *___pMCM = &amp;GetMessageCreationMutex(); \</span>
 <a name="l00044"></a>00044 <span class="preprocessor">        ___pMCM-&gt;MutexLock(); \</span>
 <a name="l00045"></a>00045 <span class="preprocessor">        static logog::Message *TOKENPASTE(_logog_,__LINE__) = new logog::Message( level, \</span>
-<a name="l00046"></a>00046 <span class="preprocessor">                __FILE__, __LINE__, group, cat, msg ); \</span>
-<a name="l00047"></a>00047 <span class="preprocessor">        ___pMCM-&gt;MutexUnlock(); \</span>
-<a name="l00048"></a>00048 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \</span>
-<a name="l00049"></a>00049 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \</span>
-<a name="l00050"></a>00050 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \</span>
-<a name="l00051"></a>00051 <span class="preprocessor">}</span>
-<a name="l00052"></a>00052 <span class="preprocessor"></span>
-<a name="l00071"></a><a class="code" href="macro_8hpp.html#afd326cadf1539665aedeae407ddb13b3">00071</a> <span class="preprocessor">#define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \</span>
-<a name="l00072"></a>00072 <span class="preprocessor">{ \</span>
-<a name="l00073"></a>00073 <span class="preprocessor">        ::logog::Mutex *___pMCM = &amp;::logog::GetMessageCreationMutex(); \</span>
-<a name="l00074"></a>00074 <span class="preprocessor">        ___pMCM-&gt;MutexLock(); \</span>
-<a name="l00075"></a>00075 <span class="preprocessor">        static bool TOKENPASTE(_logog_static_bool_,__LINE__) = false; \</span>
-<a name="l00076"></a>00076 <span class="preprocessor">        static logog::Message * TOKENPASTE(_logog_,__LINE__); \</span>
-<a name="l00077"></a>00077 <span class="preprocessor">        if ( TOKENPASTE(_logog_static_bool_,__LINE__) == false ) \</span>
-<a name="l00078"></a>00078 <span class="preprocessor">        { \</span>
-<a name="l00079"></a>00079 <span class="preprocessor">                TOKENPASTE(_logog_,__LINE__) = \</span>
-<a name="l00080"></a>00080 <span class="preprocessor">                        new logog::Message( level, \</span>
-<a name="l00081"></a>00081 <span class="preprocessor">                                __FILE__, __LINE__, group, cat, \</span>
-<a name="l00082"></a>00082 <span class="preprocessor">                                &quot;&quot;, 0.0f, &amp; (TOKENPASTE(_logog_static_bool_,__LINE__)) ); \</span>
-<a name="l00083"></a>00083 <span class="preprocessor">        } \</span>
-<a name="l00084"></a>00084 <span class="preprocessor">        ___pMCM-&gt;MutexUnlock(); \</span>
-<a name="l00085"></a>00085 <span class="preprocessor">        </span><span class="comment">/* A race condition could theoretically occur here if you are shutting down at the same instant as sending log messages. */</span> \
-<a name="l00086"></a>00086         TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \
-<a name="l00087"></a>00087         TOKENPASTE(_logog_,__LINE__)-&gt;Format( formatstring, ##__VA_ARGS__ ); \
-<a name="l00088"></a>00088         TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \
-<a name="l00089"></a>00089         TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00095"></a><a class="code" href="macro_8hpp.html#a39044cc9ac38034152fc66e878b8c943">00095</a> <span class="preprocessor">#define LOGOG_LEVEL_MESSAGE( level, formatstring, ... ) \</span>
-<a name="l00096"></a>00096 <span class="preprocessor">        LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, LOGOG_GROUP, LOGOG_CATEGORY, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00097"></a>00097 <span class="preprocessor"></span>
-<a name="l00099"></a><a class="code" href="macro_8hpp.html#a3f36e7f5011da59bf9baaac2a271ec26">00099</a> <span class="preprocessor">#define LOGOG_MESSAGE( formatstring, ... ) \</span>
-<a name="l00100"></a>00100 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00101"></a>00101 <span class="preprocessor"></span>
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_DEBUG</span>
-<a name="l00104"></a>00104 <span class="preprocessor"></span>
-<a name="l00105"></a><a class="code" href="macro_8hpp.html#afba1f0c04f9a5bf5b2d98b7a3205f2a7">00105</a> <span class="preprocessor">#define LOGOG_DEBUG( formatstring, ... ) \</span>
-<a name="l00106"></a>00106 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_DEBUG, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00107"></a>00107 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00108"></a>00108 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_DEBUG( formatstring, ... ) {};</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00046"></a>00046 <span class="preprocessor">                LOGOG_CONST_STRING( __FILE__ ), \</span>
+<a name="l00047"></a>00047 <span class="preprocessor">                __LINE__ , \</span>
+<a name="l00048"></a>00048 <span class="preprocessor">                LOGOG_CONST_STRING( group ), \</span>
+<a name="l00049"></a>00049 <span class="preprocessor">                LOGOG_CONST_STRING( cat ), \</span>
+<a name="l00050"></a>00050 <span class="preprocessor">                msg; \</span>
+<a name="l00051"></a>00051 <span class="preprocessor">        ___pMCM-&gt;MutexUnlock(); \</span>
+<a name="l00052"></a>00052 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \</span>
+<a name="l00053"></a>00053 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \</span>
+<a name="l00054"></a>00054 <span class="preprocessor">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \</span>
+<a name="l00055"></a>00055 <span class="preprocessor">}</span>
+<a name="l00056"></a>00056 <span class="preprocessor"></span>
+<a name="l00075"></a><a class="code" href="macro_8hpp.html#afd326cadf1539665aedeae407ddb13b3">00075</a> <span class="preprocessor">#define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \</span>
+<a name="l00076"></a>00076 <span class="preprocessor">{ \</span>
+<a name="l00077"></a>00077 <span class="preprocessor">        ::logog::Mutex *___pMCM = &amp;::logog::GetMessageCreationMutex(); \</span>
+<a name="l00078"></a>00078 <span class="preprocessor">        ___pMCM-&gt;MutexLock(); \</span>
+<a name="l00079"></a>00079 <span class="preprocessor">        static bool TOKENPASTE(_logog_static_bool_,__LINE__) = false; \</span>
+<a name="l00080"></a>00080 <span class="preprocessor">        static logog::Message * TOKENPASTE(_logog_,__LINE__); \</span>
+<a name="l00081"></a>00081 <span class="preprocessor">        if ( TOKENPASTE(_logog_static_bool_,__LINE__) == false ) \</span>
+<a name="l00082"></a>00082 <span class="preprocessor">        { \</span>
+<a name="l00083"></a>00083 <span class="preprocessor">                TOKENPASTE(_logog_,__LINE__) = \</span>
+<a name="l00084"></a>00084 <span class="preprocessor">                        new logog::Message( level, \</span>
+<a name="l00085"></a>00085 <span class="preprocessor">                                LOGOG_CONST_STRING( __FILE__ ), \</span>
+<a name="l00086"></a>00086 <span class="preprocessor">                                __LINE__ , \</span>
+<a name="l00087"></a>00087 <span class="preprocessor">                                LOGOG_CONST_STRING( group ), \</span>
+<a name="l00088"></a>00088 <span class="preprocessor">                                LOGOG_CONST_STRING( cat ), \</span>
+<a name="l00089"></a>00089 <span class="preprocessor">                                LOGOG_CONST_STRING( &quot;&quot; ), \</span>
+<a name="l00090"></a>00090 <span class="preprocessor">                                0.0f, \</span>
+<a name="l00091"></a>00091 <span class="preprocessor">                                &amp; (TOKENPASTE(_logog_static_bool_,__LINE__)) ); \</span>
+<a name="l00092"></a>00092 <span class="preprocessor">        } \</span>
+<a name="l00093"></a>00093 <span class="preprocessor">        ___pMCM-&gt;MutexUnlock(); \</span>
+<a name="l00094"></a>00094 <span class="preprocessor">        </span><span class="comment">/* A race condition could theoretically occur here if you are shutting down at the same instant as sending log messages. */</span> \
+<a name="l00095"></a>00095         TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexLock(); \
+<a name="l00096"></a>00096         TOKENPASTE(_logog_,__LINE__)-&gt;Format( formatstring, ##__VA_ARGS__ ); \
+<a name="l00097"></a>00097         TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \
+<a name="l00098"></a>00098         TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
+<a name="l00104"></a><a class="code" href="macro_8hpp.html#a39044cc9ac38034152fc66e878b8c943">00104</a> <span class="preprocessor">#define LOGOG_LEVEL_MESSAGE( level, formatstring, ... ) \</span>
+<a name="l00105"></a>00105 <span class="preprocessor">        LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, LOGOG_GROUP, LOGOG_CATEGORY, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00106"></a>00106 <span class="preprocessor"></span>
+<a name="l00108"></a><a class="code" href="macro_8hpp.html#a3f36e7f5011da59bf9baaac2a271ec26">00108</a> <span class="preprocessor">#define LOGOG_MESSAGE( formatstring, ... ) \</span>
+<a name="l00109"></a>00109 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL, formatstring, ##__VA_ARGS__ )</span>
 <a name="l00110"></a>00110 <span class="preprocessor"></span>
-<a name="l00111"></a>00111 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_INFO</span>
-<a name="l00112"></a>00112 <span class="preprocessor"></span>
-<a name="l00113"></a><a class="code" href="macro_8hpp.html#add1a247b6b16eba747497172f6a63823">00113</a> <span class="preprocessor">#define LOGOG_INFO( formatstring, ... ) \</span>
-<a name="l00114"></a>00114 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_INFO, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00115"></a>00115 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00116"></a>00116 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_INFO( formatstring, ... ) {};</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00118"></a>00118 <span class="preprocessor"></span>
-<a name="l00119"></a>00119 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN3</span>
-<a name="l00120"></a>00120 <span class="preprocessor"></span>
-<a name="l00121"></a><a class="code" href="macro_8hpp.html#aeb4d204c39ded0c15a36e56d0f53a228">00121</a> <span class="preprocessor">#define LOGOG_WARN3( formatstring, ... ) \</span>
-<a name="l00122"></a>00122 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN3, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN3( formatstring, ... ) {};</span>
-<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00126"></a>00126 <span class="preprocessor"></span>
-<a name="l00127"></a>00127 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN2</span>
-<a name="l00128"></a>00128 <span class="preprocessor"></span>
-<a name="l00129"></a><a class="code" href="macro_8hpp.html#a9b8b85f79675b474a100f813057f2326">00129</a> <span class="preprocessor">#define LOGOG_WARN2( formatstring, ... ) \</span>
-<a name="l00130"></a>00130 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN2, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00132"></a>00132 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN2( formatstring, ... ) {};</span>
-<a name="l00133"></a>00133 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00134"></a>00134 <span class="preprocessor"></span>
-<a name="l00135"></a>00135 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN1</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span>
-<a name="l00137"></a><a class="code" href="macro_8hpp.html#adb9b149718862200d4e0f90cc05b6cd8">00137</a> <span class="preprocessor">#define LOGOG_WARN1( formatstring, ... ) \</span>
-<a name="l00138"></a>00138 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN1, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00140"></a>00140 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN1( formatstring, ... ) {};</span>
-<a name="l00141"></a>00141 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00142"></a>00142 <span class="preprocessor"></span>
-<a name="l00143"></a>00143 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN</span>
-<a name="l00144"></a>00144 <span class="preprocessor"></span>
-<a name="l00145"></a><a class="code" href="macro_8hpp.html#a04e0a222ec5185a2efad8c1e3eb54ba1">00145</a> <span class="preprocessor">#define LOGOG_WARN( formatstring, ... ) \</span>
-<a name="l00146"></a>00146 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00147"></a>00147 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN( formatstring, ... ) {};</span>
-<a name="l00149"></a>00149 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00150"></a>00150 <span class="preprocessor"></span>
-<a name="l00151"></a>00151 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_ERROR</span>
-<a name="l00152"></a>00152 <span class="preprocessor"></span>
-<a name="l00153"></a><a class="code" href="macro_8hpp.html#aaceef08b3c50500ceb30121ab608bea0">00153</a> <span class="preprocessor">#define LOGOG_ERROR( formatstring, ... ) \</span>
-<a name="l00154"></a>00154 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ERROR, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_ERROR( formatstring, ... ) {};</span>
-<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00158"></a>00158 <span class="preprocessor"></span>
-<a name="l00159"></a>00159 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_CRITICAL</span>
-<a name="l00160"></a>00160 <span class="preprocessor"></span>
-<a name="l00161"></a><a class="code" href="macro_8hpp.html#a3f18098c855d6f8316c625f9a96d47ad">00161</a> <span class="preprocessor">#define LOGOG_CRITICAL( formatstring, ... ) \</span>
-<a name="l00162"></a>00162 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_CRITICAL, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00163"></a>00163 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00164"></a>00164 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_CRITICAL( formatstring, ... ) {};</span>
-<a name="l00165"></a>00165 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00166"></a>00166 <span class="preprocessor"></span>
-<a name="l00167"></a>00167 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_ALERT</span>
-<a name="l00168"></a>00168 <span class="preprocessor"></span>
-<a name="l00169"></a><a class="code" href="macro_8hpp.html#a4e833ce90c323c00624c34e75073f61a">00169</a> <span class="preprocessor">#define LOGOG_ALERT( formatstring, ... ) \</span>
-<a name="l00170"></a>00170 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ALERT, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00171"></a>00171 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00172"></a>00172 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_ALERT( formatstring, ... ) {};</span>
-<a name="l00173"></a>00173 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00174"></a>00174 <span class="preprocessor"></span>
-<a name="l00175"></a>00175 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_EMERGENCY</span>
-<a name="l00176"></a>00176 <span class="preprocessor"></span>
-<a name="l00177"></a><a class="code" href="macro_8hpp.html#a12a15a2919eaa82764a88f4b23b83623">00177</a> <span class="preprocessor">#define LOGOG_EMERGENCY( formatstring, ... ) \</span>
-<a name="l00178"></a>00178 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_EMERGENCY, formatstring, ##__VA_ARGS__ )</span>
-<a name="l00179"></a>00179 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00180"></a>00180 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_EMERGENCY( formatstring, ... ) {};</span>
-<a name="l00181"></a>00181 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00182"></a>00182 <span class="preprocessor"></span>
-<a name="l00183"></a><a class="code" href="macro_8hpp.html#accff3e345ef93d5f5a82173501307357">00183</a> <span class="preprocessor">#define LOGOG_SET_LEVEL( level ) \</span>
-<a name="l00184"></a>00184 <span class="preprocessor">        SetDefaultLevel( level );</span>
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_DEBUG</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span>
+<a name="l00114"></a><a class="code" href="macro_8hpp.html#afba1f0c04f9a5bf5b2d98b7a3205f2a7">00114</a> <span class="preprocessor">#define LOGOG_DEBUG( formatstring, ... ) \</span>
+<a name="l00115"></a>00115 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_DEBUG, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00116"></a>00116 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_DEBUG( formatstring, ... ) {};</span>
+<a name="l00118"></a>00118 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00119"></a>00119 <span class="preprocessor"></span>
+<a name="l00120"></a>00120 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_INFO</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span>
+<a name="l00122"></a><a class="code" href="macro_8hpp.html#add1a247b6b16eba747497172f6a63823">00122</a> <span class="preprocessor">#define LOGOG_INFO( formatstring, ... ) \</span>
+<a name="l00123"></a>00123 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_INFO, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_INFO( formatstring, ... ) {};</span>
+<a name="l00126"></a>00126 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span>
+<a name="l00128"></a>00128 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN3</span>
+<a name="l00129"></a>00129 <span class="preprocessor"></span>
+<a name="l00130"></a><a class="code" href="macro_8hpp.html#aeb4d204c39ded0c15a36e56d0f53a228">00130</a> <span class="preprocessor">#define LOGOG_WARN3( formatstring, ... ) \</span>
+<a name="l00131"></a>00131 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN3, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00132"></a>00132 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN3( formatstring, ... ) {};</span>
+<a name="l00134"></a>00134 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00135"></a>00135 <span class="preprocessor"></span>
+<a name="l00136"></a>00136 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN2</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span>
+<a name="l00138"></a><a class="code" href="macro_8hpp.html#a9b8b85f79675b474a100f813057f2326">00138</a> <span class="preprocessor">#define LOGOG_WARN2( formatstring, ... ) \</span>
+<a name="l00139"></a>00139 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN2, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00140"></a>00140 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00141"></a>00141 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN2( formatstring, ... ) {};</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span>
+<a name="l00144"></a>00144 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN1</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span>
+<a name="l00146"></a><a class="code" href="macro_8hpp.html#adb9b149718862200d4e0f90cc05b6cd8">00146</a> <span class="preprocessor">#define LOGOG_WARN1( formatstring, ... ) \</span>
+<a name="l00147"></a>00147 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN1, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00149"></a>00149 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN1( formatstring, ... ) {};</span>
+<a name="l00150"></a>00150 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00151"></a>00151 <span class="preprocessor"></span>
+<a name="l00152"></a>00152 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_WARN</span>
+<a name="l00153"></a>00153 <span class="preprocessor"></span>
+<a name="l00154"></a><a class="code" href="macro_8hpp.html#a04e0a222ec5185a2efad8c1e3eb54ba1">00154</a> <span class="preprocessor">#define LOGOG_WARN( formatstring, ... ) \</span>
+<a name="l00155"></a>00155 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_WARN( formatstring, ... ) {};</span>
+<a name="l00158"></a>00158 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00159"></a>00159 <span class="preprocessor"></span>
+<a name="l00160"></a>00160 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_ERROR</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span>
+<a name="l00162"></a><a class="code" href="macro_8hpp.html#aaceef08b3c50500ceb30121ab608bea0">00162</a> <span class="preprocessor">#define LOGOG_ERROR( formatstring, ... ) \</span>
+<a name="l00163"></a>00163 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ERROR, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00164"></a>00164 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00165"></a>00165 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_ERROR( formatstring, ... ) {};</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00167"></a>00167 <span class="preprocessor"></span>
+<a name="l00168"></a>00168 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_CRITICAL</span>
+<a name="l00169"></a>00169 <span class="preprocessor"></span>
+<a name="l00170"></a><a class="code" href="macro_8hpp.html#a3f18098c855d6f8316c625f9a96d47ad">00170</a> <span class="preprocessor">#define LOGOG_CRITICAL( formatstring, ... ) \</span>
+<a name="l00171"></a>00171 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_CRITICAL, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00172"></a>00172 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00173"></a>00173 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_CRITICAL( formatstring, ... ) {};</span>
+<a name="l00174"></a>00174 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00175"></a>00175 <span class="preprocessor"></span>
+<a name="l00176"></a>00176 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_ALERT</span>
+<a name="l00177"></a>00177 <span class="preprocessor"></span>
+<a name="l00178"></a><a class="code" href="macro_8hpp.html#a4e833ce90c323c00624c34e75073f61a">00178</a> <span class="preprocessor">#define LOGOG_ALERT( formatstring, ... ) \</span>
+<a name="l00179"></a>00179 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ALERT, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00180"></a>00180 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00181"></a>00181 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_ALERT( formatstring, ... ) {};</span>
+<a name="l00182"></a>00182 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00183"></a>00183 <span class="preprocessor"></span>
+<a name="l00184"></a>00184 <span class="preprocessor">#if LOGOG_LEVEL &gt;= LOGOG_LEVEL_EMERGENCY</span>
 <a name="l00185"></a>00185 <span class="preprocessor"></span>
-<a name="l00189"></a>00189 <span class="preprocessor">#ifndef LOGOG_USE_PREFIX</span>
-<a name="l00190"></a>00190 <span class="preprocessor"></span><span class="comment">/* If you get compilation errors in this section, then define the flag LOGOG_USE_PREFIX during compilation, and these</span>
-<a name="l00191"></a>00191 <span class="comment"> * shorthand logging macros won&#39;t exist -- you&#39;ll need to use the LOGOG_* equivalents above.</span>
-<a name="l00192"></a>00192 <span class="comment"> */</span>
-<a name="l00193"></a>00193 <span class="comment">/* We can&#39;t use DEBUG in Win32 unfortunately, so we use DBUG for shorthand here. */</span>
-<a name="l00195"></a>00195 
-<a name="l00196"></a><a class="code" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0">00196</a> <span class="preprocessor">#define DBUG(...) LOGOG_DEBUG( __VA_ARGS__ )</span>
-<a name="l00197"></a>00197 <span class="preprocessor"></span>
-<a name="l00198"></a><a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">00198</a> <span class="preprocessor">#define INFO(...) LOGOG_INFO( __VA_ARGS__ )</span>
-<a name="l00199"></a>00199 <span class="preprocessor"></span>
-<a name="l00200"></a><a class="code" href="macro_8hpp.html#abaedf98a416baea927b6445673c65f25">00200</a> <span class="preprocessor">#define WARN3(...) LOGOG_WARN3( __VA_ARGS__ )</span>
-<a name="l00201"></a>00201 <span class="preprocessor"></span>
-<a name="l00202"></a><a class="code" href="macro_8hpp.html#ad16173a18a6af017f825b7a783f8b31e">00202</a> <span class="preprocessor">#define WARN2(...) LOGOG_WARN2( __VA_ARGS__ )</span>
-<a name="l00203"></a>00203 <span class="preprocessor"></span>
-<a name="l00204"></a><a class="code" href="macro_8hpp.html#ae1003eec95028416e25ebb12c529e314">00204</a> <span class="preprocessor">#define WARN1(...) LOGOG_WARN1( __VA_ARGS__ )</span>
-<a name="l00205"></a>00205 <span class="preprocessor"></span>
-<a name="l00206"></a><a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">00206</a> <span class="preprocessor">#define WARN(...) LOGOG_WARN( __VA_ARGS__ )</span>
-<a name="l00207"></a>00207 <span class="preprocessor"></span>
-<a name="l00208"></a><a class="code" href="macro_8hpp.html#a24e93be9c5baa3aeab7021b64e290672">00208</a> <span class="preprocessor">#define ERR(...) LOGOG_ERROR( __VA_ARGS__ )</span>
-<a name="l00209"></a>00209 <span class="preprocessor"></span>
-<a name="l00210"></a><a class="code" href="macro_8hpp.html#adc9b28b1170577801889669216a90cd9">00210</a> <span class="preprocessor">#define ALERT(...) LOGOG_ALERT( __VA_ARGS__ )</span>
-<a name="l00211"></a>00211 <span class="preprocessor"></span>
-<a name="l00212"></a><a class="code" href="macro_8hpp.html#aece2e23355ee0a5822bb776433855d79">00212</a> <span class="preprocessor">#define CRITICAL(...) LOGOG_CRITICAL( __VA_ARGS__ )</span>
-<a name="l00213"></a>00213 <span class="preprocessor"></span>
-<a name="l00214"></a><a class="code" href="macro_8hpp.html#a333c5311a91d9261243f33dead557110">00214</a> <span class="preprocessor">#define EMERGENCY(...) LOGOG_EMERGENCY( __VA_ARGS__ )</span>
-<a name="l00215"></a>00215 <span class="preprocessor"></span>
-<a name="l00216"></a>00216 <span class="preprocessor">#endif</span>
-<a name="l00217"></a>00217 <span class="preprocessor"></span>
-<a name="l00221"></a><a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d">00221</a> <span class="preprocessor">#define LOGOG_INITIALIZE(...)  logog::Initialize( __VA_ARGS__ );</span>
+<a name="l00186"></a><a class="code" href="macro_8hpp.html#a12a15a2919eaa82764a88f4b23b83623">00186</a> <span class="preprocessor">#define LOGOG_EMERGENCY( formatstring, ... ) \</span>
+<a name="l00187"></a>00187 <span class="preprocessor">        LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_EMERGENCY, formatstring, ##__VA_ARGS__ )</span>
+<a name="l00188"></a>00188 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00189"></a>00189 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_EMERGENCY( formatstring, ... ) {};</span>
+<a name="l00190"></a>00190 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00191"></a>00191 <span class="preprocessor"></span>
+<a name="l00192"></a><a class="code" href="macro_8hpp.html#accff3e345ef93d5f5a82173501307357">00192</a> <span class="preprocessor">#define LOGOG_SET_LEVEL( level ) \</span>
+<a name="l00193"></a>00193 <span class="preprocessor">        SetDefaultLevel( level );</span>
+<a name="l00194"></a>00194 <span class="preprocessor"></span>
+<a name="l00198"></a>00198 <span class="preprocessor">#ifndef LOGOG_USE_PREFIX</span>
+<a name="l00199"></a>00199 <span class="preprocessor"></span><span class="comment">/* If you get compilation errors in this section, then define the flag LOGOG_USE_PREFIX during compilation, and these</span>
+<a name="l00200"></a>00200 <span class="comment"> * shorthand logging macros won&#39;t exist -- you&#39;ll need to use the LOGOG_* equivalents above.</span>
+<a name="l00201"></a>00201 <span class="comment"> */</span>
+<a name="l00202"></a>00202 <span class="comment">/* We can&#39;t use DEBUG in Win32 unfortunately, so we use DBUG for shorthand here. */</span>
+<a name="l00204"></a>00204 
+<a name="l00205"></a><a class="code" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0">00205</a> <span class="preprocessor">#define DBUG(...) LOGOG_DEBUG( __VA_ARGS__ )</span>
+<a name="l00206"></a>00206 <span class="preprocessor"></span>
+<a name="l00207"></a><a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">00207</a> <span class="preprocessor">#define INFO(...) LOGOG_INFO( __VA_ARGS__ )</span>
+<a name="l00208"></a>00208 <span class="preprocessor"></span>
+<a name="l00209"></a><a class="code" href="macro_8hpp.html#abaedf98a416baea927b6445673c65f25">00209</a> <span class="preprocessor">#define WARN3(...) LOGOG_WARN3( __VA_ARGS__ )</span>
+<a name="l00210"></a>00210 <span class="preprocessor"></span>
+<a name="l00211"></a><a class="code" href="macro_8hpp.html#ad16173a18a6af017f825b7a783f8b31e">00211</a> <span class="preprocessor">#define WARN2(...) LOGOG_WARN2( __VA_ARGS__ )</span>
+<a name="l00212"></a>00212 <span class="preprocessor"></span>
+<a name="l00213"></a><a class="code" href="macro_8hpp.html#ae1003eec95028416e25ebb12c529e314">00213</a> <span class="preprocessor">#define WARN1(...) LOGOG_WARN1( __VA_ARGS__ )</span>
+<a name="l00214"></a>00214 <span class="preprocessor"></span>
+<a name="l00215"></a><a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">00215</a> <span class="preprocessor">#define WARN(...) LOGOG_WARN( __VA_ARGS__ )</span>
+<a name="l00216"></a>00216 <span class="preprocessor"></span>
+<a name="l00217"></a><a class="code" href="macro_8hpp.html#a24e93be9c5baa3aeab7021b64e290672">00217</a> <span class="preprocessor">#define ERR(...) LOGOG_ERROR( __VA_ARGS__ )</span>
+<a name="l00218"></a>00218 <span class="preprocessor"></span>
+<a name="l00219"></a><a class="code" href="macro_8hpp.html#adc9b28b1170577801889669216a90cd9">00219</a> <span class="preprocessor">#define ALERT(...) LOGOG_ALERT( __VA_ARGS__ )</span>
+<a name="l00220"></a>00220 <span class="preprocessor"></span>
+<a name="l00221"></a><a class="code" href="macro_8hpp.html#aece2e23355ee0a5822bb776433855d79">00221</a> <span class="preprocessor">#define CRITICAL(...) LOGOG_CRITICAL( __VA_ARGS__ )</span>
 <a name="l00222"></a>00222 <span class="preprocessor"></span>
-<a name="l00227"></a><a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">00227</a> <span class="preprocessor">#define LOGOG_SHUTDOWN()   logog::Shutdown();</span>
-<a name="l00228"></a>00228 <span class="preprocessor"></span>
-<a name="l00229"></a>00229 } <span class="comment">// namespace logog</span>
-<a name="l00230"></a>00230 
-<a name="l00231"></a>00231 <span class="preprocessor">#endif // __LOGOG_MACRO_HPP_</span>
+<a name="l00223"></a><a class="code" href="macro_8hpp.html#a333c5311a91d9261243f33dead557110">00223</a> <span class="preprocessor">#define EMERGENCY(...) LOGOG_EMERGENCY( __VA_ARGS__ )</span>
+<a name="l00224"></a>00224 <span class="preprocessor"></span>
+<a name="l00225"></a>00225 <span class="preprocessor">#endif</span>
+<a name="l00226"></a>00226 <span class="preprocessor"></span>
+<a name="l00230"></a><a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d">00230</a> <span class="preprocessor">#define LOGOG_INITIALIZE(...)  logog::Initialize( __VA_ARGS__ );</span>
+<a name="l00231"></a>00231 <span class="preprocessor"></span>
+<a name="l00236"></a><a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">00236</a> <span class="preprocessor">#define LOGOG_SHUTDOWN()   logog::Shutdown();</span>
+<a name="l00237"></a>00237 <span class="preprocessor"></span>
+<a name="l00238"></a>00238 } <span class="comment">// namespace logog</span>
+<a name="l00239"></a>00239 
+<a name="l00240"></a>00240 <span class="preprocessor">#endif // __LOGOG_MACRO_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -302,7 +311,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:15:09 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

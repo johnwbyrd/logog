@@ -99,7 +99,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">include/mutex.hpp File Reference</div>  </div>
 </div>
@@ -118,8 +119,13 @@ Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html">logog</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a9130f0a099129a1e65f5227deac90c02">LockAllocationsMutex</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a8d577fb63ce6b8165ae924cb5d3cb69a">UnlockAllocationsMutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Mutex &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a3a891b9254cc0e12f154763cd3395df9">GetStringSearchMutex</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#ae2755ac057dc1f022be9e21d12662b81">DestroyStringSearchMutex</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a13dcfb75023a74bd75949f1f3ab9ec60">s_AllocationsMutex</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Defines a mutual exclusion object for the current platform. </p>
@@ -143,7 +149,7 @@ Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:15:09 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

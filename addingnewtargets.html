@@ -97,7 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><p>To add a new type of logging output, such as a network socket or a printer, create a subclass of the <a class="el" href="classlogog_1_1_target.html">Target</a> class, and implement your own Output() function that renders the information to your output device.</p>
 <div class="fragment"><pre class="fragment">        <span class="keywordtype">int</span> Cout::Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data )
         {
-                std::cout &lt;&lt; (<span class="keyword">const</span> <a class="code" href="string_8hpp.html#a7c71078d1306588f90b90b6b073fcd7b">LOGOG_CHAR</a> *)data;
+                <a class="code" href="string_8hpp.html#a206273580b97c1919db7897c108754af">LOGOG_COUT</a> &lt;&lt; (<span class="keyword">const</span> <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *)data;
+
                 <span class="keywordflow">return</span> 0;
         }
 </pre></div><p> Then, instance your new class after your call to <a class="el" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE()</a> but before messages are invoked. </p>
@@ -120,7 +121,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Thu Oct 27 2011 16:15:09 for logog by
+    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
