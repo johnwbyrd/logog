@@ -46,6 +46,20 @@ AllocationsType s_Allocations;
 		return Allocate( nSize );
 	}
 
+	void Object::operator delete(void *ptr, LPCSTR lpszFileName, int nLine)
+	{
+		lpszFileName;
+		nLine;
+		Deallocate( ptr );
+	}
+
+	void Object::operator delete[](void *ptr, LPCSTR lpszFileName, int nLine)
+	{
+		lpszFileName;
+		nLine;
+		Deallocate( ptr );
+	}
+
 #endif // LOGOG_FLAVOR_WINDOWS
 #endif // _DEBUG
 

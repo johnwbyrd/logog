@@ -88,6 +88,8 @@ namespace logog
 		virtual void format( const LOGOG_CHAR *cFormatString, ... );
 		virtual void format_va( const LOGOG_CHAR *cFormatString, va_list args );
 
+		virtual const LOGOG_CHAR* c_str() const;
+
 	protected:
 		virtual void Initialize();
 

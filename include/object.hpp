@@ -67,6 +67,8 @@ public:
 #ifdef LOGOG_FLAVOR_WINDOWS
 	void* operator new(size_t nSize, LPCSTR lpszFileName, int nLine);
 	void* operator new[](size_t nSize, LPCSTR lpszFileName, int nLine);
+	void  operator delete(void* ptr, LPCSTR lpszFileName, int nLine);
+	void  operator delete[](void* ptr, LPCSTR lpszFileName, int nLine);
 #endif // LOGOG_FLAVOR_WINDOWS
 #endif // _DEBUG
 

@@ -9,7 +9,7 @@
  ** Define this macro to enable Unicode support in logog.  The logog library works either in Unicode mode or not --
  ** attempting to mix the two log types will have unexpected results.
  **/
-#define LOGOG_UNICODE 1
+// #define LOGOG_UNICODE 1
 
 #include "const.hpp"
 #include "platform.hpp"

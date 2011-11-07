@@ -124,6 +124,11 @@ namespace logog {
 		return m_pBuffer;
 	}
 
+	const LOGOG_CHAR* String::c_str() const
+	{
+		return m_pBuffer;
+	}
+
 	size_t String::assign( const String &other )
 	{
 #ifdef LOGOG_INTERNAL_DEBUGGING
