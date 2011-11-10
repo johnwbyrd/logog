@@ -22,6 +22,19 @@ namespace logog {
 		SubscribeToMultiple( AllFilters() );
 	}
 
+
+	Target::~Target()
+	{
+		LockableNodesType *pAllTargets = &AllTargets();
+
+		UnsubscribeToMultiple( AllFilters() );
+
+		{
+			ScopedLock sl( *pAllTargets );
+			pAllTargets->erase( this );
+		}
+	}
+
 	void Target::SetFormatter( Formatter &formatter )
 	{
 		m_pFormatter = &formatter;
@@ -37,7 +50,6 @@ namespace logog {
 		ScopedLock sl( m_MutexReceive );
 		return Output( m_pFormatter->Format( topic, *this ) );
 	}
-
 
 	int Cerr::Output( const LOGOG_STRING &data )
 	{

@@ -18,6 +18,7 @@ class Target : public TopicSink
     friend class LogBuffer;
 public :
     Target();
+	virtual ~Target();
 
     /** Sets the current formatter for this target. */
     void SetFormatter( Formatter &formatter );

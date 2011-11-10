@@ -97,12 +97,9 @@ namespace logog {
 
 			pCurrentTopic = ( Topic * )pCurrentNode;
 
-			m_Subscribers.MutexUnlock();
-
 			if ( pCurrentTopic )
 				nError += pCurrentTopic->Receive( node );
 
-			m_Subscribers.MutexLock();
 			it++;
 		}
 

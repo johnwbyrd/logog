@@ -135,12 +135,9 @@ namespace logog {
 
 		while ( it != nodes.end() )
 		{
-			nodes.MutexUnlock();
-
 			if ( PublishTo( **it ) == true )
 				bWasPublished = true;
 
-			nodes.MutexLock();
 			it++;
 		}
 
@@ -185,12 +182,9 @@ namespace logog {
 
 		while ( it != nodes.end() )
 		{
-			nodes.MutexUnlock();
-
 			if ( UnpublishTo( **it ) == true )
 				bWasUnpublished = true;
 
-			nodes.MutexLock();
 			it++;
 		}
 
@@ -229,11 +223,9 @@ namespace logog {
 
 		while ( it != nodes.end() )
 		{
-			nodes.MutexUnlock();
 			if ( SubscribeTo( **it ) == true )
 				bWasSubscribed = true;
 
-			nodes.MutexLock();
 			it++;
 		}
 
@@ -278,11 +270,9 @@ namespace logog {
 
 		while ( it != nodes.end() )
 		{
-			nodes.MutexUnlock();
 			if ( UnsubscribeTo( **it ) == true )
 				bWasUnsubscribed = true;
 
-			nodes.MutexLock();
 			it++;
 		}
 

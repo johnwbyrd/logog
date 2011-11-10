@@ -282,13 +282,13 @@ UNITTEST( FormatString1 )
         LOGOG_COUT << *s;
 
         s.format( _LG("This is a test message: %d %x %f\n"), 1234, 0xf00d, 1.234f );
-        LOGOG_COUT << s;
+        LOGOG_COUT << *s;
 
         const LOGOG_CHAR *p = _LG("Here is a string");
 
         s.format( _LG("Here are six strings: %s %s %s %s %s %s \n"), p,p,p,p,p,p );
 
-        LOGOG_COUT << s;
+        LOGOG_COUT << *s;
     }
 
     LOGOG_SHUTDOWN();
@@ -384,7 +384,7 @@ UNITTEST( GroupCategory1 )
 #define LOGOG_CATEGORY NULL
 #define LOGOG_GROUP NULL
 
-        INFO(_LG("Everything's back to normal"));
+        INFO(_LG("Everything's back to... %s!"), _LG("normal"));
     }
 
     LOGOG_SHUTDOWN();
@@ -680,7 +680,6 @@ int DoPlatformSpecificTestInitialization()
     return 0;
 }
 #endif
-
 int main( int , char ** )
 {
 //! [WindowsUnicodeSetup]
