@@ -77,6 +77,8 @@ extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
 #include <cstdio>
 // For POSIX file access.
 #include <cstdlib>
+// For Ubuntu 11 and ptrdiff_t
+#include <cstddef>
 
 #include <ctime>
 
