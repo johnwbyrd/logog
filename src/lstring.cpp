@@ -317,13 +317,20 @@ namespace logog {
 			return;
 		}
 
+		/** nAttemptedSize is now a guess at an appropriate size, which is about 
+		 ** two times the number of LOGOG_CHARs in the incoming format string.
+		 **/
 		nAttemptedSize = nEstLength * 2 * sizeof( LOGOG_CHAR );
 
-		/* Some *printf implementations, such as msvc's, return -1 on failure.  Others, such as gcc, return the number
-		* of characters actually formatted on failure.  Deal with either case here.
-		*/
-		while ( nActualSize < nAttemptedSize )
+		/* Some *printf implementations, such as msvc's, return -1 on failure.  
+		 * Others, such as gcc, return the number
+		 * of characters actually formatted on failure.  Deal with either case here.
+		 */
+		while ( true )
 		{
+			/** We'll allocate that number of bytes.  NOTE that this has less of a chance
+			 ** of working on a Unicode build.
+			 **/
 			pszFormatted = (LOGOG_CHAR *)Allocate( nAttemptedSize );
 			if ( !pszFormatted )
 			{
@@ -334,6 +341,9 @@ namespace logog {
 
 			va_list argsCopy;
 
+			/** The va_list structure is not standardized across all platforms; in particular
+			 ** Microsoft seems to have problem with the concept.
+			 **/
 #if defined( va_copy )
 			va_copy( argsCopy, args );
 #elif defined( __va_copy )
@@ -343,40 +353,75 @@ namespace logog {
 #endif
 
 #ifdef LOGOG_UNICODE
-			int nSizeInWords = (nAttemptedSize / sizeof( LOGOG_CHAR )) - 1;
+			/** At this point, nSizeInWords will contain the number of words permitted in the
+			 ** output buffer.  It takes into account space for appending a null character in the output
+			 ** buffer as well.
+			 **/
+			int nSizeInWords = (nAttemptedSize / sizeof( LOGOG_CHAR ));
 #endif
+			/** The nActualSize value receives different things on different platforms.
+			 ** On some platforms it receives -1 on failure; on other platforms
+			 ** it receives the number of LOGOG_CHARs actually formatted (excluding
+			 ** the trailing NULL).
+			 **/
 
 #ifdef LOGOG_FLAVOR_WINDOWS
 #ifdef LOGOG_UNICODE
-			nActualSize = _vsnwprintf_s( pszFormatted, nSizeInWords - 1, _TRUNCATE, cFormatString, argsCopy );
+			nActualSize = _vsnwprintf_s( pszFormatted, nSizeInWords, _TRUNCATE, cFormatString, argsCopy );
 #else // LOGOG_UNICODE
-			nActualSize = vsnprintf_s( pszFormatted, nAttemptedSize - 1, _TRUNCATE, cFormatString, argsCopy );
+			nActualSize = vsnprintf_s( pszFormatted, nAttemptedSize, _TRUNCATE, cFormatString, argsCopy );
 #endif // LOGOG_UNICODE
 #else // LOGOG_FLAVOR_WINDOWS
 #ifdef LOGOG_UNICODE
-			nActualSize = vswprintf( pszFormatted, nSizeInWords - 1, cFormatString, argsCopy );
+			nActualSize = vswprintf( pszFormatted, nSizeInWords, cFormatString, argsCopy );
 #else // LOGOG_UNICODE
-			nActualSize = vsnprintf( pszFormatted, nAttemptedSize - 1, cFormatString, argsCopy );
+			nActualSize = vsnprintf( pszFormatted, nAttemptedSize, cFormatString, argsCopy );
 #endif // LOGOG_UNICODE
 #endif // LOGOG_FLAVOR_WINDOWS
 
 			va_end( argsCopy );
 
+			/** Convert the number of LOGOG_CHARs actually formatted into bytes.  This
+			 ** does NOT include the trailing NULL.
+			 **/
 			if ( nActualSize != -1 )
 				nActualSize *= sizeof( LOGOG_CHAR );
 
-			if (( nAttemptedSize > nActualSize ) && ( nActualSize != -1))
+			/** When we're doing the compare, we have to keep in mind that the nActualSize
+			 ** does not include a null.  We need to verify that the nAttemptedSize can hold all
+			 ** of nActualSize PLUS the size of one null on this platform.  A LOGOG_CHAR could
+			 ** be 1, 2, or 4 bytes long.  So nAttemptedSize must be greater or equal to nActualSize
+			 ** less the size of one (null) LOGOG_CHAR in bytes.  Also, the last
+			 ** allocation may have failed altogether.
+			 ** 
+			 **/
+			if (( nAttemptedSize >= (nActualSize - sizeof(LOGOG_CHAR)) && ( nActualSize != -1)))
 				break;
 
 			// try again
 			Deallocate( pszFormatted );
+
+/** Defining this allocates less space for the formatted strings; however, this
+ * optimization makes this function, which is called on every string format,
+ * into a linear-time function with respect to allocations and deallocations.
+ * Expect a large performance hit if you enable this optimization.
+ */
+#ifdef LOGOG_OPTIMIZE_FOR_SPACE
+			if (nActualSize > 0)
+				nAttemptedSize = nActualSize + 1;
+			else
+				nAttemptedSize *= 2;
+#else // LOGOG_OPTIMIZE_FOR_SPACE
 			nAttemptedSize *= 2;
+#endif // LOGOG_OPTIMIZE_FOR_SPACE
 		}
 
 		m_bIsConst = false;
 		assign( pszFormatted );
-		/* We just allocated this string, which means it needs to be deallocated at shutdown time.  The previous function
-		 * may have changed it... */
+		/* We just allocated this string, which means it needs to be deallocated
+		 * at shutdown time.  The previous function may have changed the const
+		 * setting for this string, which means we may need to change it back here... 
+		 * */
 		m_bIsConst = false;
 	}
 
