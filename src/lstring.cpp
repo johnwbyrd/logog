@@ -326,7 +326,7 @@ namespace logog {
 		 * Others, such as gcc, return the number
 		 * of characters actually formatted on failure.  Deal with either case here.
 		 */
-		while ( true )
+		for ( ; ; )
 		{
 			/** We'll allocate that number of bytes.  NOTE that this has less of a chance
 			 ** of working on a Unicode build.
@@ -395,7 +395,7 @@ namespace logog {
 			 ** allocation may have failed altogether.
 			 ** 
 			 **/
-			if (( nAttemptedSize >= (nActualSize - sizeof(LOGOG_CHAR)) && ( nActualSize != -1)))
+			if (( nAttemptedSize >= (nActualSize - (int)sizeof(LOGOG_CHAR))) && ( nActualSize != -1))
 				break;
 
 			// try again
