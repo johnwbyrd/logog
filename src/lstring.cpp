@@ -398,22 +398,23 @@ namespace logog {
 			if (( nAttemptedSize >= (nActualSize - (int)sizeof(LOGOG_CHAR))) && ( nActualSize != -1))
 				break;
 
-			// try again
+			/** That attempted allocation failed */
 			Deallocate( pszFormatted );
 
-/** Defining this allocates less space for the formatted strings; however, this
- * optimization makes this function, which is called on every string format,
- * into a linear-time function with respect to allocations and deallocations.
- * Expect a large performance hit if you enable this optimization.
- */
-#ifdef LOGOG_OPTIMIZE_FOR_SPACE
+			/** If nActualSize has a positive value, it includes the number of bytes needed to hold
+			 ** the formatted string; we'll add a LOGOG_CHAR size to the end for the next
+			 ** allocation.  If nActualSize has no meaningful value, we'll double the previous
+			 ** size and try again.
+			 **/
 			if (nActualSize > 0)
-				nAttemptedSize = nActualSize + 1;
+			{
+				nAttemptedSize = nActualSize + sizeof( LOGOG_CHAR );
+			}
 			else
+			{
 				nAttemptedSize *= 2;
-#else // LOGOG_OPTIMIZE_FOR_SPACE
-			nAttemptedSize *= 2;
-#endif // LOGOG_OPTIMIZE_FOR_SPACE
+			}
+
 		}
 
 		m_bIsConst = false;
