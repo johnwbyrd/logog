@@ -90,7 +90,7 @@ public:
     LogFile(const char *sFileName);
 
     /** Closes the log file. */
-    ~LogFile();
+    virtual ~LogFile();
 
     /** Opens the log file on first write. */
     virtual int Open();
@@ -117,7 +117,7 @@ class LogBuffer : public Target
 public:
     LogBuffer( Target *pTarget = NULL,
                size_t s = LOGOG_DEFAULT_LOG_BUFFER_SIZE );
-    ~LogBuffer();
+    virtual ~LogBuffer();
 
     /** Changes the current rendering target.  NOTE: This function does no locking on either the target or
      * this object.  Program accordingly.
