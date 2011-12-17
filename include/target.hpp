@@ -101,6 +101,7 @@ public:
 protected:
     char *m_pFileName;
     bool m_bFirstTime;
+	bool m_bOpenFailed;
     FILE *m_pFile;
 
 private:

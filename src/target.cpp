@@ -79,7 +79,8 @@ namespace logog {
 	}
 
 	LogFile::LogFile(const char *sFileName) :
-	m_bFirstTime( true ),
+		m_bFirstTime( true ),
+		m_bOpenFailed( false ),
 		m_pFile( NULL )
 	{
 		m_bNullTerminatesStrings = false;
@@ -122,11 +123,17 @@ namespace logog {
 		m_pFile = fopen( m_pFileName,"a+" );
 #endif // LOGOG_FLAVOR_WINDOWS
 
+		if ( m_pFile == NULL )
+			m_bOpenFailed = true; // and no further Output's will work
+
 		return ( m_pFile ? 0 : -1 );
 	}
 
 	int LogFile::Output( const LOGOG_STRING &data )
 	{
+		if ( m_bOpenFailed )
+			return -1;
+
 		int result = 0;
 		if ( m_bFirstTime )
 		{
