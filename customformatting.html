@@ -97,26 +97,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><p>The <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> object is responsible for rendering a particular <a class="el" href="classlogog_1_1_topic.html">Topic</a> into a human-readable format. A default <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> is created by default for you based on the flavor of the compile target. See <a class="el" href="classlogog_1_1_formatter_g_c_c.html">FormatterGCC</a> and <a class="el" href="classlogog_1_1_formatter_m_s_v_c.html">FormatterMSVC</a> objects for examples.</p>
 <p>If you want log messages in your own custom format, subclass the <a class="el" href="classlogog_1_1_formatter.html#a711a519a7c2a822721a6e6b61c6c3639">Formatter::Format</a> method into your own custom class, and write your own formatting function for a topic. See <a class="el" href="classlogog_1_1_formatter_m_s_v_c.html#ad4af416e7516f1d0b3a8a56400ba85ef">FormatterMSVC::Format</a> and <a class="el" href="classlogog_1_1_formatter_g_c_c.html#ad4af416e7516f1d0b3a8a56400ba85ef">FormatterGCC::Format</a> for examples.</p>
 <p>If you wish, you can force these two formatters to output the current date and time as part of their format. You can do this by calling the <a class="el" href="classlogog_1_1_formatter.html#ae38352b0c900bade43bd835e797b3e70">Formatter::SetShowTimeOfDay</a> function with a value of true, as follows:</p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
+<div class="fragment"><pre class="fragment">    <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
 
+    {
+        Cerr err;
+
+        Formatter *pFormatter = &amp;<a class="code" href="namespacelogog.html#a8997e274c9662fe08997ad1d69ab5561">GetDefaultFormatter</a>();
+
+        pFormatter-&gt;SetShowTimeOfDay( <span class="keyword">true</span> );
+
+        <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> i = 1; i &lt;= 20; i++ )
         {
-                Cerr err;
+            <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;This is warning %d of 20... but with time!&quot;</span>), i);
 
-                Formatter *pFormatter = &amp;<a class="code" href="namespacelogog.html#a8997e274c9662fe08997ad1d69ab5561">GetDefaultFormatter</a>();
-
-                pFormatter-&gt;SetShowTimeOfDay( <span class="keyword">true</span> );
-
-                <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> i = 1; i &lt;= 20; i++ )
-                {
-                        <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;This is warning %d of 20... but with time!&quot;</span>), i);
-
-                        <span class="keywordtype">int</span> q = 27832;
-                        <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> j = 0; j &lt; <a class="code" href="test_8cpp.html#ac8ed61f291cc40d06b9c3b9b02371a2c">TEST_STRESS_LEVEL</a> * 10000000; j++ )
-                                q *= q;
-                }
+            <span class="keywordtype">int</span> q = 27832;
+            <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> j = 0; j &lt; <a class="code" href="test_8cpp.html#ac8ed61f291cc40d06b9c3b9b02371a2c">TEST_STRESS_LEVEL</a> * 10000000; j++ )
+                q *= q;
         }
+    }
 
-        <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
+    <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
 </pre></div></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -136,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
+    <li class="footer">Generated on Mon Jan 30 2012 10:25:02 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -111,91 +111,99 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00018"></a><a class="code" href="classlogog_1_1_target.html#af7512190c71ba2d30924f7764d1f033a">00018</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classlogog_1_1_log_buffer.html">LogBuffer</a>;
 <a name="l00019"></a>00019 <span class="keyword">public</span> :
 <a name="l00020"></a>00020     <a class="code" href="classlogog_1_1_target.html#a58de8dd9bd806a41b4f5add66fbdea44">Target</a>();
-<a name="l00021"></a>00021 
-<a name="l00023"></a>00023     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_target.html#abb775c76f9b153d756de6ccfa3579366">SetFormatter</a>( <a class="code" href="classlogog_1_1_formatter.html">Formatter</a> &amp;formatter );
-<a name="l00024"></a>00024 
-<a name="l00026"></a>00026     <a class="code" href="classlogog_1_1_formatter.html">Formatter</a> &amp;<a class="code" href="classlogog_1_1_target.html#acc6d49a3b9bfaf470acc87a2ccdb88b0">GetFormatter</a>() <span class="keyword">const</span>;
-<a name="l00027"></a>00027 
-<a name="l00031"></a>00031     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_target.html#a97c42fe5e1dfbd0b297e69afcf22d929">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data ) = 0;
-<a name="l00032"></a>00032 
-<a name="l00036"></a>00036     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_target.html#aeba402408840719950984877e42ea8d1">Receive</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;topic );
-<a name="l00037"></a>00037 
-<a name="l00039"></a><a class="code" href="classlogog_1_1_target.html#a42dae6f9d6a3918b43eff9f85e1ab49f">00039</a>         <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_target.html#a42dae6f9d6a3918b43eff9f85e1ab49f">GetNullTerminatesStrings</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a>; }
-<a name="l00040"></a>00040 
-<a name="l00042"></a><a class="code" href="classlogog_1_1_target.html#a1480d250abc60598b348d3ecfdf16dd9">00042</a>         <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_target.html#a1480d250abc60598b348d3ecfdf16dd9">SetNullTerminatesStrings</a>(<span class="keywordtype">bool</span> val) { <a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a> = val; }
-<a name="l00043"></a>00043 
+<a name="l00021"></a>00021         <span class="keyword">virtual</span> <a class="code" href="classlogog_1_1_target.html#ae3bfa0c5f2dd56d24f0e5d6e24b280e1">~Target</a>();
+<a name="l00022"></a>00022 
+<a name="l00024"></a>00024     <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_target.html#abb775c76f9b153d756de6ccfa3579366">SetFormatter</a>( <a class="code" href="classlogog_1_1_formatter.html">Formatter</a> &amp;formatter );
+<a name="l00025"></a>00025 
+<a name="l00027"></a>00027     <a class="code" href="classlogog_1_1_formatter.html">Formatter</a> &amp;<a class="code" href="classlogog_1_1_target.html#acc6d49a3b9bfaf470acc87a2ccdb88b0">GetFormatter</a>() <span class="keyword">const</span>;
+<a name="l00028"></a>00028 
+<a name="l00032"></a>00032     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_target.html#a97c42fe5e1dfbd0b297e69afcf22d929">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data ) = 0;
+<a name="l00033"></a>00033 
+<a name="l00037"></a>00037     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_target.html#aeba402408840719950984877e42ea8d1">Receive</a>( <span class="keyword">const</span> <a class="code" href="classlogog_1_1_topic.html">Topic</a> &amp;topic );
+<a name="l00038"></a>00038 
+<a name="l00040"></a><a class="code" href="classlogog_1_1_target.html#a42dae6f9d6a3918b43eff9f85e1ab49f">00040</a>         <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_target.html#a42dae6f9d6a3918b43eff9f85e1ab49f">GetNullTerminatesStrings</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a>; }
+<a name="l00041"></a>00041 
+<a name="l00043"></a><a class="code" href="classlogog_1_1_target.html#a1480d250abc60598b348d3ecfdf16dd9">00043</a>         <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_target.html#a1480d250abc60598b348d3ecfdf16dd9">SetNullTerminatesStrings</a>(<span class="keywordtype">bool</span> val) { <a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a> = val; }
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">protected</span>:
-<a name="l00047"></a><a class="code" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">00047</a>     <a class="code" href="classlogog_1_1_formatter.html">Formatter</a> *<a class="code" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">m_pFormatter</a>;
-<a name="l00049"></a><a class="code" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">00049</a>     <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> <a class="code" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">m_MutexReceive</a>;
-<a name="l00053"></a><a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">00053</a>         <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a>;
-<a name="l00054"></a>00054 };
-<a name="l00055"></a>00055 
-<a name="l00057"></a><a class="code" href="classlogog_1_1_cerr.html">00057</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_cerr.html">Cerr</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
-<a name="l00058"></a>00058 {
-<a name="l00059"></a>00059     <span class="keyword">virtual</span> <span class="keywordtype">int</span> Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
-<a name="l00060"></a>00060 };
-<a name="l00061"></a>00061 
-<a name="l00063"></a><a class="code" href="classlogog_1_1_cout.html">00063</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_cout.html">Cout</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
-<a name="l00064"></a>00064 {
-<a name="l00065"></a>00065     <span class="keyword">virtual</span> <span class="keywordtype">int</span> Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
-<a name="l00066"></a>00066 };
-<a name="l00067"></a>00067 
-<a name="l00071"></a><a class="code" href="classlogog_1_1_output_debug.html">00071</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_output_debug.html">OutputDebug</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
-<a name="l00072"></a>00072 {
-<a name="l00073"></a>00073     <span class="keyword">virtual</span> <span class="keywordtype">int</span> Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
-<a name="l00074"></a>00074 };
-<a name="l00075"></a>00075 
-<a name="l00081"></a><a class="code" href="classlogog_1_1_log_file.html">00081</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_log_file.html">LogFile</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
-<a name="l00082"></a>00082 {
-<a name="l00083"></a>00083 <span class="keyword">public</span>:
-<a name="l00089"></a>00089     <a class="code" href="classlogog_1_1_log_file.html">LogFile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *sFileName);
-<a name="l00090"></a>00090 
-<a name="l00092"></a>00092     <a class="code" href="classlogog_1_1_log_file.html#a9789bd34990afddd14d01824e61da5bf">~LogFile</a>();
-<a name="l00093"></a>00093 
-<a name="l00095"></a>00095     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_file.html#a7eb10765e0095c6c9629849ff77aa567">Open</a>();
-<a name="l00096"></a>00096 
-<a name="l00098"></a>00098     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_file.html#a0181a9f1ec579f603418557c1176d404">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <span class="keyword">protected</span>:
-<a name="l00101"></a><a class="code" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">00101</a>     <span class="keywordtype">char</span> *<a class="code" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">m_pFileName</a>;
-<a name="l00102"></a><a class="code" href="classlogog_1_1_log_file.html#a5251dc4daa5624ad556b959716e8d956">00102</a>     <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_log_file.html#a5251dc4daa5624ad556b959716e8d956">m_bFirstTime</a>;
-<a name="l00103"></a><a class="code" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">00103</a>     FILE *<a class="code" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">m_pFile</a>;
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="keyword">protected</span>:
+<a name="l00048"></a><a class="code" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">00048</a>     <a class="code" href="classlogog_1_1_formatter.html">Formatter</a> *<a class="code" href="classlogog_1_1_target.html#ae1e9ad72cb762737922fd435b80a5f95">m_pFormatter</a>;
+<a name="l00050"></a><a class="code" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">00050</a>     <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex]">Mutex</a> <a class="code" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">m_MutexReceive</a>;
+<a name="l00054"></a><a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">00054</a>         <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a>;
+<a name="l00055"></a>00055 };
+<a name="l00056"></a>00056 
+<a name="l00058"></a><a class="code" href="classlogog_1_1_cerr.html">00058</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_cerr.html">Cerr</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
+<a name="l00059"></a>00059 {
+<a name="l00060"></a>00060     <span class="keyword">virtual</span> <span class="keywordtype">int</span> Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
+<a name="l00061"></a>00061 };
+<a name="l00062"></a>00062 
+<a name="l00064"></a><a class="code" href="classlogog_1_1_cout.html">00064</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_cout.html">Cout</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
+<a name="l00065"></a>00065 {
+<a name="l00066"></a>00066     <span class="keyword">virtual</span> <span class="keywordtype">int</span> Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
+<a name="l00067"></a>00067 };
+<a name="l00068"></a>00068 
+<a name="l00072"></a><a class="code" href="classlogog_1_1_output_debug.html">00072</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_output_debug.html">OutputDebug</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
+<a name="l00073"></a>00073 {
+<a name="l00074"></a>00074     <span class="keyword">virtual</span> <span class="keywordtype">int</span> Output( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
+<a name="l00075"></a>00075 };
+<a name="l00076"></a>00076 
+<a name="l00082"></a><a class="code" href="classlogog_1_1_log_file.html">00082</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_log_file.html">LogFile</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
+<a name="l00083"></a>00083 {
+<a name="l00084"></a>00084 <span class="keyword">public</span>:
+<a name="l00090"></a>00090     <a class="code" href="classlogog_1_1_log_file.html">LogFile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *sFileName);
+<a name="l00091"></a>00091 
+<a name="l00093"></a>00093     <span class="keyword">virtual</span> <a class="code" href="classlogog_1_1_log_file.html#a845b791e25f56ed86ca00bea5c4f7c8e">~LogFile</a>();
+<a name="l00094"></a>00094 
+<a name="l00096"></a>00096     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_file.html#a7eb10765e0095c6c9629849ff77aa567">Open</a>();
+<a name="l00097"></a>00097 
+<a name="l00103"></a>00103         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_file.html#ada13e2d194bb08f048da161c435d3f46">WriteUnicodeBOM</a>();
 <a name="l00104"></a>00104 
-<a name="l00105"></a>00105 <span class="keyword">private</span>:
-<a name="l00106"></a>00106     <a class="code" href="classlogog_1_1_log_file.html">LogFile</a>();
-<a name="l00107"></a>00107 };
-<a name="l00108"></a>00108 
-<a name="l00114"></a><a class="code" href="classlogog_1_1_log_buffer.html">00114</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_log_buffer.html">LogBuffer</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
-<a name="l00115"></a>00115 {
-<a name="l00116"></a>00116 <span class="keyword">public</span>:
-<a name="l00117"></a>00117     <a class="code" href="classlogog_1_1_log_buffer.html#a7bbd13bf5146450c3fddc383fa5db5a3">LogBuffer</a>( <a class="code" href="classlogog_1_1_target.html">Target</a> *pTarget = NULL,
-<a name="l00118"></a>00118                <span class="keywordtype">size_t</span> s = <a class="code" href="const_8hpp.html#aac1d42365cf35f0a201b4212fee5521e">LOGOG_DEFAULT_LOG_BUFFER_SIZE</a> );
-<a name="l00119"></a>00119     <a class="code" href="classlogog_1_1_log_buffer.html#a035dc3f3bc02ecfee1c1c0bda81dd365">~LogBuffer</a>();
-<a name="l00120"></a>00120 
-<a name="l00124"></a>00124     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_buffer.html#a652df2628af947701b731c990e03dca9">SetTarget</a>( <a class="code" href="classlogog_1_1_target.html">Target</a> &amp;t );
+<a name="l00106"></a>00106     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_file.html#a0181a9f1ec579f603418557c1176d404">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
+<a name="l00107"></a>00107 
+<a name="l00111"></a><a class="code" href="classlogog_1_1_log_file.html#a7c994c64dca7cd6606775b5a01e852e0">00111</a>         <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_log_file.html#a7c994c64dca7cd6606775b5a01e852e0">m_bWriteUnicodeBOM</a>;
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="keyword">protected</span>:
+<a name="l00114"></a><a class="code" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">00114</a>     <span class="keywordtype">char</span> *<a class="code" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">m_pFileName</a>;
+<a name="l00115"></a><a class="code" href="classlogog_1_1_log_file.html#a5251dc4daa5624ad556b959716e8d956">00115</a>     <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_log_file.html#a5251dc4daa5624ad556b959716e8d956">m_bFirstTime</a>;
+<a name="l00116"></a><a class="code" href="classlogog_1_1_log_file.html#a1c14c9918c5ce55504ee77fd5ebdab3e">00116</a>         <span class="keywordtype">bool</span> <a class="code" href="classlogog_1_1_log_file.html#a1c14c9918c5ce55504ee77fd5ebdab3e">m_bOpenFailed</a>;
+<a name="l00117"></a><a class="code" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">00117</a>     FILE *<a class="code" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">m_pFile</a>;
+<a name="l00118"></a>00118 
+<a name="l00120"></a>00120         <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_file.html#a849ef2e4ce8904c12b09f9404615e7fb">InternalOutput</a>( <span class="keywordtype">int</span> &amp;result, <span class="keywordtype">size_t</span> nSize, <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *data );
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 <span class="keyword">private</span>:
+<a name="l00123"></a>00123     <a class="code" href="classlogog_1_1_log_file.html">LogFile</a>();
+<a name="l00124"></a>00124 };
 <a name="l00125"></a>00125 
-<a name="l00129"></a>00129     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_buffer.html#a2fe0f01f3be20cccd2f1d0236291b58a">Insert</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *pChars, <span class="keywordtype">size_t</span> size );
-<a name="l00130"></a>00130 
-<a name="l00132"></a>00132     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_buffer.html#a80c51dd4e1650d5295232d38ebf36625">Dump</a>();
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_buffer.html#a0181a9f1ec579f603418557c1176d404">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="keyword">protected</span>:
-<a name="l00137"></a>00137     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_buffer.html#a3fd871f6afcc14ca7a2212cec55f4198">Allocate</a>( <span class="keywordtype">size_t</span> size );
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_buffer.html#a969d3794c98ce1220e47c0e7d44623a2">Deallocate</a>();
-<a name="l00140"></a>00140 
-<a name="l00142"></a><a class="code" href="classlogog_1_1_log_buffer.html#a083d58094145ffd19780922c9b93da97">00142</a>     <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_log_buffer.html#a083d58094145ffd19780922c9b93da97">m_pStart</a>;
-<a name="l00144"></a><a class="code" href="classlogog_1_1_log_buffer.html#aba5548ee524efdf5d54c2975ff432fb4">00144</a>     <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_log_buffer.html#aba5548ee524efdf5d54c2975ff432fb4">m_pCurrent</a>;
-<a name="l00146"></a><a class="code" href="classlogog_1_1_log_buffer.html#ac97b3e7a4241614b7ce4223594e88891">00146</a>     <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_log_buffer.html#ac97b3e7a4241614b7ce4223594e88891">m_pEnd</a>;
-<a name="l00148"></a><a class="code" href="classlogog_1_1_log_buffer.html#aa0ac31e6b847953869b21b6f0792570e">00148</a>     <span class="keywordtype">size_t</span> <a class="code" href="classlogog_1_1_log_buffer.html#aa0ac31e6b847953869b21b6f0792570e">m_nSize</a>;
-<a name="l00150"></a><a class="code" href="classlogog_1_1_log_buffer.html#a94ed5795de21c755d4e017c1b289a59a">00150</a>     <a class="code" href="classlogog_1_1_target.html">Target</a> *<a class="code" href="classlogog_1_1_log_buffer.html#a94ed5795de21c755d4e017c1b289a59a">m_pOutputTarget</a>;
-<a name="l00151"></a>00151 };
+<a name="l00131"></a><a class="code" href="classlogog_1_1_log_buffer.html">00131</a> <span class="keyword">class </span><a class="code" href="classlogog_1_1_log_buffer.html">LogBuffer</a> : <span class="keyword">public</span> <a class="code" href="classlogog_1_1_target.html">Target</a>
+<a name="l00132"></a>00132 {
+<a name="l00133"></a>00133 <span class="keyword">public</span>:
+<a name="l00134"></a>00134     <a class="code" href="classlogog_1_1_log_buffer.html#a7bbd13bf5146450c3fddc383fa5db5a3">LogBuffer</a>( <a class="code" href="classlogog_1_1_target.html">Target</a> *pTarget = NULL,
+<a name="l00135"></a>00135                <span class="keywordtype">size_t</span> s = <a class="code" href="const_8hpp.html#aac1d42365cf35f0a201b4212fee5521e">LOGOG_DEFAULT_LOG_BUFFER_SIZE</a> );
+<a name="l00136"></a>00136     <span class="keyword">virtual</span> <a class="code" href="classlogog_1_1_log_buffer.html#a78e33f305cf26ceef1f75b03c7158717">~LogBuffer</a>();
+<a name="l00137"></a>00137 
+<a name="l00141"></a>00141     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_buffer.html#a652df2628af947701b731c990e03dca9">SetTarget</a>( <a class="code" href="classlogog_1_1_target.html">Target</a> &amp;t );
+<a name="l00142"></a>00142 
+<a name="l00146"></a>00146     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_buffer.html#a2fe0f01f3be20cccd2f1d0236291b58a">Insert</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *pChars, <span class="keywordtype">size_t</span> size );
+<a name="l00147"></a>00147 
+<a name="l00149"></a>00149     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_buffer.html#a80c51dd4e1650d5295232d38ebf36625">Dump</a>();
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classlogog_1_1_log_buffer.html#a0181a9f1ec579f603418557c1176d404">Output</a>( <span class="keyword">const</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;data );
 <a name="l00152"></a>00152 
-<a name="l00153"></a>00153 }
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155 <span class="preprocessor">#endif // __LOGOG_TARGET_HPP_</span>
+<a name="l00153"></a>00153 <span class="keyword">protected</span>:
+<a name="l00154"></a>00154     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_buffer.html#a3fd871f6afcc14ca7a2212cec55f4198">Allocate</a>( <span class="keywordtype">size_t</span> size );
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogog_1_1_log_buffer.html#a969d3794c98ce1220e47c0e7d44623a2">Deallocate</a>();
+<a name="l00157"></a>00157 
+<a name="l00159"></a><a class="code" href="classlogog_1_1_log_buffer.html#a083d58094145ffd19780922c9b93da97">00159</a>     <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_log_buffer.html#a083d58094145ffd19780922c9b93da97">m_pStart</a>;
+<a name="l00161"></a><a class="code" href="classlogog_1_1_log_buffer.html#aba5548ee524efdf5d54c2975ff432fb4">00161</a>     <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_log_buffer.html#aba5548ee524efdf5d54c2975ff432fb4">m_pCurrent</a>;
+<a name="l00163"></a><a class="code" href="classlogog_1_1_log_buffer.html#ac97b3e7a4241614b7ce4223594e88891">00163</a>     <a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a> *<a class="code" href="classlogog_1_1_log_buffer.html#ac97b3e7a4241614b7ce4223594e88891">m_pEnd</a>;
+<a name="l00165"></a><a class="code" href="classlogog_1_1_log_buffer.html#aa0ac31e6b847953869b21b6f0792570e">00165</a>     <span class="keywordtype">size_t</span> <a class="code" href="classlogog_1_1_log_buffer.html#aa0ac31e6b847953869b21b6f0792570e">m_nSize</a>;
+<a name="l00167"></a><a class="code" href="classlogog_1_1_log_buffer.html#a94ed5795de21c755d4e017c1b289a59a">00167</a>     <a class="code" href="classlogog_1_1_target.html">Target</a> *<a class="code" href="classlogog_1_1_log_buffer.html#a94ed5795de21c755d4e017c1b289a59a">m_pOutputTarget</a>;
+<a name="l00168"></a>00168 };
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170 }
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172 <span class="preprocessor">#endif // __LOGOG_TARGET_HPP_</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -216,7 +224,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
+    <li class="footer">Generated on Mon Jan 30 2012 10:25:01 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
