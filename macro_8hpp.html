@@ -129,7 +129,7 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a3f18098c855d6f8316c625f9a96d47ad">LOGOG_CRITICAL</a>(formatstring,...)&#160;&#160;&#160;LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_CRITICAL, formatstring, ##__VA_ARGS__ )</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a4e833ce90c323c00624c34e75073f61a">LOGOG_ALERT</a>(formatstring,...)&#160;&#160;&#160;LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ALERT, formatstring, ##__VA_ARGS__ )</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a12a15a2919eaa82764a88f4b23b83623">LOGOG_EMERGENCY</a>(formatstring,...)&#160;&#160;&#160;LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_EMERGENCY, formatstring, ##__VA_ARGS__ )</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#accff3e345ef93d5f5a82173501307357">LOGOG_SET_LEVEL</a>(level)&#160;&#160;&#160;SetDefaultLevel( level );</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#accff3e345ef93d5f5a82173501307357">LOGOG_SET_LEVEL</a>(level)&#160;&#160;&#160;::logog::SetDefaultLevel( level );</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0">DBUG</a>(...)&#160;&#160;&#160;LOGOG_DEBUG( __VA_ARGS__ )</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">[Shorthand]  <a href="#a9d1c575cfb0a8cd96b84f99f63ddeab0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>(...)&#160;&#160;&#160;LOGOG_INFO( __VA_ARGS__ )</td></tr>
@@ -671,7 +671,7 @@ Defines</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">level</td><td>)</td>
-          <td>&#160;&#160;&#160;SetDefaultLevel( level );</td>
+          <td>&#160;&#160;&#160;::logog::SetDefaultLevel( level );</td>
         </tr>
       </table>
 </div>
@@ -957,7 +957,7 @@ Defines</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Jan 30 2012 10:25:02 for logog by
+    <li class="footer">Generated on Mon Feb 20 2012 21:25:56 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
