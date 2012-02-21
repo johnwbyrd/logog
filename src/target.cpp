@@ -155,7 +155,7 @@ namespace logog {
 #endif // LOGOG_FLAVOR_WINDOWS
 
 		if ( m_pFile == NULL )
-			m_bOpenFailed = true; // and no further Output's will work
+			m_bOpenFailed = true; // and no further outputs will work
 		else
 		{
 #ifdef LOGOG_UNICODE
