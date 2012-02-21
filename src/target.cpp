@@ -140,7 +140,7 @@ namespace logog {
 		 ** to carriage returns when writing a text file.  This causes problems
 		 ** when writing a Unicode file as Windows helpfully inserts a single-byte
 		 ** 0x0D between the return and line feed on write.  So we open and operate
-		 ** on our output file in binary mode only.
+		 ** the output in binary mode only.
 		 **/
 #ifdef LOGOG_FLAVOR_WINDOWS
 #ifdef LOGOG_UNICODE

@@ -190,7 +190,7 @@ namespace logog
 #endif
 
 #define LOGOG_SET_LEVEL( level ) \
-	SetDefaultLevel( level );
+	::logog::SetDefaultLevel( level );
 
 /** Define this compilation flag if your compilation environment conflicts with
   * any of the shorthand logging macros in macro.hpp.

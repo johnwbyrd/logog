@@ -28,11 +28,15 @@ public :
 
     /** All targets must implement the Output function.  This function outputs the provided string to the
       * output that the target represents.
+      * \return Zero if no error has occurred; an error code (generally propagated 
+      * from the operating system) if an error has occurred.
       */
     virtual int Output( const LOGOG_STRING &data ) = 0;
 
-    /** Receives a topic on behalf of this target.  A mutex prevents race conditions from occuring when multiple
-     * threads attempt to write to this target at the same time.
+    /** Receives a topic on behalf of this target.  A mutex prevents race conditions from occurring when 
+     ** multiple threads attempt to write to this target at the same time.
+     ** \return Zero if no error has occurred; an error code (generally propagated from the operating
+     ** system) if an error has occurred.
      */
     virtual int Receive( const Topic &topic );
 
