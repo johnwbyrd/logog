@@ -85,6 +85,12 @@ namespace logog {
 	{
 		m_bNullTerminatesStrings = false;
 
+#ifdef LOGOG_UNICODE
+		m_bWriteUnicodeBOM = true;
+#else // LOGOG_UNICODE
+		m_bWriteUnicodeBOM = false;
+#endif // LOGOG_UNICODE
+
 		int nNameLength = 0;
 
 		const char *sNameCount = sFileName;
@@ -101,7 +107,6 @@ namespace logog {
 			;
 
 		m_pOut = '\0';
-
 	}
 
 	LogFile::~LogFile()
@@ -114,17 +119,52 @@ namespace logog {
 
 	int LogFile::Open()
 	{
+		int nError = 1; // preset this in case LOGOG_FLAVOR_WINDOWS is not defined
+
+		bool bFileAlreadyExists = false;
+		FILE *fpTest;
+
 #ifdef LOGOG_FLAVOR_WINDOWS
-		// Microsoft prefers its variant
-		int nError = fopen_s( &m_pFile, m_pFileName, "a+" );
+		nError = fopen_s( &fpTest, m_pFileName, "r"); // ignore the error code
+#else // LOGOG_FLAVOR_WINDOWS
+		fpTest = fopen( m_pFileName, "r");
+#endif // LOGOG_FLAVOR_WINDOWS
+
+		if ( fpTest != NULL )
+		{
+			fclose( fpTest );
+			bFileAlreadyExists = true;
+		}
+
+		/** Windows tries to be clever and help us with converting line feeds
+		 ** to carriage returns when writing a text file.  This causes problems
+		 ** when writing a Unicode file as Windows helpfully inserts a single-byte
+		 ** 0x0D between the return and line feed on write.  So we open and operate
+		 ** on our output file in binary mode only.
+		 **/
+#ifdef LOGOG_FLAVOR_WINDOWS
+#ifdef LOGOG_UNICODE
+		nError = fopen_s( &m_pFile, m_pFileName, "ab, ccs=UNICODE" );
+#else // LOGOG_UNICODE
+		nError = fopen_s( &m_pFile, m_pFileName, "ab" );
+#endif // LOGOG_UNICODE
 		if ( nError != 0 )
 			return nError;
 #else // LOGOG_FLAVOR_WINDOWS
-		m_pFile = fopen( m_pFileName,"a+" );
+		m_pFile = fopen( m_pFileName, "ab+" );
 #endif // LOGOG_FLAVOR_WINDOWS
 
 		if ( m_pFile == NULL )
 			m_bOpenFailed = true; // and no further Output's will work
+		else
+		{
+#ifdef LOGOG_UNICODE
+			if ( !bFileAlreadyExists )
+			{
+				WriteUnicodeBOM();
+			}
+#endif
+		}
 
 		return ( m_pFile ? 0 : -1 );
 	}
@@ -144,12 +184,58 @@ namespace logog {
 			m_bFirstTime = false;
 		}
 
-		result = (int)fwrite( &(*data), 1, data.size(), m_pFile );
+		return InternalOutput(result, data.size(), data.c_str());
+	}
 
-		if ( (size_t)result != data.size() )
+	int LogFile::InternalOutput( int &result, size_t nSize, const LOGOG_CHAR *pData )
+	{
+		result = fwrite( pData, sizeof( LOGOG_CHAR ), nSize, m_pFile );
+
+		if ( (size_t)result != nSize )
 			return -1;
 
 		return 0;
+	}
+
+	void LogFile::WriteUnicodeBOM()
+	{
+		static union {
+			int i;
+			char c[4];
+		} bDetectEndian = {0x01020304};
+
+		bool bIsLittleEndian = ( bDetectEndian.c[0] != 1 );
+
+		int result;
+
+		switch ( sizeof( LOGOG_CHAR ))
+		{
+		case 1:
+			// This could be a UTF-8 BOM but technically very few systems support
+			// sizeof( wchar_t ) == sizeof( char ).  So for now we're not going
+			// to write a BOM in these cases.
+			break;
+
+		case 2:
+			if ( bIsLittleEndian )
+				InternalOutput( result, 1, (const LOGOG_CHAR *)"\xFF\xFE" ); // little endian UTF-16LE
+			else
+				InternalOutput( result, 1, (const LOGOG_CHAR *)"\xFE\xFF" ); // big endian UTF-16BE
+
+			break;
+
+		case 4:
+			if ( bIsLittleEndian )
+				InternalOutput( result, 1, (const LOGOG_CHAR *)"\xFF\xFE\x00\x00" ); // little endian UTF-32LE
+			else
+				InternalOutput( result, 1, (const LOGOG_CHAR *)"\x00\x00\xFE\xFF" ); // big endian UTF-32BE
+
+			break;
+
+		default:
+			// No idea what that character size is; do nothing
+			break;
+		}
 	}
 
 	LogBuffer::LogBuffer( Target *pTarget ,

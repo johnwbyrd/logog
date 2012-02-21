@@ -121,6 +121,7 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_log_
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_topic.html#afbaab1fd4f784dfb89044c896a5e2dc1">Group</a>() const </td><td><a class="el" href="classlogog_1_1_topic.html">Topic</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_topic.html#a31c5b1b04b8e7ac03f2059ccc3882760">Group</a>(const LOGOG_STRING &amp;s)</td><td><a class="el" href="classlogog_1_1_topic.html">Topic</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_topic_sink.html#ab32ab0cc76b4eaa37077e89ee9e3cdc1">Initialize</a>()</td><td><a class="el" href="classlogog_1_1_topic_sink.html">TopicSink</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a849ef2e4ce8904c12b09f9404615e7fb">InternalOutput</a>(int &amp;result, size_t nSize, const LOGOG_CHAR *data)</td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_topic_sink.html#a76b4868c225ea8d427c5175a9a482b27">IsTopic</a>() const </td><td><a class="el" href="classlogog_1_1_topic_sink.html">TopicSink</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_topic.html#a804594efa6a89e0307fdcf23322c5237">Level</a>() const </td><td><a class="el" href="classlogog_1_1_topic.html">Topic</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_topic.html#ab5387dbd4c1988cfb166271ad97014a1">Level</a>(LOGOG_LEVEL_TYPE level)</td><td><a class="el" href="classlogog_1_1_topic.html">Topic</a></td><td></td></tr>
@@ -129,6 +130,8 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_log_
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a7dfd734d2cfcf841f2084630142a382b">LogFile</a>(const char *sFileName)</td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a5251dc4daa5624ad556b959716e8d956">m_bFirstTime</a></td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_target.html#aa78396611863c7cc8236e0144a812568">m_bNullTerminatesStrings</a></td><td><a class="el" href="classlogog_1_1_target.html">Target</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a1c14c9918c5ce55504ee77fd5ebdab3e">m_bOpenFailed</a></td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a7c994c64dca7cd6606775b5a01e852e0">m_bWriteUnicodeBOM</a></td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_target.html#adb2297f2b8340529ba59598328da06d3">m_MutexReceive</a></td><td><a class="el" href="classlogog_1_1_target.html">Target</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#abe033eebdde50ae8d95bcb1ef44e5f99">m_pFile</a></td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a436992902eccc9b6eca9d8eb16534659">m_pFileName</a></td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [protected]</code></td></tr>
@@ -168,9 +171,11 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_log_
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_node.html#a3f667bb2e9f78ce8bf1b16c51696f287">UnpublishToMultiple</a>(LockableNodesType &amp;nodes)</td><td><a class="el" href="classlogog_1_1_node.html">Node</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_node.html#a96f3da81c22d120d11c51364889ac5e2">UnsubscribeTo</a>(Node &amp;publisher)</td><td><a class="el" href="classlogog_1_1_node.html">Node</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_node.html#aec93af450c7fbb62e77adf66e27ba3a5">UnsubscribeToMultiple</a>(LockableNodesType &amp;nodes)</td><td><a class="el" href="classlogog_1_1_node.html">Node</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a9789bd34990afddd14d01824e61da5bf">~LogFile</a>()</td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#ada13e2d194bb08f048da161c435d3f46">WriteUnicodeBOM</a>()</td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_log_file.html#a845b791e25f56ed86ca00bea5c4f7c8e">~LogFile</a>()</td><td><a class="el" href="classlogog_1_1_log_file.html">LogFile</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_node.html#a6fa6bf60f34f1e3efb0e59333428c9c8">~Node</a>()</td><td><a class="el" href="classlogog_1_1_node.html">Node</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classlogog_1_1_object.html#ab5cc4f9ba1ea5c2f25bc4b1f0dac5dc5">~Object</a>()</td><td><a class="el" href="classlogog_1_1_object.html">Object</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classlogog_1_1_target.html#ae3bfa0c5f2dd56d24f0e5d6e24b280e1">~Target</a>()</td><td><a class="el" href="classlogog_1_1_target.html">Target</a></td><td><code> [virtual]</code></td></tr>
 </table></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -190,7 +195,7 @@ This is the complete list of members for <a class="el" href="classlogog_1_1_log_
 </div>
 
 
-    <li class="footer">Generated on Sun Nov 6 2011 16:25:54 for logog by
+    <li class="footer">Generated on Mon Jan 30 2012 10:25:03 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

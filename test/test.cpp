@@ -286,7 +286,11 @@ UNITTEST( FormatString1 )
 
         const LOGOG_CHAR *p = _LG("Here is a string");
 
+#ifdef LOGOG_UNICODE
+		s.format( _LG("Here are six strings: %ls %ls %ls %ls %ls %ls \n"), p,p,p,p,p,p );
+#else // LOGOG_UNICODE
         s.format( _LG("Here are six strings: %s %s %s %s %s %s \n"), p,p,p,p,p,p );
+#endif
 
         LOGOG_COUT << *s;
     }
@@ -584,6 +588,26 @@ UNITTEST( ImmediateLogging )
 
     return 0;
 }
+
+#ifdef LOGOG_UNICODE
+UNITTEST( UnicodeLogFile )
+{
+	LOGOG_INITIALIZE();
+
+	{
+		LogFile logFile( "unicode.txt" );
+
+		// see http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx
+		INFO(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
+		WARN(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
+		ERR(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
+	}
+
+	LOGOG_SHUTDOWN();
+
+	return 0;
+}
+#endif // LOGOG_UNICODE
 
 UNITTEST( DeferredCoutLogging )
 {

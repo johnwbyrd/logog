@@ -95,6 +95,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock"><p>The logog library may be compiled either in ANSI mode or in Unicode mode. By default, logog is compiled as an ANSI library. In this case, multibyte characters are not permitted in log messages. To enable Unicode support, define the LOGOG_UNICODE flag in <a class="el" href="logog_8hpp.html">logog.hpp</a> before compiling the logog library.</p>
+<p>Defining this flag sets wchar_t as the base type for all logog character operations. On Windows like platforms, a wchar_t is two bytes, and on Posix-like platforms this may be two bytes or four bytes.</p>
+<p>Because Unicode support is based around wchar_t, the exact format of the Unicode output depends on the endianness of the target platform as well as the size of wchar_t. If logog is creating a new output log file, logog tries to add a Unicode BOM to the start of the file, if wchar_t is either two or four bytes in length. In this case, logog can write a UTF-16 or UTF-32 BOM, in either little or big endian format. See <a class="el" href="classlogog_1_1_log_file.html#ada13e2d194bb08f048da161c435d3f46">LogFile::WriteUnicodeBOM()</a> for more information on how this BOM is written. More information on what a BOM does is available at <a href="http://unicode.org/faq/utf_bom.html">http://unicode.org/faq/utf_bom.html</a> .</p>
 <p>Defining LOGOG_UNICODE has several effects on logog. First, this forces all logging functions to expect to receive string parameters as arrays of the local wchar_t type instead of char types. In other words, the LOGOG_CHAR base type is redefined to wchar_t instead of char. Second, this forces logog to route all <a class="el" href="classlogog_1_1_cout.html">Cout</a> messages to wcout, and all <a class="el" href="classlogog_1_1_cerr.html">Cerr</a> messages to wcerr.</p>
 <p>A convenience macro, <a class="el" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG()</a>, is available (if you haven't defined LOGOG_USE_PREFIX) for easily switching your constant strings from ANSI to Unicode, based on the compilation value of LOGOG_UNICODE. To use this macro, and hence to have all your code compile in both ANSI and Unicode modes, log in the following fashion:</p>
 <div class="fragment"><pre class="fragment"><a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>(<a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;This informational message is displayed in both ANSI and Unicode builds.&quot;</span>));
@@ -105,8 +107,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>One way of initializing a Windows console for Unicode support, which seems to work, is as follows:</p>
 <div class="fragment"><pre class="fragment"><span class="preprocessor">#ifdef LOGOG_UNICODE</span>
 <span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
-<span class="preprocessor"></span>        _setmode(_fileno(stdout), _O_U16TEXT);
-        _setmode(_fileno(stderr), _O_U16TEXT);
+<span class="preprocessor"></span>    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stderr), _O_U16TEXT);
 <span class="preprocessor">#endif // LOGOG_FLAVOR_WINDOWS</span>
 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_UNICODE</span>
 </pre></div><p> See also Microsoft's documentation at <a href="http://msdn.microsoft.com/en-us/library/tw4k6df8.aspx">http://msdn.microsoft.com/en-us/library/tw4k6df8.aspx</a> . </p>
@@ -129,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
+    <li class="footer">Generated on Mon Jan 30 2012 10:25:02 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -99,29 +99,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>You can cause a <a class="el" href="classlogog_1_1_topic.html">Topic</a> to send itself to its subscribers by calling <a class="el" href="classlogog_1_1_topic.html#ab0137c02f1d5692fb0a9cb0899b9fd62">Topic::Transmit()</a>.</p>
 <p>Topics can publish, unpublish, subscribe and unsubscribe themselves from other topics. See Topic::Publish(), Topic::Unpublish(), Topic::Subscribe(), Topic::Unsubscribe() for more details.</p>
 <p>Topics can also do all these tasks to lists of other topics. See <a class="el" href="classlogog_1_1_node.html#a64be8f1d5da9f1794e2339d06d36829b">Topic::PublishToMultiple()</a>, <a class="el" href="classlogog_1_1_node.html#a3f667bb2e9f78ce8bf1b16c51696f287">Topic::UnpublishToMultiple()</a>, <a class="el" href="classlogog_1_1_node.html#a302a93c6442eb07d4dc788d5c4816f9e">Topic::SubscribeToMultiple()</a>, <a class="el" href="classlogog_1_1_node.html#aec93af450c7fbb62e77adf66e27ba3a5">Topic::UnsubscribeToMultiple()</a>.</p>
-<div class="fragment"><pre class="fragment">        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
+<div class="fragment"><pre class="fragment">    <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
 
-        {
-                Topic n1, n2;
+    {
+        Topic n1, n2;
 
-                <span class="comment">// should succeed</span>
-                <span class="keywordflow">if</span> ( n1.SubscribeTo( n2 ) != true )
-                        nResult++;
+        <span class="comment">// should succeed</span>
+        <span class="keywordflow">if</span> ( n1.SubscribeTo( n2 ) != true )
+            nResult++;
 
-                <span class="comment">// should indicate no insertion took place</span>
-                <span class="keywordflow">if</span> ( n2.PublishTo( n1 ) != false )
-                        nResult++;
+        <span class="comment">// should indicate no insertion took place</span>
+        <span class="keywordflow">if</span> ( n2.PublishTo( n1 ) != false )
+            nResult++;
 
-                n2.Transmit();
+        n2.Transmit();
 
-                <span class="keywordflow">if</span> ( n2.UnpublishTo( n1 ) != true )
-                        nResult++;
+        <span class="keywordflow">if</span> ( n2.UnpublishTo( n1 ) != true )
+            nResult++;
 
-                <span class="keywordflow">if</span> ( n1.UnsubscribeTo( n2 ) != false )
-                        nResult++;
-        }
+        <span class="keywordflow">if</span> ( n1.UnsubscribeTo( n2 ) != false )
+            nResult++;
+    }
 
-        <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
+    <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
 
 </pre></div></div></div>
 </div>
@@ -142,7 +142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Nov 6 2011 16:25:53 for logog by
+    <li class="footer">Generated on Mon Jan 30 2012 10:25:02 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -504,6 +504,19 @@ logog is compiled as an ANSI library.  In this case, multibyte characters are
 not permitted in log messages.  To enable Unicode support, define the LOGOG_UNICODE
 flag in logog.hpp before compiling the logog library.
 
+Defining this flag sets wchar_t as the base type for all logog character operations.
+On Windows like platforms, a wchar_t is two bytes, and on Posix-like platforms this 
+may be two bytes or four bytes.
+
+Because Unicode support is based around wchar_t, the exact format of the Unicode 
+output depends on the endianness of the target platform as well as the size of 
+wchar_t.  If logog is creating a new output log file, logog tries to add a Unicode 
+BOM to the start of the file, if wchar_t is either two or four bytes in length.
+In this case, logog can write a UTF-16 or UTF-32 BOM, in either little or big 
+endian format.  See LogFile::WriteUnicodeBOM() for more information on how this 
+BOM is written.  More information on what a BOM does is available at 
+http://unicode.org/faq/utf_bom.html .
+
 Defining LOGOG_UNICODE has several effects on logog.  First, this forces all
 logging functions to expect to receive string parameters as arrays of the 
 local wchar_t type instead of char types.  In other words, the LOGOG_CHAR 

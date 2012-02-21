@@ -167,11 +167,15 @@ namespace logog {
         if ( flags & TOPIC_MESSAGE_FLAG )
         {
             m_sMessageBuffer.append( topic.Message() );
-            m_sMessageBuffer.append( (LOGOG_CHAR)'\n' );
+#ifdef LOGOG_FLAVOR_WINDOWS
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("\r\n") );
+#else // LOGOG_FLAVOR_WINDOWS
+            m_sMessageBuffer.append( LOGOG_CONST_STRING("\n") );
+#endif // LOGOG_FLAVOR_WINDOWS
         }
 
 		if ( target.GetNullTerminatesStrings() )
-			m_sMessageBuffer.append( (LOGOG_CHAR)NULL );
+			m_sMessageBuffer.append( LOGOG_CHAR( NULL ) );
 
         return m_sMessageBuffer;
     }
