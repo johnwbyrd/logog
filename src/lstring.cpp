@@ -84,7 +84,7 @@ namespace logog {
 
 		if ( nSize == 0 )
 		{
-			if ( *m_pBuffer != (LOGOG_CHAR)NULL )
+			if ( m_pBuffer && ( *m_pBuffer != (LOGOG_CHAR)NULL ))
 				Deallocate( (void *)m_pBuffer );
 
 			Initialize();

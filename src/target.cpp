@@ -105,8 +105,6 @@ namespace logog {
 		char *m_pOut = m_pFileName;
 		while ( ( *m_pOut++ = *sFileName++) != '\0' )
 			;
-
-		m_pOut = '\0';
 	}
 
 	LogFile::~LogFile()
@@ -184,11 +182,13 @@ namespace logog {
 			m_bFirstTime = false;
 		}
 
-		return InternalOutput(result, data.size(), data.c_str());
+		return InternalOutput( data.size(), data.c_str());
 	}
 
-	int LogFile::InternalOutput( int &result, size_t nSize, const LOGOG_CHAR *pData )
-	{
+	int LogFile::InternalOutput( size_t nSize, const LOGOG_CHAR *pData )
+		{
+        size_t result;
+
 		result = fwrite( pData, sizeof( LOGOG_CHAR ), nSize, m_pFile );
 
 		if ( (size_t)result != nSize )
@@ -206,8 +206,6 @@ namespace logog {
 
 		bool bIsLittleEndian = ( bDetectEndian.c[0] != 1 );
 
-		int result;
-
 		switch ( sizeof( LOGOG_CHAR ))
 		{
 		case 1:
@@ -218,17 +216,17 @@ namespace logog {
 
 		case 2:
 			if ( bIsLittleEndian )
-				InternalOutput( result, 1, (const LOGOG_CHAR *)"\xFF\xFE" ); // little endian UTF-16LE
+				InternalOutput( 1, (const LOGOG_CHAR *)"\xFF\xFE" ); // little endian UTF-16LE
 			else
-				InternalOutput( result, 1, (const LOGOG_CHAR *)"\xFE\xFF" ); // big endian UTF-16BE
+				InternalOutput( 1, (const LOGOG_CHAR *)"\xFE\xFF" ); // big endian UTF-16BE
 
 			break;
 
 		case 4:
 			if ( bIsLittleEndian )
-				InternalOutput( result, 1, (const LOGOG_CHAR *)"\xFF\xFE\x00\x00" ); // little endian UTF-32LE
+				InternalOutput( 1, (const LOGOG_CHAR *)"\xFF\xFE\x00\x00" ); // little endian UTF-32LE
 			else
-				InternalOutput( result, 1, (const LOGOG_CHAR *)"\x00\x00\xFE\xFF" ); // big endian UTF-32BE
+				InternalOutput( 1, (const LOGOG_CHAR *)"\x00\x00\xFE\xFF" ); // big endian UTF-32BE
 
 			break;
 

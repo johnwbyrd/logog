@@ -65,7 +65,7 @@ int RunAllTests()
 
     for ( TestRegistryType::iterator it = LogogTestRegistry().begin();
             it != LogogTestRegistry().end();
-            it++ )
+            ++it )
     {
         (*pOut) << _LG("Test ") << (*it)->GetName() << _LG(" running... ") << endl;
         nTestResult = (*it)->RunTest();

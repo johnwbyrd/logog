@@ -121,7 +121,7 @@ protected:
     FILE *m_pFile;
 
 	/** Does the actual fwrite to the file.  Call Output() instead to handle error conditions better. */
-	virtual int InternalOutput( int &result, size_t nSize, const LOGOG_CHAR *data );
+	virtual int InternalOutput( size_t nSize, const LOGOG_CHAR *pData );
 
 private:
     LogFile();

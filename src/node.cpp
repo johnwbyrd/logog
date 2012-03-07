@@ -16,7 +16,7 @@ namespace logog {
 		while ( it != other.end())
 		{
 			this->insert( *it );
-			it++;
+			++it;
 		}
 
 		return *this;
