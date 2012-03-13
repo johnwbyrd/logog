@@ -41,7 +41,7 @@
 #define LOGOG_LEVEL_TYPE		int
 
 #ifndef LOGOG_LEVEL
-#define LOGOG_LEVEL LOGOG_LEVEL_INFO
+#define LOGOG_LEVEL LOGOG_LEVEL_DEBUG
 #endif
 
 /** @} */
