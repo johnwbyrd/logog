@@ -143,106 +143,110 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_USE_TR1 1</span>
 <a name="l00045"></a>00045 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00046"></a>00046 <span class="preprocessor"></span>
-<a name="l00047"></a>00047 <span class="comment">/* If we&#39;ve recognized it already, it&#39;s a relatively modern compiler */</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#if defined( LOGOG_FLAVOR_WINDOWS ) || defined( LOGOG_FLAVOR_POSIX )</span>
-<a name="l00049"></a>00049 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_HAS_UNORDERED_MAP 1</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span><span class="preprocessor">#endif // defined(...)</span>
-<a name="l00051"></a>00051 <span class="preprocessor"></span>
-<a name="l00052"></a>00052 <span class="comment">/* PS3 */</span>
-<a name="l00053"></a>00053 <span class="preprocessor">#ifdef SN_TARGET_PS3</span>
-<a name="l00054"></a>00054 <span class="preprocessor"></span><span class="preprocessor">#include &quot;proprietary/ps3.hpp&quot;</span>
-<a name="l00055"></a>00055 <span class="preprocessor">#endif</span>
-<a name="l00056"></a>00056 <span class="preprocessor"></span>
-<a name="l00057"></a>00057 <span class="preprocessor">#endif // LOGOG_FLAVOR_POSIX</span>
-<a name="l00058"></a>00058 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00059"></a>00059 <span class="preprocessor"></span>
-<a name="l00060"></a>00060 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00061"></a>00061 <span class="preprocessor"></span><span class="comment">/* Detect Xbox 360 */</span>
-<a name="l00062"></a>00062 <span class="preprocessor">#if _XBOX_VER &gt;= 200</span>
-<a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor">#include &quot;proprietary/xbox360.hpp&quot;</span>
-<a name="l00064"></a>00064 <span class="preprocessor">#else</span>
-<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="comment">/* Windows */</span>
-<a name="l00066"></a>00066 <span class="preprocessor">#include &quot;windows.h&quot;</span>
-<a name="l00067"></a>00067 <span class="preprocessor">#endif // _XBOX_VER</span>
-<a name="l00068"></a>00068 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00069"></a>00069 <span class="preprocessor"></span>
-<a name="l00070"></a>00070 <span class="preprocessor">#ifndef LOGOG_FLAVOR_WINDOWS</span>
-<a name="l00071"></a>00071 <span class="preprocessor"></span><span class="preprocessor">#ifndef LOGOG_FLAVOR_POSIX</span>
-<a name="l00072"></a>00072 <span class="preprocessor"></span><span class="preprocessor">#error Platform flavor not detected.  Please see platform.hpp to configure this platform.</span>
-<a name="l00073"></a>00073 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00074"></a>00074 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00075"></a>00075 <span class="preprocessor"></span>
-<a name="l00076"></a>00076 <span class="comment">// For the FILE type.</span>
-<a name="l00077"></a>00077 <span class="preprocessor">#include &lt;cstdio&gt;</span>
-<a name="l00078"></a>00078 <span class="comment">// For POSIX file access.</span>
-<a name="l00079"></a>00079 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
-<a name="l00080"></a>00080 <span class="comment">// For Ubuntu 11 and ptrdiff_t</span>
-<a name="l00081"></a>00081 <span class="preprocessor">#include &lt;cstddef&gt;</span>
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#include &lt;ctime&gt;</span>
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="preprocessor">#if defined(LOGOG_LEAK_DETECTION) || defined(LOGOG_INTERNAL_DEBUGGING)</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">#include &lt;cstdio&gt;</span>
-<a name="l00087"></a>00087 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00088"></a>00088 <span class="preprocessor">#endif // LOGOG_LEAK_DETECTION || LOGOG_INTERNAL_DEBUGGING</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span>
-<a name="l00090"></a>00090 <span class="preprocessor">#ifdef LOGOG_FLAVOR_POSIX</span>
-<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="preprocessor">#include &lt;sys/time.h&gt;</span>
-<a name="l00092"></a>00092 <span class="comment">// for uint64_t</span>
-<a name="l00093"></a>00093 <span class="preprocessor">#include &lt;inttypes.h&gt;</span>
-<a name="l00094"></a>00094 <span class="preprocessor">#include &lt;wchar.h&gt;</span>
-<a name="l00095"></a>00095 <span class="comment">// for strstr support</span>
-<a name="l00096"></a>00096 <span class="preprocessor">#include &lt;cstring&gt;</span>
-<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span>
-<a name="l00099"></a>00099 <span class="comment">// For Unicode support</span>
-<a name="l00100"></a>00100 <span class="preprocessor">#include &lt;typeinfo&gt;</span>
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="comment">/* ----------------------------------------------------------- */</span>
-<a name="l00103"></a>00103 <span class="comment">/* Here&#39;s the stuff your compiler may have a problem with...   */</span>
-<a name="l00104"></a>00104 
-<a name="l00106"></a>00106 
-<a name="l00108"></a><a class="code" href="platform_8hpp.html#a83255b7400e614df1416af0f60149507">00108</a> <span class="preprocessor">#define LOGOG_HASH                      std::tr1::hash</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span>
-<a name="l00111"></a>00111 <span class="preprocessor">#ifdef LOGOG_HAS_UNORDERED_MAP</span>
-<a name="l00112"></a>00112 <span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_USE_TR1</span>
-<a name="l00113"></a>00113 <span class="preprocessor"></span><span class="preprocessor">#include &lt;tr1/unordered_map&gt;</span>
-<a name="l00114"></a>00114 <span class="preprocessor">#else</span>
-<a name="l00115"></a>00115 <span class="preprocessor"></span><span class="preprocessor">#include &lt;unordered_map&gt;</span>
-<a name="l00116"></a>00116 <span class="preprocessor">#endif // LOGOG_USE_TR1</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span><span class="preprocessor">#ifdef _GLIBCXX_UNORDERED_MAP</span>
-<a name="l00118"></a>00118 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_UNORDERED_MAP     std::unordered_map</span>
-<a name="l00119"></a>00119 <span class="preprocessor"></span><span class="preprocessor">#else // _GLIBCXX_UNORDERED_MAP</span>
-<a name="l00120"></a>00120 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_UNORDERED_MAP     std::tr1::unordered_map</span>
-<a name="l00121"></a>00121 <span class="preprocessor"></span><span class="preprocessor">#endif  // _GLIBCXX_UNORDERED_MAP</span>
-<a name="l00122"></a>00122 <span class="preprocessor"></span><span class="preprocessor">#else // LOGOG_HAS_UNORDERED_MAP</span>
-<a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">#include &lt;hash_map&gt;</span>
-<a name="l00124"></a><a class="code" href="platform_8hpp.html#ae8c043cab3f7dd437ebb333eb8ec0eb8">00124</a> <span class="preprocessor">#define LOGOG_UNORDERED_MAP std::hash_map</span>
-<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_HAS_UNORDERED_MAP</span>
-<a name="l00126"></a>00126 <span class="preprocessor"></span>
-<a name="l00128"></a><a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">00128</a> <span class="preprocessor">#define LOGOG_INTERNAL_FAILURE  abort();</span>
-<a name="l00129"></a>00129 <span class="preprocessor"></span>
-<a name="l00130"></a>00130 <span class="comment">/* ----------------------------------------------- */</span>
-<a name="l00131"></a>00131 <span class="comment">/* Here&#39;s the stuff that&#39;s pretty standard in STL by now. */</span>
-<a name="l00132"></a>00132 
-<a name="l00134"></a><a class="code" href="platform_8hpp.html#a2eb3d2aae7780e72c100d7565f28dd37">00134</a> <span class="preprocessor">#define LOGOG_PAIR                      std::pair</span>
-<a name="l00135"></a>00135 <span class="preprocessor"></span><span class="preprocessor">#include &lt;list&gt;</span>
-<a name="l00137"></a><a class="code" href="platform_8hpp.html#a1aa098652d3ecb54b00e639cde0242cd">00137</a> <span class="preprocessor">#define LOGOG_LIST                      std::list</span>
-<a name="l00138"></a>00138 <span class="preprocessor"></span><span class="preprocessor">#include &lt;vector&gt;</span>
-<a name="l00140"></a><a class="code" href="platform_8hpp.html#a27d1d010f9994155ffa32e12196489d1">00140</a> <span class="preprocessor">#define LOGOG_VECTOR            std::vector</span>
-<a name="l00141"></a>00141 <span class="preprocessor"></span><span class="preprocessor">#include &lt;set&gt;</span>
-<a name="l00143"></a><a class="code" href="platform_8hpp.html#af732e2a388bfbcfc51fab41638c4f6f1">00143</a> <span class="preprocessor">#define LOGOG_SET                       std::set</span>
-<a name="l00144"></a>00144 <span class="preprocessor"></span>
-<a name="l00145"></a><a class="code" href="platform_8hpp.html#a0eb7a16d3b33c0743affa3720c18f427">00145</a> <span class="preprocessor">#define LOGOG_EQUAL_TO          std::equal_to</span>
-<a name="l00146"></a>00146 <span class="preprocessor"></span>
-<a name="l00148"></a>00148 
-<a name="l00150"></a><a class="code" href="platform_8hpp.html#a885fbea6107418a9231a029744215b1a">00150</a> <span class="preprocessor">#define LOGOG_DEFAULT_PORT      9987</span>
-<a name="l00151"></a>00151 <span class="preprocessor"></span>
-<a name="l00153"></a>00153 <span class="preprocessor">#include &lt;cstdarg&gt;</span>
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157 <span class="preprocessor">#endif // __LOGOG_PLATFORM_HPP</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#ifdef __APPLE__</span>
+<a name="l00048"></a>00048 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_USE_TR1 1</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00050"></a>00050 <span class="preprocessor"></span>
+<a name="l00051"></a>00051 <span class="comment">/* If we&#39;ve recognized it already, it&#39;s a relatively modern compiler */</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#if defined( LOGOG_FLAVOR_WINDOWS ) || defined( LOGOG_FLAVOR_POSIX )</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_HAS_UNORDERED_MAP 1</span>
+<a name="l00054"></a>00054 <span class="preprocessor"></span><span class="preprocessor">#endif // defined(...)</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span>
+<a name="l00056"></a>00056 <span class="comment">/* PS3 */</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#ifdef SN_TARGET_PS3</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span><span class="preprocessor">#include &quot;proprietary/ps3.hpp&quot;</span>
+<a name="l00059"></a>00059 <span class="preprocessor">#endif</span>
+<a name="l00060"></a>00060 <span class="preprocessor"></span>
+<a name="l00061"></a>00061 <span class="preprocessor">#endif // LOGOG_FLAVOR_POSIX</span>
+<a name="l00062"></a>00062 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span>
+<a name="l00064"></a>00064 <span class="preprocessor">#ifdef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="comment">/* Detect Xbox 360 */</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#if _XBOX_VER &gt;= 200</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span><span class="preprocessor">#include &quot;proprietary/xbox360.hpp&quot;</span>
+<a name="l00068"></a>00068 <span class="preprocessor">#else</span>
+<a name="l00069"></a>00069 <span class="preprocessor"></span><span class="comment">/* Windows */</span>
+<a name="l00070"></a>00070 <span class="preprocessor">#include &quot;windows.h&quot;</span>
+<a name="l00071"></a>00071 <span class="preprocessor">#endif // _XBOX_VER</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>
+<a name="l00074"></a>00074 <span class="preprocessor">#ifndef LOGOG_FLAVOR_WINDOWS</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span><span class="preprocessor">#ifndef LOGOG_FLAVOR_POSIX</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span><span class="preprocessor">#error Platform flavor not detected.  Please see platform.hpp to configure this platform.</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a>00080 <span class="comment">// For the FILE type.</span>
+<a name="l00081"></a>00081 <span class="preprocessor">#include &lt;cstdio&gt;</span>
+<a name="l00082"></a>00082 <span class="comment">// For POSIX file access.</span>
+<a name="l00083"></a>00083 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
+<a name="l00084"></a>00084 <span class="comment">// For Ubuntu 11 and ptrdiff_t</span>
+<a name="l00085"></a>00085 <span class="preprocessor">#include &lt;cstddef&gt;</span>
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 <span class="preprocessor">#include &lt;ctime&gt;</span>
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="preprocessor">#if defined(LOGOG_LEAK_DETECTION) || defined(LOGOG_INTERNAL_DEBUGGING)</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span><span class="preprocessor">#include &lt;cstdio&gt;</span>
+<a name="l00091"></a>00091 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00092"></a>00092 <span class="preprocessor">#endif // LOGOG_LEAK_DETECTION || LOGOG_INTERNAL_DEBUGGING</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span>
+<a name="l00094"></a>00094 <span class="preprocessor">#ifdef LOGOG_FLAVOR_POSIX</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span><span class="preprocessor">#include &lt;sys/time.h&gt;</span>
+<a name="l00096"></a>00096 <span class="comment">// for uint64_t</span>
+<a name="l00097"></a>00097 <span class="preprocessor">#include &lt;inttypes.h&gt;</span>
+<a name="l00098"></a>00098 <span class="preprocessor">#include &lt;wchar.h&gt;</span>
+<a name="l00099"></a>00099 <span class="comment">// for strstr support</span>
+<a name="l00100"></a>00100 <span class="preprocessor">#include &lt;cstring&gt;</span>
+<a name="l00101"></a>00101 <span class="preprocessor">#endif</span>
+<a name="l00102"></a>00102 <span class="preprocessor"></span>
+<a name="l00103"></a>00103 <span class="comment">// For Unicode support</span>
+<a name="l00104"></a>00104 <span class="preprocessor">#include &lt;typeinfo&gt;</span>
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 <span class="comment">/* ----------------------------------------------------------- */</span>
+<a name="l00107"></a>00107 <span class="comment">/* Here&#39;s the stuff your compiler may have a problem with...   */</span>
+<a name="l00108"></a>00108 
+<a name="l00110"></a>00110 
+<a name="l00112"></a><a class="code" href="platform_8hpp.html#a83255b7400e614df1416af0f60149507">00112</a> <span class="preprocessor">#define LOGOG_HASH                      std::tr1::hash</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span>
+<a name="l00115"></a>00115 <span class="preprocessor">#ifdef LOGOG_HAS_UNORDERED_MAP</span>
+<a name="l00116"></a>00116 <span class="preprocessor"></span><span class="preprocessor">#ifdef LOGOG_USE_TR1</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span><span class="preprocessor">#include &lt;tr1/unordered_map&gt;</span>
+<a name="l00118"></a>00118 <span class="preprocessor">#else</span>
+<a name="l00119"></a>00119 <span class="preprocessor"></span><span class="preprocessor">#include &lt;unordered_map&gt;</span>
+<a name="l00120"></a>00120 <span class="preprocessor">#endif // LOGOG_USE_TR1</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span><span class="preprocessor">#ifdef _GLIBCXX_UNORDERED_MAP</span>
+<a name="l00122"></a>00122 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_UNORDERED_MAP     std::unordered_map</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">#else // _GLIBCXX_UNORDERED_MAP</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="preprocessor">#define LOGOG_UNORDERED_MAP     std::tr1::unordered_map</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">#endif  // _GLIBCXX_UNORDERED_MAP</span>
+<a name="l00126"></a>00126 <span class="preprocessor"></span><span class="preprocessor">#else // LOGOG_HAS_UNORDERED_MAP</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span><span class="preprocessor">#include &lt;hash_map&gt;</span>
+<a name="l00128"></a><a class="code" href="platform_8hpp.html#ae8c043cab3f7dd437ebb333eb8ec0eb8">00128</a> <span class="preprocessor">#define LOGOG_UNORDERED_MAP std::hash_map</span>
+<a name="l00129"></a>00129 <span class="preprocessor"></span><span class="preprocessor">#endif // LOGOG_HAS_UNORDERED_MAP</span>
+<a name="l00130"></a>00130 <span class="preprocessor"></span>
+<a name="l00132"></a><a class="code" href="platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940">00132</a> <span class="preprocessor">#define LOGOG_INTERNAL_FAILURE  abort();</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span>
+<a name="l00134"></a>00134 <span class="comment">/* ----------------------------------------------- */</span>
+<a name="l00135"></a>00135 <span class="comment">/* Here&#39;s the stuff that&#39;s pretty standard in STL by now. */</span>
+<a name="l00136"></a>00136 
+<a name="l00138"></a><a class="code" href="platform_8hpp.html#a2eb3d2aae7780e72c100d7565f28dd37">00138</a> <span class="preprocessor">#define LOGOG_PAIR                      std::pair</span>
+<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">#include &lt;list&gt;</span>
+<a name="l00141"></a><a class="code" href="platform_8hpp.html#a1aa098652d3ecb54b00e639cde0242cd">00141</a> <span class="preprocessor">#define LOGOG_LIST                      std::list</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span><span class="preprocessor">#include &lt;vector&gt;</span>
+<a name="l00144"></a><a class="code" href="platform_8hpp.html#a27d1d010f9994155ffa32e12196489d1">00144</a> <span class="preprocessor">#define LOGOG_VECTOR            std::vector</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span><span class="preprocessor">#include &lt;set&gt;</span>
+<a name="l00147"></a><a class="code" href="platform_8hpp.html#af732e2a388bfbcfc51fab41638c4f6f1">00147</a> <span class="preprocessor">#define LOGOG_SET                       std::set</span>
+<a name="l00148"></a>00148 <span class="preprocessor"></span>
+<a name="l00149"></a><a class="code" href="platform_8hpp.html#a0eb7a16d3b33c0743affa3720c18f427">00149</a> <span class="preprocessor">#define LOGOG_EQUAL_TO          std::equal_to</span>
+<a name="l00150"></a>00150 <span class="preprocessor"></span>
+<a name="l00152"></a>00152 
+<a name="l00154"></a><a class="code" href="platform_8hpp.html#a885fbea6107418a9231a029744215b1a">00154</a> <span class="preprocessor">#define LOGOG_DEFAULT_PORT      9987</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span>
+<a name="l00157"></a>00157 <span class="preprocessor">#include &lt;cstdarg&gt;</span>
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161 <span class="preprocessor">#endif // __LOGOG_PLATFORM_HPP</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -263,7 +267,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 20 2012 21:25:56 for logog by
+    <li class="footer">Generated on Tue Mar 13 2012 02:38:12 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
