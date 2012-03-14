@@ -41,6 +41,18 @@ public:
 	 */
 	virtual void RenderTimeOfDay();
 
+	/** In the base case, this function calls GetTopicFlags() on the provided 
+	 ** topic in order to figure out which fields this formatter should render.
+	 ** However, subclasses of the Formatter class can override this function in order
+	 ** to change the default fields that the topic wants to be rendered.  For example,
+	 ** you can turn off the TOPIC_LINE_NUMBER_FLAG and the TOPIC_FILE_NAME_FLAG
+	 ** in order to disable these fields from being rendered in your own Formatter
+	 ** subclass.
+	 ** \param topic The topic whose flags are to be determined
+	 ** \return The set of flags representing the topics that really need to be rendered.
+	 **/
+	virtual TOPIC_FLAGS GetTopicFlags( const Topic &topic );
+
 	/** Should this formatter render the current time of day? */
 	bool GetShowTimeOfDay() const;
 

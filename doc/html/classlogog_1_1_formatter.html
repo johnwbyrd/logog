@@ -116,9 +116,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <div class="center">
   <img src="classlogog_1_1_formatter.png" usemap="#Formatter_map" alt=""/>
   <map id="Formatter_map" name="Formatter_map">
-<area href="classlogog_1_1_object.html" alt="Object" shape="rect" coords="56,0,159,24"/>
-<area href="classlogog_1_1_formatter_g_c_c.html" alt="FormatterGCC" shape="rect" coords="0,112,103,136"/>
-<area href="classlogog_1_1_formatter_m_s_v_c.html" alt="FormatterMSVC" shape="rect" coords="113,112,216,136"/>
+<area href="classlogog_1_1_object.html" alt="Object" shape="rect" coords="58,0,165,24"/>
+<area href="classlogog_1_1_formatter_g_c_c.html" alt="FormatterGCC" shape="rect" coords="0,112,107,136"/>
+<area href="classlogog_1_1_formatter_m_s_v_c.html" alt="FormatterMSVC" shape="rect" coords="117,112,224,136"/>
+<area href="class_formatter_custom.html" title="[FormatterCustom1]" alt="FormatterCustom" shape="rect" coords="117,168,224,192"/>
 </map>
  </div></div>
 
@@ -129,6 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a8fd5a03aa722ac623bb521491ea3bc26">Formatter</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual LOGOG_STRING &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a711a519a7c2a822721a6e6b61c6c3639">Format</a> (const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;topic, const <a class="el" href="classlogog_1_1_target.html">Target</a> &amp;target)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#ad41f3a4f73bd33c255a4ab5c0e37bc42">RenderTimeOfDay</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18">TOPIC_FLAGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#a85d31948f9f54e7c67683bb915ab50a2">GetTopicFlags</a> (const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;topic)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#adbede02675d6898bff42fca2dd4279c4">GetShowTimeOfDay</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_formatter.html#ae38352b0c900bade43bd835e797b3e70">SetShowTimeOfDay</a> (bool val)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
@@ -221,6 +223,31 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Should this formatter render the current time of day? </p>
+
+</div>
+</div>
+<a class="anchor" id="a85d31948f9f54e7c67683bb915ab50a2"></a><!-- doxytag: member="logog::Formatter::GetTopicFlags" ref="a85d31948f9f54e7c67683bb915ab50a2" args="(const Topic &amp;topic)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18">TOPIC_FLAGS</a> GetTopicFlags </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classlogog_1_1_topic.html">Topic</a> &amp;&#160;</td>
+          <td class="paramname"><em>topic</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>In the base case, this function calls <a class="el" href="classlogog_1_1_formatter.html#a85d31948f9f54e7c67683bb915ab50a2">GetTopicFlags()</a> on the provided topic in order to figure out which fields this formatter should render. However, subclasses of the <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> class can override this function in order to change the default fields that the topic wants to be rendered. For example, you can turn off the TOPIC_LINE_NUMBER_FLAG and the TOPIC_FILE_NAME_FLAG in order to disable these fields from being rendered in your own <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> subclass. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">topic</td><td>The topic whose flags are to be determined </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The set of flags representing the topics that really need to be rendered. </dd></dl>
 
 </div>
 </div>
@@ -323,7 +350,7 @@ Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Wed Mar 14 2012 00:00:01 for logog by
+    <li class="footer">Generated on Wed Mar 14 2012 13:28:39 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

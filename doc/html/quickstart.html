@@ -107,44 +107,44 @@ cmake [path-to-logog-top-directory]
 <p>Here is a working logog example that initializes logog, outputs some sample messages and then terminates.</p>
 <div class="fragment"><pre class="fragment">
     <span class="comment">/* The LOGOG_INITIALIZE() function must be called before we call</span>
-<span class="comment">     * any other logog functions. </span>
+<span class="comment">     * any other logog functions.</span>
 <span class="comment">     */</span>
-        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
+    <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
 
-        {
-            <span class="comment">/* In order to see any output, we have to instance a Target object,</span>
-<span class="comment">             * such as a Cerr or a Cout.  Additionally, we have to destroy</span>
-<span class="comment">             * this object before calling LOGOG_SHUTDOWN().  This </span>
-<span class="comment">             * is why we have this object within these enclosing brackets.</span>
-<span class="comment">             */</span>
-                Cout out;
-
-                <span class="comment">/* Send some debugging information to any targets that have </span>
-<span class="comment">                 * been instanced.</span>
-<span class="comment">                 */</span>
-                <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>(<span class="stringliteral">&quot;Hello, logog!&quot;</span>);
-                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;This is a warning&quot;</span>);
-                <a class="code" href="macro_8hpp.html#a24e93be9c5baa3aeab7021b64e290672">ERR</a>(<span class="stringliteral">&quot;This is an error&quot;</span>);
-                <a class="code" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0" title="[Shorthand]">DBUG</a>(<span class="stringliteral">&quot;This is debugging info&quot;</span>);
-
-                <span class="comment">/* The Cout object is destroyed here because it falls out of</span>
-<span class="comment">                 * scope. */</span>
-        }
-
-        <span class="comment">/* Call LOGOG_SHUTDOWN() at the termination of your program to free</span>
-<span class="comment">         * all memory allocated by logog.  Make sure no logog objects exist</span>
-<span class="comment">         * when you call LOGOG_SHUTDOWN().</span>
+    {
+        <span class="comment">/* In order to see any output, we have to instance a Target object,</span>
+<span class="comment">         * such as a Cerr or a Cout.  Additionally, we have to destroy</span>
+<span class="comment">         * this object before calling LOGOG_SHUTDOWN().  This</span>
+<span class="comment">         * is why we have this object within these enclosing brackets.</span>
 <span class="comment">         */</span>
-        <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
+        Cout out;
 
-        <span class="comment">/* Depending on your compiler, the output of the preceding code is</span>
-<span class="comment">         * something like:</span>
-<span class="comment">         * </span>
-<span class="comment">         * test.cpp(373) : info: Hello, logog!</span>
-<span class="comment">         * test.cpp(374) : warning: This is a warning</span>
-<span class="comment">         * test.cpp(375) : error: This is an error</span>
-<span class="comment">         * test.cpp(376) : debug: This is debugging info</span>
+        <span class="comment">/* Send some debugging information to any targets that have</span>
+<span class="comment">         * been instanced.</span>
 <span class="comment">         */</span>
+        <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>(<span class="stringliteral">&quot;Hello, logog!&quot;</span>);
+        <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;This is a warning&quot;</span>);
+        <a class="code" href="macro_8hpp.html#a24e93be9c5baa3aeab7021b64e290672">ERR</a>(<span class="stringliteral">&quot;This is an error&quot;</span>);
+        <a class="code" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0" title="[Shorthand]">DBUG</a>(<span class="stringliteral">&quot;This is debugging info&quot;</span>);
+
+        <span class="comment">/* The Cout object is destroyed here because it falls out of</span>
+<span class="comment">         * scope. */</span>
+    }
+
+    <span class="comment">/* Call LOGOG_SHUTDOWN() at the termination of your program to free</span>
+<span class="comment">     * all memory allocated by logog.  Make sure no logog objects exist</span>
+<span class="comment">     * when you call LOGOG_SHUTDOWN().</span>
+<span class="comment">     */</span>
+    <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
+
+    <span class="comment">/* Depending on your compiler, the output of the preceding code is</span>
+<span class="comment">     * something like:</span>
+<span class="comment">     *</span>
+<span class="comment">     * test.cpp(373) : info: Hello, logog!</span>
+<span class="comment">     * test.cpp(374) : warning: This is a warning</span>
+<span class="comment">     * test.cpp(375) : error: This is an error</span>
+<span class="comment">     * test.cpp(376) : debug: This is debugging info</span>
+<span class="comment">     */</span>
 </pre></div><p> The most common mistake when getting started with logog is creating a <a class="el" href="classlogog_1_1_cerr.html">Cerr</a> or <a class="el" href="classlogog_1_1_cout.html">Cout</a> object and not destroying the object before <a class="el" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN()</a>. This is a usage error and will be detected as heap corruption by most debuggers.</p>
 <dl class="user"><dt><b>Integrate logog into your own project</b></dt><dd></dd></dl>
 <p>To use the logging library in your own project, put the following line at the top of your source file(s):</p>
@@ -229,7 +229,7 @@ cmake [path-to-logog-top-directory]
 </div>
 
 
-    <li class="footer">Generated on Wed Mar 14 2012 00:00:00 for logog by
+    <li class="footer">Generated on Wed Mar 14 2012 13:28:39 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

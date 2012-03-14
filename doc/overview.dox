@@ -453,7 +453,19 @@ If you want log messages in your own custom format, subclass the Formatter::Form
 method into your own custom class, and write your own formatting function for a topic.
 See FormatterMSVC::Format and FormatterGCC::Format for examples.
 
-If you wish, you can force these two formatters to output the current date and time as 
+If all you want to do is enable or disable a certain type of output on your formatter -- for example, to remove file and line number information from
+all your output lines -- then there's a very simple way of doing this.
+The Formatter class implements a Formatter::GetTopicFlags() function that
+in the default case queries the topic in order to find out which fields
+to render.  You can if you wish override this default behavior for a custom
+formatter in order to always or never render specific fields.
+
+The following example overrides the standard FormatterMSVC formatter in
+order to never show file and line number information on the output.
+
+\snippet test.cpp FormatterCustom1
+
+If you wish, you can force a formatter to output the current date and time as 
 part of their format.  You can do this by calling the Formatter::SetShowTimeOfDay function
 with a value of true, as follows:
 

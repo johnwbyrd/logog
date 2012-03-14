@@ -65,10 +65,15 @@ namespace logog {
 		m_bShowTimeOfDay = val;
 	}
 
+	TOPIC_FLAGS Formatter::GetTopicFlags( const Topic &topic )
+	{
+		return topic.GetTopicFlags();
+	}
+
 	LOGOG_STRING &FormatterGCC::Format( const Topic &topic, const Target &target )
 	{
 		TOPIC_FLAGS flags;
-		flags = topic.GetTopicFlags();
+		flags = GetTopicFlags( topic );
 
 		m_sMessageBuffer.clear();
 
@@ -126,7 +131,7 @@ namespace logog {
         m_sMessageBuffer.clear();
 
         TOPIC_FLAGS flags;
-        flags = topic.GetTopicFlags();
+        flags = GetTopicFlags( topic );
 
         if ( flags & TOPIC_FILE_NAME_FLAG )
         {

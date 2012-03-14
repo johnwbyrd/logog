@@ -287,7 +287,7 @@ UNITTEST( FormatString1 )
         const LOGOG_CHAR *p = _LG("Here is a string");
 
 #ifdef LOGOG_UNICODE
-		s.format( _LG("Here are six strings: %ls %ls %ls %ls %ls %ls \n"), p,p,p,p,p,p );
+        s.format( _LG("Here are six strings: %ls %ls %ls %ls %ls %ls \n"), p,p,p,p,p,p );
 #else // LOGOG_UNICODE
         s.format( _LG("Here are six strings: %s %s %s %s %s %s \n"), p,p,p,p,p,p );
 #endif
@@ -350,51 +350,82 @@ UNITTEST( ThreadLocking )
     return _s_ThreadLockingTest;
 }
 
-UNITTEST( HelloLogog )
+//! [FormatterCustom1]
+class FormatterCustom : public FormatterMSVC
 {
-	//! [HelloLogog]
+    virtual TOPIC_FLAGS GetTopicFlags( const Topic &topic )
+    {
+        return ( Formatter::GetTopicFlags( topic ) & 
+			~( TOPIC_FILE_NAME_FLAG | TOPIC_LINE_NUMBER_FLAG ));
+    }
+};
 
-    /* The LOGOG_INITIALIZE() function must be called before we call
-     * any other logog functions. 
-     */
+UNITTEST( CustomFormatter )
+{
 	LOGOG_INITIALIZE();
-
 	{
-	    /* In order to see any output, we have to instance a Target object,
-	     * such as a Cerr or a Cout.  Additionally, we have to destroy
-	     * this object before calling LOGOG_SHUTDOWN().  This 
-	     * is why we have this object within these enclosing brackets.
-	     */
 		Cout out;
+		FormatterCustom customFormat;
 
-		/* Send some debugging information to any targets that have 
-		 * been instanced.
+		out.SetFormatter( customFormat );
+
+		INFO("No file and line number info is provided with this output.");
+
+		/* The following output is produced: 
+		 * info: No file and line number info is provided with this output.
 		 */
-		INFO("Hello, logog!");
-		WARN("This is a warning");
-		ERR("This is an error");
-		DBUG("This is debugging info");
-
-		/* The Cout object is destroyed here because it falls out of
-		 * scope. */
 	}
-
-	/* Call LOGOG_SHUTDOWN() at the termination of your program to free
-	 * all memory allocated by logog.  Make sure no logog objects exist
-	 * when you call LOGOG_SHUTDOWN().
-	 */
 	LOGOG_SHUTDOWN();
 
-	/* Depending on your compiler, the output of the preceding code is
-	 * something like:
-	 * 
-	 * test.cpp(373) : info: Hello, logog!
-	 * test.cpp(374) : warning: This is a warning
-	 * test.cpp(375) : error: This is an error
-	 * test.cpp(376) : debug: This is debugging info
-	 */
-	//! [HelloLogog]
 	return 0;
+}
+//! [FormatterCustom1]
+
+UNITTEST( HelloLogog )
+{
+    //! [HelloLogog]
+
+    /* The LOGOG_INITIALIZE() function must be called before we call
+     * any other logog functions.
+     */
+    LOGOG_INITIALIZE();
+
+    {
+        /* In order to see any output, we have to instance a Target object,
+         * such as a Cerr or a Cout.  Additionally, we have to destroy
+         * this object before calling LOGOG_SHUTDOWN().  This
+         * is why we have this object within these enclosing brackets.
+         */
+        Cout out;
+
+        /* Send some debugging information to any targets that have
+         * been instanced.
+         */
+        INFO("Hello, logog!");
+        WARN("This is a warning");
+        ERR("This is an error");
+        DBUG("This is debugging info");
+
+        /* The Cout object is destroyed here because it falls out of
+         * scope. */
+    }
+
+    /* Call LOGOG_SHUTDOWN() at the termination of your program to free
+     * all memory allocated by logog.  Make sure no logog objects exist
+     * when you call LOGOG_SHUTDOWN().
+     */
+    LOGOG_SHUTDOWN();
+
+    /* Depending on your compiler, the output of the preceding code is
+     * something like:
+     *
+     * test.cpp(373) : info: Hello, logog!
+     * test.cpp(374) : warning: This is a warning
+     * test.cpp(375) : error: This is an error
+     * test.cpp(376) : debug: This is debugging info
+     */
+    //! [HelloLogog]
+    return 0;
 }
 
 
@@ -641,20 +672,20 @@ UNITTEST( ImmediateLogging )
 #ifdef LOGOG_UNICODE
 UNITTEST( UnicodeLogFile )
 {
-	LOGOG_INITIALIZE();
+    LOGOG_INITIALIZE();
 
-	{
-		LogFile logFile( "unicode.txt" );
+    {
+        LogFile logFile( "unicode.txt" );
 
-		// see http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx
-		INFO(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
-		WARN(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
-		ERR(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
-	}
+        // see http://blogs.msdn.com/b/michkap/archive/2008/03/18/8306597.aspx
+        INFO(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
+        WARN(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
+        ERR(L"\x043a\x043e\x0448\x043a\x0430 \x65e5\x672c\x56fd");
+    }
 
-	LOGOG_SHUTDOWN();
+    LOGOG_SHUTDOWN();
 
-	return 0;
+    return 0;
 }
 #endif // LOGOG_UNICODE
 
