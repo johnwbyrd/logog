@@ -40,6 +40,7 @@ var NAVTREE =
       [ "Cout", "classlogog_1_1_cout.html", null ],
       [ "Filter", "classlogog_1_1_filter.html", null ],
       [ "Formatter", "classlogog_1_1_formatter.html", null ],
+      [ "FormatterCustom", "class_formatter_custom.html", null ],
       [ "FormatterGCC", "classlogog_1_1_formatter_g_c_c.html", null ],
       [ "FormatterMSVC", "classlogog_1_1_formatter_m_s_v_c.html", null ],
       [ "INIT_PARAMS", "structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html", null ],
@@ -76,7 +77,9 @@ var NAVTREE =
       [ "Object", "classlogog_1_1_object.html", [
         [ "Formatter", "classlogog_1_1_formatter.html", [
           [ "FormatterGCC", "classlogog_1_1_formatter_g_c_c.html", null ],
-          [ "FormatterMSVC", "classlogog_1_1_formatter_m_s_v_c.html", null ]
+          [ "FormatterMSVC", "classlogog_1_1_formatter_m_s_v_c.html", [
+            [ "FormatterCustom", "class_formatter_custom.html", null ]
+          ] ]
         ] ],
         [ "Mutex", "classlogog_1_1_mutex.html", [
           [ "LockableNodesType", "classlogog_1_1_lockable_nodes_type.html", null ]
