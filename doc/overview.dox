@@ -197,6 +197,17 @@ platform.  Once the solution is building, the CMake program is no longer needed.
 Compile and link the library for your own platform using the makefile or project files generated
 for your platform.
 
+\par Your Hello, Logog! program
+
+Here is a working logog example that initializes logog, outputs some sample messages and then
+terminates.
+
+\snippet test.cpp HelloLogog
+
+The most common mistake when getting started with logog is creating a Cerr or Cout
+object and not destroying the object before LOGOG_SHUTDOWN().  This is a usage
+error and will be detected as heap corruption by most debuggers.
+
 \par Integrate logog into your own project
 
 To use the logging library in your own project, put the following line 

@@ -350,6 +350,55 @@ UNITTEST( ThreadLocking )
     return _s_ThreadLockingTest;
 }
 
+UNITTEST( HelloLogog )
+{
+	//! [HelloLogog]
+
+    /* The LOGOG_INITIALIZE() function must be called before we call
+     * any other logog functions. 
+     */
+	LOGOG_INITIALIZE();
+
+	{
+	    /* In order to see any output, we have to instance a Target object,
+	     * such as a Cerr or a Cout.  Additionally, we have to destroy
+	     * this object before calling LOGOG_SHUTDOWN().  This 
+	     * is why we have this object within these enclosing brackets.
+	     */
+		Cout out;
+
+		/* Send some debugging information to any targets that have 
+		 * been instanced.
+		 */
+		INFO("Hello, logog!");
+		WARN("This is a warning");
+		ERR("This is an error");
+		DBUG("This is debugging info");
+
+		/* The Cout object is destroyed here because it falls out of
+		 * scope. */
+	}
+
+	/* Call LOGOG_SHUTDOWN() at the termination of your program to free
+	 * all memory allocated by logog.  Make sure no logog objects exist
+	 * when you call LOGOG_SHUTDOWN().
+	 */
+	LOGOG_SHUTDOWN();
+
+	/* Depending on your compiler, the output of the preceding code is
+	 * something like:
+	 * 
+	 * test.cpp(373) : info: Hello, logog!
+	 * test.cpp(374) : warning: This is a warning
+	 * test.cpp(375) : error: This is an error
+	 * test.cpp(376) : debug: This is debugging info
+	 */
+	//! [HelloLogog]
+	return 0;
+}
+
+
+
 UNITTEST( GroupCategory1 )
 {
 //! [GroupCategory1]
