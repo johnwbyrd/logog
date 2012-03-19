@@ -46,4 +46,10 @@ install(TARGETS logog ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_PREFIX}/include/logog"
           FILES_MATCHING PATTERN "*.hpp")
 
-
+# Docs generation with Doxygen
+find_package( Doxygen )
+if( DOXYGEN_FOUND )
+	add_custom_target (doc ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/doxyfile
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		COMMENT "Generating source code documentation with Doxygen." VERBATIM)
+endif() # DOXYGEN_FOUND
