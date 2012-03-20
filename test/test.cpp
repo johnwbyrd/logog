@@ -355,29 +355,29 @@ class FormatterCustom : public FormatterMSVC
 {
     virtual TOPIC_FLAGS GetTopicFlags( const Topic &topic )
     {
-        return ( Formatter::GetTopicFlags( topic ) & 
-			~( TOPIC_FILE_NAME_FLAG | TOPIC_LINE_NUMBER_FLAG ));
+        return ( Formatter::GetTopicFlags( topic ) &
+                 ~( TOPIC_FILE_NAME_FLAG | TOPIC_LINE_NUMBER_FLAG ));
     }
 };
 
 UNITTEST( CustomFormatter )
 {
-	LOGOG_INITIALIZE();
-	{
-		Cout out;
-		FormatterCustom customFormat;
+    LOGOG_INITIALIZE();
+    {
+        Cout out;
+        FormatterCustom customFormat;
 
-		out.SetFormatter( customFormat );
+        out.SetFormatter( customFormat );
 
-		INFO( _LG( "No file and line number info is provided with this output.") );
+        INFO( _LG( "No file and line number info is provided with this output.") );
 
-		/* The following output is produced: 
-		 * info: No file and line number info is provided with this output.
-		 */
-	}
-	LOGOG_SHUTDOWN();
+        /* The following output is produced:
+         * info: No file and line number info is provided with this output.
+         */
+    }
+    LOGOG_SHUTDOWN();
 
-	return 0;
+    return 0;
 }
 //! [FormatterCustom1]
 
@@ -399,23 +399,23 @@ UNITTEST( HelloLogog )
         Cout out;
 
         /* Send some debugging information to any targets that have
-         * been instanced.  
+         * been instanced.
          */
-		/* If you're just getting started, and you haven't defined 
-		 * LOGOG_UNICODE, then ASCII logging is easy and works
-		 * out of the box.
-		 */
+        /* If you're just getting started, and you haven't defined
+         * LOGOG_UNICODE, then ASCII logging is easy and works
+         * out of the box.
+         */
 #ifndef LOGOG_UNICODE
-		INFO("Hello, logog!");
-		WARN("This is a warning");
+        INFO("Hello, logog!");
+        WARN("This is a warning");
 #endif // !LOGOG_UNICODE
 
-		/* The _LG() macro around static text permits the given text to
-		 * display correctly in both Unicode and ASCII builds of the
-		 * logog library.
-		 */
-		ERR( _LG( "This is an error") );
-		DBUG( _LG( "This is debugging info") );
+        /* The _LG() macro around static text permits the given text to
+         * display correctly in both Unicode and ASCII builds of the
+         * logog library.
+         */
+        ERR( _LG( "This is an error") );
+        DBUG( _LG( "This is debugging info") );
 
         /* The Cout object is destroyed here because it falls out of
          * scope. */
