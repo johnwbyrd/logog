@@ -1,3 +1,19 @@
+/*
+
+Online documentation is available at http://www.logog.org.
+
+This is a documentation file for logog, written in doxygen format.  It's not
+intended to be read by a human; rather, it's intended to be read by the 
+doxygen formatting tool to generate help in a number of user-readable formats.
+
+If you wish to generate a local copy of the html documentation, then 
+install the doxygen utility from http://www.doxygen.org , and run the 
+utility from the root of the logog installation folder.  A folder
+named doc/html will be created with complete html documentation for the
+current release of logog.
+
+*/
+
 namespace logog {
 
 /*!
