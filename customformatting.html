@@ -102,29 +102,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 {
     <span class="keyword">virtual</span> <a class="code" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18" title="[Topic Bits]">TOPIC_FLAGS</a> GetTopicFlags( <span class="keyword">const</span> Topic &amp;topic )
     {
-        <span class="keywordflow">return</span> ( <a class="code" href="classlogog_1_1_formatter.html#a85d31948f9f54e7c67683bb915ab50a2">Formatter::GetTopicFlags</a>( topic ) &amp; 
-                        ~( <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a690d59b297cfa0b0386cca34499359bb">TOPIC_FILE_NAME_FLAG</a> | <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a9f24ab5c004ed7d96bbf28101c3a0d92">TOPIC_LINE_NUMBER_FLAG</a> ));
+        <span class="keywordflow">return</span> ( <a class="code" href="classlogog_1_1_formatter.html#a85d31948f9f54e7c67683bb915ab50a2">Formatter::GetTopicFlags</a>( topic ) &amp;
+                 ~( <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a690d59b297cfa0b0386cca34499359bb">TOPIC_FILE_NAME_FLAG</a> | <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a9f24ab5c004ed7d96bbf28101c3a0d92">TOPIC_LINE_NUMBER_FLAG</a> ));
     }
 };
 
 <a class="code" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">UNITTEST</a>( CustomFormatter )
 {
-        <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
-        {
-                Cout out;
-                <a class="code" href="class_formatter_custom.html" title="[FormatterCustom1]">FormatterCustom</a> customFormat;
+    <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
+    {
+        Cout out;
+        <a class="code" href="class_formatter_custom.html" title="[FormatterCustom1]">FormatterCustom</a> customFormat;
 
-                out.SetFormatter( customFormat );
+        out.SetFormatter( customFormat );
 
-                <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;No file and line number info is provided with this output.&quot;</span>) );
+        <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;No file and line number info is provided with this output.&quot;</span>) );
 
-                <span class="comment">/* The following output is produced: </span>
-<span class="comment">                 * info: No file and line number info is provided with this output.</span>
-<span class="comment">                 */</span>
-        }
-        <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
+        <span class="comment">/* The following output is produced:</span>
+<span class="comment">         * info: No file and line number info is provided with this output.</span>
+<span class="comment">         */</span>
+    }
+    <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();
 
-        <span class="keywordflow">return</span> 0;
+    <span class="keywordflow">return</span> 0;
 }
 </pre></div><p> If you wish, you can force a formatter to output the current date and time as part of their format. You can do this by calling the <a class="el" href="classlogog_1_1_formatter.html#ae38352b0c900bade43bd835e797b3e70">Formatter::SetShowTimeOfDay</a> function with a value of true, as follows:</p>
 <div class="fragment"><pre class="fragment">    <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand]">LOGOG_INITIALIZE</a>();
@@ -166,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Mar 19 2012 21:14:25 for logog by
+    <li class="footer">Generated on Mon Mar 19 2012 21:27:13 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

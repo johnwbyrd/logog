@@ -120,23 +120,23 @@ cmake [path-to-logog-top-directory]
         Cout out;
 
         <span class="comment">/* Send some debugging information to any targets that have</span>
-<span class="comment">         * been instanced.  </span>
+<span class="comment">         * been instanced.</span>
 <span class="comment">         */</span>
-                <span class="comment">/* If you&#39;re just getting started, and you haven&#39;t defined </span>
-<span class="comment">                 * LOGOG_UNICODE, then ASCII logging is easy and works</span>
-<span class="comment">                 * out of the box.</span>
-<span class="comment">                 */</span>
+        <span class="comment">/* If you&#39;re just getting started, and you haven&#39;t defined</span>
+<span class="comment">         * LOGOG_UNICODE, then ASCII logging is easy and works</span>
+<span class="comment">         * out of the box.</span>
+<span class="comment">         */</span>
 <span class="preprocessor">#ifndef LOGOG_UNICODE</span>
-<span class="preprocessor"></span>                <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>(<span class="stringliteral">&quot;Hello, logog!&quot;</span>);
-                <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;This is a warning&quot;</span>);
+<span class="preprocessor"></span>        <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>(<span class="stringliteral">&quot;Hello, logog!&quot;</span>);
+        <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>(<span class="stringliteral">&quot;This is a warning&quot;</span>);
 <span class="preprocessor">#endif // !LOGOG_UNICODE</span>
 <span class="preprocessor"></span>
-                <span class="comment">/* The _LG() macro around static text permits the given text to</span>
-<span class="comment">                 * display correctly in both Unicode and ASCII builds of the</span>
-<span class="comment">                 * logog library.</span>
-<span class="comment">                 */</span>
-                <a class="code" href="macro_8hpp.html#a24e93be9c5baa3aeab7021b64e290672">ERR</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;This is an error&quot;</span>) );
-                <a class="code" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0" title="[Shorthand]">DBUG</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;This is debugging info&quot;</span>) );
+        <span class="comment">/* The _LG() macro around static text permits the given text to</span>
+<span class="comment">         * display correctly in both Unicode and ASCII builds of the</span>
+<span class="comment">         * logog library.</span>
+<span class="comment">         */</span>
+        <a class="code" href="macro_8hpp.html#a24e93be9c5baa3aeab7021b64e290672">ERR</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;This is an error&quot;</span>) );
+        <a class="code" href="macro_8hpp.html#a9d1c575cfb0a8cd96b84f99f63ddeab0" title="[Shorthand]">DBUG</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;This is debugging info&quot;</span>) );
 
         <span class="comment">/* The Cout object is destroyed here because it falls out of</span>
 <span class="comment">         * scope. */</span>
@@ -240,7 +240,7 @@ cmake [path-to-logog-top-directory]
 </div>
 
 
-    <li class="footer">Generated on Mon Mar 19 2012 21:14:25 for logog by
+    <li class="footer">Generated on Mon Mar 19 2012 21:27:12 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
