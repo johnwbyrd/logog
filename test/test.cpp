@@ -279,10 +279,10 @@ UNITTEST( FormatString1 )
         String s;
 
         s.format( _LG("This is a test message.\n"));
-        LOGOG_COUT << *s;
+        LOGOG_COUT << s.c_str();
 
         s.format( _LG("This is a test message: %d %x %f\n"), 1234, 0xf00d, 1.234f );
-        LOGOG_COUT << *s;
+        LOGOG_COUT << s.c_str();
 
         const LOGOG_CHAR *p = _LG("Here is a string");
 
@@ -292,7 +292,7 @@ UNITTEST( FormatString1 )
         s.format( _LG("Here are six strings: %s %s %s %s %s %s \n"), p,p,p,p,p,p );
 #endif
 
-        LOGOG_COUT << *s;
+        LOGOG_COUT << s.c_str();
     }
 
     LOGOG_SHUTDOWN();
@@ -369,7 +369,7 @@ UNITTEST( CustomFormatter )
 
 		out.SetFormatter( customFormat );
 
-		INFO("No file and line number info is provided with this output.");
+		INFO( _LG( "No file and line number info is provided with this output.") );
 
 		/* The following output is produced: 
 		 * info: No file and line number info is provided with this output.
@@ -399,12 +399,23 @@ UNITTEST( HelloLogog )
         Cout out;
 
         /* Send some debugging information to any targets that have
-         * been instanced.
+         * been instanced.  
          */
-        INFO("Hello, logog!");
-        WARN("This is a warning");
-        ERR("This is an error");
-        DBUG("This is debugging info");
+		/* If you're just getting started, and you haven't defined 
+		 * LOGOG_UNICODE, then ASCII logging is easy and works
+		 * out of the box.
+		 */
+#ifndef LOGOG_UNICODE
+		INFO("Hello, logog!");
+		WARN("This is a warning");
+#endif // !LOGOG_UNICODE
+
+		/* The _LG() macro around static text permits the given text to
+		 * display correctly in both Unicode and ASCII builds of the
+		 * logog library.
+		 */
+		ERR( _LG( "This is an error") );
+		DBUG( _LG( "This is debugging info") );
 
         /* The Cout object is destroyed here because it falls out of
          * scope. */
