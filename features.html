@@ -118,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Extremely configurable memory usage and policy. All memory allocations happen after initialization time via a user-supplied memory manager (or the default std::allocator). In other words, you can configure ALL memory allocations to occur from custom malloc() and free() style functions of your own authorship.</li>
 </ul>
 <ul>
-<li>All allocated memory is freed after the shutdown -- logog does not leak memory. A special compilation flag (LOGOG_LEAK_DETECTION) audits every allocation and free within logog to discover and fix memory leaks therein.</li>
+<li>All allocated memory is freed after the shutdown -- logog does not leak memory. A special compilation flag (LOGOG_LEAK_DETECTION) audits every allocation and free within logog to discover and fix memory leaks therein. Additionally, if you don't trust logog's internal leak detector, support exists for auditing leaks with Microsoft's CRT library with LOGOG_LEAK_DETECTION_MICROSOFT.</li>
 </ul>
 <ul>
 <li>Support for POSIX-type and Windows-type operating systems. Support for proprietary game consoles is implicit or latent; the system has been demonstrated to work on Xbox 360 and PS3 (with certain proprietary header files). Support for other OSes is straightforward; all OS dependencies are encapsulated in macros.</li>
@@ -157,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Mar 19 2012 21:27:12 for logog by
+    <li class="footer">Generated on Sun Apr 22 2012 20:28:06 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

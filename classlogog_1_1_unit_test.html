@@ -116,6 +116,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_unit_test.html#adeb449c651ce08c69e26e519cd109837">~UnitTest</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacelogog.html#a69d26fd51db1c59dd07144ff6d3ba746">TestNameType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_unit_test.html#a22fa597c7daf036cb9eee4ca2f87251a">GetName</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_unit_test.html#aeeed60af437ef539866cd78b4c3e6987">RunTest</a> ()=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_unit_test.html#ac125b8c22f36ee761aea2ec64c813a5d">FreeInternals</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacelogog.html#a69d26fd51db1c59dd07144ff6d3ba746">TestNameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogog_1_1_unit_test.html#a0e7eb0c2f492d1917255c2bb983eebac">m_sTestName</a></td></tr>
@@ -165,6 +166,23 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac125b8c22f36ee761aea2ec64c813a5d"></a><!-- doxytag: member="logog::UnitTest::FreeInternals" ref="ac125b8c22f36ee761aea2ec64c813a5d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void FreeInternals </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This function is called during <a class="el" href="namespacelogog.html#a88259d52590bb4e70c31946bb6246120">ShutdownTests()</a>. Its purpose is to free the internal structures allocated by the <a class="el" href="classlogog_1_1_unit_test.html">UnitTest</a> without freeing the <a class="el" href="classlogog_1_1_unit_test.html">UnitTest</a> itself. Microsoft's leak detector will flag the internals of a <a class="el" href="classlogog_1_1_unit_test.html">UnitTest</a> as a leak unless these internals are explicitly destroyed prior to exit(). </p>
+
+</div>
+</div>
 <a class="anchor" id="a22fa597c7daf036cb9eee4ca2f87251a"></a><!-- doxytag: member="logog::UnitTest::GetName" ref="a22fa597c7daf036cb9eee4ca2f87251a" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -252,7 +270,7 @@ Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Mar 19 2012 21:27:14 for logog by
+    <li class="footer">Generated on Sun Apr 22 2012 20:28:09 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

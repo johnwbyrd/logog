@@ -95,8 +95,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock"><p>A memory leak detection mechanism has been built into logog that tracks all internal memory allocations and matches them with corresponding frees. The system also detects incorrect reallocations and double frees. This system only needs to be enabled if you suspect that logog is leaking memory.</p>
-<p>To enable this checking, #define the LOGOG_LEAK_DETECTION constant at compilation time before #include'ing <a class="el" href="logog_8hpp.html">logog.hpp</a>. Additionally, if you want a detailed report about memory allocations and frees at the time they occur, enable the LOGOG_REPORT_ALLOCATIONS flag during compilation for an action-packed report during run time.</p>
-<p>It's not recommended to leave these options on for general use. Memory leak detection will slow down logog; additionally, memory leak detection avoids logog's custom memory manager, in order to avoid an infinite recursion. </p>
+<p>To enable this checking, #define the LOGOG_LEAK_DETECTION constant at compilation time before #include'ing <a class="el" href="logog_8hpp.html">logog.hpp</a>, and then recompile both the logog library and your code. Additionally, if you want a detailed report about memory allocations and frees at the time they occur, enable the LOGOG_REPORT_ALLOCATIONS flag during compilation for an action-packed report during run time.</p>
+<p>If you don't trust logog's built-in leak detector and are using a Microsoft toolset, Microsoft may have enabled support for your platform to detect leaks using the CRT library. If you want to try to use the Microsoft leak detector to find leaks in logog, then #define the LOGOG_LEAK_DETECTION_MICROSOFT constant at compile time before #include'ing logog, and recompile both the logog library and your application. See <a href="http://msdn.microsoft.com/en-us/library/x98tx3cf.aspx">http://msdn.microsoft.com/en-us/library/x98tx3cf.aspx</a> for more details on how Microsoft implements CRT leak detection.</p>
+<p>It's not recommended to leave either of these options on for general use. Memory leak detection will slow down logog; additionally, memory leak detection avoids logog's custom memory manager, in order to avoid an infinite recursion.</p>
+<p>Don't try to enable both LOGOG_LEAK_DETECTION and LOGOG_LEAK_DETECTION_MICROSOFT at the same time. </p>
 </div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -116,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Mar 19 2012 21:27:13 for logog by
+    <li class="footer">Generated on Sun Apr 22 2012 20:28:06 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

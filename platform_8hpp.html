@@ -210,7 +210,7 @@ Defines</h2></td></tr>
 <div class="memdoc">
 
 <p>[STLTypes] </p>
-<p>The definition for a hash type in logog. You can replace it here with your own set compatible class if needed. </p>
+<p>Microsoft's CRT library has its own leak detection mechanism. If you don't trust logog's LOGOG_LEAK_DETECTION, you can enable LOGOG_LEAK_DETECTION_WINDOWS to enable Microsoft's version. This really doesn't belong in <a class="el" href="platform_8hpp.html">platform.hpp</a> -- feel free to refactor this into a Windows-specific header. The definition for a hash type in logog. You can replace it here with your own set compatible class if needed. </p>
 
 </div>
 </div>
@@ -318,7 +318,7 @@ Defines</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Mar 19 2012 21:27:12 for logog by
+    <li class="footer">Generated on Sun Apr 22 2012 20:28:06 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
