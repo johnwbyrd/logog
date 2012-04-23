@@ -154,6 +154,8 @@ functions of your own authorship.
 - All allocated memory is freed after the shutdown -- logog does not 
 leak memory.  A special compilation flag (LOGOG_LEAK_DETECTION) audits
 every allocation and free within logog to discover and fix memory leaks therein.
+Additionally, if you don't trust logog's internal leak detector, support exists
+for auditing leaks with Microsoft's CRT library with LOGOG_LEAK_DETECTION_MICROSOFT.
 
 - Support for POSIX-type and Windows-type operating systems.
 Support for proprietary game consoles is implicit or latent; the system
@@ -524,15 +526,26 @@ The system also detects incorrect reallocations and double frees.  This
 system only needs to be enabled if you suspect that logog is leaking memory.
 
 To enable this checking, \#define the LOGOG_LEAK_DETECTION constant at compilation
-time before \#include'ing logog.hpp.  Additionally, if you want a detailed
-report about memory allocations and frees at the time they occur, enable
-the LOGOG_REPORT_ALLOCATIONS flag during compilation for an action-packed 
-report during run time.
+time before \#include'ing logog.hpp, and then recompile both the logog library and your 
+code.  Additionally, if you want a detailed report about memory allocations
+and frees at the time they occur, enable the LOGOG_REPORT_ALLOCATIONS flag during
+compilation for an action-packed report during run time.
 
-It's not recommended to leave these options on for general use.
+If you don't trust logog's built-in leak detector and are using a Microsoft
+toolset, Microsoft may have enabled support for your platform to detect
+leaks using the CRT library.  If you want to try to use the Microsoft leak
+detector to find leaks in logog, then \#define the LOGOG_LEAK_DETECTION_MICROSOFT constant at 
+compile time before \#include'ing logog, and recompile both the logog library
+and your application.  See http://msdn.microsoft.com/en-us/library/x98tx3cf.aspx
+for more details on how Microsoft implements CRT leak detection.
+
+It's not recommended to leave either of these options on for general use.
 Memory leak detection will slow down logog; additionally, memory leak 
 detection avoids logog's custom memory manager, in order
 to avoid an infinite recursion.
+
+Don't try to enable both LOGOG_LEAK_DETECTION and LOGOG_LEAK_DETECTION_MICROSOFT
+at the same time.
 
 \page unicodesupport Unicode support
 

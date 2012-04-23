@@ -2,7 +2,6 @@
  ** use is not recommended outside of unit tests. */
 #define LOGOG_UNIT_TESTING 1
 
-
 /** Change this to higher constants to exponentially increase test difficulty. */
 const int TEST_STRESS_LEVEL = 1;
 
@@ -343,6 +342,10 @@ UNITTEST( ThreadLocking )
 
         for ( int t = 0; t < NUM_THREADS; t++ )
             Thread::WaitFor( *vpThreads[ t ]);
+
+		for ( int t = 0; t < NUM_THREADS; t++ )
+			delete vpThreads[t];
+
     }
 
     LOGOG_SHUTDOWN();
@@ -533,7 +536,10 @@ UNITTEST( GroupCategory3 )
     LOGOG_INITIALIZE();
 
     {
-        GetDefaultFilter().Group(_LG("Graphics"));
+		/* Assigning a group twice does not leak memory. */
+		GetDefaultFilter().Group( _LG( "Controller" ));
+        GetDefaultFilter().Group( _LG( "Graphics" ));
+
         Cerr err;
         WARN(_LG("This message won't happen because it's not in the Graphics group"));
 
@@ -797,6 +803,10 @@ int DoPlatformSpecificTestInitialization()
 #endif
 int main( int , char ** )
 {
+#ifdef LOGOG_LEAK_DETECTION_WINDOWS
+	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF );
+#endif // LOGOG_LEAK_DETECTION_WINDOWS
+
 //! [WindowsUnicodeSetup]
 #ifdef LOGOG_UNICODE
 #ifdef LOGOG_FLAVOR_WINDOWS
@@ -814,6 +824,14 @@ int main( int , char ** )
     int nResult;
     nResult = RunAllTests();
     ShutdownTests();
+
+#ifdef LOGOG_LEAK_DETECTION_WINDOWS
+	_CrtMemState crtMemState;
+	_CrtMemCheckpoint( &crtMemState );
+	_CrtMemDumpStatistics( &crtMemState );
+	_CrtDumpMemoryLeaks();
+#endif // LOGOG_LEAK_DETECTION_WINDOWS
+
     return nResult;
 }
 

@@ -64,7 +64,7 @@ namespace logog {
 
 		m_tTime = dTimestamp;
 
-		if ( dTimestamp != 0.0f )
+		if ( dTimestamp != 0.0f ) //-V550
 			m_TopicFlags |= TOPIC_TIMESTAMP_FLAG;
 	}
 

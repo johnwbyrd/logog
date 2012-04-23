@@ -109,6 +109,14 @@ public:
      */
     virtual int RunTest() = 0;
 
+	/** This function is called during ShutdownTests().  Its purpose is to free
+	 ** the internal structures allocated by the UnitTest without freeing 
+	 ** the UnitTest itself.  Microsoft's leak detector will flag the internals
+	 ** of a UnitTest as a leak unless these internals are explicitly destroyed
+	 ** prior to exit().
+	 **/
+	virtual void FreeInternals();
+
 protected:
     /** The name of this particular test. */
     TestNameType m_sTestName;

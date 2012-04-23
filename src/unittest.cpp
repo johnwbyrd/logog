@@ -30,8 +30,17 @@ UnitTest::UnitTest( const TestNameType &sTestName )
 
 UnitTest::~UnitTest()
 {
-	delete m_pTestSignup;
+	FreeInternals();
 }
+
+void UnitTest::FreeInternals()
+{
+	if ( m_pTestSignup )
+		delete m_pTestSignup;
+
+	m_pTestSignup = NULL;
+}
+
 /** Returns the name of this UnitTest provided at construction time. */
 TestNameType &UnitTest::GetName()
 {
@@ -107,6 +116,11 @@ int RunAllTests()
 /** Should remove all memory allocated during unit testing. */
 void ShutdownTests()
 {
+	TestRegistryType::iterator it;
+
+	for ( it = LogogTestRegistry().begin(); it != LogogTestRegistry().end(); it++ )
+		(*it)->FreeInternals();
+
     delete &LogogTestRegistry();
 }
 

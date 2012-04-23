@@ -21,7 +21,7 @@ namespace logog {
 		if ( m_pBuffer && ( m_bIsConst == false ))
 		{
 			Deallocate( (void *)m_pBuffer );
-			m_pBuffer = NULL;
+			m_pBuffer = m_pEndOfBuffer = m_pOffset = NULL;
 		}
 
 		if ( m_pKMP )
@@ -43,6 +43,7 @@ namespace logog {
 
 	String & String::operator=( const String & other )
 	{
+		Free();
 		Initialize();
 		assign( other );
 		return *this;
@@ -50,6 +51,7 @@ namespace logog {
 
 	String & String::operator=( const LOGOG_CHAR *pstr )
 	{
+		Free();
 		Initialize();
 		assign( pstr );
 		return *this;
@@ -135,9 +137,6 @@ namespace logog {
 		if ( m_bIsConst )
 			cout << "Can't reassign const string!" << endl;
 #endif
-
-		m_pOffset = m_pBuffer;
-
 		LOGOG_CHAR *pOther = other.m_pBuffer;
 
 		if ( pOther == NULL )
@@ -146,6 +145,7 @@ namespace logog {
 		size_t othersize = other.size();
 
 		reserve( othersize + 1 );
+		m_pOffset = m_pBuffer;
 
 		for ( unsigned int t = 0; t <= othersize ; t++ )
 			*m_pOffset++ = *pOther++;

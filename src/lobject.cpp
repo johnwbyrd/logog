@@ -3,6 +3,9 @@
  */
 
 #include "logog.hpp"
+#ifdef LOGOG_LEAK_DETECTION
+#include <iostream>
+#endif // LOGOG_LEAK_DETECTION
 
 namespace logog {
 
@@ -92,7 +95,7 @@ AllocationsType s_Allocations;
         if ( it != s_Allocations.end() )
         {
             LOGOG_COUT << _LG("Reallocation detected in memory manager!  We seem to have allocated the same address twice ")
-                 << _LG("without freeing it!  Address = ") << ptr << endl;
+                 << _LG("without freeing it!  Address = ") << ptr << std::endl;
             UnlockAllocationsMutex();
             LOGOG_INTERNAL_FAILURE;
         }
@@ -114,7 +117,7 @@ AllocationsType s_Allocations;
 
         if ( it == s_Allocations.end() )
         {
-            LOGOG_COUT << _LG("Freeing memory not previously allocated!  Address = ") << ptr << endl;
+            LOGOG_COUT << _LG("Freeing memory not previously allocated!  Address = ") << ptr << std::endl;
             UnlockAllocationsMutex();
             LOGOG_INTERNAL_FAILURE;
         }
@@ -135,10 +138,10 @@ AllocationsType s_Allocations;
 		size_t nSize = s_Allocations.size();
 
 		if ( nSize != 0 )
-			LOGOG_COUT << _LG("Total active allocations: ") << nSize << endl;
+			LOGOG_COUT << _LG("Total active allocations: ") << nSize << std::endl;
 
 		UnlockAllocationsMutex();
-		return nSize;
+		return (int)nSize;
 #else // LOGOG_LEAK_DETECTION
 		return -1;
 #endif // LOGOG_LEAK_DETECTION
@@ -151,7 +154,7 @@ AllocationsType s_Allocations;
 
 		if ( s_Allocations.size() == 0 )
 		{
-			LOGOG_COUT << _LG("No memory allocations outstanding.") << endl;
+			LOGOG_COUT << _LG("No memory allocations outstanding.") << std::endl;
 		}
 		else
 		{
@@ -161,7 +164,7 @@ AllocationsType s_Allocations;
 			{
 				LOGOG_COUT << _LG("Memory allocated at ") << it->first << 
 					_LG(" with size ") << it->second << 
-					_LG(" bytes ") << endl;
+					_LG(" bytes ") << std::endl;
 			}
 		}
 
