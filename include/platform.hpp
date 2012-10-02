@@ -27,11 +27,6 @@
 #define LOGOG_FLAVOR_POSIX 1
 #endif
 
-/* IBM AIX */
-#ifdef __PPC__
-#define LOGOG_FLAVOR_POSIX 1
-#endif // __PPC__
-
 #ifdef __CYGWIN__
 #ifdef LOGOG_UNICODE
 #error LOGOG_UNICODE not supported on Cygwin platform because Cygwin does not support vsnwprintf
@@ -53,10 +48,14 @@ extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
 #define LOGOG_USE_TR1 1
 #endif
 
-/* IBM xlc compiler (use xlC_r) */
+/* Detect IBM's XL C++ */
 #ifdef __IBMCPP__
+// Enable use of TR1 unorderd_map etc.
 #define __IBMCPP_TR1__ 1
-#endif
+#ifdef __PPC__
+#define LOGOG_FLAVOR_POSIX 1
+#endif // __PPC__
+#endif // __IBMCPP__
 
 /* If we've recognized it already, it's a relatively modern compiler */
 #if defined( LOGOG_FLAVOR_WINDOWS ) || defined( LOGOG_FLAVOR_POSIX )
