@@ -90,8 +90,11 @@ public:
      * \param sFileName The name of the file to be created.
      * Since file names do not support Unicode on most systems, there is no option to create 
      * a filename with a LOGOG_CHAR. 
+     * \param bEnableOutputBuffering Whether to perform output buffering, or
+     * flush after each write.
      */
-    LogFile(const char *sFileName);
+    LogFile(const char *sFileName,
+            bool bEnableOutputBuffering = true);
 
     /** Closes the log file. */
     virtual ~LogFile();
@@ -119,6 +122,7 @@ protected:
     bool m_bFirstTime;
 	bool m_bOpenFailed;
     FILE *m_pFile;
+    bool m_bEnableOutputBuffering;
 
 	/** Does the actual fwrite to the file.  Call Output() instead to handle error conditions better. */
 	virtual int InternalOutput( size_t nSize, const LOGOG_CHAR *pData );

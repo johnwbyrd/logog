@@ -78,10 +78,11 @@ namespace logog {
 		return 0;
 	}
 
-	LogFile::LogFile(const char *sFileName) :
+	LogFile::LogFile(const char *sFileName, bool bEnableOutputBuffering) :
 		m_bFirstTime( true ),
 		m_bOpenFailed( false ),
-		m_pFile( NULL )
+		m_pFile( NULL ),
+        m_bEnableOutputBuffering( bEnableOutputBuffering )
 	{
 		m_bNullTerminatesStrings = false;
 
@@ -165,6 +166,13 @@ namespace logog {
 				WriteUnicodeBOM();
 			}
 #endif
+		}
+
+		// Disable output buffering if requested.
+		// Buffering is performed by default.
+		if (!m_bEnableOutputBuffering)
+		{
+			setvbuf(m_pFile, NULL, _IONBF, 0);
 		}
 
 		return ( m_pFile ? 0 : -1 );
