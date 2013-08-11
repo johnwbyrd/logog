@@ -806,8 +806,10 @@ logog has been demonstrated to work with the following platforms:
 
 - Microsoft Visual Studio 2008
 - Microsoft Visual Studio 2010 (x64 and x86)
+- Microsoft Visual Studio 2012 (x64 and x86)
 - Ubuntu 10.04 LTS
 - MacOS 10.7
+- AIX 6.1 / XlC 10.1
 - Xbox 360
 - Sony PlayStation 3
 
