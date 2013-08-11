@@ -33,7 +33,7 @@ namespace logog {
 
 	size_t String::Length( const LOGOG_CHAR *chars )
 	{
-		unsigned int len = 0;
+		size_t len = 0;
 
 		while ( *chars++ )
 			len++;
@@ -81,7 +81,7 @@ namespace logog {
 
 	size_t String::reserve( size_t nSize )
 	{
-		if ( nSize == (unsigned int)( m_pOffset - m_pBuffer ))
+		if ( nSize == (size_t)( m_pOffset - m_pBuffer ))
 			return nSize;
 
 		if ( nSize == 0 )
@@ -117,8 +117,9 @@ namespace logog {
 
 	size_t String::reserve_for_int()
 	{
-		reserve( 32 );
-		return 32;
+		const int MAXIMUM_INT_SIZE = 32;
+		reserve( MAXIMUM_INT_SIZE );
+		return MAXIMUM_INT_SIZE;
 	}
 
 	String::operator const LOGOG_CHAR *() const
@@ -147,7 +148,7 @@ namespace logog {
 		reserve( othersize + 1 );
 		m_pOffset = m_pBuffer;
 
-		for ( unsigned int t = 0; t <= othersize ; t++ )
+		for ( size_t t = 0; t <= othersize ; t++ )
 			*m_pOffset++ = *pOther++;
 
 		return this->size();
@@ -214,7 +215,7 @@ namespace logog {
 
 #endif // LOGOG_COPY_CONST_CHAR_ARRAY_ON_ASSIGNMENT
 
-		return (int) len;
+		return len;
 	}
 	size_t String::append( const String &other )
 	{
@@ -300,13 +301,13 @@ namespace logog {
 
 	void String::format_va( const LOGOG_CHAR *cFormatString, va_list args )
 	{
-		int nActualSize = -1, nAttemptedSize;
+		size_t nActualSize = (size_t)-1, nAttemptedSize;
 		LOGOG_CHAR *pszFormatted = NULL;
 
 		Free();
 
 		/* Estimate length of output; don't pull in strlen() if we can help it */
-		int nEstLength = 0;
+		size_t nEstLength = 0;
 		const LOGOG_CHAR *pCurChar = cFormatString;
 		while ( *pCurChar++ )
 			nEstLength++;
@@ -384,7 +385,7 @@ namespace logog {
 			/** Convert the number of LOGOG_CHARs actually formatted into bytes.  This
 			 ** does NOT include the trailing NULL.
 			 **/
-			if ( nActualSize != -1 )
+			if ( nActualSize != (size_t)-1 )
 				nActualSize *= sizeof( LOGOG_CHAR );
 
 			/** When we're doing the compare, we have to keep in mind that the nActualSize
@@ -395,7 +396,7 @@ namespace logog {
 			 ** allocation may have failed altogether.
 			 ** 
 			 **/
-			if (( nAttemptedSize >= (nActualSize - (int)sizeof(LOGOG_CHAR))) && ( nActualSize != -1))
+			if (( nAttemptedSize >= (nActualSize - (int)sizeof(LOGOG_CHAR))) && ( nActualSize != (size_t)-1))
 				break;
 
 			/** That attempted allocation failed */
@@ -406,7 +407,7 @@ namespace logog {
 			 ** allocation.  If nActualSize has no meaningful value, we'll double the previous
 			 ** size and try again.
 			 **/
-			if (nActualSize > 0)
+			if ((nActualSize > 0) && (nActualSize != (size_t)-1))
 			{
 				nAttemptedSize = nActualSize + sizeof( LOGOG_CHAR );
 			}

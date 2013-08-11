@@ -92,7 +92,7 @@ namespace logog {
 		m_bWriteUnicodeBOM = false;
 #endif // LOGOG_UNICODE
 
-		int nNameLength = 0;
+		size_t nNameLength = 0;
 
 		const char *sNameCount = sFileName;
 		while ( *sNameCount++ != '\0' )
@@ -170,7 +170,7 @@ namespace logog {
 
 		// Disable output buffering if requested.
 		// Buffering is performed by default.
-		if (!m_bEnableOutputBuffering)
+		if (!m_bEnableOutputBuffering && m_pFile)
 		{
 			setvbuf(m_pFile, NULL, _IONBF, 0);
 		}
@@ -212,7 +212,7 @@ namespace logog {
 	{
 		static union {
 			int i;
-			char c[4];
+			char c[sizeof(int)];
 		} bDetectEndian = {0x01020304};
 
 		bool bIsLittleEndian = ( bDetectEndian.c[0] != 1 );

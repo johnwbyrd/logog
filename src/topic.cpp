@@ -92,6 +92,9 @@ namespace logog {
 		{
 			pCurrentNode = *it;
 
+			if ( pCurrentNode == NULL )
+				continue;
+
 			if ( pCurrentNode->IsTopic() == false )
 				continue;
 
@@ -100,7 +103,7 @@ namespace logog {
 			if ( pCurrentTopic )
 				nError += pCurrentTopic->Receive( node );
 
-			it++;
+			++it;
 		}
 
 		m_Subscribers.MutexUnlock();

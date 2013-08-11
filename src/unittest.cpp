@@ -118,7 +118,7 @@ void ShutdownTests()
 {
 	TestRegistryType::iterator it;
 
-	for ( it = LogogTestRegistry().begin(); it != LogogTestRegistry().end(); it++ )
+	for ( it = LogogTestRegistry().begin(); it != LogogTestRegistry().end(); ++it )
 		(*it)->FreeInternals();
 
     delete &LogogTestRegistry();
