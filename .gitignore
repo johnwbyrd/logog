@@ -1,4 +1,9 @@
 build/
+doc/html/*.html
+doc/html/*.js
+doc/html/*.png
+doc/html/*.css
+doc/html/search
 
 #################
 ## Eclipse
