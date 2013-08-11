@@ -197,12 +197,15 @@ namespace logog {
 	}
 
 	int LogFile::InternalOutput( size_t nSize, const LOGOG_CHAR *pData )
-		{
-        size_t result;
+	{
+		size_t result;
 
 		result = fwrite( pData, sizeof( LOGOG_CHAR ), nSize, m_pFile );
 
 		if ( (size_t)result != nSize )
+			return -1;
+
+		if ( fflush(m_pFile) != 0)
 			return -1;
 
 		return 0;
