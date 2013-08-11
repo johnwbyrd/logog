@@ -73,6 +73,7 @@ namespace logog
   * call from the main thread.
   */
 #define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \
+do \
 { \
 	::logog::Mutex *___pMCM = &::logog::GetMessageCreationMutex(); \
 	___pMCM->MutexLock(); \
@@ -96,7 +97,7 @@ namespace logog
 	TOKENPASTE(_logog_,__LINE__)->Format( formatstring, ##__VA_ARGS__ ); \
 	TOKENPASTE(_logog_,__LINE__)->Transmit(); \
 	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexUnlock(); \
-}
+} while (false)
 
 /** Calls LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE with the current LOGOG_GROUP and
   * LOGOG_CATEGORY setting.
@@ -114,7 +115,7 @@ namespace logog
 #define LOGOG_DEBUG( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_DEBUG, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_DEBUG( formatstring, ... ) {};
+#define LOGOG_DEBUG( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL >= LOGOG_LEVEL_INFO
@@ -122,7 +123,7 @@ namespace logog
 #define LOGOG_INFO( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_INFO, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_INFO( formatstring, ... ) {};
+#define LOGOG_INFO( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_WARN3
@@ -130,7 +131,7 @@ namespace logog
 #define LOGOG_WARN3( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN3, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_WARN3( formatstring, ... ) {};
+#define LOGOG_WARN3( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_WARN2
@@ -138,7 +139,7 @@ namespace logog
 #define LOGOG_WARN2( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN2, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_WARN2( formatstring, ... ) {};
+#define LOGOG_WARN2( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_WARN1
@@ -146,7 +147,7 @@ namespace logog
 #define LOGOG_WARN1( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN1, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_WARN1( formatstring, ... ) {};
+#define LOGOG_WARN1( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_WARN
@@ -154,7 +155,7 @@ namespace logog
 #define LOGOG_WARN( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_WARN, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_WARN( formatstring, ... ) {};
+#define LOGOG_WARN( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_ERROR
@@ -162,7 +163,7 @@ namespace logog
 #define LOGOG_ERROR( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ERROR, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_ERROR( formatstring, ... ) {};
+#define LOGOG_ERROR( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_CRITICAL
@@ -170,7 +171,7 @@ namespace logog
 #define LOGOG_CRITICAL( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_CRITICAL, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_CRITICAL( formatstring, ... ) {};
+#define LOGOG_CRITICAL( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_ALERT
@@ -178,7 +179,7 @@ namespace logog
 #define LOGOG_ALERT( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_ALERT, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_ALERT( formatstring, ... ) {};
+#define LOGOG_ALERT( formatstring, ... ) do {} while (false)
 #endif
 
 #if LOGOG_LEVEL	>= LOGOG_LEVEL_EMERGENCY
@@ -186,7 +187,7 @@ namespace logog
 #define LOGOG_EMERGENCY( formatstring, ... ) \
 	LOGOG_LEVEL_MESSAGE( LOGOG_LEVEL_EMERGENCY, formatstring, ##__VA_ARGS__ )
 #else
-#define LOGOG_EMERGENCY( formatstring, ... ) {};
+#define LOGOG_EMERGENCY( formatstring, ... ) do {} while (false)
 #endif
 
 #define LOGOG_SET_LEVEL( level ) \
@@ -227,13 +228,12 @@ namespace logog
 /** Call this function to initialize logog and prepare for logging. 
   * \sa logog::Initialize()
   */
-#define LOGOG_INITIALIZE(...)  logog::Initialize( __VA_ARGS__ );
+#define LOGOG_INITIALIZE(...) logog::Initialize( __VA_ARGS__ )
 
 /** Call this function to shut down logog and release all memory allocated.
   * \sa logog::Shutdown()
   */
-
-#define LOGOG_SHUTDOWN()   logog::Shutdown();
+#define LOGOG_SHUTDOWN() logog::Shutdown()
 
 } // namespace logog
 
