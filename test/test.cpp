@@ -794,6 +794,46 @@ UNITTEST( DateAndTime )
     return 0;
 }
 
+UNITTEST ( InitializingStatements )
+{
+    for ( int i = 1; i <= 2; i++ )
+        if ( i == 1 )
+            LOGOG_INITIALIZE();
+        else if (i == 2)
+            LOGOG_SHUTDOWN();
+    return 0;
+}
+
+UNITTEST ( LoggingInsideIfThenStatement )
+{
+    LOGOG_INITIALIZE();
+    {
+        Cerr err;
+        for ( int i = 1; i <= 11; i++ )
+            if ( i == 1 )
+                EMERGENCY(_LG("This message is EMERGENCY (%d)"), i);
+            else if ( i == 2 )
+                ALERT(_LG("This message is ALERT (%d)"), i);
+            else if ( i == 3 )
+                CRITICAL(_LG("This message is CRITICAL (%d)"), i);
+            else if ( i == 4 )
+                ERR(_LG("This message is ERROR (%d)"), i);
+            else if ( i == 5 )
+                WARN(_LG("This message is WARN (%d)"), i);
+            else if ( i == 6 )
+                WARN1(_LG("This message is WARN1 (%d)"), i);
+            else if ( i == 7 )
+                WARN2(_LG("This message is WARN2 (%d)"), i);
+            else if ( i == 8 )
+                WARN3(_LG("This message is WARN3 (%d)"), i);
+            else if ( i == 9 )
+                INFO(_LG("This message is INFO (%d)"), i);
+            else if ( i == 10 )
+                DBUG(_LG("This message is DEBUG (%d)"), i);
+    }
+    LOGOG_SHUTDOWN();
+    return 0;
+}
 
 #ifndef LOGOG_TARGET_PS3
 int DoPlatformSpecificTestInitialization()
