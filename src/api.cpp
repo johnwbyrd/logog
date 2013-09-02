@@ -11,7 +11,7 @@ namespace logog {
 static Mutex s_mInitialization;
 static int s_nInitializations = 0;
 
-int Initialize( INIT_PARAMS *params )
+void Initialize( INIT_PARAMS *params )
 {
 	s_mInitialization.MutexLock();
 
@@ -43,11 +43,9 @@ int Initialize( INIT_PARAMS *params )
 	}
 
 	s_mInitialization.MutexUnlock();
-
-    return 0;
 }
 
-int Shutdown( )
+void Shutdown( )
 {
 	s_mInitialization.MutexLock();
 
@@ -67,8 +65,6 @@ int Shutdown( )
 	}
 
 	s_mInitialization.MutexUnlock();
-
-    return 0;
 }
 }
 
