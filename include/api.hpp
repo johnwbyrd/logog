@@ -35,12 +35,12 @@ struct INIT_PARAMS
  * use default values.
  * \sa INIT_PARAMS
  */
-extern int Initialize( INIT_PARAMS *params = NULL );
+extern void Initialize( INIT_PARAMS *params = NULL );
 
 /** Shuts down the logog system and frees all memory allocated by logog.  Memory still allocated by the logog system after Shutdown() indicates
  ** a bug.
  **/
-extern int Shutdown( );
+extern void Shutdown( );
 
 }
 
