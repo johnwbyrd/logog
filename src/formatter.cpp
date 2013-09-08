@@ -46,6 +46,15 @@ namespace logog {
 		if ( level <= LOGOG_LEVEL_WARN )
 			return LOGOG_CONST_STRING("warning");
 
+		if ( level <= LOGOG_LEVEL_WARN1 )
+			return LOGOG_CONST_STRING("warning1");
+
+		if ( level <= LOGOG_LEVEL_WARN2 )
+			return LOGOG_CONST_STRING("warning2");
+
+		if ( level <= LOGOG_LEVEL_WARN3 )
+			return LOGOG_CONST_STRING("warning3");
+
 		if ( level <= LOGOG_LEVEL_INFO )
 			return LOGOG_CONST_STRING("info");
 
