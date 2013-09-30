@@ -117,7 +117,7 @@ namespace logog {
 
 	size_t String::reserve_for_int()
 	{
-		const int MAXIMUM_INT_SIZE = 32;
+		const int MAXIMUM_INT_SIZE = 64;
 		reserve( MAXIMUM_INT_SIZE );
 		return MAXIMUM_INT_SIZE;
 	}
@@ -166,7 +166,7 @@ namespace logog {
 
 		int bSign = value;
 
-		if (( bSign = number) < 0)
+		if ( bSign < 0)
 			number = -number;
 
 		do
@@ -301,7 +301,7 @@ namespace logog {
 
 	void String::format_va( const LOGOG_CHAR *cFormatString, va_list args )
 	{
-		size_t nActualSize = (size_t)-1, nAttemptedSize;
+		ptrdiff_t nActualSize = -1, nAttemptedSize;
 		LOGOG_CHAR *pszFormatted = NULL;
 
 		Free();
@@ -385,29 +385,31 @@ namespace logog {
 			/** Convert the number of LOGOG_CHARs actually formatted into bytes.  This
 			 ** does NOT include the trailing NULL.
 			 **/
-			if ( nActualSize != (size_t)-1 )
+			if ( nActualSize > 0 )
 				nActualSize *= sizeof( LOGOG_CHAR );
 
-			/** When we're doing the compare, we have to keep in mind that the nActualSize
+			/** When we're checking the result, we have to keep in mind that the nActualSize
 			 ** does not include a null.  We need to verify that the nAttemptedSize can hold all
 			 ** of nActualSize PLUS the size of one null on this platform.  A LOGOG_CHAR could
 			 ** be 1, 2, or 4 bytes long.  So nAttemptedSize must be greater or equal to nActualSize
 			 ** less the size of one (null) LOGOG_CHAR in bytes.  Also, the last
-			 ** allocation may have failed altogether.
-			 ** 
+			 ** allocation may have failed altogether.  Verify that all these conditions
+			 ** are clean before accepting the output and jumping out of this loop.
 			 **/
-			if (( nAttemptedSize >= (nActualSize - (int)sizeof(LOGOG_CHAR))) && ( nActualSize != (size_t)-1))
+			if (( nAttemptedSize >= (nActualSize - (ptrdiff_t) sizeof(LOGOG_CHAR))) && 
+				( nActualSize > 0 ) )
 				break;
 
-			/** That attempted allocation failed */
-			Deallocate( pszFormatted );
+			/** That attempted allocation failed, we need to try again */
+			if ( pszFormatted != NULL )
+				Deallocate( pszFormatted );
 
 			/** If nActualSize has a positive value, it includes the number of bytes needed to hold
 			 ** the formatted string; we'll add a LOGOG_CHAR size to the end for the next
 			 ** allocation.  If nActualSize has no meaningful value, we'll double the previous
 			 ** size and try again.
 			 **/
-			if ((nActualSize > 0) && (nActualSize != (size_t)-1))
+			if (nActualSize > 0)
 			{
 				nAttemptedSize = nActualSize + sizeof( LOGOG_CHAR );
 			}

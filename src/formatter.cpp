@@ -238,7 +238,9 @@ const char * TimeStamp::Get()
 #pragma warning( pop )
 #endif // LOGOG_FLAVOR_WINDOWS
 
-	strftime (cTimeString, LOGOG_TIME_STRING_MAX, "%c", tmInfo);
+	cTimeString[ 0 ] = '\0';
+	if ( tmInfo != NULL )
+		strftime (cTimeString, LOGOG_TIME_STRING_MAX, "%c", tmInfo);
 
 	return cTimeString;
 }

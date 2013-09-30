@@ -92,9 +92,6 @@ namespace logog {
 		{
 			pCurrentNode = *it;
 
-			if ( pCurrentNode == NULL )
-				continue;
-
 			if ( pCurrentNode->IsTopic() == false )
 				continue;
 
