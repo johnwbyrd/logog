@@ -118,13 +118,12 @@ namespace logog {
 
 	int LogFile::Open()
 	{
-		int nError = 1; // preset this in case LOGOG_FLAVOR_WINDOWS is not defined
-
 		bool bFileAlreadyExists = false;
 		FILE *fpTest;
 
 #ifdef LOGOG_FLAVOR_WINDOWS
-		nError = fopen_s( &fpTest, m_pFileName, "r"); // ignore the error code
+		int nError; // only exists in Windows build
+		nError = fopen_s( &fpTest, m_pFileName, "r"); // ignore the return code for now
 #else // LOGOG_FLAVOR_WINDOWS
 		fpTest = fopen( m_pFileName, "r");
 #endif // LOGOG_FLAVOR_WINDOWS
@@ -147,7 +146,6 @@ namespace logog {
 #else // LOGOG_UNICODE
 		const char *openMode = "ab";
 #endif // LOGOG_UNICODE
-		// Open the file while allowing other processes to read it
 		m_pFile = _fsopen( m_pFileName, openMode, _SH_DENYWR );
 		nError = (m_pFile != NULL) ? (0) : (errno);
 		if ( nError != 0 )
