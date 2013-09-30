@@ -8,13 +8,10 @@
 
 namespace logog {
 
-static Mutex s_mInitialization;
 static int s_nInitializations = 0;
 
 void Initialize( INIT_PARAMS *params )
 {
-	s_mInitialization.MutexLock();
-
 	if ( s_nInitializations++ == 0 )
 	{
 		if ( params == NULL )
@@ -41,14 +38,10 @@ void Initialize( INIT_PARAMS *params )
 
 		// Socket::Initialize();
 	}
-
-	s_mInitialization.MutexUnlock();
 }
 
 void Shutdown( )
 {
-	s_mInitialization.MutexLock();
-
 	if ( --s_nInitializations == 0 )
 	{
 		// Socket::Shutdown();
@@ -63,8 +56,6 @@ void Shutdown( )
 		ReportMemoryAllocations();
 #endif
 	}
-
-	s_mInitialization.MutexUnlock();
 }
 }
 

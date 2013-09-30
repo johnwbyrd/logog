@@ -30,7 +30,8 @@ struct INIT_PARAMS
 //! [INIT_PARAMS]
 
 /** Initializes the logog system.  No logog calls or allocations may be made before calling this function; expect
- * crashes if you haven't called this at the top of your program.
+ * crashes if you haven't called this at the top of your program.  Furthermore, this function is not thread safe.
+ * Only call it once, at the start of your program thread.
  * \param params The address of an INIT_PARAMS structure you have already allocated on the heap, or NULL to
  * use default values.
  * \sa INIT_PARAMS
@@ -38,7 +39,7 @@ struct INIT_PARAMS
 extern void Initialize( INIT_PARAMS *params = NULL );
 
 /** Shuts down the logog system and frees all memory allocated by logog.  Memory still allocated by the logog system after Shutdown() indicates
- ** a bug.
+ ** a bug.  This function is not thread safe.  Call it once at the conclusion of your program.
  **/
 extern void Shutdown( );
 
