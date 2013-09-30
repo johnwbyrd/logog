@@ -72,7 +72,10 @@ namespace logog
   * occur only if you are calling log messages right on top of the SHUTDOWN
   * call from the main thread.
   */
+
 #define LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE( level, group, cat, formatstring, ... ) \
+LOGOG_MICROSOFT_PRAGMA_IN_MACRO(warning(push)) \
+LOGOG_MICROSOFT_PRAGMA_IN_MACRO(warning(disable : 4127 )) \
 do \
 { \
 	::logog::Mutex *___pMCM = &::logog::GetMessageCreationMutex(); \
@@ -97,7 +100,8 @@ do \
 	TOKENPASTE(_logog_,__LINE__)->Format( formatstring, ##__VA_ARGS__ ); \
 	TOKENPASTE(_logog_,__LINE__)->Transmit(); \
 	TOKENPASTE(_logog_,__LINE__)->m_Transmitting.MutexUnlock(); \
-} while (false)
+} while (false) \
+LOGOG_MICROSOFT_PRAGMA_IN_MACRO(warning(pop))
 
 /** Calls LOGOG_LEVEL_GROUP_CATEGORY_MESSAGE with the current LOGOG_GROUP and
   * LOGOG_CATEGORY setting.

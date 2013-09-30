@@ -137,6 +137,13 @@ extern int vsnprintf(char *str, size_t size, const char *format, va_list ap);
 // For Unicode support
 #include <typeinfo>
 
+// How this compiler prefers to represent a pragma when described within a macro
+#ifdef LOGOG_FLAVOR_WINDOWS
+#define LOGOG_MICROSOFT_PRAGMA_IN_MACRO( x ) __pragma( x )
+#else // LOGOG_FLAVOR_WINDOWS
+#define LOGOG_MICROSOFT_PRAGMA_IN_MACRO( x ) 
+#endif
+
 /* ----------------------------------------------------------- */
 /* Here's the stuff your compiler may have a problem with...   */
 
