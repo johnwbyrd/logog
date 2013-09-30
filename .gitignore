@@ -4,6 +4,10 @@ doc/html/*.js
 doc/html/*.png
 doc/html/*.css
 doc/html/search
+*.cl.cfg
+*.cl.cmd
+*.PVS-Studio.cfg
+
 
 #################
 ## Eclipse
