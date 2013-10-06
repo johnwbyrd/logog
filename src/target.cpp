@@ -118,7 +118,11 @@ namespace logog {
 
 	int LogFile::Open()
 	{
+
+#ifdef LOGOG_UNICODE
 		bool bFileAlreadyExists = false;
+#endif // LOGOG_UNICODE
+
 		FILE *fpTest;
 
 #ifdef LOGOG_FLAVOR_WINDOWS
@@ -131,7 +135,10 @@ namespace logog {
 		if ( fpTest != NULL )
 		{
 			fclose( fpTest );
+
+#ifdef LOGOG_UNICODE
 			bFileAlreadyExists = true;
+#endif // LOGOG_UNICODE
 		}
 
 		/** Windows tries to be clever and help us with converting line feeds
