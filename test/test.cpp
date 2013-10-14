@@ -384,6 +384,120 @@ UNITTEST( CustomFormatter )
 }
 //! [FormatterCustom1]
 
+//! [FormatterModified]
+
+class FormatterModified : public FormatterMSVC
+{
+	/* In this example custom Formatter, we've basically rewritten the parent
+	 * class to include !!!'s before any topic of LOGOG_LEVEL_WARN
+	 * intensity or more important, and we append ... to the message
+	 * in all cases.  Large quantities of code are simply copied 
+	 * and modified from the parent class.
+	 */
+    virtual LOGOG_STRING &Format( const Topic &topic, const Target &target )
+    {
+		TOPIC_FLAGS flags = GetTopicFlags( topic );
+
+		m_sMessageBuffer.clear();
+
+		if ( topic.Level() <= LOGOG_LEVEL_WARN )
+			m_sMessageBuffer.append( _LG("!!! ") );
+
+		if ( flags & TOPIC_FILE_NAME_FLAG )
+		{
+			m_sMessageBuffer.append( topic.FileName() );
+			m_sMessageBuffer.append( ':' );
+		}
+
+		if ( flags & TOPIC_LINE_NUMBER_FLAG )
+		{
+			m_sIntBuffer.assign( topic.LineNumber() );
+			m_sMessageBuffer.append( m_sIntBuffer );
+			m_sMessageBuffer.append( LOGOG_CONST_STRING(": "));
+		}
+
+		RenderTimeOfDay();
+
+		if ( flags & TOPIC_LEVEL_FLAG )
+		{
+			m_sMessageBuffer.append( ErrorDescription( topic.Level()));
+			m_sMessageBuffer.append( LOGOG_CONST_STRING(": "));
+		}
+
+		if ( flags & TOPIC_GROUP_FLAG )
+		{
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("{") );
+			m_sMessageBuffer.append( topic.Group() );
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("} ") );
+		}
+
+		if ( flags & TOPIC_CATEGORY_FLAG )
+		{
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("["));
+			m_sMessageBuffer.append( topic.Category() );
+			m_sMessageBuffer.append( LOGOG_CONST_STRING("] "));
+		}	
+
+		if ( flags & TOPIC_MESSAGE_FLAG )
+		{
+			m_sMessageBuffer.append( topic.Message() );
+		}
+
+		/* At this point we use the String's format() function to reformat the
+		* old string into the new format. 
+		*/
+		if ( topic.Level() <= LOGOG_LEVEL_WARN )
+		{
+			/* If this message is more important than LOGOG_LEVEL_WARN,
+			 * add exclamation marks
+			 */
+			m_sMessageBuffer.append( _LG(" !!!") );
+		}
+		else
+		{
+			/* Otherwise add periods */
+			m_sMessageBuffer.append( _LG(" ...") );
+		}
+
+		if ( flags & TOPIC_MESSAGE_FLAG )
+		{
+			m_sMessageBuffer.append( (LOGOG_CHAR)'\n' );
+		}
+
+		if ( target.GetNullTerminatesStrings() )
+			m_sMessageBuffer.append( (LOGOG_CHAR)NULL );
+
+		/* Return m_sMessageBuffer like the parent class does */
+		return m_sMessageBuffer;
+    }
+};
+
+UNITTEST( CustomFormatterModified )
+{
+    LOGOG_INITIALIZE();
+    {
+		/* This test produces output resembling: 
+		 
+		 C:\logog\test\test.cpp:484: info: This info message output has trailing periods ...
+		 !!! C:\logog\test\test.cpp:485: warning: This warning message is surrounded by exclamation marks !!!
+
+		 */
+
+        Cout out;
+        FormatterModified customFormat;
+
+        out.SetFormatter( customFormat );
+
+        INFO( _LG( "This info message output has trailing periods") );
+        WARN( _LG( "This warning message is surrounded by exclamation marks") );
+    }
+
+    LOGOG_SHUTDOWN();
+
+    return 0;
+}
+//! [FormatterModified]
+
 UNITTEST( HelloLogog )
 {
     //! [HelloLogog]

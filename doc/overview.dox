@@ -471,7 +471,12 @@ If you want log messages in your own custom format, subclass the Formatter::Form
 method into your own custom class, and write your own formatting function for a topic.
 See FormatterMSVC::Format and FormatterGCC::Format for examples.
 
-If all you want to do is enable or disable a certain type of output on your formatter -- for example, to remove file and line number information from
+Once you have written your own custom formatting function, assign it to the
+Target that should use your custom formatter, by using the Target::SetFormatter()
+function.
+
+If all you want to do is enable or disable a certain type of output on your formatter 
+-- for example, to remove file and line number information from
 all your output lines -- then there's a very simple way of doing this.
 The Formatter class implements a Formatter::GetTopicFlags() function that
 in the default case queries the topic in order to find out which fields
@@ -488,6 +493,14 @@ part of their format.  You can do this by calling the Formatter::SetShowTimeOfDa
 with a value of true, as follows:
 
 \snippet test.cpp DateAndTimeLogging
+
+Here's a more general example of doing radical custom changes to the formatting style 
+of the output.  In this case, the formatter adds exclamation mark boundaries to any message
+of LOGOG_LEVEL_WARN type or more important, and it adds three periods to the end
+of any message.  Since this custom formatter only applies to the target set with Target::SetFormatter(),
+you could modify this example and the changes would only apply to the formatter you select.
+
+\snippet test.cpp FormatterModified
 
 \page addingnewtargets Adding new logging output targets
 
