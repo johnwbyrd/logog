@@ -205,11 +205,11 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6e83e188abe595fb7f0a30e468ce9a69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69">Initialize</a> (<a class="el" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html">INIT_PARAMS</a> *params=NULL)</td></tr>
-<tr class="memdesc:a6e83e188abe595fb7f0a30e468ce9a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html" title="[INIT_PARAMS] ">INIT_PARAMS</a>]  <a href="#a6e83e188abe595fb7f0a30e468ce9a69">More...</a><br/></td></tr>
-<tr class="separator:a6e83e188abe595fb7f0a30e468ce9a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca9c4fd9476b7d068e18e29f42bd8dd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">Shutdown</a> ()</td></tr>
-<tr class="separator:aca9c4fd9476b7d068e18e29f42bd8dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a831ad2b57ecc5395c577fee4e589dc1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a831ad2b57ecc5395c577fee4e589dc1e">Initialize</a> (<a class="el" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html">INIT_PARAMS</a> *params=NULL)</td></tr>
+<tr class="memdesc:a831ad2b57ecc5395c577fee4e589dc1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html" title="[INIT_PARAMS] ">INIT_PARAMS</a>]  <a href="#a831ad2b57ecc5395c577fee4e589dc1e">More...</a><br/></td></tr>
+<tr class="separator:a831ad2b57ecc5395c577fee4e589dc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7abb82c10a340cb4bf3ac5e1fa7f0b76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a7abb82c10a340cb4bf3ac5e1fa7f0b76">Shutdown</a> ()</td></tr>
+<tr class="separator:a7abb82c10a340cb4bf3ac5e1fa7f0b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8997e274c9662fe08997ad1d69ab5561"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogog_1_1_formatter.html">Formatter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a8997e274c9662fe08997ad1d69ab5561">GetDefaultFormatter</a> ()</td></tr>
 <tr class="separator:a8997e274c9662fe08997ad1d69ab5561"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a896f9896c2bbe6e13c6973ed05e68c42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogog.html#a896f9896c2bbe6e13c6973ed05e68c42">DestroyDefaultFormatter</a> ()</td></tr>
@@ -354,7 +354,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A registry for all tests. All tests are instanced using the <a class="el" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">UNITTEST()</a> macro and stored in the LogogTestRegistry. <a class="el" href="test_8cpp.html#ab4497cc9c4edda813d0c5cef3ba98547">UNITTEST</a> </p>
+<p>A registry for all tests. All tests are instanced using the <a class="el" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">UNITTEST()</a> macro and stored in the LogogTestRegistry. <a class="el" href="test_8cpp.html#a9cfefc01614988f9319695ccdd83ead1">UNITTEST</a> </p>
 
 </div>
 </div>
@@ -623,12 +623,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6e83e188abe595fb7f0a30e468ce9a69"></a>
+<a class="anchor" id="a831ad2b57ecc5395c577fee4e589dc1e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int logog::Initialize </td>
+          <td class="memname">void logog::Initialize </td>
           <td>(</td>
           <td class="paramtype">INIT_PARAMS *&#160;</td>
           <td class="paramname"><em>params</em> = <code>NULL</code>)</td><td></td>
@@ -638,7 +638,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[<a class="el" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html" title="[INIT_PARAMS] ">INIT_PARAMS</a>] </p>
-<p>Initializes the logog system. No logog calls or allocations may be made before calling this function; expect crashes if you haven't called this at the top of your program. </p>
+<p>Initializes the logog system. No logog calls or allocations may be made before calling this function; expect crashes if you haven't called this at the top of your program. Furthermore, this function is not thread safe. Only call it once, at the start of your program thread. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">params</td><td>The address of an <a class="el" href="structlogog_1_1_i_n_i_t___p_a_r_a_m_s.html" title="[INIT_PARAMS] ">INIT_PARAMS</a> structure you have already allocated on the heap, or NULL to use default values. </td></tr>
@@ -798,19 +798,19 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aca9c4fd9476b7d068e18e29f42bd8dd7"></a>
+<a class="anchor" id="a7abb82c10a340cb4bf3ac5e1fa7f0b76"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int logog::Shutdown </td>
+          <td class="memname">void logog::Shutdown </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Shuts down the logog system and frees all memory allocated by logog. Memory still allocated by the logog system after <a class="el" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">Shutdown()</a> indicates a bug. </p>
+<p>Shuts down the logog system and frees all memory allocated by logog. Memory still allocated by the logog system after <a class="el" href="namespacelogog.html#a7abb82c10a340cb4bf3ac5e1fa7f0b76">Shutdown()</a> indicates a bug. This function is not thread safe. Call it once at the conclusion of your program. </p>
 
 </div>
 </div>
@@ -893,7 +893,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacelogog.html">logog</a></li>
-    <li class="footer">Generated on Sun Aug 11 2013 13:23:19 for logog by
+    <li class="footer">Generated on Mon Oct 14 2013 11:50:13 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

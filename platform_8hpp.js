@@ -7,6 +7,7 @@ var platform_8hpp =
     [ "LOGOG_HASH", "platform_8hpp.html#a83255b7400e614df1416af0f60149507", null ],
     [ "LOGOG_INTERNAL_FAILURE", "platform_8hpp.html#a44b6ec4da982d37c43c6366be8756940", null ],
     [ "LOGOG_LIST", "platform_8hpp.html#a1aa098652d3ecb54b00e639cde0242cd", null ],
+    [ "LOGOG_MICROSOFT_PRAGMA_IN_MACRO", "platform_8hpp.html#a5c4f029de68447e996d8bc0fed2a863a", null ],
     [ "LOGOG_PAIR", "platform_8hpp.html#a2eb3d2aae7780e72c100d7565f28dd37", null ],
     [ "LOGOG_SET", "platform_8hpp.html#af732e2a388bfbcfc51fab41638c4f6f1", null ],
     [ "LOGOG_UNORDERED_MAP", "platform_8hpp.html#ae8c043cab3f7dd437ebb333eb8ec0eb8", null ],

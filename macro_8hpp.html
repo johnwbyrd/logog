@@ -186,10 +186,10 @@ Macros</h2></td></tr>
 <tr class="separator:aece2e23355ee0a5822bb776433855d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a333c5311a91d9261243f33dead557110"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a333c5311a91d9261243f33dead557110">EMERGENCY</a>(...)&#160;&#160;&#160;<a class="el" href="macro_8hpp.html#a12a15a2919eaa82764a88f4b23b83623">LOGOG_EMERGENCY</a>( __VA_ARGS__ )</td></tr>
 <tr class="separator:a333c5311a91d9261243f33dead557110"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b41b739f9bbeacc6620a198e565332d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d">LOGOG_INITIALIZE</a>(...)&#160;&#160;&#160;<a class="el" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69">logog::Initialize</a>( __VA_ARGS__ );</td></tr>
+<tr class="memitem:a1b41b739f9bbeacc6620a198e565332d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d">LOGOG_INITIALIZE</a>(...)&#160;&#160;&#160;<a class="el" href="namespacelogog.html#a831ad2b57ecc5395c577fee4e589dc1e">logog::Initialize</a>( __VA_ARGS__ )</td></tr>
 <tr class="memdesc:a1b41b739f9bbeacc6620a198e565332d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Shorthand]  <a href="#a1b41b739f9bbeacc6620a198e565332d">More...</a><br/></td></tr>
 <tr class="separator:a1b41b739f9bbeacc6620a198e565332d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27abf02f896666169d052fff025f1a73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>()&#160;&#160;&#160;<a class="el" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">logog::Shutdown</a>();</td></tr>
+<tr class="memitem:a27abf02f896666169d052fff025f1a73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>()&#160;&#160;&#160;<a class="el" href="namespacelogog.html#a7abb82c10a340cb4bf3ac5e1fa7f0b76">logog::Shutdown</a>()</td></tr>
 <tr class="separator:a27abf02f896666169d052fff025f1a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -497,14 +497,14 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em>)</td><td></td>
-          <td>&#160;&#160;&#160;<a class="el" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69">logog::Initialize</a>( __VA_ARGS__ );</td>
+          <td>&#160;&#160;&#160;<a class="el" href="namespacelogog.html#a831ad2b57ecc5395c577fee4e589dc1e">logog::Initialize</a>( __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>[Shorthand] </p>
 <p>Call this function to initialize logog and prepare for logging. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacelogog.html#a6e83e188abe595fb7f0a30e468ce9a69" title="[INIT_PARAMS] ">logog::Initialize()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacelogog.html#a831ad2b57ecc5395c577fee4e589dc1e" title="[INIT_PARAMS] ">logog::Initialize()</a> </dd></dl>
 
 </div>
 </div>
@@ -549,7 +549,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{ \</div>
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="platform_8hpp.html#a5c4f029de68447e996d8bc0fed2a863a">LOGOG_MICROSOFT_PRAGMA_IN_MACRO</a>(warning(push)) \</div>
+<div class="line">LOGOG_MICROSOFT_PRAGMA_IN_MACRO(warning(disable : 4127 )) \</div>
+<div class="line">do \</div>
+<div class="line">{ \</div>
 <div class="line">        <a class="code" href="classlogog_1_1_mutex.html" title="[Mutex] ">::logog::Mutex</a> *___pMCM = &amp;<a class="code" href="namespacelogog.html#a0d1bb927ab714ef4bb01fa2684eaa1b1">::logog::GetMessageCreationMutex</a>(); \</div>
 <div class="line">        ___pMCM-&gt;MutexLock(); \</div>
 <div class="line">        static <span class="keywordtype">bool</span> <a class="code" href="macro_8hpp.html#aaf9a1b8a5982f1fdaecbfedc30afc3a3">TOKENPASTE</a>(_logog_static_bool_,__LINE__) = <span class="keyword">false</span>; \</div>
@@ -572,7 +575,8 @@ Macros</h2></td></tr>
 <div class="line">        TOKENPASTE(_logog_,__LINE__)-&gt;Format( formatstring, ##__VA_ARGS__ ); \</div>
 <div class="line">        TOKENPASTE(_logog_,__LINE__)-&gt;Transmit(); \</div>
 <div class="line">        TOKENPASTE(_logog_,__LINE__)-&gt;m_Transmitting.MutexUnlock(); \</div>
-<div class="line">}</div>
+<div class="line">} <span class="keywordflow">while</span> (<span class="keyword">false</span>) \</div>
+<div class="line">LOGOG_MICROSOFT_PRAGMA_IN_MACRO(warning(pop))</div>
 </div><!-- fragment --><p>This macro is used when a message is instantiated with varargs provided by the user. It locks a global mutex, creates the message, locks it, formats the message string inside the message, transmits it, and releases all locks. When logog is shut down, it may be started back up again later. Therefore, logog needs a way to flag all static Message pointers that they need to be recreated. We manually simulate a static Message pointer by implementing it via a static bool. The bool is turned on the first time this code is run. NOTE! A subtle race condition exists in the following code, that will ONLY occur if logog is shut down at the same moment that a log message is processed from another thread than the one calling the shutdown. The Message object could theoretically be destroyed from another thread just before it's locked in a thread that calls the Format() and Transmit() calls on it. I'm not sure if this is really a bug &ndash; technically, this race condition will occur only if you are calling log messages right on top of the SHUTDOWN call from the main thread. </p>
 
 </div>
@@ -714,12 +718,12 @@ Macros</h2></td></tr>
           <td class="memname">#define LOGOG_SHUTDOWN</td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
-          <td>&#160;&#160;&#160;<a class="el" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">logog::Shutdown</a>();</td>
+          <td>&#160;&#160;&#160;<a class="el" href="namespacelogog.html#a7abb82c10a340cb4bf3ac5e1fa7f0b76">logog::Shutdown</a>()</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Call this function to shut down logog and release all memory allocated. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7">logog::Shutdown()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacelogog.html#a7abb82c10a340cb4bf3ac5e1fa7f0b76">logog::Shutdown()</a> </dd></dl>
 
 </div>
 </div>
@@ -959,7 +963,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="macro_8hpp.html">macro.hpp</a></li>
-    <li class="footer">Generated on Sun Aug 11 2013 13:23:18 for logog by
+    <li class="footer">Generated on Mon Oct 14 2013 11:50:12 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

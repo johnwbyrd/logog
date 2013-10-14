@@ -9,7 +9,8 @@ var hierarchy =
       [ "Formatter", "classlogog_1_1_formatter.html", [
         [ "FormatterGCC", "classlogog_1_1_formatter_g_c_c.html", null ],
         [ "FormatterMSVC", "classlogog_1_1_formatter_m_s_v_c.html", [
-          [ "FormatterCustom", "class_formatter_custom.html", null ]
+          [ "FormatterCustom", "class_formatter_custom.html", null ],
+          [ "FormatterModified", "class_formatter_modified.html", null ]
         ] ]
       ] ],
       [ "Mutex", "classlogog_1_1_mutex.html", [

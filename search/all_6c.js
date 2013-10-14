@@ -63,6 +63,7 @@ var searchData=
   ['logog_5flist',['LOGOG_LIST',['../platform_8hpp.html#a1aa098652d3ecb54b00e639cde0242cd',1,'platform.hpp']]],
   ['logog_5fmax',['LOGOG_MAX',['../string_8hpp.html#ad6c8faa1438e4614344a04da4d336708',1,'string.hpp']]],
   ['logog_5fmessage',['LOGOG_MESSAGE',['../macro_8hpp.html#a3f36e7f5011da59bf9baaac2a271ec26',1,'macro.hpp']]],
+  ['logog_5fmicrosoft_5fpragma_5fin_5fmacro',['LOGOG_MICROSOFT_PRAGMA_IN_MACRO',['../platform_8hpp.html#a5c4f029de68447e996d8bc0fed2a863a',1,'platform.hpp']]],
   ['logog_5fpair',['LOGOG_PAIR',['../platform_8hpp.html#a2eb3d2aae7780e72c100d7565f28dd37',1,'platform.hpp']]],
   ['logog_5freport_5fallocations',['LOGOG_REPORT_ALLOCATIONS',['../overview_8dox.html#abd599277ca95accc3237543af3bab974',1,'overview.dox']]],
   ['logog_5fset',['LOGOG_SET',['../platform_8hpp.html#af732e2a388bfbcfc51fab41638c4f6f1',1,'platform.hpp']]],

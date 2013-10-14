@@ -9,7 +9,7 @@ var searchData=
   ['setnullterminatesstrings',['SetNullTerminatesStrings',['../classlogog_1_1_target.html#a1480d250abc60598b348d3ecfdf16dd9',1,'logog::Target']]],
   ['setshowtimeofday',['SetShowTimeOfDay',['../classlogog_1_1_formatter.html#ae38352b0c900bade43bd835e797b3e70',1,'logog::Formatter']]],
   ['settarget',['SetTarget',['../classlogog_1_1_log_buffer.html#a652df2628af947701b731c990e03dca9',1,'logog::LogBuffer']]],
-  ['shutdown',['Shutdown',['../classlogog_1_1_socket.html#a704350e4ecd8b0deecaeba8ecac93d4f',1,'logog::Socket::Shutdown()'],['../namespacelogog.html#aca9c4fd9476b7d068e18e29f42bd8dd7',1,'logog::Shutdown()']]],
+  ['shutdown',['Shutdown',['../classlogog_1_1_socket.html#a704350e4ecd8b0deecaeba8ecac93d4f',1,'logog::Socket::Shutdown()'],['../namespacelogog.html#a7abb82c10a340cb4bf3ac5e1fa7f0b76',1,'logog::Shutdown()']]],
   ['shutdowntests',['ShutdownTests',['../namespacelogog.html#a88259d52590bb4e70c31946bb6246120',1,'logog']]],
   ['size',['size',['../classlogog_1_1_string.html#aac782da1f912bceb5d8ad00c8dc892ac',1,'logog::String']]],
   ['socket',['Socket',['../classlogog_1_1_socket.html#ab8fc245cf8395ac886281ec76c8437f1',1,'logog::Socket']]],

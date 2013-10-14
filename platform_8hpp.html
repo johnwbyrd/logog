@@ -135,6 +135,8 @@ Macros</h2></td></tr>
 <tr class="separator:a5f0d4be144de79738f62060cc05d225e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e642cf1b13051a813600e074868f395"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8hpp.html#a9e642cf1b13051a813600e074868f395">LOGOG_FLAVOR_POSIX</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a9e642cf1b13051a813600e074868f395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c4f029de68447e996d8bc0fed2a863a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8hpp.html#a5c4f029de68447e996d8bc0fed2a863a">LOGOG_MICROSOFT_PRAGMA_IN_MACRO</a>(x)&#160;&#160;&#160;__pragma( x )</td></tr>
+<tr class="separator:a5c4f029de68447e996d8bc0fed2a863a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83255b7400e614df1416af0f60149507"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8hpp.html#a83255b7400e614df1416af0f60149507">LOGOG_HASH</a>&#160;&#160;&#160;std::tr1::hash</td></tr>
 <tr class="memdesc:a83255b7400e614df1416af0f60149507"><td class="mdescLeft">&#160;</td><td class="mdescRight">[STLTypes]  <a href="#a83255b7400e614df1416af0f60149507">More...</a><br/></td></tr>
 <tr class="separator:a83255b7400e614df1416af0f60149507"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,7 +226,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[STLTypes] </p>
-<p>Microsoft's CRT library has its own leak detection mechanism. If you don't trust logog's LOGOG_LEAK_DETECTION, you can enable LOGOG_LEAK_DETECTION_WINDOWS to enable Microsoft's version. This really doesn't belong in <a class="el" href="platform_8hpp.html">platform.hpp</a> &ndash; feel free to refactor this into a Windows-specific header.The definition for a hash type in logog. You can replace it here with your own set compatible class if needed. </p>
+<p>The definition for a hash type in logog. You can replace it here with your own set compatible class if needed. </p>
 
 </div>
 </div>
@@ -251,6 +253,23 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The definition for a list type in logog. You can replace it here with your own list compatible class if needed. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5c4f029de68447e996d8bc0fed2a863a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGOG_MICROSOFT_PRAGMA_IN_MACRO</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x)</td><td></td>
+          <td>&#160;&#160;&#160;__pragma( x )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Microsoft's CRT library has its own leak detection mechanism. If you don't trust logog's LOGOG_LEAK_DETECTION, you can enable LOGOG_LEAK_DETECTION_WINDOWS to enable Microsoft's version. This really doesn't belong in <a class="el" href="platform_8hpp.html">platform.hpp</a> &ndash; feel free to refactor this into a Windows-specific header. </p>
 
 </div>
 </div>
@@ -312,7 +331,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="platform_8hpp.html">platform.hpp</a></li>
-    <li class="footer">Generated on Sun Aug 11 2013 13:23:18 for logog by
+    <li class="footer">Generated on Mon Oct 14 2013 11:50:12 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

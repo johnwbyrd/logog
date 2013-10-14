@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('customformatting.html','');});
 <div class="contents">
 <div class="textblock"><p>The <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> object is responsible for rendering a particular <a class="el" href="classlogog_1_1_topic.html">Topic</a> into a human-readable format. A default <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> is created by default for you based on the flavor of the compile target. See <a class="el" href="classlogog_1_1_formatter_g_c_c.html">FormatterGCC</a> and <a class="el" href="classlogog_1_1_formatter_m_s_v_c.html">FormatterMSVC</a> objects for examples.</p>
 <p>If you want log messages in your own custom format, subclass the <a class="el" href="classlogog_1_1_formatter.html#a711a519a7c2a822721a6e6b61c6c3639">Formatter::Format</a> method into your own custom class, and write your own formatting function for a topic. See <a class="el" href="classlogog_1_1_formatter_m_s_v_c.html#ad4af416e7516f1d0b3a8a56400ba85ef">FormatterMSVC::Format</a> and <a class="el" href="classlogog_1_1_formatter_g_c_c.html#ad4af416e7516f1d0b3a8a56400ba85ef">FormatterGCC::Format</a> for examples.</p>
+<p>Once you have written your own custom formatting function, assign it to the <a class="el" href="classlogog_1_1_target.html">Target</a> that should use your custom formatter, by using the <a class="el" href="classlogog_1_1_target.html#abb775c76f9b153d756de6ccfa3579366">Target::SetFormatter()</a> function.</p>
 <p>If all you want to do is enable or disable a certain type of output on your formatter &ndash; for example, to remove file and line number information from all your output lines &ndash; then there's a very simple way of doing this. The <a class="el" href="classlogog_1_1_formatter.html">Formatter</a> class implements a <a class="el" href="classlogog_1_1_formatter.html#a85d31948f9f54e7c67683bb915ab50a2">Formatter::GetTopicFlags()</a> function that in the default case queries the topic in order to find out which fields to render. You can if you wish override this default behavior for a custom formatter in order to always or never render specific fields.</p>
 <p>The following example overrides the standard <a class="el" href="classlogog_1_1_formatter_m_s_v_c.html">FormatterMSVC</a> formatter in order to never show file and line number information on the output.</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="class_formatter_custom.html" title="[FormatterCustom1] ">FormatterCustom</a> : <span class="keyword">public</span> FormatterMSVC</div>
@@ -155,12 +156,124 @@ $(document).ready(function(){initNavTree('customformatting.html','');});
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();</div>
+</div><!-- fragment --><p> Here's a more general example of doing radical custom changes to the formatting style of the output. In this case, the formatter adds exclamation mark boundaries to any message of LOGOG_LEVEL_WARN type or more important, and it adds three periods to the end of any message. Since this custom formatter only applies to the target set with <a class="el" href="classlogog_1_1_target.html#abb775c76f9b153d756de6ccfa3579366">Target::SetFormatter()</a>, you could modify this example and the changes would only apply to the formatter you select.</p>
+<div class="fragment"><div class="line"></div>
+<div class="line"><span class="keyword">class </span><a class="code" href="class_formatter_modified.html" title="[FormatterCustom1] ">FormatterModified</a> : <span class="keyword">public</span> FormatterMSVC</div>
+<div class="line">{</div>
+<div class="line">        <span class="comment">/* In this example custom Formatter, we&#39;ve basically rewritten the parent</span></div>
+<div class="line"><span class="comment">         * class to include !!!&#39;s before any topic of LOGOG_LEVEL_WARN</span></div>
+<div class="line"><span class="comment">         * intensity or more important, and we append ... to the message</span></div>
+<div class="line"><span class="comment">         * in all cases.  Large quantities of code are simply copied </span></div>
+<div class="line"><span class="comment">         * and modified from the parent class.</span></div>
+<div class="line"><span class="comment">         */</span></div>
+<div class="line">    <span class="keyword">virtual</span> <a class="code" href="string_8hpp.html#a02a53128116e7a56a1f0d60f9a136209">LOGOG_STRING</a> &amp;Format( <span class="keyword">const</span> Topic &amp;topic, <span class="keyword">const</span> Target &amp;target )</div>
+<div class="line">    {</div>
+<div class="line">                <a class="code" href="const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18" title="[Topic Bits] ">TOPIC_FLAGS</a> flags = GetTopicFlags( topic );</div>
+<div class="line"></div>
+<div class="line">                m_sMessageBuffer.clear();</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( topic.Level() &lt;= <a class="code" href="group__levelsettings.html#gab54a38b5c8b49d7c536ba53397249ea4">LOGOG_LEVEL_WARN</a> )</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot;!!! &quot;</span>) );</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a690d59b297cfa0b0386cca34499359bb">TOPIC_FILE_NAME_FLAG</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sMessageBuffer.append( topic.FileName() );</div>
+<div class="line">                        m_sMessageBuffer.append( <span class="charliteral">&#39;:&#39;</span> );</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a9f24ab5c004ed7d96bbf28101c3a0d92">TOPIC_LINE_NUMBER_FLAG</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sIntBuffer.assign( topic.LineNumber() );</div>
+<div class="line">                        m_sMessageBuffer.append( m_sIntBuffer );</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(<span class="stringliteral">&quot;: &quot;</span>));</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                RenderTimeOfDay();</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e">TOPIC_LEVEL_FLAG</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sMessageBuffer.append( ErrorDescription( topic.Level()));</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(<span class="stringliteral">&quot;: &quot;</span>));</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452aab69fb29fc10a7a575fa4c9afcea6866">TOPIC_GROUP_FLAG</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(<span class="stringliteral">&quot;{&quot;</span>) );</div>
+<div class="line">                        m_sMessageBuffer.append( topic.Group() );</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(<span class="stringliteral">&quot;} &quot;</span>) );</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a4659a9ff5b133763069abb0a5156cf78">TOPIC_CATEGORY_FLAG</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(<span class="stringliteral">&quot;[&quot;</span>));</div>
+<div class="line">                        m_sMessageBuffer.append( topic.Category() );</div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#ad862335db47791493a387abb20198c2f">LOGOG_CONST_STRING</a>(<span class="stringliteral">&quot;] &quot;</span>));</div>
+<div class="line">                }       </div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; <a class="code" href="group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452ad66fafb470de8f597165d0d293c78c29">TOPIC_MESSAGE_FLAG</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sMessageBuffer.append( topic.Message() );</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                <span class="comment">/* At this point we use the String&#39;s format() function to reformat the</span></div>
+<div class="line"><span class="comment">                * old string into the new format. </span></div>
+<div class="line"><span class="comment">                */</span></div>
+<div class="line">                <span class="keywordflow">if</span> ( topic.Level() &lt;= <a class="code" href="group__levelsettings.html#gab54a38b5c8b49d7c536ba53397249ea4">LOGOG_LEVEL_WARN</a> )</div>
+<div class="line">                {</div>
+<div class="line">                        <span class="comment">/* If this message is more important than LOGOG_LEVEL_WARN,</span></div>
+<div class="line"><span class="comment">                         * add exclamation marks</span></div>
+<div class="line"><span class="comment">                         */</span></div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot; !!!&quot;</span>) );</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">else</span></div>
+<div class="line">                {</div>
+<div class="line">                        <span class="comment">/* Otherwise add periods */</span></div>
+<div class="line">                        m_sMessageBuffer.append( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>(<span class="stringliteral">&quot; ...&quot;</span>) );</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( flags &amp; TOPIC_MESSAGE_FLAG )</div>
+<div class="line">                {</div>
+<div class="line">                        m_sMessageBuffer.append( (<a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a>)<span class="charliteral">&#39;\n&#39;</span> );</div>
+<div class="line">                }</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span> ( target.GetNullTerminatesStrings() )</div>
+<div class="line">                        m_sMessageBuffer.append( (<a class="code" href="string_8hpp.html#a29ad2dee9b60c484a1e44c478277dbcd">LOGOG_CHAR</a>)NULL );</div>
+<div class="line"></div>
+<div class="line">                <span class="comment">/* Return m_sMessageBuffer like the parent class does */</span></div>
+<div class="line">                <span class="keywordflow">return</span> m_sMessageBuffer;</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"></div>
+<div class="line"><a class="code" href="unittest_8hpp.html#a523f46554dbe14d52b9b4b6752a11d0b">UNITTEST</a>( CustomFormatterModified )</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="macro_8hpp.html#a1b41b739f9bbeacc6620a198e565332d" title="[Shorthand] ">LOGOG_INITIALIZE</a>();</div>
+<div class="line">    {</div>
+<div class="line">                <span class="comment">/* This test produces output resembling: </span></div>
+<div class="line"><span class="comment">                 </span></div>
+<div class="line"><span class="comment">                 C:\logog\test\test.cpp:484: info: This info message output has trailing periods ...</span></div>
+<div class="line"><span class="comment">                 !!! C:\logog\test\test.cpp:485: warning: This warning message is surrounded by exclamation marks !!!</span></div>
+<div class="line"><span class="comment"></span></div>
+<div class="line"><span class="comment">                 */</span></div>
+<div class="line"></div>
+<div class="line">        Cout out;</div>
+<div class="line">        <a class="code" href="class_formatter_modified.html" title="[FormatterCustom1] ">FormatterModified</a> customFormat;</div>
+<div class="line"></div>
+<div class="line">        out.SetFormatter( customFormat );</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="macro_8hpp.html#aedf01192151e10a6620567952711ff69">INFO</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;This info message output has trailing periods&quot;</span>) );</div>
+<div class="line">        <a class="code" href="macro_8hpp.html#a8f75b971030a39ef811d3526a62b36b8">WARN</a>( <a class="code" href="string_8hpp.html#a3fb0a6b6623ebd4d9f20344af56c8471">_LG</a>( <span class="stringliteral">&quot;This warning message is surrounded by exclamation marks&quot;</span>) );</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="macro_8hpp.html#a27abf02f896666169d052fff025f1a73">LOGOG_SHUTDOWN</a>();</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
 </div><!-- fragment --></div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Aug 11 2013 13:23:18 for logog by
+    <li class="footer">Generated on Mon Oct 14 2013 11:50:13 for logog by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

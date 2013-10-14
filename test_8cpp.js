@@ -1,6 +1,7 @@
 var test_8cpp =
 [
     [ "FormatterCustom", "class_formatter_custom.html", null ],
+    [ "FormatterModified", "class_formatter_modified.html", null ],
     [ "LOGOG_CATEGORY", "test_8cpp.html#ae1e90cf6f71ddfef56a5cdac45b06954", null ],
     [ "LOGOG_CATEGORY", "test_8cpp.html#ae1e90cf6f71ddfef56a5cdac45b06954", null ],
     [ "LOGOG_CATEGORY", "test_8cpp.html#ae1e90cf6f71ddfef56a5cdac45b06954", null ],
@@ -41,6 +42,7 @@ var test_8cpp =
     [ "UNITTEST", "test_8cpp.html#a919ae2a489622095976b2aec98af8468", null ],
     [ "UNITTEST", "test_8cpp.html#aecfc625dc3064fc4125ce56e2839b2f7", null ],
     [ "UNITTEST", "test_8cpp.html#ab84bbdf0848c867070b33f05b3895fe7", null ],
+    [ "UNITTEST", "test_8cpp.html#afd7c85e4e35c4f43c9cf0eb9fc5a7084", null ],
     [ "UNITTEST", "test_8cpp.html#a17813169b9ef70e48f296aac9f619c2c", null ],
     [ "UNITTEST", "test_8cpp.html#a8e6d4da08112ec84d37d2efc7d05e9ef", null ],
     [ "UNITTEST", "test_8cpp.html#a3b336f672320dece8f368cef4971c6ea", null ],
@@ -52,6 +54,8 @@ var test_8cpp =
     [ "UNITTEST", "test_8cpp.html#a0a6d2a221bc0fcfe8b2acbe3a2e2f626", null ],
     [ "UNITTEST", "test_8cpp.html#ae9576aae9d5086e7f3bb6fc7f59d54a5", null ],
     [ "UNITTEST", "test_8cpp.html#ab4497cc9c4edda813d0c5cef3ba98547", null ],
+    [ "UNITTEST", "test_8cpp.html#aca81fa067012ee809fc50192e70d0ca3", null ],
+    [ "UNITTEST", "test_8cpp.html#a9cfefc01614988f9319695ccdd83ead1", null ],
     [ "_s_ThreadLockingTest", "test_8cpp.html#a96f74b9a400e36bce8eb4b44da9630ca", null ],
     [ "TEST_STRESS_LEVEL", "test_8cpp.html#ac8ed61f291cc40d06b9c3b9b02371a2c", null ]
 ];
