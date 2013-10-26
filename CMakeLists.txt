@@ -7,6 +7,12 @@ set( LOGOG_USE_PREFIX FALSE CACHE BOOL "Apply a LOGOG_ prefix to all logging mac
 set( LOGOG_LEAK_DETECTION FALSE CACHE BOOL "Enable detection of internal leaks in the library")
 set( LOGOG_LEAK_DETECTION_MICROSOFT CACHE BOOL "Enable detection of internal leaks using Microsoft's crt mechanism" )
 set( LOGOG_UNIT_TESTING FALSE CACHE BOOL "Enable logog's internal unit testing framework.")
+set( LOGOG_USE_COTIRE TRUE CACHE BOOL "Use cotire to speed up builds.")
+
+if( LOGOG_USE_COTIRE )
+	set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")	
+	include(cotire OPTIONAL)
+endif()
 
 if ( LOGOG_LEAK_DETECTION AND LOGOG_LEAK_DETECTION_MICROSOFT )
 	message( FATAL_ERROR "Can't enable both LOGOG_LEAK_DETECTION and LOGOG_LEAK_DETECTION_MICROSOFT, choose one or the other")
@@ -38,7 +44,6 @@ find_package( Threads )
 set( RUNTIME_OUTPUT_DIRECTORY bin/ )
 set( ARCHIVE_OUTPUT_DIRECTORY bin/ )
 set( LIBRARY_OUTPUT_DIRECTORY bin/ )
-set( CMAKE_BINARY_DIR build/ )
 set( CMAKE_LEGACY_CYGWIN_WIN32 0 )
 
 if(MSVC)
@@ -75,6 +80,11 @@ add_library( logog
 set_target_properties(logog PROPERTIES DEBUG_POSTFIX "d")
 add_executable( test-logog test/test.cpp )
 target_link_libraries( test-logog logog ${CMAKE_THREAD_LIBS_INIT})
+if( LOGOG_USE_COTIRE )
+	if (COMMAND cotire)
+		cotire( logog )
+	endif()
+endif()
 
 add_test( NAME test-harness COMMAND test-logog )
 install(TARGETS logog ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)

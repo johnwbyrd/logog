@@ -22,15 +22,12 @@
 #include "topic.hpp"
 #include "formatter.hpp"
 #include "target.hpp"
-// #include "socket.hpp"
+#include "socket.hpp"
 #include "checkpoint.hpp"
 #include "api.hpp"
 #include "message.hpp"
 #include "macro.hpp"
-
-#ifdef LOGOG_UNIT_TESTING
 #include "thread.hpp"
 #include "unittest.hpp"
-#endif
 
 #endif // __LOGOG_HPP_
