@@ -22,7 +22,7 @@
 #include "topic.hpp"
 #include "formatter.hpp"
 #include "target.hpp"
-#include "socket.hpp"
+// #include "socket.hpp"
 #include "checkpoint.hpp"
 #include "api.hpp"
 #include "message.hpp"
