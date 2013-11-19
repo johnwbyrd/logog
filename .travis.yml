@@ -9,5 +9,6 @@ script:
    pushd build/Debug && 
    cmake -DCMAKE_BUILD_TYPE=Debug ../.. && 
    make &&
-   ctest -C Debug &&
+   ctest -VV -C Debug &&
+   ./test-logog &
    popd
