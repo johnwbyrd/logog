@@ -10,3 +10,8 @@ script:
    cmake -DCMAKE_BUILD_TYPE=Debug ../.. && 
    make &&
    ctest -VV -C Debug &&
+   cd ../Release && 
+   cmake -DCMAKE_BUILD_TYPE=Release ../.. && 
+   make &&
+   ctest -VV -C Release &&
+
