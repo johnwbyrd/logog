@@ -1,0 +1,10 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+script:
+   mkdir build
+   cd build
+   cmake ..
+   ctest -C release
+   ctest -C debug
