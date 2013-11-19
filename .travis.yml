@@ -4,7 +4,10 @@ compiler:
   - clang
 script:
    mkdir build &&
-   cd build && 
-   cmake .. && 
-   ctest -C release &&
-   ctest -C debug
+   mkdir build/Debug && 
+   mkdir build/Release &&
+   pushd build/Debug && 
+   cmake -DCMAKE_BUILD_TYPE=Debug ../.. && 
+   make &&
+   ctest -C Debug &&
+   popd
