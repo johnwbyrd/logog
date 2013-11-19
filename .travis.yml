@@ -6,9 +6,7 @@ script:
    mkdir build &&
    mkdir build/Debug && 
    mkdir build/Release &&
-   pushd build/Debug && 
+   cd build/Debug && 
    cmake -DCMAKE_BUILD_TYPE=Debug ../.. && 
    make &&
    ctest -VV -C Debug &&
-   ./test-logog &
-   popd
