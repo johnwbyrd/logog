@@ -51,6 +51,11 @@ namespace logog {
 		return GetStaticNodes( &(Static().s_pAllTargets ) );
 	}
 
+    LockableNodesType &AllMessages()
+    {
+        return GetStaticNodes( &(Static().s_pAllMessages ) );
+    }
+
 	Node::Node()
 	{
 		AllNodes().insert( this );

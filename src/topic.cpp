@@ -9,9 +9,31 @@ namespace logog {
 
 	void SetDefaultLevel( LOGOG_LEVEL_TYPE level )
 	{
+
 		Filter *pDefaultFilter = &GetDefaultFilter();
+        LOGOG_LEVEL_TYPE currentLevel = pDefaultFilter->Level();
+        if(currentLevel == level) return;
 
 		pDefaultFilter->Level( level );
+
+        LockableNodesType::iterator it = AllMessages().begin();
+        while(it != AllMessages().end()) {
+            Message* message = static_cast<Message*>(*it);
+            LOGOG_LEVEL_TYPE msgLevel = message->Level();
+            // Need to publish the message if the new level is higher, 
+            // and unpublish if it's lower
+            if(level > currentLevel) {
+                if(msgLevel > currentLevel && msgLevel <= level) {
+                    message->PublishToMultiple( AllFilters() );
+                }
+            }
+            else {  
+                if(msgLevel <= currentLevel && msgLevel > level) {
+                    message->UnpublishToMultiple( AllFilters() );
+                }
+            }
+            it++;
+        }
 	}
 
 	Topic::Topic( const LOGOG_LEVEL_TYPE level ,
