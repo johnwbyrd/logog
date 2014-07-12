@@ -8,7 +8,8 @@
 namespace logog {
 
 	Formatter::Formatter() :
-		m_bShowTimeOfDay( false )
+		m_bShowTimeOfDay( false ),
+        m_TimeOfDayFormat( LOGOG_DEFAULT_TIME_FORMAT ) 
 	{
 		m_sMessageBuffer.reserve( LOGOG_FORMATTER_MAX_LENGTH );
 		m_sIntBuffer.reserve_for_int();
@@ -20,7 +21,7 @@ namespace logog {
 		{
 #ifndef LOGOG_UNICODE
 			TimeStamp stamp;
-			m_sMessageBuffer.append( stamp.Get() );
+			m_sMessageBuffer.append( stamp.Get(m_TimeOfDayFormat) );
 			m_sMessageBuffer.append(": ");
 #endif
 		}
@@ -73,6 +74,13 @@ namespace logog {
 	{
 		m_bShowTimeOfDay = val;
 	}
+
+#ifndef LOGOG_UNICODE
+	void Formatter::SetTimeOfDayFormat( const char *fmt )
+	{
+		m_TimeOfDayFormat = fmt;
+	}
+#endif
 
 	TOPIC_FLAGS Formatter::GetTopicFlags( const Topic &topic )
 	{
@@ -221,7 +229,7 @@ namespace logog {
 		pStatic->s_pDefaultFormatter = NULL;
 }
 
-const char * TimeStamp::Get()
+const char * TimeStamp::Get(const char* fmt)
 {
 	time_t tRawTime;
 	struct tm * tmInfo;
@@ -240,7 +248,7 @@ const char * TimeStamp::Get()
 
 	cTimeString[ 0 ] = '\0';
 	if ( tmInfo != NULL )
-		strftime (cTimeString, LOGOG_TIME_STRING_MAX, "%c", tmInfo);
+		strftime (cTimeString, LOGOG_TIME_STRING_MAX, fmt, tmInfo);
 
 	return cTimeString;
 }

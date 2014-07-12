@@ -9,6 +9,8 @@ namespace logog
 {
 
 #define LOGOG_TIME_STRING_MAX 80
+/** The default time format used to render the time. */
+#define LOGOG_DEFAULT_TIME_FORMAT "%c"
 
 /** A helper object for generating a current timestamp as a string. */
 class TimeStamp : public Object
@@ -18,7 +20,7 @@ public:
 	 ** valid while this object is valid -- if you destroy this object, this pointer is no longer
 	 ** valid.
 	 */
-	const char *Get();
+	const char *Get(const char *fmt=LOGOG_DEFAULT_TIME_FORMAT);
 
 protected:
 	char cTimeString[ LOGOG_TIME_STRING_MAX ]; 
@@ -58,6 +60,10 @@ public:
 
 	/** Sets whether this formatter renders the current time of day. */
 	void SetShowTimeOfDay(bool val);
+#ifndef LOGOG_UNICODE
+	/** Sets the time format used to render the time. It will be passed to strftime, defaults to LOGOG_DEFAULT_TIME_FORMAT.*/
+	void SetTimeOfDayFormat( const char *fmt );
+#endif
 
 protected:
     const LOGOG_CHAR *ErrorDescription( const LOGOG_LEVEL_TYPE level );
@@ -66,6 +72,8 @@ protected:
     LOGOG_STRING m_sIntBuffer;
 
 	bool m_bShowTimeOfDay;
+    LOGOG_STRING m_TimeOfDayFormat;
+
 };
 
 class FormatterGCC : public Formatter
