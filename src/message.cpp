@@ -24,6 +24,8 @@ namespace logog
         /* Messages are always sources, so there's no need to call Initialize() here */
         // Initialize();
 
+        AllMessages().insert( this );
+
         /* NOTE!  The message is typically assigned to a checkpoint AFTER it's been published.
          * Ergo a message needs to be unpublished from, and published to, all filters
          * iff one of those filters is searching for a substring of that message.
