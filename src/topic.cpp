@@ -16,9 +16,10 @@ namespace logog {
 
 		pDefaultFilter->Level( level );
 
-        LockableNodesType::iterator it = AllMessages().begin();
+        LockableNodesType::const_iterator it = AllMessages().begin();
         while(it != AllMessages().end()) {
             Message* message = static_cast<Message*>(*it);
+
             LOGOG_LEVEL_TYPE msgLevel = message->Level();
             // Need to publish the message if the new level is higher, 
             // and unpublish if it's lower

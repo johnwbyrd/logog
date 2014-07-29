@@ -949,6 +949,185 @@ UNITTEST ( LoggingInsideIfThenStatement )
     return 0;
 }
 
+
+UNITTEST ( ChangeLogLevelAtRuntime )
+{
+	LOGOG_INITIALIZE();
+	{
+		logog::Cout out;
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_NONE);
+
+        EMERGENCY(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        ALERT(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        CRITICAL(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        ERR(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        WARN(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        WARN1(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_NONE"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_EMERGENCY);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_EMERGENCY"));
+        ALERT(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        CRITICAL(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        ERR(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        WARN(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        WARN1(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_EMERGENCY"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_ALERT);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_ALERT"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_ALERT"));
+        CRITICAL(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        ERR(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        WARN(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        WARN1(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_ALERT"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_CRITICAL);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_CRITICAL"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_CRITICAL"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_CRITICAL"));
+        ERR(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+        WARN(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+        WARN1(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_CRITICAL"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_ERROR);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_ERROR"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_ERROR"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_ERROR"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_ERROR"));
+        WARN(_LG("NOT SHOWN at level LOGOG_LEVEL_ERROR"));
+        WARN1(_LG("NOT SHOWN at level LOGOG_LEVEL_ERROR"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_ERROR"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_ERROR"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_ERROR"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_ERROR"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_WARN);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_WARN"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_WARN"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_WARN"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_WARN"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_WARN"));
+        WARN1(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_WARN1);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_WARN1"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_WARN1"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_WARN1"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_WARN1"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_WARN1"));
+        WARN1(_LG("Shown at level LOGOG_LEVEL_WARN1"));
+        WARN2(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN1"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN1"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN1"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN1"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_WARN2);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        WARN1(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        WARN2(_LG("Shown at level LOGOG_LEVEL_WARN2"));
+        WARN3(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN2"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN2"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN2"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_WARN3);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        WARN1(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        WARN2(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        WARN3(_LG("Shown at level LOGOG_LEVEL_WARN3"));
+        INFO(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN3"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_WARN3"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_INFO);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        WARN1(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        WARN2(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        WARN3(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        INFO(_LG("Shown at level LOGOG_LEVEL_INFO"));
+        DBUG(_LG("NOT SHOWN at level LOGOG_LEVEL_INFO"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_DEBUG);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        WARN1(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        WARN2(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        WARN3(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        INFO(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+        DBUG(_LG("Shown at level LOGOG_LEVEL_DEBUG"));
+
+
+        logog::SetDefaultLevel(LOGOG_LEVEL_ALL);
+
+        EMERGENCY(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        ALERT(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        CRITICAL(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        ERR(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        WARN(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        WARN1(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        WARN2(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        WARN3(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        INFO(_LG("Shown at level LOGOG_LEVEL_ALL"));
+        DBUG(_LG("Shown at level LOGOG_LEVEL_ALL"));
+
+    }
+    LOGOG_SHUTDOWN();
+    return 0;
+}
+
 #ifndef LOGOG_TARGET_PS3
 int DoPlatformSpecificTestInitialization()
 {
