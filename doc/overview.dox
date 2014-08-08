@@ -75,7 +75,7 @@ within five minutes by reading the \ref quickstart section.
 - \ref community
 
 \htmlonly
-<iframe id="forum_embed"
+<iframe id="forum_embed_logog"
   src="javascript:void(0)"
   scrolling="no"
   frameborder="0"
@@ -83,7 +83,7 @@ within five minutes by reading the \ref quickstart section.
   height="700">
 </iframe>
 <script type="text/javascript">
-  document.getElementById('forum_embed').src =
+  document.getElementById('forum_embed_logog').src =
      'https://groups.google.com/forum/embed/?place=forum/logog'
      + '&showsearch=true&showpopout=true&showtabs=false'
      + '&parenturl=' + encodeURIComponent(window.location.href);
@@ -865,7 +865,7 @@ visible at
 All users of logog are invited to join this mailing list for general discussion and help.
 
 \htmlonly
-<iframe id="forum_embed"
+<iframe id="forum_embed_logog"
   src="javascript:void(0)"
   scrolling="no"
   frameborder="0"
@@ -873,7 +873,7 @@ All users of logog are invited to join this mailing list for general discussion 
   height="400">
 </iframe>
 <script type="text/javascript">
-  document.getElementById('forum_embed').src =
+  document.getElementById('forum_embed_logog').src =
      'https://groups.google.com/forum/embed/?place=forum/logog'
      + '&showsearch=true&showpopout=true&showtabs=false'
      + '&parenturl=' + encodeURIComponent(window.location.href);
@@ -885,7 +885,7 @@ development of logog.  The mailing list is visible at
 <a href="http://groups.google.com/group/logog-devel">http://groups.google.com/group/logog-devel</a>.
 
 \htmlonly
-<iframe id="forum_embed"
+<iframe id="forum_embed_logog_devel"
   src="javascript:void(0)"
   scrolling="no"
   frameborder="0"
@@ -893,7 +893,7 @@ development of logog.  The mailing list is visible at
   height="400">
 </iframe>
 <script type="text/javascript">
-  document.getElementById('forum_embed').src =
+  document.getElementById('forum_embed_logog_devel').src =
      'https://groups.google.com/forum/embed/?place=forum/logog-devel'
      + '&showsearch=true&showpopout=true&showtabs=false'
      + '&parenturl=' + encodeURIComponent(window.location.href);
