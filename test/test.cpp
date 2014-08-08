@@ -610,7 +610,7 @@ UNITTEST( GroupCategory2 )
     LOGOG_INITIALIZE();
 
     {
-        GetDefaultFilter().Category(_LG("Unrecoverable"));
+        GetFilterDefault().Category(_LG("Unrecoverable"));
         Cerr err;
 
         WARN(_LG("Logging messages in the Unrecoverable category..."));
@@ -651,8 +651,8 @@ UNITTEST( GroupCategory3 )
 
     {
 		/* Assigning a group twice does not leak memory. */
-		GetDefaultFilter().Group( _LG( "Controller" ));
-        GetDefaultFilter().Group( _LG( "Graphics" ));
+		GetFilterDefault().Group(_LG("Controller"));
+		GetFilterDefault().Group(_LG("Graphics"));
 
         Cerr err;
         WARN(_LG("This message won't happen because it's not in the Graphics group"));
@@ -690,7 +690,7 @@ UNITTEST( GroupCategory4 )
     LOGOG_INITIALIZE();
 
     {
-        GetDefaultFilter().Group(_LG("Graphics"));
+		GetFilterDefault().Group(_LG("Graphics"));
         Filter filter;
         filter.Group(_LG("Audio"));
         Cerr err;
@@ -984,6 +984,7 @@ UNITTEST(ChangeLevelDynamically)
 	int numLevels = 0;
 	while (levels[numLevels++] != LOGOG_LEVEL_ALL)
 		;
+	numLevels--;
 
 	LOGOG_INITIALIZE();
 	{
@@ -1010,7 +1011,7 @@ UNITTEST(ChangeLevelDynamically)
 			DBUG(_LG("This message is DEBUG (%d)"), i);
 
 			i += id;
-			if ((i == 0) || (i == 9))
+			if ((i == 0) || (i == numLevels))
 				id = -id;
 		}
 	}

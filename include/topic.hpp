@@ -16,6 +16,7 @@ class Topic : public Node
 {
     friend class TopicLevel;
     friend class TopicGroup;
+	friend class FilterDefault;
 
 public:
     /** Creates a topic.  Note the defaults for creating a topic -- these defaults are equivalent to "no setting"
@@ -134,8 +135,23 @@ public:
             const double dTimestamp = 0.0f );
 };
 
+/** A FilterDefault represents a singleton filter whose level may be changed dynamically
+* at run time.  We only determine message routing once, when a message is invoked the
+* first time.  So therefore a FilterDefault subscribes to all normal messages but
+* disregards the logging level at routing negotiation time.  Instead it forwards
+* messages only if the dynamic level check succeeds.
+*/
+class FilterDefault : public Filter
+{
+	typedef Filter super;
+public:
+	FilterDefault(const LOGOG_LEVEL_TYPE level);
+	int Receive(const Topic &node);
+	void Level(LOGOG_LEVEL_TYPE level);
+};
+
 /** Returns a reference to the unique default filter instantiated with logog. */
-extern Filter &GetDefaultFilter();
+extern FilterDefault &GetFilterDefault();
 
 /** Sets the current reporting level for the default filter.  All messages
   * connected to the filter after this point should obey this default

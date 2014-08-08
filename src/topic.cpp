@@ -9,7 +9,7 @@ namespace logog {
 
 	void SetDefaultLevel( LOGOG_LEVEL_TYPE level )
 	{
-		Filter *pDefaultFilter = &GetDefaultFilter();
+		FilterDefault *pDefaultFilter = &GetFilterDefault();
 
 		pDefaultFilter->Level( level );
 	}
@@ -326,15 +326,10 @@ namespace logog {
 		const double dTimestamp ) :
 	Topic( level, sFileName, nLineNumber, sGroup, sCategory, sMessage, dTimestamp )
 	{
-		Statics *pStatic = &Static();
-
 #ifdef LOGOG_INTERNAL_DEBUGGING
 		if ( pStatic == NULL )
 			LOGOG_INTERNAL_FAILURE;
 #endif
-
-		if ( pStatic->s_pDefaultFilter == NULL )
-			pStatic->s_pDefaultFilter = this;
 
 		PublishToMultiple( AllTargets() );
 
@@ -346,8 +341,37 @@ namespace logog {
 		}
 	}
 
-	Filter &GetDefaultFilter()
+	/** A FilterDefault represents a singleton filter whose level may be changed dynamically 
+	  * at run time.  We only determine message routing once, when a message is invoked the
+	  * first time.  So therefore a FilterDefault subscribes to all normal messages but
+	  * disregards the logging level at routing negotiation time.  Instead it forwards
+	  * messages only if the dynamic level check succeeds. 
+	 */
+	FilterDefault::FilterDefault(const LOGOG_LEVEL_TYPE level) :
+		Filter( level )
 	{
+		/* We store the level but don't check it until message passing time */
+		m_TopicFlags &= ~TOPIC_LEVEL_FLAG;
+	}
+
+	void FilterDefault::Level(LOGOG_LEVEL_TYPE level)
+	{
+		m_vIntProps[TOPIC_LEVEL] = level;
+		m_TopicFlags &= ~TOPIC_LEVEL_FLAG;
+	}
+
+	/** The FilterDefault silently discards messages that don't pass the level check. */
+	int FilterDefault::Receive(const Topic &node)
+	{
+		/* Topic levels are less interesting the larger the numbers are. */
+		if (node.m_vIntProps[TOPIC_LEVEL] > m_vIntProps[TOPIC_LEVEL])
+			return 0;
+
+		return super::Receive(node);
+	}
+
+	extern FilterDefault & GetFilterDefault()
+{
 		Statics *pStatic = &Static();
 
 #ifdef LOGOG_INTERNAL_DEBUGGING
@@ -357,10 +381,10 @@ namespace logog {
 
 		if ( pStatic->s_pDefaultFilter == NULL )
 		{
-			pStatic->s_pDefaultFilter = new Filter( LOGOG_LEVEL );
+			pStatic->s_pDefaultFilter = new FilterDefault( LOGOG_LEVEL );
 		}
 
-		return *((Filter *)(pStatic->s_pDefaultFilter));
+		return *((FilterDefault *)pStatic->s_pDefaultFilter);
 	}
 
 	TopicGroup::TopicGroup( const LOGOG_CHAR *sGroup ) :
