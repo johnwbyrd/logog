@@ -391,6 +391,9 @@ INFO("The core has exploded %d times", nExploded++);
 The nExploded variable will only be incremented if LOGOG_LEVEL is set to LOGOG_LEVEL_INFO
 or lower.
 
+In addition or alternately, you may dynamically change the logging level at run-time
+in your application by calling the SetDefaultLevel() function.
+
 \page filters Filters and their uses
 
 A Filter is a special type of Topic that accepts messages from a publisher

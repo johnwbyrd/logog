@@ -610,7 +610,7 @@ UNITTEST( GroupCategory2 )
     LOGOG_INITIALIZE();
 
     {
-        GetDefaultFilter().Category(_LG("Unrecoverable"));
+        GetFilterDefault().Category(_LG("Unrecoverable"));
         Cerr err;
 
         WARN(_LG("Logging messages in the Unrecoverable category..."));
@@ -651,8 +651,8 @@ UNITTEST( GroupCategory3 )
 
     {
 		/* Assigning a group twice does not leak memory. */
-		GetDefaultFilter().Group( _LG( "Controller" ));
-        GetDefaultFilter().Group( _LG( "Graphics" ));
+		GetFilterDefault().Group(_LG("Controller"));
+		GetFilterDefault().Group(_LG("Graphics"));
 
         Cerr err;
         WARN(_LG("This message won't happen because it's not in the Graphics group"));
@@ -690,7 +690,7 @@ UNITTEST( GroupCategory4 )
     LOGOG_INITIALIZE();
 
     {
-        GetDefaultFilter().Group(_LG("Graphics"));
+		GetFilterDefault().Group(_LG("Graphics"));
         Filter filter;
         filter.Group(_LG("Audio"));
         Cerr err;
@@ -947,6 +947,77 @@ UNITTEST ( LoggingInsideIfThenStatement )
     }
     LOGOG_SHUTDOWN();
     return 0;
+}
+
+UNITTEST(ChangeLevelDynamically)
+{
+	LOGOG_LEVEL_TYPE levels[] = {
+		LOGOG_LEVEL_NONE,
+		LOGOG_LEVEL_EMERGENCY,
+		LOGOG_LEVEL_ALERT,
+		LOGOG_LEVEL_CRITICAL,
+		LOGOG_LEVEL_ERROR,
+		LOGOG_LEVEL_WARN,
+		LOGOG_LEVEL_WARN1,
+		LOGOG_LEVEL_WARN2,
+		LOGOG_LEVEL_WARN3,
+		LOGOG_LEVEL_INFO,
+		LOGOG_LEVEL_DEBUG,
+		LOGOG_LEVEL_ALL
+	};
+
+	LOGOG_CHAR *levelDescriptions[] = {
+		_LG("LOGOG_LEVEL_NONE"),
+		_LG("LOGOG_LEVEL_EMERGENCY"),
+		_LG("LOGOG_LEVEL_ALERT"),
+		_LG("LOGOG_LEVEL_CRITICAL"),
+		_LG("LOGOG_LEVEL_ERROR"),
+		_LG("LOGOG_LEVEL_WARN"),
+		_LG("LOGOG_LEVEL_WARN1"),
+		_LG("LOGOG_LEVEL_WARN2"),
+		_LG("LOGOG_LEVEL_WARN3"),
+		_LG("LOGOG_LEVEL_INFO"),
+		_LG("LOGOG_LEVEL_DEBUG"),
+		_LG("LOGOG_LEVEL_ALL")
+	};
+
+	int numLevels = 0;
+	while (levels[numLevels++] != LOGOG_LEVEL_ALL)
+		;
+	numLevels--;
+
+	LOGOG_INITIALIZE();
+	{
+		Cerr err;
+
+		int i, id;
+		i = numLevels / 2;
+		id = 1;
+
+		for (int j = 0; j <= 100 * TEST_STRESS_LEVEL; j++)
+		{
+			EMERGENCY(_LG("Setting default level to %s..."), levelDescriptions[i]);
+			SetDefaultLevel(levels[i]);
+
+			EMERGENCY(_LG("This message is EMERGENCY (%d)"), i);
+			ALERT(_LG("This message is ALERT (%d)"), i);
+			CRITICAL(_LG("This message is CRITICAL (%d)"), i);
+			ERR(_LG("This message is ERROR (%d)"), i);
+			WARN(_LG("This message is WARN (%d)"), i);
+			WARN1(_LG("This message is WARN1 (%d)"), i);
+			WARN2(_LG("This message is WARN2 (%d)"), i);
+			WARN3(_LG("This message is WARN3 (%d)"), i);
+			INFO(_LG("This message is INFO (%d)"), i);
+			DBUG(_LG("This message is DEBUG (%d)"), i);
+
+			i += id;
+			if ((i == 0) || (i == numLevels))
+				id = -id;
+		}
+	}
+
+	LOGOG_SHUTDOWN();
+	return 0;
 }
 
 #ifndef LOGOG_TARGET_PS3

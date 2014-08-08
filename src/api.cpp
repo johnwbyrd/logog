@@ -34,7 +34,7 @@ void Initialize( INIT_PARAMS *params )
 		}
 
 		// Let's allocate a default filter here.
-		GetDefaultFilter();
+		GetFilterDefault();
 
 		// Socket::Initialize();
 	}
