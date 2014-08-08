@@ -190,9 +190,9 @@ CMake is a free cross-platform build system, and executables are available for
 most major platforms and development environments.  Download and install CMake
 in order to generate a build for your platform.
 
-For example, to build the project and libraries on Visual Studio 2008, find and launch
-the Visual Studio 2008 Command Prompt at <b>Microsoft Visual Studio 2008 / Visual Studio Tools /
-Visual Studio 2008 Command Prompt.</b>
+For example, to build the project and libraries on Visual Studio 2013, find and launch
+the Visual Studio 2013 Command Prompt at <b>Microsoft Visual Studio 2013 / Visual Studio Tools /
+Visual Studio 2013 Command Prompt.</b>
 
 Then, to create the appropriate project files, create an empty directory, make that 
 directory the current directory, and run the CMake command with the logog directory as 
@@ -817,7 +817,9 @@ logog has been demonstrated to work with the following platforms:
 - Microsoft Visual Studio 2008
 - Microsoft Visual Studio 2010 (x64 and x86)
 - Microsoft Visual Studio 2012 (x64 and x86)
+- Microsoft Visual Studio 2013 (x64 and x86)
 - Ubuntu 10.04 LTS
+- CentOS 6.5
 - MacOS 10.7
 - AIX 6.1 / XlC 10.1
 - Xbox 360
