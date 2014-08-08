@@ -56,6 +56,7 @@ var test_8cpp =
     [ "UNITTEST", "test_8cpp.html#ab4497cc9c4edda813d0c5cef3ba98547", null ],
     [ "UNITTEST", "test_8cpp.html#aca81fa067012ee809fc50192e70d0ca3", null ],
     [ "UNITTEST", "test_8cpp.html#a9cfefc01614988f9319695ccdd83ead1", null ],
+    [ "UNITTEST", "test_8cpp.html#a30bbbdb7f435e735f16bf0758d3225ca", null ],
     [ "_s_ThreadLockingTest", "test_8cpp.html#a96f74b9a400e36bce8eb4b44da9630ca", null ],
     [ "TEST_STRESS_LEVEL", "test_8cpp.html#ac8ed61f291cc40d06b9c3b9b02371a2c", null ]
 ];

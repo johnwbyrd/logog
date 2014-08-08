@@ -18,7 +18,9 @@ var hierarchy =
       ] ],
       [ "Node", "classlogog_1_1_node.html", [
         [ "Topic", "classlogog_1_1_topic.html", [
-          [ "Filter", "classlogog_1_1_filter.html", null ],
+          [ "Filter", "classlogog_1_1_filter.html", [
+            [ "FilterDefault", "classlogog_1_1_filter_default.html", null ]
+          ] ],
           [ "TopicGroup", "classlogog_1_1_topic_group.html", null ],
           [ "TopicLevel", "classlogog_1_1_topic_level.html", null ],
           [ "TopicSink", "classlogog_1_1_topic_sink.html", [
