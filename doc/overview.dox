@@ -75,25 +75,19 @@ within five minutes by reading the \ref quickstart section.
 - \ref community
 
 \htmlonly
-<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
-  <tr><td>
-  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
-         height=30 width=140 alt="Google Groups">
-  </td></tr>
-  <tr><td style="padding-left: 5px">
-  <b>Subscribe to Logog</b>
-  </td></tr>
-  <form action="http://groups.google.com/group/logog/boxsubscribe">
-  <input type=hidden name="hl" value="en">
-  <tr><td style="padding-left: 5px;">
-  Email: <input type=text name=email>
-  <input type=submit name="sub" value="Subscribe">
-  </td></tr>
-</form>
-<tr><td align=right>
-  <a href="http://groups.google.com/group/logog?hl=en">Visit this group</a>
-</td></tr>
-</table>
+<iframe id="forum_embed"
+  src="javascript:void(0)"
+  scrolling="no"
+  frameborder="0"
+  width="900"
+  height="700">
+</iframe>
+<script type="text/javascript">
+  document.getElementById('forum_embed').src =
+     'https://groups.google.com/forum/embed/?place=forum/logog'
+     + '&showsearch=true&showpopout=true&showtabs=false'
+     + '&parenturl=' + encodeURIComponent(window.location.href);
+</script>
 \endhtmlonly
 
 
@@ -871,25 +865,19 @@ visible at
 All users of logog are invited to join this mailing list for general discussion and help.
 
 \htmlonly
-<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
-  <tr><td>
-  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
-         height=30 width=140 alt="Google Groups">
-  </td></tr>
-  <tr><td style="padding-left: 5px">
-  <b>Subscribe to Logog</b>
-  </td></tr>
-  <form action="http://groups.google.com/group/logog/boxsubscribe">
-  <input type=hidden name="hl" value="en">
-  <tr><td style="padding-left: 5px;">
-  Email: <input type=text name=email>
-  <input type=submit name="sub" value="Subscribe">
-  </td></tr>
-</form>
-<tr><td align=right>
-  <a href="http://groups.google.com/group/logog?hl=en">Visit this group</a>
-</td></tr>
-</table>
+<iframe id="forum_embed"
+  src="javascript:void(0)"
+  scrolling="no"
+  frameborder="0"
+  width="800"
+  height="400">
+</iframe>
+<script type="text/javascript">
+  document.getElementById('forum_embed').src =
+     'https://groups.google.com/forum/embed/?place=forum/logog'
+     + '&showsearch=true&showpopout=true&showtabs=false'
+     + '&parenturl=' + encodeURIComponent(window.location.href);
+</script>
 \endhtmlonly
 
 The second mailing list is for those who wish to actively participate in the
@@ -897,24 +885,19 @@ development of logog.  The mailing list is visible at
 <a href="http://groups.google.com/group/logog-devel">http://groups.google.com/group/logog-devel</a>.
 
 \htmlonly
-<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
-  <tr><td>
-  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
-         height=30 width=140 alt="Google Groups">
-  </td></tr>
-  <tr><td style="padding-left: 5px">
-  <b>Subscribe to Logog Development</b>
-  </td></tr>
-  <form action="http://groups.google.com/group/logog-devel/boxsubscribe">
-  <tr><td style="padding-left: 5px;">
-  Email: <input type=text name=email>
-  <input type=submit name="sub" value="Subscribe">
-  </td></tr>
-</form>
-<tr><td align=right>
-  <a href="http://groups.google.com/group/logog-devel">Visit this group</a>
-</td></tr>
-</table>
+<iframe id="forum_embed"
+  src="javascript:void(0)"
+  scrolling="no"
+  frameborder="0"
+  width="800"
+  height="400">
+</iframe>
+<script type="text/javascript">
+  document.getElementById('forum_embed').src =
+     'https://groups.google.com/forum/embed/?place=forum/logog-devel'
+     + '&showsearch=true&showpopout=true&showtabs=false'
+     + '&parenturl=' + encodeURIComponent(window.location.href);
+</script>
 \endhtmlonly
 
 The best way to get help with a specific problem is to submit an issue
