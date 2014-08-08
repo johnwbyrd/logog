@@ -13,5 +13,6 @@ script:
    cd ../Release && 
    cmake -DCMAKE_BUILD_TYPE=Release ../.. && 
    make &&
-   ctest -VV -C Release &&
+   ctest -VV -C Release
+   
 
