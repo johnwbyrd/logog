@@ -966,7 +966,7 @@ UNITTEST(ChangeLevelDynamically)
 		LOGOG_LEVEL_ALL
 	};
 
-	LOGOG_CHAR *levelDescriptions[] = {
+	const LOGOG_CHAR *levelDescriptions[] = {
 		_LG("LOGOG_LEVEL_NONE"),
 		_LG("LOGOG_LEVEL_EMERGENCY"),
 		_LG("LOGOG_LEVEL_ALERT"),
