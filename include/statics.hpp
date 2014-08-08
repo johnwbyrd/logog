@@ -13,6 +13,7 @@ class Timer;
 class Formatter;
 class Target;
 class Mutex;
+class Message;
 
 extern void DestroyAllNodes();
 extern void DestroyGlobalTimer();
@@ -40,6 +41,8 @@ public:
     void *s_pAllFilterNodes;
     /** Pointers to the group of all valid targets. */
     void *s_pAllTargets;
+    /** Pointers to messages */
+    void *s_pAllMessages;
     /** Pointer to the default filter, if any. */
     void *s_pDefaultFilter;
     /** The default global shared timer.  All events are generally in reference to this timer, though yoy may create your own timers. */

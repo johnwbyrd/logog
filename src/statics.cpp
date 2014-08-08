@@ -12,6 +12,7 @@ namespace logog {
 		s_pAllSubscriberNodes = NULL;
 		s_pAllFilterNodes = NULL;
 		s_pAllTargets = NULL;
+        s_pAllMessages = NULL;
 		s_pTimer = NULL;
 		s_pDefaultFormatter = NULL;
 		s_pDefaultFilter = NULL;

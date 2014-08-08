@@ -48,6 +48,8 @@ extern LockableNodesType &AllFilters();
 /** Returns a reference to the group of nodes that represent terminals in the graph, i.e. nodes that can't publish. */
 extern LockableNodesType &AllTargets();
 
+extern LockableNodesType &AllMessages();
+
 class Node : public Object
 {
 public:
