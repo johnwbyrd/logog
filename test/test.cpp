@@ -966,6 +966,7 @@ UNITTEST(ChangeLevelDynamically)
 		LOGOG_LEVEL_ALL
 	};
 
+	/* All this double casting may seem like overkill but gcc complains unless we do it. */
 	const LOGOG_CHAR *levelDescriptions[] = {
 		(const LOGOG_CHAR *)_LG("LOGOG_LEVEL_NONE"),
 		(const LOGOG_CHAR *)_LG("LOGOG_LEVEL_EMERGENCY"),
