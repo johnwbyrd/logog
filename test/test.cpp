@@ -1065,7 +1065,7 @@ UNITTEST ( SetTimeFormat )
 
 	    pFormatter->SetShowTimeOfDay( true );
 
-		for(int i=0; i < (sizeof(timeFormats)/sizeof(*timeFormats)); ++i)
+		for(size_t i=0; i < (sizeof(timeFormats)/sizeof(*timeFormats)); ++i)
 		{
             pFormatter->SetTimeOfDayFormat(timeFormats[i].format);
 
