@@ -12,6 +12,15 @@ namespace logog {
 	{
 		m_sMessageBuffer.reserve( LOGOG_FORMATTER_MAX_LENGTH );
 		m_sIntBuffer.reserve_for_int();
+#ifdef LOGOG_FLAVOR_WINDOWS
+#pragma warning( push )
+#pragma warning( disable : 4996 )
+#endif // LOGOG_FLAVOR_WINDOWS
+	    /* Microsoft prefers strcpy_s, but gcc does not have it*/
+        strcpy( m_TimeOfDayFormat, LOGOG_DEFAULT_TIME_FORMAT );
+#ifdef LOGOG_FLAVOR_WINDOWS
+#pragma warning( pop )
+#endif // LOGOG_FLAVOR_WINDOWS
 	}
 
 	void Formatter::RenderTimeOfDay()
@@ -19,8 +28,10 @@ namespace logog {
 		if ( m_bShowTimeOfDay )
 		{
 #ifndef LOGOG_UNICODE
+            //Time stamps are always ascii, even if LOGOG_UNICODE is
+            //defined. 
 			TimeStamp stamp;
-			m_sMessageBuffer.append( stamp.Get() );
+			m_sMessageBuffer.append( stamp.Get(m_TimeOfDayFormat) );
 			m_sMessageBuffer.append(": ");
 #endif
 		}
@@ -72,6 +83,19 @@ namespace logog {
 	void Formatter::SetShowTimeOfDay( bool val )
 	{
 		m_bShowTimeOfDay = val;
+	}
+
+	void Formatter::SetTimeOfDayFormat( const char *fmt )
+	{
+#ifdef LOGOG_FLAVOR_WINDOWS
+#pragma warning( push )
+#pragma warning( disable : 4996 )
+#endif // LOGOG_FLAVOR_WINDOWS
+	    /* Microsoft prefers strcpy_s, but gcc does not have it*/
+        strcpy( m_TimeOfDayFormat, fmt );
+#ifdef LOGOG_FLAVOR_WINDOWS
+#pragma warning( pop )
+#endif // LOGOG_FLAVOR_WINDOWS
 	}
 
 	TOPIC_FLAGS Formatter::GetTopicFlags( const Topic &topic )
@@ -221,7 +245,7 @@ namespace logog {
 		pStatic->s_pDefaultFormatter = NULL;
 }
 
-const char * TimeStamp::Get()
+const char * TimeStamp::Get(const char* fmt)
 {
 	time_t tRawTime;
 	struct tm * tmInfo;
@@ -240,7 +264,7 @@ const char * TimeStamp::Get()
 
 	cTimeString[ 0 ] = '\0';
 	if ( tmInfo != NULL )
-		strftime (cTimeString, LOGOG_TIME_STRING_MAX, "%c", tmInfo);
+		strftime (cTimeString, LOGOG_TIME_STRING_MAX, fmt, tmInfo);
 
 	return cTimeString;
 }
