@@ -58,13 +58,15 @@ public:
 	/** Should this formatter render the current time of day? */
 	bool GetShowTimeOfDay() const;
 
-	/** Sets whether this formatter renders the current time of day. 
-     ** Time of day is not rendered by default. Calling this method has no 
-     ** effect if LOGOG_UNICODE is defined (time of day is never rendered).
+	/** Sets whether this formatter renders the current time of day. Time of day is not rendered by default. 
+     ** This function is only supported on ANSI builds, not Unicode, as the underlying functions are ANSI only.
      **/
 	void SetShowTimeOfDay(bool val);
 
-	/** Sets the format string used to render the current time of day. */
+	/** Sets the format string used to render the current time of day. 
+     ** Uses the same format specifier as strftime, check your compiler's documentation for details.
+     ** This function is only supported on ANSI builds, not Unicode, as the underlying functions are ANSI only.
+     **/
 	void SetTimeOfDayFormat( const char *fmt );
 
 protected:
