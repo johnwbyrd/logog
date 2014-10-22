@@ -12,6 +12,7 @@ namespace logog {
 	{
 		m_sMessageBuffer.reserve( LOGOG_FORMATTER_MAX_LENGTH );
 		m_sIntBuffer.reserve_for_int();
+#ifndef LOGOG_UNICODE
 #ifdef LOGOG_FLAVOR_WINDOWS
 #pragma warning( push )
 #pragma warning( disable : 4996 )
@@ -21,6 +22,7 @@ namespace logog {
 #ifdef LOGOG_FLAVOR_WINDOWS
 #pragma warning( pop )
 #endif // LOGOG_FLAVOR_WINDOWS
+#endif // LOGOG_UNICODE
 	}
 
 	void Formatter::RenderTimeOfDay()
@@ -85,6 +87,7 @@ namespace logog {
 		m_bShowTimeOfDay = val;
 	}
 
+#ifndef LOGOG_UNICODE
 	void Formatter::SetTimeOfDayFormat( const char *fmt )
 	{
 #ifdef LOGOG_FLAVOR_WINDOWS
@@ -97,6 +100,7 @@ namespace logog {
 #pragma warning( pop )
 #endif // LOGOG_FLAVOR_WINDOWS
 	}
+#endif
 
 	TOPIC_FLAGS Formatter::GetTopicFlags( const Topic &topic )
 	{

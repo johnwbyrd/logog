@@ -1021,6 +1021,7 @@ UNITTEST(ChangeLevelDynamically)
 	return 0;
 }
 
+#ifndef LOGOG_UNICODE
 UNITTEST ( SetTimeFormat )
 {
     LOGOG_INITIALIZE();
@@ -1075,6 +1076,7 @@ UNITTEST ( SetTimeFormat )
     LOGOG_SHUTDOWN();
     return 0;
 }
+#endif // LOGOG_UNICODE
 
 #ifndef LOGOG_TARGET_PS3
 int DoPlatformSpecificTestInitialization()
