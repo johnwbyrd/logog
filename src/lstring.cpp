@@ -358,7 +358,7 @@ namespace logog {
 			 ** output buffer.  It takes into account space for appending a null character in the output
 			 ** buffer as well.
 			 **/
-			int nSizeInWords = (nAttemptedSize / sizeof( LOGOG_CHAR ));
+			size_t nSizeInWords = (nAttemptedSize / sizeof( LOGOG_CHAR ));
 #endif
 			/** The nActualSize value receives different things on different platforms.
 			 ** On some platforms it receives -1 on failure; on other platforms

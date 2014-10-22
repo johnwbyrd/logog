@@ -15,6 +15,21 @@
 #define LOGOG_DEFAULT_LOG_BUFFER_SIZE ( 4 * 1024 * 1024 )
 #endif
 
+#ifndef LOGOG_TIME_STRING_MAX
+/** The maximum length of a char string containing a text representation of time. \sa TimeStamp */
+#define LOGOG_TIME_STRING_MAX 256
+#endif
+
+#ifndef LOGOG_TIME_FORMAT_MAX
+/** The maximum length of a char string representing a formatter for time. \sa TimeStamp */
+#define LOGOG_TIME_FORMAT_MAX 128
+#endif 
+
+#ifndef LOGOG_DEFAULT_TIME_FORMAT
+/** The default format for time output.  \sa Formatter::SetTimeOfDayFormat */
+#define LOGOG_DEFAULT_TIME_FORMAT "%c"
+#endif
+
 
 /** \addtogroup levelsettings Level Settings
  ** These are level settings for logog.  These settings are valid for the LOGOG_LEVEL compilation flag.  To enable

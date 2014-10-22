@@ -1021,6 +1021,63 @@ UNITTEST(ChangeLevelDynamically)
 	return 0;
 }
 
+#ifndef LOGOG_UNICODE
+UNITTEST ( SetTimeFormat )
+{
+    LOGOG_INITIALIZE();
+    {
+        struct formatAndDescription {
+            const char *format;
+            const LOGOG_CHAR *description;
+        };
+
+        //Testing strtime support varies from one compiler to the other
+        //This test works in Visual Studio 2010 and up, as well as GCC 4.8.2
+		static formatAndDescription timeFormats[] = 
+		{
+            { LOGOG_DEFAULT_TIME_FORMAT, _LG("The default LOGOG_DEFAULT_TIME_FORMAT") },
+            { "%a", _LG("Abbreviated weekday name") },
+            { "%A", _LG("Full weekday name") },
+            { "%b", _LG("Abbreviated month name") },
+            { "%B", _LG("Full month name") },
+            { "%c", _LG("Date and time representation appropriate for locale") },
+            { "%d", _LG("Day of month as decimal number (01  31)") },
+            { "%H", _LG("Hour in 24-hour format (00 - 23)") },
+            { "%I", _LG("Hour in 12-hour format (01 - 12)") },
+            { "%j", _LG("Day of year as decimal number (001 - 366)") },
+            { "%m", _LG("Month as decimal number (01 - 12)") },
+            { "%M", _LG("Minute as decimal number (00 - 59)") },
+            { "%p", _LG("Current locale's A.M./P.M. indicator for 12-hour clock") },
+            { "%S", _LG("Second as decimal number (00 - 59)") },
+            { "%U", _LG("Week of year as decimal number, with Sunday as first day of week (00 - 53)") },
+            { "%w", _LG("Weekday as decimal number (0 - 6; Sunday is 0)") },
+            { "%W", _LG("Week of year as decimal number, with Monday as first day of week (00 - 53)") },
+            { "%x", _LG("Date representation for current locale") },
+            { "%X", _LG("Time representation for current locale") },
+            { "%y", _LG("Year without century, as decimal number (00 - 99)") },
+            { "%Y", _LG("Year with century, as decimal number") },
+            { "%Z", _LG("Either the time-zone name or time zone abbreviation; no characters if time zone is unknown") },
+            { "%%", _LG("Percent sign") },
+		};
+
+        Cerr err;
+
+        Formatter *pFormatter = &GetDefaultFormatter();
+
+	    pFormatter->SetShowTimeOfDay( true );
+
+		for(size_t i=0; i < (sizeof(timeFormats)/sizeof(*timeFormats)); ++i)
+		{
+            pFormatter->SetTimeOfDayFormat(timeFormats[i].format);
+
+			EMERGENCY(_LG("Testing time format %s"), timeFormats[i].description);           
+		}
+    }
+    LOGOG_SHUTDOWN();
+    return 0;
+}
+#endif // LOGOG_UNICODE
+
 #ifndef LOGOG_TARGET_PS3
 int DoPlatformSpecificTestInitialization()
 {
