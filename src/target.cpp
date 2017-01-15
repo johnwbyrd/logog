@@ -84,6 +84,12 @@ namespace logog {
 		m_pFile( NULL ),
         m_bEnableOutputBuffering( bEnableOutputBuffering )
 	{
+		if (sFileName != NULL) {
+			SetFile(sFileName);
+		}
+	}
+
+	void LogFile::SetFile(const char *sFileName) {
 		m_bNullTerminatesStrings = false;
 
 #ifdef LOGOG_UNICODE
