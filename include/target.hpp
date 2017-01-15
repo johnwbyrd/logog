@@ -86,6 +86,12 @@ class OutputDebug : public Target
 class LogFile : public Target
 {
 public:
+    /** Creates a LogFile object without opening a file.
+     * You must call SetFile() before calling any logging operations.
+     * This is useful for initializing the logging system before you know the intended filename.
+    */
+    LogFile() : LogFile(NULL) {};
+
     /** Creates a LogFile object.
      * \param sFileName The name of the file to be created.
      * Since file names do not support Unicode on most systems, there is no option to create 
@@ -98,6 +104,8 @@ public:
 
     /** Closes the log file. */
     virtual ~LogFile();
+
+    void SetFile(const char *sFileName);
 
     /** Opens the log file on first write. */
     virtual int Open();
@@ -126,9 +134,6 @@ protected:
 
 	/** Does the actual fwrite to the file.  Call Output() instead to handle error conditions better. */
 	virtual int InternalOutput( size_t nSize, const LOGOG_CHAR *pData );
-
-private:
-    LogFile();
 };
 
 /** A buffering target.  Stores up to a fixed buffer size of output and then renders that output to another
