@@ -7,7 +7,7 @@ set( LOGOG_USE_PREFIX FALSE CACHE BOOL "Apply a LOGOG_ prefix to all logging mac
 set( LOGOG_LEAK_DETECTION FALSE CACHE BOOL "Enable detection of internal leaks in the library")
 set( LOGOG_LEAK_DETECTION_MICROSOFT CACHE BOOL "Enable detection of internal leaks using Microsoft's crt mechanism" )
 set( LOGOG_UNIT_TESTING FALSE CACHE BOOL "Enable logog's internal unit testing framework.")
-set( LOGOG_USE_COTIRE TRUE CACHE BOOL "Use cotire to speed up builds.")
+set( LOGOG_USE_COTIRE FALSE CACHE BOOL "Use cotire to speed up builds.")
 
 if( LOGOG_USE_COTIRE )
 	set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")	
