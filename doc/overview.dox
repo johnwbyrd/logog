@@ -458,6 +458,15 @@ a Cerr or a LogFile, as well as the size of the LogBuffer.  Logging then occurs
 solely to the LogBuffer, and no output is written to the Target until the 
 LogBuffer is destroyed, or the LogBuffer::Dump() method is called.
 
+In normal operation, the LogBuffer object will flush its contents to the 
+underlying target when it gets full.  However, if you wish, you can force the
+LogBuffer to flush its contents by calling the LogBuffer::Dump() method upon
+it.  Make sure to set the bEnableOutputBuffering parameter to false when 
+creating the LogFile, so that the underlying C library does not itself
+buffer the output when writing.
+
+\snippet test.cpp BufferedLoggingWithPeriodicDumping
+
 \page customformatting Custom formatting of log messages
 
 The Formatter object is responsible for rendering a particular Topic into a human-readable

@@ -880,6 +880,42 @@ UNITTEST( DeferredFileLogging )
     return 0;
 }
 
+UNITTEST( BufferedLoggingWithPeriodicDumping )
+{
+//! [BufferedLoggingWithPeriodicDumping]
+	LOGOG_INITIALIZE();
+	{
+		/* Avoid output buffering on the log file by providing false to the 
+		 * bEnableOutputBuffering parameter.
+		 */
+		LogFile logFile("log.txt", false);
+		LogBuffer logBuffer(&logFile);
+		logBuffer.SetNullTerminatesStrings(false);
+		logFile.UnsubscribeToMultiple(AllFilters());
+
+		Formatter *pFormatter = &GetDefaultFormatter();
+		pFormatter->SetShowTimeOfDay(true);
+
+		ERR(_LG("This is an error"));
+		DBUG(_LG("This is debugging information"));
+		/* At this point the LogBuffer will flush to the LogFile, and the
+		 * LogFile will immediately flush its output to the file system.
+		 */
+		logBuffer.Dump();
+
+		WARN(_LG("a WARNING MESSAGE WITH number %.3f"), 0.43543);
+		/* The LogBuffer will immediately be flushed again and all log 
+		 * information written to the file.
+		 */
+		logBuffer.Dump();
+
+	}
+	LOGOG_SHUTDOWN();
+//! [BufferedLoggingWithPeriodicDumping]
+
+	return 0;
+}
+
 UNITTEST( DateAndTime )
 {
 //! [DateAndTimeLogging]
