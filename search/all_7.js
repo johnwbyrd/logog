@@ -1,7 +1,7 @@
 var searchData=
 [
   ['generatepseudorandomerrormessages',['GeneratePseudoRandomErrorMessages',['../test_8cpp.html#a468aa7ffcba3240def68e19d1d9cb960',1,'test.cpp']]],
-  ['get',['Get',['../classlogog_1_1_time_stamp.html#aeffa8888b091685e6141a7c11c88f2c0',1,'logog::TimeStamp::Get()'],['../classlogog_1_1_timer.html#a0604a6df10f46da9a0690a44719920a4',1,'logog::Timer::Get()']]],
+  ['get',['Get',['../classlogog_1_1_time_stamp.html#a7e73c518747cd7432f39b5d354048f4d',1,'logog::TimeStamp::Get()'],['../classlogog_1_1_timer.html#a0604a6df10f46da9a0690a44719920a4',1,'logog::Timer::Get()']]],
   ['getcurrent',['GetCurrent',['../classlogog_1_1_thread.html#a80850c64b4f2cb6a8f8edfa61602a5de',1,'logog::Thread']]],
   ['getdefaultformatter',['GetDefaultFormatter',['../namespacelogog.html#a8997e274c9662fe08997ad1d69ab5561',1,'logog']]],
   ['getfilterdefault',['GetFilterDefault',['../namespacelogog.html#aada574ba51e3707411a636283e639ae5',1,'logog']]],

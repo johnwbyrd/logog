@@ -53,6 +53,7 @@ var test_8cpp =
     [ "UNITTEST", "test_8cpp.html#a7dbba276a7c8634042d2163401b8c650", null ],
     [ "UNITTEST", "test_8cpp.html#a0a6d2a221bc0fcfe8b2acbe3a2e2f626", null ],
     [ "UNITTEST", "test_8cpp.html#ae9576aae9d5086e7f3bb6fc7f59d54a5", null ],
+    [ "UNITTEST", "test_8cpp.html#a5d4fe4252426dbc3a54ea9de4086711a", null ],
     [ "UNITTEST", "test_8cpp.html#ab4497cc9c4edda813d0c5cef3ba98547", null ],
     [ "UNITTEST", "test_8cpp.html#aca81fa067012ee809fc50192e70d0ca3", null ],
     [ "UNITTEST", "test_8cpp.html#a9cfefc01614988f9319695ccdd83ead1", null ],

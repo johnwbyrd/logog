@@ -1,6 +1,7 @@
 var const_8hpp =
 [
     [ "LOGOG_DEFAULT_LOG_BUFFER_SIZE", "const_8hpp.html#aac1d42365cf35f0a201b4212fee5521e", null ],
+    [ "LOGOG_DEFAULT_TIME_FORMAT", "const_8hpp.html#ae08ce546d1560c1311fee2e7ff1a22c8", null ],
     [ "LOGOG_FORMATTER_MAX_LENGTH", "const_8hpp.html#aaf95e60ed0375478bfa07ca9ee9c58b2", null ],
     [ "LOGOG_LEVEL", "group__levelsettings.html#gadda42b8d0ddeafd2394181bdcb2cd4a4", null ],
     [ "LOGOG_LEVEL_ALERT", "group__levelsettings.html#ga90d308ae3bc18f46b7f370e4898f12b3", null ],
@@ -16,6 +17,8 @@ var const_8hpp =
     [ "LOGOG_LEVEL_WARN1", "group__levelsettings.html#ga99e028e958dc7ea72d4ac50771271862", null ],
     [ "LOGOG_LEVEL_WARN2", "group__levelsettings.html#ga87cc74ad75999503a351376a24c78529", null ],
     [ "LOGOG_LEVEL_WARN3", "group__levelsettings.html#ga63d444d38c0d83d9b759847f16878416", null ],
+    [ "LOGOG_TIME_FORMAT_MAX", "const_8hpp.html#adca7b0463a170625fbcbac61ee27a43b", null ],
+    [ "LOGOG_TIME_STRING_MAX", "const_8hpp.html#ae6376c277901df04f923ee15ceb919c7", null ],
     [ "TOPIC_FLAGS", "const_8hpp.html#a3b3cba0959d6b0395386cdd096b99b18", null ],
     [ "TopicBitsType", "group__topicbitstype.html#gafd6ddb2fb4976bbbb4fbe17d827f8452", [
       [ "TOPIC_LEVEL_FLAG", "group__topicbitstype.html#ggafd6ddb2fb4976bbbb4fbe17d827f8452a1edc8e977101b47d7f095f4b57fcfe6e", null ],
