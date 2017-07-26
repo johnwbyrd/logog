@@ -11,7 +11,15 @@
 
 #include <process.h>
 
-typedef unsigned int (WINAPI * __logog_pThreadFn )(void *);
+typedef unsigned int (WINAPI * __logog_pThreadFn)(void *);
+
+/* 64-bit versions of Windows use 32-bit handles for interoperability. When
+* sharing a handle between 32-bit and 64-bit applications, only the lower
+* 32 bits are significant, so it is safe to truncate the handle (when passing
+* it from 64-bit to 32-bit) or sign-extend the handle (when passing it from
+* 32-bit to 64-bit)."
+* source: https://msdn.microsoft.com/en-us/library/windows/desktop/aa384203%28v=vs.85%29.aspx
+*/
 
 #define LOGOG_THREAD HANDLE
 
@@ -27,7 +35,7 @@ typedef unsigned int (WINAPI * __logog_pThreadFn )(void *);
 	( (WaitForSingleObject(( thread ),INFINITE)!=WAIT_OBJECT_0) \
 				|| !CloseHandle(thread) \
 				)
-#define LOGOG_THREAD_SELF (LOGOG_THREAD)GetCurrentThreadId()
+#define LOGOG_THREAD_SELF (LOGOG_THREAD)((size_t)GetCurrentThreadId())
 
 #endif // defined(LOGOG_FLAVOR_WINDOWS)
 
