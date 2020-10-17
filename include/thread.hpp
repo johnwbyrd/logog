@@ -79,6 +79,7 @@ public:
     {
         m_pFnThreadStart = fnThreadStart;
         m_pvThreadParams = pvParams;
+        m_Thread = NULL;
     }
 
     /** Cause the created thread to commence execution asynchronously. */
